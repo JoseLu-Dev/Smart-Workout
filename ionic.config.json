@@ -1,0 +1,7 @@
+{
+  "name": "frontend-tfc",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
