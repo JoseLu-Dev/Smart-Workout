@@ -1,3 +1,6 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
 /*
  * App Global CSS
  * ----------------------------------------------------------------------------
@@ -19,8 +22,60 @@
 @import '~@ionic/angular/css/display.css';
 
 /* Optional CSS utils that can be commented out */
-@import "~@ionic/angular/css/padding.css";
-@import "~@ionic/angular/css/float-elements.css";
-@import "~@ionic/angular/css/text-alignment.css";
-@import "~@ionic/angular/css/text-transformation.css";
-@import "~@ionic/angular/css/flex-utils.css";
+// @import "~@ionic/angular/css/padding.css";
+// @import "~@ionic/angular/css/float-elements.css";
+// @import "~@ionic/angular/css/text-alignment.css";
+// @import "~@ionic/angular/css/text-transformation.css";
+// @import "~@ionic/angular/css/flex-utils.css";
+
+.btn-green {
+    @apply text-textPrimaryDark bg-tertiary hover:bg-tertiaryDark
+}
+
+.btn-blue {
+    @apply text-textPrimaryDark bg-secondary hover:bg-secondaryDark
+}
+
+.btn {
+    @apply block text-center p-3 duration-300 rounded-lg
+}
+
+.input {
+    @apply p-2 rounded-lg border-black focus:outline-none focus:ring-1 focus:ring-tertiaryLight focus:border-transparent text-textSecondary bg-primary dark:text-textSecondaryDark dark:bg-primaryDark
+}
+
+.input-invalid {
+    @apply outline-none ring-1 ring-red-600 border-transparent focus:outline-none focus:ring-1 focus:ring-red-600 focus:border-transparent
+}
+
+.card {
+    @apply rounded-lg p-8 shadow-md bg-primaryLight dark:bg-primaryLightDark
+}
+
+.background {
+    @apply w-screen h-screen bg-background dark:bg-backgroundDark
+}
+
+.link {
+    @apply font-medium text-xs cursor-pointer text-secondary dark:text-secondaryLight hover:underline
+}
+
+.text {
+    @apply text-textSecondary dark:text-textSecondaryDark
+}
+
+.label {
+    @apply font-semibold text-textSecondary dark:text-textSecondaryDark
+}
+
+.label-error {
+    @apply font-semibold text-red-500
+}
+
+.h-sec {
+    @apply text-4xl text-textPrimary dark:text-textPrimaryDark
+}
+
+.h-pri {
+    @apply text-6xl text-textPrimary dark:text-textPrimaryDark
+}

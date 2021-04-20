@@ -21,6 +21,7 @@
     "@angular/router": "~11.2.0",
     "@capacitor/core": "2.4.7",
     "@ionic/angular": "^5.5.2",
+    "@ngneat/tailwind": "^7.0.3",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2"
@@ -37,6 +38,10 @@
     "@angular/language-service": "~11.2.0",
     "@capacitor/cli": "2.4.7",
     "@ionic/angular-toolkit": "^3.1.1",
+    "@tailwindcss/aspect-ratio": "0.2.0",
+    "@tailwindcss/forms": "0.3.2",
+    "@tailwindcss/line-clamp": "0.2.0",
+    "@tailwindcss/typography": "0.4.0",
     "@types/jasmine": "~3.6.0",
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "^12.11.1",
@@ -55,6 +60,7 @@
     "karma-jasmine": "~4.0.0",
     "karma-jasmine-html-reporter": "^1.5.0",
     "protractor": "~7.0.0",
+    "tailwindcss": "2.1.1",
     "ts-node": "~8.3.0",
     "typescript": "~4.0.2"
   },

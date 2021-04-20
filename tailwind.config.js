@@ -1,0 +1,55 @@
+const { guessProductionMode } = require("@ngneat/tailwind");
+
+process.env.TAILWIND_MODE = guessProductionMode() ? 'build' : 'watch';
+
+module.exports = {
+    prefix: '',
+    mode: 'jit',
+    purge: {
+      content: [
+        './src/**/*.{html,ts,css,scss,sass,less,styl}',
+      ]
+    },
+    darkMode: 'class', // or 'media' or 'class'
+    theme: {
+      extend: {
+        colors: {
+        //dark mode
+        backgroundDark: '#212529',
+
+        primaryDark: '#2A2E32',
+        primaryLightDark: '#3E4246',
+
+        textPrimaryDark: '#F7F7FE',
+        textSecondaryDark: '#aeaebc',
+        textTertiaryDark: '#818294',
+
+        //light mode
+        background: '#F7F7FE',
+
+        primary: '#f0f0f2',
+        primaryLight: '#e8e8eb',
+
+        textPrimary: '#212529',
+        textSecondary: '#2A2E32',
+        textTertiary: '#3E4246',
+        
+        gray:'#64657A',
+
+        //common
+        secondaryDark:'#20688a',
+        secondary: '#1A759F', //base
+        secondaryLight: '#168AAD',
+
+        tertiaryDark:'#317053',
+        tertiary: '#40916C', //base
+        tertiaryLight: '#52B788',
+
+      },
+    },
+    },
+    variants: {
+      extend: {},
+    },
+    plugins: [require('@tailwindcss/aspect-ratio'),require('@tailwindcss/forms'),require('@tailwindcss/line-clamp'),require('@tailwindcss/typography')],
+};
