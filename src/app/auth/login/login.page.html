@@ -1,0 +1,45 @@
+<div class="background sm:flex sm:flex-wrap sm:content-center">
+  <div class="w-10/12 sm:w-8/12 md:w-6/12 xl:w-4/12 m-auto my-10 card">
+
+    <!--<div class="flex mb-6">
+      <div class="rounded-full bg-background w-12 h-12 flex flex-wrap justify-center content-center"><div class="text-textPrimary">B</div></div>
+      <div class="rounded-full bg-primary w-12 h-12 flex flex-wrap justify-center content-center"><div class="text-textPrimary">P</div></div>
+      <div class="rounded-full bg-primaryAccent w-12 h-12 flex flex-wrap justify-center content-center"><div class="text-textPrimary">Pa</div></div>
+      <div class="rounded-full bg-secondaryDark w-12 h-12 flex flex-wrap justify-center content-center"><div class="text-textPrimary">Sd</div></div>
+      <div class="rounded-full bg-secondary w-12 h-12 flex flex-wrap justify-center content-center"><div class="text-textPrimary">S</div></div>
+      <div class="rounded-full bg-secondaryAccent w-12 h-12 flex flex-wrap justify-center content-center"><div class="text-textPrimary">Sa</div></div>
+      <div class="rounded-full bg-tertiaryDark w-12 h-12 flex flex-wrap justify-center content-center"><div class="text-textPrimary">Td</div></div>
+      <div class="rounded-full bg-tertiary w-12 h-12 flex flex-wrap justify-center content-center"><div class="text-textPrimary">T</div></div>
+      <div class="rounded-full bg-tertiaryAccent w-12 h-12 flex flex-wrap justify-center content-center"><div class="text-textPrimary">Ta</div></div>
+    </div>
+    <div class="flex mb-6">
+      <div class="rounded-full bg-textPrimary w-12 h-12 flex flex-wrap justify-center content-center"><div class="text-textPrimary">P</div></div>
+      <div class="rounded-full bg-textSecondary w-12 h-12 flex flex-wrap justify-center content-center"><div class="text-textPrimary">S</div></div>
+      <div class="rounded-full bg-textTertiary w-12 h-12 flex flex-wrap justify-center content-center"><div class="text-textPrimary">T</div></div>
+      <div class="rounded-full bg-textQuaternary w-12 h-12 flex flex-wrap justify-center content-center"><div class="text-textPrimary">Q</div></div>
+    </div>-->
+
+    <h1 class="font-bold h-sec mt-4 text-center">Login</h1>
+
+    <form [formGroup]="signInFormGroup" (ngSubmit)="onSignIn(signInFormGroup.value)" class="mt-6">
+
+      <label class="my-4 label" for="email">Username</label>
+      <input [ngClass]="{'input-invalid': invalidCredentials}" class="my-4 w-full input" type="text" autofocus
+        formControlName="email" placeholder="Username" />
+
+      <label class="my-4 label" for="password">Password</label>
+      <input [ngClass]="{'input-invalid': invalidCredentials}" class="mt-4 mb-1 w-full input" type="password"
+        formControlName="password" placeholder="Password" />
+
+      <p *ngIf="invalidCredentials" class="text-red-600 text-sm font-semibold">Wrong username or password</p>
+
+      <a class="link">Forget Password?</a>
+      <button type="submit" class="w-full mt-4 btn btn-blue">Login</button>
+
+    </form>
+
+    <p class="mt-12 text-xs text-center text"> Don't have an account?
+      <a [routerLink]="['/auth/register']" routerLinkActive="router-link-active" class="ml-2 link">Create One</a>
+    </p>
+  </div>
+</div>

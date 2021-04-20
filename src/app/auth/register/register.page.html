@@ -1,0 +1,35 @@
+<div class="background sm:flex sm:flex-wrap sm:content-center">
+  <div class="w-10/12 sm:w-8/12 md:w-6/12 xl:w-4/12 m-auto my-10 card">
+
+    <h1 class="font-bold h-sec mt-4 text-center">Sign Up</h1>
+
+    <form [formGroup]="signUpForm" (ngSubmit)="onSignUp(signUpForm.value)" class="mt-6">
+
+      <div class="flex mt-4"><label class="label">Username</label><label
+          *ngIf="!signUpForm.get('name').valid && signUpForm.get('name').touched" class="label-error">&nbsp;- Must
+          contain at
+          least 3 characters</label></div>
+      <input [ngClass]="{'input-invalid': !signUpForm.get('name').valid && signUpForm.get('name').touched}"
+        class="my-4 w-full input" type="text" formControlName="name" placeholder="Username" />
+
+      <div class="flex"><label class="label">Email</label><label
+          *ngIf="!signUpForm.get('email').valid && signUpForm.get('email').touched" class="label-error">&nbsp;- Invalid
+          Email</label></div>
+      <input [ngClass]="{'input-invalid': !signUpForm.get('email').valid && signUpForm.get('email').touched}"
+        class="my-4 w-full input" type="text" formControlName="email" placeholder="Email" />
+
+      <div class="flex"><label class="label">Password</label><label
+          *ngIf="!signUpForm.get('password').valid && signUpForm.get('password').touched" class="label-error">&nbsp;-
+          Must contain at least 7 characters</label></div>
+      <input [ngClass]="{'input-invalid': !signUpForm.get('password').valid && signUpForm.get('password').touched}"
+        class="my-4 w-full input" type="password" formControlName="password" placeholder="Password" />
+
+      <button type="submit" [disabled]="signUpForm.invalid" class="w-full mt-4 btn btn-blue">Sign Up</button>
+
+    </form>
+
+    <p class="mt-12 text-xs text-center text"> Already have an account?<a (click)="goBack()"
+        routerLinkActive="router-link-active" class="ml-2 link">Log in</a>
+    </p>
+  </div>
+</div>
