@@ -6,6 +6,7 @@ import { take, map, switchMap } from 'rxjs/operators';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { environment } from '../../../environments/environment';
 
 const helper = new JwtHelperService();
 const TOKEN_KEY = 'jwt-token';
@@ -17,7 +18,15 @@ export class AuthService {
   public user: Observable<any>;
   private userData = new BehaviorSubject(null);
 
-  constructor(private storage: Storage, private http: HttpClient, private plt: Platform, private router: Router) {
+  private authUrl = `${environment.backendUrl}/auth`;
+  private loginUrl = '/login';
+  private registerUrl = '/register';
+
+  constructor(
+    private storage: Storage,
+    private http: HttpClient,
+    private plt: Platform,
+    private router: Router) {
     this.storage.create();
     this.loadStoredToken();
   }
@@ -39,18 +48,11 @@ export class AuthService {
     );
   }
 
-  login(credentials: { email: string; pw: string }) {
-    // Normally make a POST request to your APi with your login credentials
-    if (credentials.email !== 'saimon@devdactic.com' || credentials.pw !== '123') {
-      return of(null);
-    }
-
-    return this.http.get('https://randomuser.me/api/').pipe(
-      take(1),
+  login(credentials: { name: string; password: string }) {
+    console.log(`${this.authUrl}${this.loginUrl}`);
+    return this.http.post(`${this.authUrl}${this.loginUrl}`, credentials).pipe(
       map(res =>
-        // Extract the JWT, here we just fake it
-        // eslint-disable-next-line max-len
-        `eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJPbmxpbmUgSldUIEJ1aWxkZXIiLCJpYXQiOjE1Njc2NjU3MDYsImV4cCI6MTU5OTIwMTcwNiwiYXVkIjoid3d3LmV4YW1wbGUuY29tIiwic3ViIjoiMTIzNDUiLCJmaXJzdF9uYW1lIjoiU2ltb24iLCJsYXN0X25hbWUiOiJHcmltbSIsImVtYWlsIjoic2FpbW9uQGRldmRhY3RpYy5jb20ifQ.4LZTaUxsX2oXpWN6nrSScFXeBNZVEyuPxcOkbbDVZ5U`
+        res = res['token']
       ),
       switchMap(token => {
         console.log(token);
@@ -60,6 +62,15 @@ export class AuthService {
         const storageObs = from(this.storage.set(TOKEN_KEY, token));
         return storageObs;
       })
+    );
+  }
+
+  register(credentials: { name: string; password: string; email: string }) {
+    console.log(`${this.authUrl}${this.registerUrl}`);
+    return this.http.post(`${this.authUrl}${this.registerUrl}`, credentials).pipe(
+      map(res =>
+        console.log(res)
+      ),
     );
   }
 

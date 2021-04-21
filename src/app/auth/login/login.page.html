@@ -23,9 +23,9 @@
 
     <form [formGroup]="signInFormGroup" (ngSubmit)="onSignIn(signInFormGroup.value)" class="mt-6">
 
-      <label class="my-4 label" for="email">Username</label>
+      <label class="my-4 label" for="name">Username</label>
       <input [ngClass]="{'input-invalid': invalidCredentials}" class="my-4 w-full input" type="text" autofocus
-        formControlName="email" placeholder="Username" />
+        formControlName="name" placeholder="Username" />
 
       <label class="my-4 label" for="password">Password</label>
       <input [ngClass]="{'input-invalid': invalidCredentials}" class="mt-4 mb-1 w-full input" type="password"

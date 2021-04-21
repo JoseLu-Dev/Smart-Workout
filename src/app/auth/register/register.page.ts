@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from '../common/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -13,6 +14,7 @@ export class RegisterPage implements OnInit {
 
   constructor(private location: Location,
     private formBuilder: FormBuilder,
+    private authService: AuthService,
   ) { }
 
   ngOnInit() {
@@ -23,8 +25,10 @@ export class RegisterPage implements OnInit {
     });
   }
 
-  onSignUp(user) {
-    console.log(user);
+  onSignUp(credentials: { name: string; password: string; email: string }) {
+    this.authService.register(credentials).subscribe(res => {
+      console.log(res);
+    });
   }
 
   goBack() {
