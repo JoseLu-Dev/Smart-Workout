@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../common/auth.service';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-register',
@@ -10,11 +11,13 @@ import { AuthService } from '../common/auth.service';
 })
 export class RegisterPage implements OnInit {
 
+  invalidCredentials = false;
   signUpForm: FormGroup;
 
   constructor(private location: Location,
     private formBuilder: FormBuilder,
     private authService: AuthService,
+    private alertCtrl: AlertController,
   ) { }
 
   ngOnInit() {
@@ -27,7 +30,25 @@ export class RegisterPage implements OnInit {
 
   onSignUp(credentials: { name: string; password: string; email: string }) {
     this.authService.register(credentials).subscribe(res => {
-      console.log(res);
+      const status: number = res['status'];
+      switch (status) {
+        case 201:
+          this.alertCtrl.create({
+            header: 'User created',
+            message: 'Please go to your email and verify it.',
+            buttons: ['OK']
+          }).then(alert => alert.present());
+          break;
+        case 409:
+          this.invalidCredentials = true;
+          break;
+        case 500:
+          this.alertCtrl.create({
+            header: 'Server error',
+            message: 'An error has occurred, try again later.',
+            buttons: ['OK']
+          }).then(alert => alert.present());
+      }
     });
   }
 

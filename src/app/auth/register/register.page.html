@@ -9,14 +9,18 @@
           *ngIf="!signUpForm.get('name').valid && signUpForm.get('name').touched" class="label-error">&nbsp;- Must
           contain at
           least 3 characters</label></div>
-      <input [ngClass]="{'input-invalid': !signUpForm.get('name').valid && signUpForm.get('name').touched}"
+      <input
+        [ngClass]="{'input-invalid': !signUpForm.get('name').valid && signUpForm.get('name').touched, 'input-invalid': invalidCredentials}"
         class="my-4 w-full input" type="text" formControlName="name" placeholder="Username" />
 
       <div class="flex"><label class="label">Email</label><label
           *ngIf="!signUpForm.get('email').valid && signUpForm.get('email').touched" class="label-error">&nbsp;- Invalid
           Email</label></div>
-      <input [ngClass]="{'input-invalid': !signUpForm.get('email').valid && signUpForm.get('email').touched}"
+      <input
+        [ngClass]="{'input-invalid': !signUpForm.get('email').valid && signUpForm.get('email').touched, 'input-invalid': invalidCredentials}"
         class="my-4 w-full input" type="text" formControlName="email" placeholder="Email" />
+
+      <p *ngIf="invalidCredentials" class="text-red-500 text-base font-bold text-center">Username or Email already in use</p>
 
       <div class="flex"><label class="label">Password</label><label
           *ngIf="!signUpForm.get('password').valid && signUpForm.get('password').touched" class="label-error">&nbsp;-

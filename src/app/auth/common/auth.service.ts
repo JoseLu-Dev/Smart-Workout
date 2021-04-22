@@ -66,12 +66,7 @@ export class AuthService {
   }
 
   register(credentials: { name: string; password: string; email: string }) {
-    console.log(`${this.authUrl}${this.registerUrl}`);
-    return this.http.post(`${this.authUrl}${this.registerUrl}`, credentials).pipe(
-      map(res =>
-        console.log(res)
-      ),
-    );
+    return this.http.post(`${this.authUrl}${this.registerUrl}`, credentials, {observe: 'response'});
   }
 
   getUser() {
