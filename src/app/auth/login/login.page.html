@@ -16,12 +16,13 @@
       <p *ngIf="invalidCredentials" class="text-red-500 text-sm font-bold">Wrong username or password</p>
 
       <a class="link">Forget Password?</a>
+      <!--disable on not valid form-->
       <button type="submit" class="w-full mt-4 btn btn-blue">Login</button>
 
     </form>
 
     <p class="mt-12 text-xs text-center text"> Don't have an account?
-      <a [routerLink]="['/register']" routerLinkActive="router-link-active" class="ml-2 link">Create One</a>
+      <a [routerLink]="['/register']" routerLinkActive="router-link-active" class="text-xs ml-2 link">Create One</a>
     </p>
   </div>
 </div>
