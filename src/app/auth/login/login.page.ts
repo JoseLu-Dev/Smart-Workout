@@ -1,5 +1,5 @@
 import { AuthService } from '../common/auth.service';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
@@ -24,8 +24,8 @@ export class LoginPage implements OnInit {
   ngOnInit(): void {
     this.invalidCredentials = false;
     this.signInFormGroup = this.formBuilder.group({
-      name: [],
-      password: []
+      name: ['', Validators.compose([Validators.required])],
+      password: ['', Validators.compose([Validators.required])]
     });
   }
 
