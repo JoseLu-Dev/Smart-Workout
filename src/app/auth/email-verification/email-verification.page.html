@@ -1,0 +1,26 @@
+<div class="background sm:flex sm:flex-wrap sm:content-center">
+  <div class="w-10/12 sm:w-8/12 md:w-6/12 xl:w-4/12 m-auto my-10 card">
+    <div *ngIf="!verificationCode; else verificationTemplate">
+
+      <form [formGroup]="emailForm" (ngSubmit)="onResendEmailCLicked(emailForm.value)" class="mt-6">
+
+        <div class="flex"><label class="label">Email</label><label
+            *ngIf="!emailForm.get('email').valid && emailForm.get('email').touched" class="label-error">&nbsp;- Invalid
+            Email</label></div>
+        <input
+          [ngClass]="{'input-invalid': !emailForm.get('email').valid && emailForm.get('email').touched, 'input-invalid': invalidEmail}"
+          class="mt-4 mb-2 w-full input" type="text" formControlName="email" placeholder="Email" />
+        <p *ngIf="invalidEmail" class="text-red-500 text-base font-bold text-center">No user found with given email</p>
+        <button type="submit" [disabled]="emailForm.invalid" class="w-full mt-4 btn btn-blue">Re send verification
+          email</button>
+
+      </form>
+    </div>
+
+    <ng-template #verificationTemplate>
+      <p class="text-lg text-center text"> Email confirmed, you can now
+        <a [routerLink]="['']" routerLinkActive="router-link-active" class="ml-2 link text-lg">Log in</a>
+      </p>
+    </ng-template>
+  </div>
+</div>
