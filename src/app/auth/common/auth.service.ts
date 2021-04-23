@@ -49,7 +49,6 @@ export class AuthService {
   }
 
   login(credentials: { name: string; password: string }) {
-    console.log(`${this.authUrl}${this.loginUrl}`);
     return this.http.post(`${this.authUrl}${this.loginUrl}`, credentials).pipe(
       map(res =>
         res = res['token']
