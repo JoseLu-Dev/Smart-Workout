@@ -16,6 +16,10 @@ const routes: Routes = [
     path: 'register',
     loadChildren: () => import('./auth/register/register.module').then( m => m.RegisterPageModule)
   },
+  {
+    path: 'verification',
+    loadChildren: () => import('./auth/email-verification/email-verification.module').then( m => m.EmailVerificationPageModule)
+  },
 ];
 
 @NgModule({
