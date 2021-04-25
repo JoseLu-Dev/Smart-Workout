@@ -63,12 +63,12 @@ export class AuthService {
                 text: 'OK',
                 handler: () => {
                   this.alertCtrl.dismiss().then(() => {
-                    this.router.navigateByUrl('/verification');
                   });
                   return false;
                 }
               }]
             }).then(alert => alert.present());
+            this.router.navigateByUrl('/verification');
             break;
           case 403:
             this.alertCtrl.create({
@@ -83,12 +83,13 @@ export class AuthService {
               message: 'An error has occurred, try again later.',
               buttons: ['OK']
             }).then(alert => alert.present());
-        return err;
-      }}),
+            return err;
+        }
+      }),
       map(res => {
         console.log('RESPONSE' + JSON.stringify(res));
         if (res) {
-          this.router.navigateByUrl('/home');
+          this.router.navigate(['/home'], { replaceUrl: true });
         }
         return res;
       }),
