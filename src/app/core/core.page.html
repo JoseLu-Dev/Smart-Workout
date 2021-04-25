@@ -1,5 +1,11 @@
-<app-nav-bar></app-nav-bar>
+<app-nav-bar class="h-16 bg-primaryLight dark:bg-primaryLightDark"></app-nav-bar>
 
-<ion-content>
-  <ion-router-outlet></ion-router-outlet>
-</ion-content>
+<div class="w-full h-full p-4 bg-background dark:bg-backgroundDark">
+  <div class="h-full rounded-lg p-4 shadow-md bg-primaryLight dark:bg-primaryLightDark">
+    <ion-content>
+      <div class="w-full h-full bg-primaryLight dark:bg-primaryLightDark">
+      <ion-router-outlet></ion-router-outlet>
+    </div>
+    </ion-content>
+  </div>
+</div>
