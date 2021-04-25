@@ -24,7 +24,7 @@ export class LoginPage implements OnInit {
   ) {
     this.authService.user.subscribe(user => {
       if (user) {
-        this.router.navigate(['/home'], { replaceUrl: true });
+        this.router.navigate(['/app'], { replaceUrl: true });
       }
     });
   }

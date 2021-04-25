@@ -89,7 +89,7 @@ export class AuthService {
       map(res => {
         console.log('RESPONSE' + JSON.stringify(res));
         if (res) {
-          this.router.navigate(['/home'], { replaceUrl: true });
+          this.router.navigate(['/app'], { replaceUrl: true });
         }
         return res;
       }),
