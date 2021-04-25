@@ -4,18 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { CorePageRoutingModule } from './core-routing.module';
+import { CalendarPageRoutingModule } from './calendar-routing.module';
 
-import { CorePage } from './core.page';
-import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { CalendarPage } from './calendar.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    CorePageRoutingModule
+    CalendarPageRoutingModule
   ],
-  declarations: [CorePage, NavBarComponent]
+  declarations: [CalendarPage]
 })
-export class CorePageModule {}
+export class CalendarPageModule {}

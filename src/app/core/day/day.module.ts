@@ -4,18 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { CorePageRoutingModule } from './core-routing.module';
+import { DayPageRoutingModule } from './day-routing.module';
 
-import { CorePage } from './core.page';
-import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { DayPage } from './day.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    CorePageRoutingModule
+    DayPageRoutingModule
   ],
-  declarations: [CorePage, NavBarComponent]
+  declarations: [DayPage]
 })
-export class CorePageModule {}
+export class DayPageModule {}
