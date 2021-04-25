@@ -13,13 +13,21 @@ export class LoginPage implements OnInit {
 
   signInFormGroup: FormGroup;
   invalidCredentials: boolean;
-
+  /**
+   * Redirect to "/home" if the user is logged in
+   */
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthService,
     private alertCtrl: AlertController,
     private router: Router,
-  ) { }
+  ) {
+    this.authService.user.subscribe(user => {
+      if (user) {
+        this.router.navigate(['/home'], { replaceUrl: true });
+      }
+    });
+  }
 
   ngOnInit(): void {
     this.invalidCredentials = false;

@@ -10,6 +10,10 @@ export class HomePage implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    console.log('onHomeInit');
   }
 
+  onClick(){
+    console.log('onClick');
+  }
 }
