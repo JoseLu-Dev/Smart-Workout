@@ -3,6 +3,7 @@ import { ActivatedRoute, } from '@angular/router';
 import { EmailVerificationService } from './email-verification.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AlertController } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-email-verification',
@@ -12,6 +13,7 @@ import { AlertController } from '@ionic/angular';
 export class EmailVerificationPage implements OnInit {
 
   invalidEmail = false;
+  emailVerified = false;
   emailForm: FormGroup;
   verificationCode: string;
 
@@ -19,7 +21,8 @@ export class EmailVerificationPage implements OnInit {
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private emailVerificationService: EmailVerificationService,
-    private alertCtrl: AlertController,) { }
+    private alertCtrl: AlertController,
+    private router: Router) { }
 
   ngOnInit() {
     this.verificationCode = this.route.snapshot.paramMap.get('code');
@@ -28,6 +31,7 @@ export class EmailVerificationPage implements OnInit {
         const status: number = res['status'];
         switch (status) {
           case 200:
+            this.emailVerified = true;
             this.alertCtrl.create({
               header: 'Successfully verified',
               message: 'Email has been successfully verified.',
@@ -39,6 +43,7 @@ export class EmailVerificationPage implements OnInit {
         const errorStatus: number = error['status'];
         switch (errorStatus) {
           case 404:
+            this.invalidEmail = true;
             this.alertCtrl.create({
               header: 'Not suitable',
               message: 'This account is not suitable for activation.',
@@ -53,7 +58,6 @@ export class EmailVerificationPage implements OnInit {
             }).then(alert => alert.present());
         }
       });
-      return;
     }
     this.emailForm = this.formBuilder.group({
       email: ['', Validators.compose([Validators.email, Validators.required])],
@@ -99,4 +103,7 @@ export class EmailVerificationPage implements OnInit {
     });
   }
 
+  onGoToLoginClicked(){
+    this.router.navigate([''], { replaceUrl: true });
+  }
 }

@@ -1,6 +1,6 @@
 <div class="background sm:flex sm:flex-wrap sm:content-center">
   <div class="w-10/12 sm:w-8/12 md:w-6/12 xl:w-4/12 m-auto my-10 card">
-    <div *ngIf="!verificationCode; else verificationTemplate">
+    <div *ngIf="!emailVerified; else verificationTemplate">
 
       <form [formGroup]="emailForm" (ngSubmit)="onResendEmailCLicked(emailForm.value)" class="mt-6">
 
@@ -19,7 +19,7 @@
 
     <ng-template #verificationTemplate>
       <p class="text-lg text-center text"> Email confirmed, you can now
-        <a [routerLink]="['']" routerLinkActive="router-link-active" class="ml-2 link text-lg">Log in</a>
+        <a (click)="onGoToLoginClicked()" class="ml-2 link text-lg">Log in</a>
       </p>
     </ng-template>
   </div>
