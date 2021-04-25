@@ -38,18 +38,7 @@ export class LoginPage implements OnInit {
   }
 
   onSignIn(credentials: { name: string; password: string }) {
-    console.log(credentials);
-    this.authService.login(credentials).subscribe(async res => {
-      if (res) {
-        this.router.navigateByUrl('/home');
-      } else {
-        const alert = await this.alertCtrl.create({
-          header: 'Login Failed',
-          message: 'Wrong credentials.',
-          buttons: ['OK']
-        });
-        await alert.present();
-      }
+    this.authService.login(credentials).subscribe(res => {
     });
   }
 }
