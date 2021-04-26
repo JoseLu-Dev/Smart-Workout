@@ -42,7 +42,7 @@
 
 .input {
     @apply p-2 rounded-md border-black focus:outline-none focus:ring-2 focus:ring-tertiaryLight focus:border-transparent 
-    text-textSecondary bg-primary dark:text-textSecondaryDark dark:bg-primaryDark
+    border-transparent text-textSecondary bg-primaryLight dark:text-textSecondaryDark dark:bg-primaryDark
 }
 
 .input-invalid {
@@ -50,7 +50,7 @@
 }
 
 .card {
-    @apply rounded-lg p-8 shadow-md bg-primaryLight dark:bg-primaryLightDark
+    @apply rounded-lg p-8 shadow-md bg-primary dark:bg-primaryLightDark
 }
 
 .background {

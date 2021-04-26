@@ -25,10 +25,10 @@ module.exports = {
         textTertiaryDark: '#818294',
 
         //light mode
-        background: '#F7F7FE',
+        background: '#e8e8eb',
 
-        primary: '#f0f0f2',
-        primaryLight: '#e8e8eb',
+        primary: '#F7F7FE',
+        primaryLight: '#f0f0f2',
 
         textPrimary: '#212529',
         textSecondary: '#2A2E32',
