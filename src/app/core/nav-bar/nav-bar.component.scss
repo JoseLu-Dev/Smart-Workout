@@ -1,0 +1,18 @@
+.nav-btn {
+    @apply text-textPrimary hover:bg-secondary hover:text-textPrimaryDark
+    dark:text-textPrimaryDark
+    block text-center p-2 px-1  duration-300 rounded-lg
+    font-bold
+}
+
+.nav-btn-active {
+    @apply bg-secondary text-textPrimaryDark
+}
+
+.separator {
+    @apply bg-background dark:bg-gray w-1 h-12 rounded-full
+}
+
+#parent-hover:hover .parent-highlight {
+    @apply text-textPrimaryDark
+}
