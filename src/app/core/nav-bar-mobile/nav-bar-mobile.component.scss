@@ -1,0 +1,12 @@
+.icon{
+    @apply w-8 h-8 fill-current text-textPrimary dark:text-textPrimaryDark
+    opacity-50 m-auto hover:opacity-100
+}
+
+.nav-icon-active{
+    @apply opacity-100
+}
+
+button {
+    @apply place-items-center flex flex-wrap content-center w-16 h-16
+}

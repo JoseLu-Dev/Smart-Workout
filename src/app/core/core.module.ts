@@ -8,6 +8,7 @@ import { CorePageRoutingModule } from './core-routing.module';
 
 import { CorePage } from './core.page';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { NavBarMobileComponent } from './nav-bar-mobile/nav-bar-mobile.component';
 
 @NgModule({
   imports: [
@@ -16,6 +17,6 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
     IonicModule,
     CorePageRoutingModule
   ],
-  declarations: [CorePage, NavBarComponent]
+  declarations: [CorePage, NavBarComponent, NavBarMobileComponent]
 })
 export class CorePageModule {}
