@@ -21,22 +21,33 @@ export class CalendarCreatorService {
   public getMonth(monthIndex: number, year: number): Day[] {
     const days = [];
 
-    const firstday = this.createDay(1, monthIndex, year);
+    const firstDay = this.createDay(1, monthIndex, year);
 
     //create empty days
-    for (let i = 1; i < firstday.weekDayNumber; i++) {
+    if(firstDay.weekDayNumber === 0) {
+      for(let i = 1; i <= 6; i++) {
+        days.push({
+          weekDayNumber: i,
+          monthIndex: monthIndex,
+          year: year,
+        } as Day);
+      }
+    }
+    for (let i = 1; i < firstDay.weekDayNumber; i++) {
       days.push({
         weekDayNumber: i,
-        monthIndex,
-        year,
+        monthIndex: monthIndex,
+        year: year,
       } as Day);
     }
-    days.push(firstday);
+    days.push(firstDay);
     //
 
-    const countDaysInMonth = new Date(year, monthIndex +1, 0).getDate();
-    for (let i = 2; i < countDaysInMonth +1; i++) {
-      days.push(this.createDay(i, monthIndex, year));
+    const countDaysInMonth = new Date(year, monthIndex + 1, 0).getDate();
+    for (let i = 2; i < countDaysInMonth + 1; i++) {
+      const day: Day = this.createDay(i, monthIndex, year);
+      day.isCurrentDay = this.isCurrentDay(day);
+      days.push(day);
     }
 
     return days;
@@ -110,5 +121,16 @@ export class CalendarCreatorService {
     day.weekDayName = this.getWeekDayName(day.weekDayNumber);
 
     return day;
+  }
+
+  private isCurrentDay(day: Day): boolean {
+    const today: Date = new Date();
+
+    const isCurrentDay: boolean =
+      day.year === today.getFullYear()
+      && day.monthIndex === today.getMonth()
+      && day.number === today.getDate();
+
+    return isCurrentDay;
   }
 }
