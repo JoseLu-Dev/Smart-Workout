@@ -1,9 +1,8 @@
-.calendar {
-    width: 210px;
-  
-    .day {
-      width: 30px;
-      display: inline-block;
-    }
-  }
-  
+.calendar{
+  @apply bg-primary dark:bg-primaryLightDark grid grid-cols-7 gap-2
+  w-8/12 h-full 
+}
+
+.day{
+  @apply rounded-full w-20 h-20 hover:bg-gray hover:opacity-60
+}

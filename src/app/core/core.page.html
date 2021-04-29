@@ -1,15 +1,11 @@
 <app-nav-bar class="bg-primary dark:bg-primaryLightDark
 flex items-center justify-between flex-wrap"></app-nav-bar>
 
-<div class="w-full h-full p-4 bg-background dark:bg-backgroundDark">
-  <div class="h-full rounded-lg p-4 shadow-md bg-primary dark:bg-primaryLightDark">
-    <ion-content>
-      <div class="w-full h-full bg-primary dark:bg-primaryLightDark">
-        <ion-router-outlet></ion-router-outlet>
-      </div>
-    </ion-content>
-  </div>
-</div>
+<ion-content>
+  <div class="w-full h-full bg-background dark:bg-backgroundDark">
+      <ion-router-outlet></ion-router-outlet>
+    </div>
+</ion-content>
 
 <div class="md:hidden block">
   <app-nav-bar-mobile class="bg-primary dark:bg-primaryLightDark
