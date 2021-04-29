@@ -36,7 +36,8 @@
             "style": "camelCase"
           }
         ],
-        "@typescript-eslint/dot-notation": "off"
+        "@typescript-eslint/dot-notation": "off",
+        "object-shorthand": "off"
       }
     },
     {
