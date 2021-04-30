@@ -6,13 +6,13 @@
 
         <div class="col-span-12 md:col-span-4 xl:col-span-5 grid justify-items-center">
             <div class="flex flex-row md:flex-col xl:flex-row items-center">
-                <button (click)="calendar.onPreviousMonth()" class="btn btn-blue w-24"> Previous </button>
-                <div class="flex flex-wrap content-center w-40">
-                    <p class="self-center mx-auto"> {{ calendar?.calendarCreator.getMonthName(calendar?.monthNumber) }}
+                <button (click)="calendar.onPreviousMonth()" class="sm:text-lg lg:text-2xl btn btn-blue sm:w-24 lg:w-32"> Previous </button>
+                <div class="flex flex-wrap content-center w-52 m-4">
+                    <p class="self-center mx-auto sm:text-lg lg:text-2xl"> {{ calendar?.calendarCreator.getMonthName(calendar?.monthNumber) }}
                         &nbsp; {{ calendar?.year }}
                     </p>
                 </div>
-                <button (click)="calendar.onNextMonth()" class="btn btn-blue w-24"> Next </button>
+                <button (click)="calendar.onNextMonth()" class="sm:text-lg lg:text-2xl btn btn-blue sm:w-24 lg:w-32"> Next </button>
             </div>
             <!--//TODO: add text to show calendar event description-->
         </div>
