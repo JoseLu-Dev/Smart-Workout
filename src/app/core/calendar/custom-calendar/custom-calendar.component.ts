@@ -27,6 +27,8 @@ export class CustomCalendarComponent implements OnInit {
     this.weekDaysName.push('Fr');
     this.weekDaysName.push('Sa');
     this.weekDaysName.push('Su');
+
+    this.year = new Date().getFullYear();
   }
 
   onNextMonth(): void {
@@ -35,6 +37,7 @@ export class CustomCalendarComponent implements OnInit {
     if (this.monthNumber === 12) {
       this.monthNumber = 0;
       this.year++;
+      console.log('Year: ' + this.year)
     }
 
     this.setMonthDays(this.calendarCreator.getMonth(this.monthNumber, this.year));
@@ -46,6 +49,7 @@ export class CustomCalendarComponent implements OnInit {
     if (this.monthNumber < 0) {
       this.monthNumber = 11;
       this.year--;
+      console.log('Year: ' + this.year)
     }
 
     this.setMonthDays(this.calendarCreator.getMonth(this.monthNumber, this.year));
@@ -58,7 +62,6 @@ export class CustomCalendarComponent implements OnInit {
   private setMonthDays(days: Day[]): void {
     this.monthDays = days;
     this.monthNumber = this.monthDays[15].monthIndex;
-    this.year = this.monthDays[0].year;
   }
 
 }
