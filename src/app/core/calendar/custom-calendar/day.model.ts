@@ -10,4 +10,5 @@ export class Day {
     public weekDayNumber: number;
 
     public isCurrentDay: boolean;
+    public isCurrentMonth = true;
 }

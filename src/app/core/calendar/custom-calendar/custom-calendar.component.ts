@@ -57,7 +57,7 @@ export class CustomCalendarComponent implements OnInit {
 
   private setMonthDays(days: Day[]): void {
     this.monthDays = days;
-    this.monthNumber = this.monthDays[0].monthIndex;
+    this.monthNumber = this.monthDays[15].monthIndex;
     this.year = this.monthDays[0].year;
   }
 

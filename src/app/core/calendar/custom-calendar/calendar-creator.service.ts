@@ -9,7 +9,7 @@ export class CalendarCreatorService {
   private currentMonthIndex: number;
 
   constructor() {
-    const date = new Date();
+    const date = new Date(2021, 7, 8);
     this.currentYear = date.getFullYear();
     this.currentMonthIndex = date.getMonth();
   }
@@ -19,38 +19,52 @@ export class CalendarCreatorService {
   }
 
   public getMonth(monthIndex: number, year: number): Day[] {
-    const days = [];
+    let days = [];
 
     const firstDay = this.createDay(1, monthIndex, year);
 
-    //create empty days
-    if(firstDay.weekDayNumber === 0) {
-      for(let i = 1; i <= 6; i++) {
-        days.push({
-          weekDayNumber: i,
-          monthIndex: monthIndex,
-          year: year,
-        } as Day);
-      }
-    }
-    for (let i = 1; i < firstDay.weekDayNumber; i++) {
-      days.push({
-        weekDayNumber: i,
-        monthIndex: monthIndex,
-        year: year,
-      } as Day);
-    }
-    days.push(firstDay);
-    //
+    let numberOfLastDays = firstDay.weekDayNumber === 0? 6 : firstDay.weekDayNumber -1;
+    numberOfLastDays = numberOfLastDays === 0? 7 : numberOfLastDays;
+    days = this.getLastDaysOfMonth(year, monthIndex, numberOfLastDays);
 
     const countDaysInMonth = new Date(year, monthIndex + 1, 0).getDate();
-    for (let i = 2; i < countDaysInMonth + 1; i++) {
+    for (let i = 1; i < countDaysInMonth + 1; i++) {
       const day: Day = this.createDay(i, monthIndex, year);
-      day.isCurrentDay = this.isCurrentDay(day);
       days.push(day);
     }
 
+    const numberDaysNextMonth = 42 - days.length;
+
+    days = days.concat(this.getFirstDaysOfMonth(year, monthIndex, numberDaysNextMonth));
+
     return days;
+  }
+
+  getLastDaysOfMonth(year: number, monthIndex: number, days: number) {
+    const lastDayMonth = new Date(year, monthIndex, 0).getDate();
+    const lastDays = [];
+
+    for (let i = 0; i < days; i++) {
+      const day = this.createDay(lastDayMonth - i, monthIndex - 1, year);
+      day.isCurrentMonth = false;
+      lastDays.push(day);
+    }
+
+    lastDays.reverse();
+
+    return lastDays;
+  }
+
+  getFirstDaysOfMonth(year: number, monthIndex: number, days: number) {
+    const lastDays = [];
+
+    for (let i = 0; i < days; i++) {
+      const day = this.createDay(i + 1, monthIndex + 1, year);
+      day.isCurrentMonth = false;
+      lastDays.push(day);
+    }
+
+    return lastDays;
   }
 
   public getMonthName(monthIndex: number): string {
@@ -119,6 +133,8 @@ export class CalendarCreatorService {
 
     day.weekDayNumber = new Date(year, monthIndex, dayNumber).getDay();
     day.weekDayName = this.getWeekDayName(day.weekDayNumber);
+
+    day.isCurrentDay = this.isCurrentDay(day);
 
     return day;
   }
