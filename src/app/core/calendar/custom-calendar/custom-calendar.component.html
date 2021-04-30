@@ -1,15 +1,15 @@
-<div>
+<!--<div>
   <button (click)="onPreviousMonth()"> Previous </button>
   <span> {{ calendarCreator.getMonthName(monthNumber) }} &nbsp; {{ year }} </span>
   <button (click)="onNextMonth()"> Next </button>
-</div>
+</div>-->
 
 <div class="calendar">
-  <div *ngFor='let weekDay of weekDaysName' class="flex flex-wrap content-center p-4">
+  <div *ngFor='let weekDay of weekDaysName' class="flex flex-wrap content-center">
     <div class="m-auto">{{ weekDay }}</div>
   </div>
 
-  <div *ngFor='let day of monthDays' class="flex flex-wrap content-center p-4">
+  <div *ngFor='let day of monthDays' class="flex flex-wrap content-center">
     <button [ngClass]="{'bg-secondary': day.isCurrentDay,'opacity-40': !day.isCurrentMonth}" 
     (click)="onDayClicked(day)" class="day m-auto"> 
     {{ day.number}} </button>

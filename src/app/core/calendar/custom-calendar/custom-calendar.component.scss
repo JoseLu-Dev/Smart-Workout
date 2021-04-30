@@ -1,8 +1,12 @@
 .calendar{
   @apply bg-primary dark:bg-primaryLightDark grid grid-cols-7 gap-2
-  w-8/12 h-full 
+  w-full h-full 
 }
 
 .day{
-  @apply rounded-full w-20 h-20 hover:bg-gray hover:opacity-60
+  @apply rounded-full 
+  w-10 h-10 
+  sm:w-12 sm:h-12
+  xl:w-14 xl:h-14
+  hover:bg-gray hover:opacity-60
 }
