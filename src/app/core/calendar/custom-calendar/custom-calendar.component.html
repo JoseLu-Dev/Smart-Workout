@@ -10,8 +10,19 @@
   </div>
 
   <div *ngFor='let day of monthDays' class="flex flex-wrap content-center">
-    <button [ngClass]="{'today': day.isCurrentDay,'opacity-40': !day.isCurrentMonth}" 
-    (click)="onDayClicked(day)" class="day m-auto"> 
-    {{ day.number}} </button>
+    <button [ngClass]="{'today': day.isCurrentDay,'opacity-40': !day.isCurrentMonth}" (click)="onDayClicked(day)"
+      class="day m-auto">
+      <div class="relative">
+        <p>{{ day.number}}</p>
+        <div class="flex w-full">
+          <div *ngIf="day.isCurrentDay" class="w-full flex flex-row absolute">
+            <div class="mx-auto flex flex-row ">
+              <div class="dot"></div><!--ngfor here for trainings-->
+              <div class="dot"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </button>
   </div>
 </div>
