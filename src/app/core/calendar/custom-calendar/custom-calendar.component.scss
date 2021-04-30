@@ -8,5 +8,10 @@
   w-10 h-10 
   sm:w-12 sm:h-12
   xl:w-14 xl:h-14
-  hover:bg-gray hover:opacity-60
+  hover:bg-grayLight dark:hover:bg-gray
+}
+
+.today{
+  @apply text-secondary
+  hover:bg-secondary hover:text-primary
 }

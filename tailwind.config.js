@@ -34,7 +34,9 @@ module.exports = {
         textSecondary: '#2A2E32',
         textTertiary: '#3E4246',
         
-        gray:'#64657A',
+        gray:'#616161',
+        grayLight: '#d9d9d9',
+
 
         //common
         secondaryDark:'#20688a',

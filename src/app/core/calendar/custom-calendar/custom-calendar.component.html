@@ -10,7 +10,7 @@
   </div>
 
   <div *ngFor='let day of monthDays' class="flex flex-wrap content-center">
-    <button [ngClass]="{'bg-secondary': day.isCurrentDay,'opacity-40': !day.isCurrentMonth}" 
+    <button [ngClass]="{'today': day.isCurrentDay,'opacity-40': !day.isCurrentMonth}" 
     (click)="onDayClicked(day)" class="day m-auto"> 
     {{ day.number}} </button>
   </div>
