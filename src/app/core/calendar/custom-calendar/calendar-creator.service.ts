@@ -9,7 +9,7 @@ export class CalendarCreatorService {
   private currentMonthIndex: number;
 
   constructor() {
-    const date = new Date(2021, 7, 8);
+    const date = new Date();
     this.currentYear = date.getFullYear();
     this.currentMonthIndex = date.getMonth();
   }
