@@ -1,9 +1,3 @@
-<!--<div>
-  <button (click)="onPreviousMonth()"> Previous </button>
-  <span> {{ calendarCreator.getMonthName(monthNumber) }} &nbsp; {{ year }} </span>
-  <button (click)="onNextMonth()"> Next </button>
-</div>-->
-
 <div class="calendar">
   <div *ngFor='let weekDay of weekDaysName' class="flex flex-wrap content-center">
     <div class="m-auto">{{ weekDay }}</div>
