@@ -39,6 +39,10 @@ export class RegisterPage implements OnInit {
             buttons: ['OK']
           }).then(alert => alert.present());
           break;
+      }
+    }, error => {
+      const errorStatus: number = error['status'];
+      switch (errorStatus) {
         case 409:
           this.invalidCredentials = true;
           break;
