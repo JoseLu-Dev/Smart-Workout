@@ -1,20 +1,29 @@
-<div class="h-full rounded-lg m-4 xl:m-20 2xl:m-40 p-4 shadow-md bg-primary dark:bg-primaryLightDark">
-    <div class="grid grid-cols-12 h-full">
-        <div class="col-span-12 md:col-span-8 xl:col-span-7 md:h-full">
-            <app-custom-calendar></app-custom-calendar>
-        </div>
+<div class="h-full m-4 xl:m-20 2xl:m-40 grid grid-cols-12">
 
-        <div class="col-span-12 md:col-span-4 xl:col-span-5 grid justify-items-center">
-            <div class="flex flex-row md:flex-col xl:flex-row items-center">
-                <button (click)="calendar.onPreviousMonth()" class="sm:text-lg lg:text-2xl btn btn-blue sm:w-24 lg:w-32"> Previous </button>
-                <div class="flex flex-wrap content-center w-52 m-4">
-                    <p class="self-center mx-auto sm:text-lg lg:text-2xl"> {{ calendar?.calendarCreator.getMonthName(calendar?.monthNumber) }}
-                        &nbsp; {{ calendar?.year }}
-                    </p>
-                </div>
-                <button (click)="calendar.onNextMonth()" class="sm:text-lg lg:text-2xl btn btn-blue sm:w-24 lg:w-32"> Next </button>
-            </div>
-            <!--//TODO: add text to show calendar event description-->
-        </div>
+    <div class="col-span-12 md:col-span-8 xl:col-span-7 md:h-full shadow-md
+    bg-primary dark:bg-primaryLightDark rounded-lg 
+    p-4 mb-4 md:mb-0 md:mr-4">
+        <app-custom-calendar></app-custom-calendar>
     </div>
+
+    <div class="col-span-12 md:col-span-4 xl:col-span-5 
+    flex flex-row flex-wrap content-center
+    shadow-md bg-primary dark:bg-primaryLightDark rounded-lg p-4 h-2/6">
+
+        <button (click)="calendar.onPreviousMonth()" class="btn btn-blue 
+        xl:max-h-16 md:w-3/4 xl:w-32 md:flex-grow xl:flex-grow-0">
+            Previous </button>
+        <div class="flex flex-wrap content-center m-4 flex-grow 
+        xl:max-h-16">
+            <p class="self-center mx-auto"> {{
+                calendar?.calendarCreator.getMonthName(calendar?.monthNumber) }}
+                &nbsp; {{ calendar?.year }}
+            </p>
+        </div>
+        <button (click)="calendar.onNextMonth()" class="btn btn-blue 
+        xl:max-h-16 md:w-3/4 xl:w-32 md:flex-grow xl:flex-grow-0"> Next
+        </button>
+    </div>
+    <!--//TODO: add text to show calendar event description-->
+
 </div>
