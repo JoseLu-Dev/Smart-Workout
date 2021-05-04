@@ -40,6 +40,10 @@
     @apply block text-center p-3 duration-300 rounded-lg
 }
 
+.btn-rounded {
+    @apply block text-center p-3 duration-300 rounded-full
+}
+
 .input {
     @apply p-2 rounded-md border-black focus:outline-none focus:ring-2 focus:ring-tertiaryLight focus:border-transparent 
     border-transparent text-textSecondary bg-primaryLight dark:text-textSecondaryDark dark:bg-primaryDark
