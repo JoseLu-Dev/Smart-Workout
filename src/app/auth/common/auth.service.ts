@@ -18,6 +18,7 @@ const TOKEN_KEY = 'jwt-token';
 export class AuthService {
   public user: Observable<any>;
   private userData = new BehaviorSubject(null);
+  private token: string;
 
   private authUrl = `${environment.backendUrl}/auth`;
   private loginUrl = '/login';
@@ -40,6 +41,7 @@ export class AuthService {
       switchMap(() => from(this.storage.get(TOKEN_KEY))),
       map(token => {
         if (token) {
+          this.token = token;
           const decoded = helper.decodeToken(token);
           this.userData.next(decoded);
           return true;
@@ -48,6 +50,10 @@ export class AuthService {
         }
       })
     );
+  }
+
+  getToken(){
+    return this.token;
   }
 
   login(credentials: { name: string; password: string }) {
