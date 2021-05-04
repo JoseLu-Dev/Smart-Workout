@@ -7,7 +7,7 @@
             <app-custom-calendar></app-custom-calendar>
         </div>
 
-        <div class="md:col-span-4 md:h-auto m-4 md:m-0
+        <div class="md:col-span-4 h-auto m-4 md:m-0
     flex flex-row flex-wrap content-center
     shadow-md bg-primary dark:bg-primaryLightDark rounded-lg p-4
     ">
@@ -28,7 +28,7 @@
                     <ng-container *ngTemplateOutlet="buttonPrevious"></ng-container>
                 </div>
 
-                <button (click)="calendar.onNextMonth()" class="btn btn-blue md:mr-auto md:ml-2">
+                <button (click)="calendar.onNextMonth()" class="btn-rounded btn-blue md:mr-auto md:ml-2">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24px" class="icon">
                         <path d="M0 0h24v24H0V0z" fill="none" />
                         <path
@@ -39,14 +39,16 @@
 
         </div>
 
-        <div class="md:row-span-3 md:col-span-4 h-1/3 md:h-auto m-4 md:m-0
-    shadow-md bg-primary dark:bg-primaryLightDark rounded-lg p-4"></div>
+        <div class="md:row-span-3 md:col-span-4 h-auto md:h-auto m-4 md:m-0
+    shadow-md bg-primary dark:bg-primaryLightDark rounded-lg p-4">
+            <app-trainings-list></app-trainings-list>
+        </div>
 
     </div>
 </div>
 
 <ng-template #buttonPrevious>
-    <button (click)="calendar.onPreviousMonth()" class="btn btn-blue">
+    <button (click)="calendar.onPreviousMonth()" class="btn-rounded btn-blue">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24px" class="icon">
             <path d="M0 0h24v24H0V0z" fill="none" />
             <path

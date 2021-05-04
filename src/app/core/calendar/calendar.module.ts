@@ -1,3 +1,4 @@
+import { TrainingsListComponent } from './../common/trainings-list/trainings-list.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -16,6 +17,6 @@ import { CustomCalendarComponent } from './custom-calendar/custom-calendar.compo
     IonicModule,
     CalendarPageRoutingModule
   ],
-  declarations: [CalendarPage, CustomCalendarComponent],
+  declarations: [CalendarPage, CustomCalendarComponent, TrainingsListComponent],
 })
 export class CalendarPageModule {}
