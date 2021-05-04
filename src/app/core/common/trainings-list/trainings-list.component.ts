@@ -1,3 +1,4 @@
+import { TrainingsDay } from './../models/trainings-day.model';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,8 +8,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TrainingsListComponent implements OnInit {
 
+  public completed = true
+  public passed = false;
+
+  public trainingsDay: TrainingsDay;
+
   constructor() { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.trainingsDay = {
+      date: new Date(),
+      trainings: [
+        {
+          name: 'Push',
+          color: '#423232',
+          completed: true
+        }
+      ]
+    }
+  }
 
 }

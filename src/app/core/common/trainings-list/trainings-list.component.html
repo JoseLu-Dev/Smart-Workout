@@ -1,4 +1,6 @@
 <p class="mb-4">Trainings list</p>
+
+<!--ng for here-->
 <div class="bg-primary dark:bg-primaryLightDark rounded-lg 
 p-4 mb-4 shadow-lg flex flex-row items-center justify-between">
 
@@ -6,15 +8,24 @@ p-4 mb-4 shadow-lg flex flex-row items-center justify-between">
 
   <p class="flex-grow mr-4">Training name</p>
 
+  <div *ngIf="!completed;else done">
+    <div *ngIf="!passed;else cancelled">
+      <ng-container *ngTemplateOutlet="pending"></ng-container>
+    </div>
+  </div>
+</div>
 
+<ng-template #done>
   <svg xmlns="http://www.w3.org/2000/svg" class="fill-current text-green-600" height="28px" viewBox="0 0 24 24"
     width="28px">
     <path d="M0 0h24v24H0z" fill="none" />
     <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
   </svg>
+</ng-template>
 
-  <svg xmlns="http://www.w3.org/2000/svg" class="fill-current text-yellow-600" enable-background="new 0 0 24 24" height="28px" viewBox="0 0 24 24"
-    width="28px">
+<ng-template #pending>
+  <svg xmlns="http://www.w3.org/2000/svg" class="fill-current text-yellow-600" enable-background="new 0 0 24 24"
+    height="28px" viewBox="0 0 24 24" width="28px">
     <g>
       <rect fill="none" height="24" width="24" x="0" />
     </g>
@@ -25,13 +36,12 @@ p-4 mb-4 shadow-lg flex flex-row items-center justify-between">
       </g>
     </g>
   </svg>
+</ng-template>
 
-
+<ng-template #cancelled>
   <svg xmlns="http://www.w3.org/2000/svg" class="fill-current text-red-600" height="28px" viewBox="0 0 24 24"
     width="28px">
     <path d="M0 0h24v24H0z" fill="none" />
     <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
   </svg>
-
-
-</div>
+</ng-template>
