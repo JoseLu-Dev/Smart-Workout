@@ -56,7 +56,7 @@ export class CalendarCreatorService {
       let day;
       if (getLastDays) {day = this.createDay(lastDayMonth - i, monthIndex - 1, year);}
       else { day = this.createDay(i + 1, monthIndex + 1, year); }
-      console.log(day);
+
       day.isCurrentMonth = false;
       lastDays.push(day);
     }

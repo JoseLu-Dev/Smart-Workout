@@ -9,10 +9,9 @@
       <div class="relative">
         <p>{{ day.number}}</p>
         <div class="flex w-full">
-          <div *ngIf="day.isCurrentDay" class="w-full flex flex-row absolute">
+          <div class="w-full flex flex-row absolute">
             <div class="mx-auto flex flex-row ">
-              <div class="dot"></div><!--ngfor here for trainings-->
-              <div class="dot"></div>
+              <div *ngFor="let training of day.trainingsDay?.trainings" class="dot"></div><!--ngfor here for trainings-->
             </div>
           </div>
         </div>

@@ -1,3 +1,4 @@
+/* eslint-disable eqeqeq */
 import { Component, OnInit } from '@angular/core';
 import { CalendarCreatorService } from './calendar-creator.service';
 import { Day } from './day.model';
@@ -19,7 +20,7 @@ export class CustomCalendarComponent implements OnInit {
   constructor(
     public calendarCreator: CalendarCreatorService,
     public daysService: DaysService,
-    ) {}
+  ) { }
 
   ngOnInit(): void {
     this.setMonthDays(this.calendarCreator.getCurrentMonth());
@@ -35,6 +36,41 @@ export class CustomCalendarComponent implements OnInit {
     const today = new Date();
     this.year = today.getFullYear();
     this.monthNumber = today.getMonth();
+
+    this.fillDaysOfCurrentMonthDays();
+  }
+
+  fillDaysOfCurrentMonthDays() {
+    this.fillDaysOfMonth(this.monthNumber);
+    this.fillDaysOfMonth(this.monthNumber - 1);
+    this.fillDaysOfMonth(this.monthNumber + 1);
+  }
+
+  fillDaysOfMonth(monthNumber: number) {
+    this.daysService.getDaysOfYearAndMonth(this.year, monthNumber).subscribe(res => {
+      const days = res['body'];
+      console.log(this.monthNumber);
+      console.log(days);
+
+      // eslint-disable-next-line guard-for-in
+      for (const day in days) {
+        const date = new Date(days[day]['date']);
+        console.log(date);
+        console.log('Training  ' + date.getFullYear() + ' ' + (date.getMonth() + 1) + ' ' + date.getDate());
+        for (const dayOfMonth of this.monthDays) {
+
+          const sameDate = dayOfMonth.number == date.getDate()
+            && dayOfMonth.monthIndex == date.getMonth() + 1;
+          //console.log('Date      ' + dayOfMonth.year + ' ' + dayOfMonth.monthIndex + ' ' + dayOfMonth.number)
+          //console.log('Training  ' + date.getFullYear() + ' ' + date.getMonth() + ' ' + date.getDay())
+          //console.log('-----------------------------------------------------------')
+          if (sameDate) {
+            dayOfMonth.trainingsDay = days[day];
+
+          }
+        }
+      }
+    });
   }
 
   onNextMonth(): void {
@@ -47,9 +83,10 @@ export class CustomCalendarComponent implements OnInit {
     }
 
     this.setMonthDays(this.calendarCreator.getMonth(this.monthNumber, this.year));
+    this.fillDaysOfCurrentMonthDays();
   }
 
-  onPreviousMonth(): void{
+  onPreviousMonth(): void {
     this.monthNumber--;
 
     if (this.monthNumber < 0) {
@@ -59,9 +96,10 @@ export class CustomCalendarComponent implements OnInit {
     }
 
     this.setMonthDays(this.calendarCreator.getMonth(this.monthNumber, this.year));
+    this.fillDaysOfCurrentMonthDays();
   }
 
-  onDayClicked(day: any){
+  onDayClicked(day: any) {
     console.log(day);
   }
 

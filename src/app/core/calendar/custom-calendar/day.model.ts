@@ -1,3 +1,5 @@
+import { TrainingsDay } from '../../common/models/trainings-day.model';
+
 export class Day {
     // eslint-disable-next-line id-blacklist
     public number: number;
@@ -11,4 +13,6 @@ export class Day {
 
     public isCurrentDay: boolean;
     public isCurrentMonth = true;
+
+    public trainingsDay: TrainingsDay;
 }
