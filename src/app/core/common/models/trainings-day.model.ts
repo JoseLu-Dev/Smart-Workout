@@ -4,7 +4,7 @@ export class TrainingsDay {
 }
 
 class Training {
-    public name: String;
-    public color: String;
+    public name: string;
+    public color: string;
     public completed: boolean;
 }

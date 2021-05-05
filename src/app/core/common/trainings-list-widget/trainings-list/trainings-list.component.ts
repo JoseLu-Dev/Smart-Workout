@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TrainingsListComponent implements OnInit {
 
-  public completed = true
+  public completed = true;
   public passed = false;
 
   public trainingsDay: TrainingsDay;
@@ -25,7 +25,7 @@ export class TrainingsListComponent implements OnInit {
           completed: true
         }
       ]
-    }
+    };
   }
 
 }
