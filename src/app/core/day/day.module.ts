@@ -7,15 +7,16 @@ import { IonicModule } from '@ionic/angular';
 import { DayPageRoutingModule } from './day-routing.module';
 
 import { DayPage } from './day.page';
-import { TrainingsListComponent } from '../common/trainings-list/trainings-list.component';
+import { TrainingsListWidgetModule } from '../common/trainings-list-widget/trainings-list-widget.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    DayPageRoutingModule
+    DayPageRoutingModule,
+    TrainingsListWidgetModule
   ],
-  declarations: [DayPage, TrainingsListComponent]
+  declarations: [DayPage,]
 })
 export class DayPageModule {}

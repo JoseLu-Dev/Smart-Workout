@@ -1,4 +1,4 @@
-import { TrainingsDay } from './../models/trainings-day.model';
+import { TrainingsDay } from '../../models/trainings-day.model';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
