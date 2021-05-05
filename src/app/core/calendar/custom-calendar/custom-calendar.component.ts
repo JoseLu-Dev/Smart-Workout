@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CalendarCreatorService } from './calendar-creator.service';
 import { Day } from './day.model';
+import { DaysService } from '../../common/services/days.service';
 
 @Component({
   selector: 'app-custom-calendar',
@@ -15,7 +16,10 @@ export class CustomCalendarComponent implements OnInit {
 
   public weekDaysName = [];
 
-  constructor(public calendarCreator: CalendarCreatorService) {}
+  constructor(
+    public calendarCreator: CalendarCreatorService,
+    public daysService: DaysService,
+    ) {}
 
   ngOnInit(): void {
     this.setMonthDays(this.calendarCreator.getCurrentMonth());
@@ -28,7 +32,9 @@ export class CustomCalendarComponent implements OnInit {
     this.weekDaysName.push('Sa');
     this.weekDaysName.push('Su');
 
-    this.year = new Date().getFullYear();
+    const today = new Date();
+    this.year = today.getFullYear();
+    this.monthNumber = today.getMonth();
   }
 
   onNextMonth(): void {
@@ -61,7 +67,6 @@ export class CustomCalendarComponent implements OnInit {
 
   private setMonthDays(days: Day[]): void {
     this.monthDays = days;
-    this.monthNumber = this.monthDays[15].monthIndex;
   }
 
 }
