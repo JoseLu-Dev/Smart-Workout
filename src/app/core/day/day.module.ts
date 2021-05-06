@@ -1,3 +1,4 @@
+import { CoreWidgetsModule } from './../common/widgets/core-widgets.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -7,7 +8,6 @@ import { IonicModule } from '@ionic/angular';
 import { DayPageRoutingModule } from './day-routing.module';
 
 import { DayPage } from './day.page';
-import { TrainingsListWidgetModule } from '../common/trainings-list-widget/trainings-list-widget.module';
 
 @NgModule({
   imports: [
@@ -15,7 +15,7 @@ import { TrainingsListWidgetModule } from '../common/trainings-list-widget/train
     FormsModule,
     IonicModule,
     DayPageRoutingModule,
-    TrainingsListWidgetModule
+    CoreWidgetsModule
   ],
   declarations: [DayPage,]
 })
