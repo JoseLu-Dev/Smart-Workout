@@ -6,8 +6,6 @@ import { IonicModule } from '@ionic/angular';
 
 import { TrainingPageRoutingModule } from './training-routing.module';
 
-import { TrainingPage } from './training.page';
-
 @NgModule({
   imports: [
     CommonModule,
@@ -15,6 +13,6 @@ import { TrainingPage } from './training.page';
     IonicModule,
     TrainingPageRoutingModule
   ],
-  declarations: [TrainingPage]
+  declarations: []
 })
 export class TrainingPageModule {}

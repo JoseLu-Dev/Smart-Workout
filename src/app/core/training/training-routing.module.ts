@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { TrainingPage } from './training.page';
-
 const routes: Routes = [
   {
     path: '',
