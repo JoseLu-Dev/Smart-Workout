@@ -100,7 +100,15 @@ export class CustomCalendarComponent implements OnInit {
   }
 
   onDayClicked(day: any) {
+    this.resetSelectedDays();
+    day.selected = true;
     console.log(day);
+  }
+
+  resetSelectedDays(){
+    for (const day of this.monthDays){
+      day.selected = false;
+    }
   }
 
   private setMonthDays(days: Day[]): void {

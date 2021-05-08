@@ -54,14 +54,14 @@ export class CalendarCreatorService {
 
     for (let i = 0; i < days; i++) {
       let day;
-      if (getLastDays) {day = this.createDay(lastDayMonth - i, monthIndex - 1, year);}
+      if (getLastDays) { day = this.createDay(lastDayMonth - i, monthIndex - 1, year); }
       else { day = this.createDay(i + 1, monthIndex + 1, year); }
 
       day.isCurrentMonth = false;
       lastDays.push(day);
     }
 
-    if (getLastDays) {lastDays.reverse();}
+    if (getLastDays) { lastDays.reverse(); }
 
     return lastDays;
   }
@@ -134,6 +134,10 @@ export class CalendarCreatorService {
     day.weekDayName = this.getWeekDayName(day.weekDayNumber);
 
     day.isCurrentDay = this.isCurrentDay(day);
+
+    if (day.isCurrentDay) {
+      day.selected = true;
+    }
 
     return day;
   }

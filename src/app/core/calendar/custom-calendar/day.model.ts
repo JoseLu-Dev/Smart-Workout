@@ -15,4 +15,5 @@ export class Day {
     public isCurrentMonth = true;
 
     public trainingsDay: TrainingsDay;
+    public selected: boolean;
 }

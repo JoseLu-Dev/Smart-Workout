@@ -4,7 +4,7 @@
   </div>
 
   <div *ngFor='let day of monthDays' class="flex flex-wrap content-center">
-    <button [ngClass]="{'today': day.isCurrentDay,'opacity-40': !day.isCurrentMonth}" (click)="onDayClicked(day)"
+    <button [ngClass]="{'today': day.isCurrentDay,'opacity-40': !day.isCurrentMonth, 'today-selected': day.selected && day.isCurrentDay, 'day-selected': day.selected && !day.isCurrentDay}" (click)="onDayClicked(day)"
       class="day m-auto">
       <div class="relative">
         <p>{{ day.number}}</p>

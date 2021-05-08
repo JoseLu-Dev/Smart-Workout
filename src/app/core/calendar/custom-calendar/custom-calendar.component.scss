@@ -12,9 +12,19 @@
   hover:bg-grayLight dark:hover:bg-gray
 }
 
+.day-selected{
+  @apply
+  bg-grayLight hover:bg-gray
+}
+
 .today{
-  @apply text-secondary
+  @apply text-secondary font-bold
   hover:bg-secondary hover:text-primary
+}
+
+.today-selected{
+  @apply
+  bg-secondary text-primary
 }
 
 .dot{
