@@ -29,7 +29,7 @@ const routes: Routes = [
         loadChildren: () => import('./settings/settings.module').then( m => m.SettingsPageModule)
       },
       {
-        path: 'training',
+        path: 'trainings',
         loadChildren: () => import('./training/training.module').then( m => m.TrainingPageModule)
       },
     ]
