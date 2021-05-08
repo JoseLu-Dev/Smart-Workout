@@ -8,6 +8,8 @@ export class CalendarCreatorService {
   private currentYear: number;
   private currentMonthIndex: number;
 
+  private firstTimeGenerated = true;
+
   constructor() {
     const date = new Date();
     this.currentYear = date.getFullYear();
@@ -19,6 +21,9 @@ export class CalendarCreatorService {
   }
 
   public getMonth(monthIndex: number, year: number): Day[] {
+    this.currentMonthIndex = monthIndex;
+    this.currentYear = year;
+
     let days = [];
 
     const firstDay = this.createDay(1, monthIndex, year);
@@ -39,6 +44,7 @@ export class CalendarCreatorService {
 
     return days;
   }
+
 
   getLastDaysOfMonth(year: number, monthIndex: number, days: number) {
     return this.getDaysOfMonth(year, monthIndex, days, true);
@@ -135,8 +141,9 @@ export class CalendarCreatorService {
 
     day.isCurrentDay = this.isCurrentDay(day);
 
-    if (day.isCurrentDay) {
+    if (this.firstTimeGenerated && day.isCurrentDay) {
       day.selected = true;
+      this.firstTimeGenerated = false;
     }
 
     return day;

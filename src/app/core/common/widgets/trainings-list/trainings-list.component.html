@@ -1,18 +1,21 @@
-<p class="mb-4">Trainings list</p>
+<div *ngIf="day?.trainingsDay">
 
-<!--ng for here-->
-<div class="bg-primary dark:bg-primaryLightDark rounded-lg 
+  <p class="mb-4">Trainings list</p>
+
+  <div *ngFor="let training of day.trainingsDay.trainings" class="bg-primary dark:bg-primaryLightDark rounded-lg 
 p-4 mb-4 shadow-lg flex flex-row items-center justify-between">
 
-  <div class="btn-rounded btn-blue w-8 h-8 mr-2"></div>
+    <div [ngStyle]="{'background-color' : training?.color}" class="btn-rounded w-8 h-8 mr-2"></div>
 
-  <p class="flex-grow mr-4">Training name</p>
+    <p class="flex-grow mr-4">{{training.name | titlecase}}</p>
 
-  <div *ngIf="!completed;else done">
-    <div *ngIf="!passed;else cancelled">
-      <ng-container *ngTemplateOutlet="pending"></ng-container>
+    <div *ngIf="!training.completed;else done">
+      <div *ngIf="!dayHasPassed();else cancelled">
+        <ng-container *ngTemplateOutlet="pending"></ng-container>
+      </div>
     </div>
   </div>
+
 </div>
 
 <ng-template #done>

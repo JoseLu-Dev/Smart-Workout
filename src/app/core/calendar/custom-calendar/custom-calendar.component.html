@@ -11,7 +11,7 @@
         <div class="flex w-full">
           <div class="w-full flex flex-row absolute">
             <div class="mx-auto flex flex-row ">
-              <div *ngFor="let training of day.trainingsDay?.trainings" class="dot"></div><!--ngfor here for trainings-->
+              <div *ngFor="let training of day.trainingsDay?.trainings" class="dot" [ngStyle]="{'background-color' : training?.color}"></div>
             </div>
           </div>
         </div>

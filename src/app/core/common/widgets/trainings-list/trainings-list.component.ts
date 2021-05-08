@@ -1,5 +1,5 @@
-import { TrainingsDay } from '../../models/trainings-day.model';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Day } from 'src/app/core/calendar/custom-calendar/day.model';
 
 @Component({
   selector: 'app-trainings-list',
@@ -8,24 +8,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TrainingsListComponent implements OnInit {
 
-  public completed = true;
-  public passed = false;
+  @Input() day: Day;
 
-  public trainingsDay: TrainingsDay;
+
+  public passed = false;
 
   constructor() { }
 
   ngOnInit() {
-    this.trainingsDay = {
-      date: new Date(),
-      trainings: [
-        {
-          name: 'Push',
-          color: '#423232',
-          completed: true
-        }
-      ]
-    };
+
   }
 
+  dayHasPassed(): boolean {
+    const today = new Date();
+    const daySelected = new Date(this.day.year, this.day.monthIndex, this.day.number, 23);
+    const dayHasPassed = daySelected.getTime() < today.getTime();
+    return dayHasPassed;
+  }
 }

@@ -1,5 +1,5 @@
 /* eslint-disable eqeqeq */
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { CalendarCreatorService } from './calendar-creator.service';
 import { Day } from './day.model';
 import { DaysService } from '../../common/services/days.service';
@@ -10,6 +10,8 @@ import { DaysService } from '../../common/services/days.service';
   styleUrls: ['./custom-calendar.component.scss'],
 })
 export class CustomCalendarComponent implements OnInit {
+  @Output() daySelected = new EventEmitter<Day>();
+
   public monthDays: Day[];
 
   public monthNumber: number;
@@ -38,6 +40,7 @@ export class CustomCalendarComponent implements OnInit {
     this.monthNumber = today.getMonth();
 
     this.fillDaysOfCurrentMonthDays();
+    this.selectToday();
   }
 
   fillDaysOfCurrentMonthDays() {
@@ -49,24 +52,16 @@ export class CustomCalendarComponent implements OnInit {
   fillDaysOfMonth(monthNumber: number) {
     this.daysService.getDaysOfYearAndMonth(this.year, monthNumber).subscribe(res => {
       const days = res['body'];
-      console.log(this.monthNumber);
-      console.log(days);
 
       // eslint-disable-next-line guard-for-in
       for (const day in days) {
         const date = new Date(days[day]['date']);
-        console.log(date);
-        console.log('Training  ' + date.getFullYear() + ' ' + (date.getMonth() + 1) + ' ' + date.getDate());
         for (const dayOfMonth of this.monthDays) {
 
           const sameDate = dayOfMonth.number == date.getDate()
             && dayOfMonth.monthIndex == date.getMonth() + 1;
-          //console.log('Date      ' + dayOfMonth.year + ' ' + dayOfMonth.monthIndex + ' ' + dayOfMonth.number)
-          //console.log('Training  ' + date.getFullYear() + ' ' + date.getMonth() + ' ' + date.getDay())
-          //console.log('-----------------------------------------------------------')
           if (sameDate) {
             dayOfMonth.trainingsDay = days[day];
-
           }
         }
       }
@@ -84,6 +79,7 @@ export class CustomCalendarComponent implements OnInit {
 
     this.setMonthDays(this.calendarCreator.getMonth(this.monthNumber, this.year));
     this.fillDaysOfCurrentMonthDays();
+    this.selectFirstDay();
   }
 
   onPreviousMonth(): void {
@@ -97,16 +93,36 @@ export class CustomCalendarComponent implements OnInit {
 
     this.setMonthDays(this.calendarCreator.getMonth(this.monthNumber, this.year));
     this.fillDaysOfCurrentMonthDays();
+    this.selectFirstDay();
   }
 
-  onDayClicked(day: any) {
+  selectFirstDay() {
+    for (const day of this.monthDays) {
+      if (day.number === 1 && day.monthIndex === this.monthNumber) {
+        day.selected = true;
+        this.onDayClicked(day);
+        return;
+      }
+    }
+  }
+
+  onDayClicked(day: Day) {
     this.resetSelectedDays();
     day.selected = true;
-    console.log(day);
+    this.daySelected.emit(day);
   }
 
-  resetSelectedDays(){
-    for (const day of this.monthDays){
+  selectToday(): void {
+    for (const day of this.monthDays) {
+      if (day.isCurrentDay) {
+        this.onDayClicked(day);
+        return;
+      }
+    }
+  }
+
+  resetSelectedDays() {
+    for (const day of this.monthDays) {
       day.selected = false;
     }
   }

@@ -4,7 +4,7 @@
         <div class="md:row-span-4 md:col-span-8 h-auto md:h-auto m-4 md:m-0
     bg-primary dark:bg-primaryLightDark rounded-lg 
     p-4 shadow-md">
-            <app-custom-calendar></app-custom-calendar>
+            <app-custom-calendar (daySelected)=getAndShowDaySelectedInCalendar($event)></app-custom-calendar>
         </div>
 
         <div class="md:col-span-4 h-auto m-4 md:m-0
@@ -41,7 +41,7 @@
 
         <div class="md:row-span-3 md:col-span-4 h-auto md:h-auto m-4 md:m-0
     shadow-md bg-primary dark:bg-primaryLightDark rounded-lg p-4">
-            <app-trainings-list></app-trainings-list>
+            <app-trainings-list [day]="daySelected"></app-trainings-list>
         </div>
 
     </div>
