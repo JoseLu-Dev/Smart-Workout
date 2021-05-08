@@ -29,12 +29,12 @@ const routes: Routes = [
         loadChildren: () => import('./settings/settings.module').then( m => m.SettingsPageModule)
       },
       {
-        path: 'trainings',
+        path: 'training',
         loadChildren: () => import('./training/training.module').then( m => m.TrainingPageModule)
       },
     ]
   },
-  
+
 ];
 
 @NgModule({
