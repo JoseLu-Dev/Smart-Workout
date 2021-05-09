@@ -44,13 +44,24 @@ export class CustomCalendarComponent implements OnInit {
   }
 
   fillDaysOfCurrentMonthDays() {
-    this.fillDaysOfMonth(this.monthNumber);
-    this.fillDaysOfMonth(this.monthNumber - 1);
-    this.fillDaysOfMonth(this.monthNumber + 1);
+    const month12 = this.monthNumber + 1;
+    this.fillDaysOfMonth(this.year, month12);
+
+    let previousMonth = month12 - 1;
+    const previousYear = previousMonth == 0 ? this.year - 1 : this.year;
+    previousMonth = previousMonth == 0 ? 12 : previousMonth;
+
+    this.fillDaysOfMonth(previousYear, previousMonth);
+
+    let nextMonth = month12 + 1;
+    const nextYear = nextMonth == 13 ? this.year + 1 : this.year;
+    nextMonth = nextMonth == 13 ? 1 : nextMonth;
+
+    this.fillDaysOfMonth(nextYear, nextMonth);
   }
 
-  fillDaysOfMonth(monthNumber: number) {
-    this.daysService.getDaysOfYearAndMonth(this.year, monthNumber).subscribe(res => {
+  fillDaysOfMonth(year: number, monthNumber: number) {
+    this.daysService.getDaysOfYearAndMonth(year, monthNumber).subscribe(res => {
       const days = res['body'];
 
       // eslint-disable-next-line guard-for-in
@@ -59,7 +70,7 @@ export class CustomCalendarComponent implements OnInit {
         for (const dayOfMonth of this.monthDays) {
 
           const sameDate = dayOfMonth.number == date.getDate()
-            && dayOfMonth.monthIndex == date.getMonth() + 1;
+            && dayOfMonth.monthIndex == date.getMonth();
           if (sameDate) {
             dayOfMonth.trainingsDay = days[day];
           }
@@ -109,6 +120,7 @@ export class CustomCalendarComponent implements OnInit {
   onDayClicked(day: Day) {
     this.resetSelectedDays();
     day.selected = true;
+    console.log(day);
     this.daySelected.emit(day);
   }
 
