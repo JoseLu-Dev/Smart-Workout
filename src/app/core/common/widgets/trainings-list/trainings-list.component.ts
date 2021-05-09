@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Day } from 'src/app/core/calendar/custom-calendar/day.model';
+import { TrainingsDay } from '../../models/trainings-day.model';
 
 @Component({
   selector: 'app-trainings-list',
@@ -8,7 +8,7 @@ import { Day } from 'src/app/core/calendar/custom-calendar/day.model';
 })
 export class TrainingsListComponent implements OnInit {
 
-  @Input() day: Day;
+  @Input() trainingsDay: TrainingsDay;
 
 
   public passed = false;
@@ -21,7 +21,8 @@ export class TrainingsListComponent implements OnInit {
 
   dayHasPassed(): boolean {
     const today = new Date();
-    const daySelected = new Date(this.day.year, this.day.monthIndex, this.day.number, 23);
+    const daySelected = new Date(this.trainingsDay.date);
+    daySelected.setHours(23);
     const dayHasPassed = daySelected.getTime() < today.getTime();
     return dayHasPassed;
   }
