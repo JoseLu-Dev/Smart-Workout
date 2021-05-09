@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ExercisesSetListComponent implements OnInit {
 
+  public exercisesSets = new Array(5);
+
   constructor() { }
 
   ngOnInit() {}
