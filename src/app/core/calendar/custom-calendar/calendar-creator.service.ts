@@ -60,8 +60,20 @@ export class CalendarCreatorService {
 
     for (let i = 0; i < days; i++) {
       let day;
-      if (getLastDays) { day = this.createDay(lastDayMonth - i, monthIndex - 1, year); }
-      else { day = this.createDay(i + 1, monthIndex + 1, year); }
+      if (getLastDays) {
+        if(monthIndex - 1 === - 1){
+          monthIndex = 13;
+          year--;
+        }
+        day = this.createDay(lastDayMonth - i, monthIndex - 1, year);
+      }
+      else {
+        if (monthIndex + 1 === 12) {
+          monthIndex = -1;
+          year++;
+        }
+        day = this.createDay(i + 1, monthIndex + 1, year);
+      }
 
       day.isCurrentMonth = false;
       lastDays.push(day);
@@ -134,7 +146,7 @@ export class CalendarCreatorService {
 
     // eslint-disable-next-line id-blacklist
     day.number = dayNumber;
-    day.year = this.currentYear;
+    day.year = year;
 
     day.weekDayNumber = new Date(year, monthIndex, dayNumber).getDay();
     day.weekDayName = this.getWeekDayName(day.weekDayNumber);
