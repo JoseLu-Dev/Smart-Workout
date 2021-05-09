@@ -61,7 +61,7 @@ export class CalendarCreatorService {
     for (let i = 0; i < days; i++) {
       let day;
       if (getLastDays) {
-        if(monthIndex - 1 === - 1){
+        if (monthIndex - 1 === - 1) {
           monthIndex = 13;
           year--;
         }
