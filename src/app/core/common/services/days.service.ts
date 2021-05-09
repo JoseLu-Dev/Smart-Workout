@@ -17,4 +17,8 @@ export class DaysService {
     return this.http.get(`${this.daysUrl}/${year}/${month}`, { observe: 'response' }).pipe(first());
   }
 
+  getDay(year: number, month: number, day: number) {
+    return this.http.get(`${this.daysUrl}/${year}/${month}/${day}`, { observe: 'response' }).pipe(first());
+  }
+
 }
