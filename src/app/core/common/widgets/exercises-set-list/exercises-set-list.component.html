@@ -1,51 +1,64 @@
-<div *ngFor="let set of exercisesSets; last as isLast">
-  <div class="bg-primary dark:bg-primaryLightDark rounded-lg 
-p-4 shadow-md mb-4">
-    <div class="grid grid-cols-2 gap-3">
-      <p class="col-span-2 text-lg"> Planche press full supine</p>
-      <div>
-        <div *ngIf="true" class="grid grid-cols-2">Band
-          <div class="btn-rounded w-6 h-6 bg-yellow-300"></div>
-        </div>
-      </div>
+<div class="overflow-y-scrol">
+  <div *ngFor="let set of exercisesSets; last as isLast">
+    <div [ngClass]="{'bg-primary dark:bg-primaryLightDark rounded-lg p-4 shadow-md': set.type}">
 
-      <div>
-        <div *ngIf="true" class="grid grid-cols-2">5kg
-          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" class="icon">
-            <path d="M0 0h24v24H0V0z" fill="none" />
-            <path
-              d="M20.57 14.86L22 13.43 20.57 12 17 15.57 8.43 7 12 3.43 10.57 2 9.14 3.43 7.71 2 5.57 4.14 4.14 2.71 2.71 4.14l1.43 1.43L2 7.71l1.43 1.43L2 10.57 3.43 12 7 8.43 15.57 17 12 20.57 13.43 22l1.43-1.43L16.29 22l2.14-2.14 1.43 1.43 1.43-1.43-1.43-1.43L22 16.29l-1.43-1.43z" />
-          </svg>
-        </div>
-      </div>
+      <p class=" m-4 text-xl">{{set.type | titlecase}}</p>
 
-      <div>
-        <div *ngIf="true">10 reps</div>
-      </div>
 
-      <div>
-        <div *ngIf="true" class="grid grid-cols-2">1' 30''
-          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" class="icon">
-            <path d="M0 0h24v24H0V0z" fill="none" />
-            <path
-              d="M15.07 1.01h-6v2h6v-2zm-4 13h2v-6h-2v6zm8.03-6.62l1.42-1.42c-.43-.51-.9-.99-1.41-1.41l-1.42 1.42C16.14 4.74 14.19 4 12.07 4c-4.97 0-9 4.03-9 9s4.02 9 9 9 9-4.03 9-9c0-2.11-.74-4.06-1.97-5.61zm-7.03 12.62c-3.87 0-7-3.13-7-7s3.13-7 7-7 7 3.13 7 7-3.13 7-7 7z" />
-          </svg>
+      <div *ngFor="let exer of set.set" class="bg-primary dark:bg-primaryLightDark rounded-lg 
+p-4 shadow-lg" [ngClass]="{'mb-4': set.set.length > 1}">
+        <div class="grid grid-cols-2 gap-3">
+          <p class="col-span-2 text-lg mx-auto"> {{exer.exercise.name | titlecase}} {{exer.exercise.progression |
+            titlecase}}
+            {{exer.exercise.variation | titlecase}}</p>
+          <div>
+            <div *ngIf="exer?.intensity?.band" class="grid grid-cols-2">Band
+              <div class="btn-rounded w-6 h-6" [ngStyle]="{'background-color' : exer?.intensity?.band?.color}"></div>
+            </div>
+          </div>
+
+          <div>
+            <div *ngIf="exer?.intensity?.weight" class="grid grid-cols-2">{{exer?.intensity?.weight}}kg
+              <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" class="icon">
+                <path d="M0 0h24v24H0V0z" fill="none" />
+                <path
+                  d="M20.57 14.86L22 13.43 20.57 12 17 15.57 8.43 7 12 3.43 10.57 2 9.14 3.43 7.71 2 5.57 4.14 4.14 2.71 2.71 4.14l1.43 1.43L2 7.71l1.43 1.43L2 10.57 3.43 12 7 8.43 15.57 17 12 20.57 13.43 22l1.43-1.43L16.29 22l2.14-2.14 1.43 1.43 1.43-1.43-1.43-1.43L22 16.29l-1.43-1.43z" />
+              </svg>
+            </div>
+          </div>
+
+          <div>
+            <div class="flex flex-row">{{exer?.quantity}}&nbsp;
+              <div *ngIf="exer.exercise.static else reps">seconds</div>
+            </div>
+          </div>
+
+          <ng-template #reps>reps</ng-template>
+
+          <div>
+            <div *ngIf="exer?.rest" class="grid grid-cols-2">{{exer?.rest}}
+              <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" class="icon">
+                <path d="M0 0h24v24H0V0z" fill="none" />
+                <path
+                  d="M15.07 1.01h-6v2h6v-2zm-4 13h2v-6h-2v6zm8.03-6.62l1.42-1.42c-.43-.51-.9-.99-1.41-1.41l-1.42 1.42C16.14 4.74 14.19 4 12.07 4c-4.97 0-9 4.03-9 9s4.02 9 9 9 9-4.03 9-9c0-2.11-.74-4.06-1.97-5.61zm-7.03 12.62c-3.87 0-7-3.13-7-7s3.13-7 7-7 7 3.13 7 7-3.13 7-7 7z" />
+              </svg>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-
-  <div *ngIf="!isLast" class="flex flex-row items-center">
-    <div class="flex-grow h-px bg-gray dark:bg-grayLight mx-3"></div>
-    <div class="flex flex-row">
-      <p class="text-sm text-gray dark:text-grayLight">1' 30''</p>
-      <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 0 24 24" width="20px" class="icon-secondary">
-        <path d="M0 0h24v24H0V0z" fill="none" />
-        <path
-          d="M15.07 1.01h-6v2h6v-2zm-4 13h2v-6h-2v6zm8.03-6.62l1.42-1.42c-.43-.51-.9-.99-1.41-1.41l-1.42 1.42C16.14 4.74 14.19 4 12.07 4c-4.97 0-9 4.03-9 9s4.02 9 9 9 9-4.03 9-9c0-2.11-.74-4.06-1.97-5.61zm-7.03 12.62c-3.87 0-7-3.13-7-7s3.13-7 7-7 7 3.13 7 7-3.13 7-7 7z" />
-      </svg>
+    <div *ngIf="!isLast" class="flex flex-row items-center my-2">
+      <div class="flex-grow h-px bg-gray dark:bg-grayLight mx-3"></div>
+      <div class="flex flex-row">
+        <p class="text-sm text-gray dark:text-grayLight">{{set.finalRest}}</p>
+        <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 0 24 24" width="20px" class="icon-secondary">
+          <path d="M0 0h24v24H0V0z" fill="none" />
+          <path
+            d="M15.07 1.01h-6v2h6v-2zm-4 13h2v-6h-2v6zm8.03-6.62l1.42-1.42c-.43-.51-.9-.99-1.41-1.41l-1.42 1.42C16.14 4.74 14.19 4 12.07 4c-4.97 0-9 4.03-9 9s4.02 9 9 9 9-4.03 9-9c0-2.11-.74-4.06-1.97-5.61zm-7.03 12.62c-3.87 0-7-3.13-7-7s3.13-7 7-7 7 3.13 7 7-3.13 7-7 7z" />
+        </svg>
+      </div>
+      <div class="flex-grow h-px bg-gray dark:bg-grayLight mx-3"></div>
     </div>
-    <div class="flex-grow h-px bg-gray dark:bg-grayLight mx-3"></div>
-  </div>
 
+  </div>
 </div>
