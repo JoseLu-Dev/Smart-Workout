@@ -1,6 +1,6 @@
 <div>
   <div *ngFor="let set of exercisesSets; last as isLast">
-    <div [ngClass]="{'bg-primary dark:bg-primaryLightDark rounded-lg p-4 shadow-md': set.type}">
+    <div [ngClass]="{'bg-primary dark:bg-primaryLightDark rounded-lg p-4 shadow-md': set.type, 'mb-4' : set.type && isLast}">
 
       <p class=" m-4 text-xl">{{set.type | titlecase}}</p>
 
