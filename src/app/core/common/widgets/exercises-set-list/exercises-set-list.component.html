@@ -12,7 +12,7 @@
           <div *ngFor="let exer of set.set" class="bg-primary dark:bg-primaryLightDark rounded-lg 
 p-4 shadow-lg" [ngClass]="{'mb-4': set.set.length > 1}">
             <div class="grid grid-cols-2 gap-3">
-              <p class="col-span-2 text-lg mx-auto"> {{exer.exercise.name | titlecase}} {{exer.exercise.progression |
+              <p class="col-span-2 text-lg text-center"> {{exer.exercise.name | titlecase}} {{exer.exercise.progression |
                 titlecase}}
                 {{exer.exercise.variation | titlecase}}</p>
               <div>
