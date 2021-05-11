@@ -28,12 +28,11 @@ p-4 shadow-lg" [ngClass]="{'mb-4': set.set.length > 1}">
           </div>
 
           <div>
-            <div class="flex flex-row">{{exer?.quantity}}&nbsp;
-              <div *ngIf="exer.exercise.static else reps">seconds</div>
+            <div class="flex flex-row">
+              <div *ngIf="exer.exercise.static else reps">{{exer?.quantity | secondsFormat}}</div>
+              <ng-template #reps>{{exer?.quantity}} reps</ng-template>
             </div>
-          </div>
-
-          <ng-template #reps>reps</ng-template>
+          </div>  
 
           <div>
             <div *ngIf="exer?.rest" class="grid grid-cols-2">{{exer?.rest | secondsFormat}}
@@ -44,6 +43,7 @@ p-4 shadow-lg" [ngClass]="{'mb-4': set.set.length > 1}">
               </svg>
             </div>
           </div>
+
         </div>
       </div>
     </div>
