@@ -36,7 +36,7 @@ p-4 shadow-lg" [ngClass]="{'mb-4': set.set.length > 1}">
           <ng-template #reps>reps</ng-template>
 
           <div>
-            <div *ngIf="exer?.rest" class="grid grid-cols-2">{{exer?.rest}}
+            <div *ngIf="exer?.rest" class="grid grid-cols-2">{{exer?.rest | secondsFormat}}
               <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" class="icon">
                 <path d="M0 0h24v24H0V0z" fill="none" />
                 <path
@@ -50,7 +50,7 @@ p-4 shadow-lg" [ngClass]="{'mb-4': set.set.length > 1}">
     <div *ngIf="!isLast" class="flex flex-row items-center my-2">
       <div class="flex-grow h-px bg-gray dark:bg-grayLight mx-3"></div>
       <div class="flex flex-row">
-        <p class="text-sm text-gray dark:text-grayLight">{{set.finalRest}}</p>
+        <p class="text-sm text-gray dark:text-grayLight">{{set.finalRest | secondsFormat}}</p>
         <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 0 24 24" width="20px" class="icon-secondary">
           <path d="M0 0h24v24H0V0z" fill="none" />
           <path
