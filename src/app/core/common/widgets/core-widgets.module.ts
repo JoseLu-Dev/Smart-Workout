@@ -5,10 +5,21 @@ import { NgModule } from '@angular/core';
 import { ExercisesSetListComponent } from './exercises-set-list/exercises-set-list.component';
 import { TrainingsListComponent } from './trainings-list/trainings-list.component';
 import { ExercisesSetComponent } from './exercises-set-list/exercises-set/exercises-set.component';
+import { ExercisesSetAddFormComponent } from './exercises-set-add-form/exercises-set-add-form.component';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 @NgModule({
-  imports: [CommonModule, CorePipesModule],
-  declarations: [TrainingsListComponent, ExercisesSetListComponent, ExercisesSetComponent],
-  exports: [TrainingsListComponent, ExercisesSetListComponent]
+  imports: [CommonModule, CorePipesModule, NgSelectModule],
+  declarations: [
+    TrainingsListComponent,
+    ExercisesSetListComponent,
+    ExercisesSetComponent,
+    ExercisesSetAddFormComponent,
+  ],
+  exports: [
+    TrainingsListComponent,
+    ExercisesSetListComponent,
+    ExercisesSetAddFormComponent,
+  ]
 })
 export class CoreWidgetsModule {}

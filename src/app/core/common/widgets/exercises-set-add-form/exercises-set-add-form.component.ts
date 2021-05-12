@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ExercisesSetAddFormComponent implements OnInit {
 
+  public types = ['Normal', 'Emom']
+
   constructor() { }
 
   ngOnInit() {}

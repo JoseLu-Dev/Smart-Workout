@@ -1,3 +1,4 @@
+import { CoreWidgetsModule } from './../../common/widgets/core-widgets.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -13,7 +14,8 @@ import { NewPage } from './new.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    NewPageRoutingModule
+    NewPageRoutingModule,
+    CoreWidgetsModule
   ],
   declarations: [NewPage]
 })
