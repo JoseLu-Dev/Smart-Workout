@@ -1,13 +1,13 @@
-<div class="h-full overflow-y-scroll md:overflow-hidden p-4 xl:p-20 2xl:p-40">
+<div class="h-full overflow-y-scroll md:overflow-hidden p-2 md:p-4 xl:p-20 2xl:p-40">
     <div class="h-full md:grid md:grid-cols-12 md:grid-flow-col gap-4">
 
-        <div class="md:row-span-4 md:col-span-8 h-auto md:h-auto m-4 md:m-0
+        <div class="md:row-span-4 md:col-span-8 h-auto md:h-auto my-4 md:m-0
     bg-primary dark:bg-primaryLightDark rounded-lg 
     p-4 shadow-md">
             <app-custom-calendar (daySelected)=getAndShowDaySelectedInCalendar($event)></app-custom-calendar>
         </div>
 
-        <div class="md:col-span-4 h-auto m-4 md:m-0
+        <div class="md:col-span-4 h-auto my-4 md:m-0
     flex flex-row flex-wrap content-center
     shadow-md bg-primary dark:bg-primaryLightDark rounded-lg p-4
     ">
@@ -15,7 +15,7 @@
                 <ng-container *ngTemplateOutlet="buttonPrevious"></ng-container>
             </div>
 
-            <div class="flex flex-wrap content-center m-4 flex-grow 
+            <div class="flex flex-wrap content-center my-4 flex-grow 
         xl:max-h-16">
                 <p class="self-center mx-auto"> {{
                     calendar?.calendarCreator.getMonthName(calendar?.monthNumber) }}
@@ -39,7 +39,7 @@
 
         </div>
 
-        <div class="md:row-span-3 md:col-span-4 h-auto md:h-auto m-4 md:m-0
+        <div class="md:row-span-3 md:col-span-4 h-auto md:h-auto my-4 md:m-0
     shadow-md bg-primary dark:bg-primaryLightDark rounded-lg p-4">
             <app-trainings-list [trainingsDay]="daySelected?.trainingsDay"></app-trainings-list>
         </div>
