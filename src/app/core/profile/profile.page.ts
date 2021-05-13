@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfilePage implements OnInit {
 
+  public isTrainer = false;
+
   constructor() { }
 
   ngOnInit() {
