@@ -7,7 +7,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class ExercisesSetComponent implements OnInit {
 
-  @Input() exer: any;
+  @Input() set: any;
 
   constructor() { }
 

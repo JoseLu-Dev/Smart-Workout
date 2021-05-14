@@ -3,18 +3,9 @@
     <div class="flex flex-row items-center">
 
       <div class="flex-grow">
-        <div
-          [ngClass]="{'bg-primary dark:bg-primaryLightDark rounded-lg p-4 shadow-md': set.type, 'mb-4' : set.type && isLast}">
 
-          <p class="text-2xl">{{set.type | titlecase}}</p>
+        <app-exercises-set [set]=set></app-exercises-set>
 
-
-          <div *ngFor="let exer of set.set" class="bg-primary dark:bg-primaryLightDark rounded-lg 
-            p-4 shadow-lg" [ngClass]="{'mb-4': set.set.length > 1}">
-            <app-exercises-set [exer]=exer></app-exercises-set>
-          </div>
-
-        </div>
         <div *ngIf="!isLast" class="flex flex-row items-center my-2">
           <div class="flex-grow h-px bg-gray dark:bg-grayLight mx-3"></div>
           <div class="flex flex-row">
