@@ -1,6 +1,6 @@
 <div class="calendar">
   <div *ngFor='let weekDay of weekDaysName' class="flex flex-wrap content-center">
-    <div class="m-auto">{{ weekDay }}</div>
+    <p class="m-auto md:text-2xl font-semibold">{{ weekDay }}</p>
   </div>
 
   <div *ngFor='let day of monthDays' class="flex flex-wrap content-center">
