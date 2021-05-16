@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Exercise } from '../../../models/exercise.model';
 import { ExercisesSetsForm } from '../exercises-set-add-form.interface';
 import { CommonSetsForm } from './common-set-form.interface';
 
@@ -11,44 +10,13 @@ import { CommonSetsForm } from './common-set-form.interface';
 })
 export class CommonExerciseStrategyComponent implements OnInit, ExercisesSetsForm, CommonSetsForm {
 
-  public exercises = ['Front lever', 'Planche press', 'Pull ups'];
-
-  public exercisesFromAPI: Exercise[] = [{
-    name: 'Front lever',
-    variations: ['Prone', 'Supine', 'Neutral'],
-    progressions: ['Full', 'Straddle', 'Tuck Advanced', 'Tuck'],
-    muscleGroup: 'Lats',
-    bodyWeight: true,
-    static: true,
-  },
-  {
-    name: 'Planche press',
-    variations: ['Prone', 'Supine', 'Neutral'],
-    progressions: ['Full', 'Straddle', 'Tuck Advanced', 'Tuck'],
-    muscleGroup: 'Shoulders',
-    bodyWeight: true,
-    static: false,
-  },
-  {
-    name: 'Pull ups',
-    variations: [],
-    progressions: [],
-    muscleGroup: 'Lats',
-    bodyWeight: true,
-    static: false,
-  }];
-
-  public exerciseSelected: Exercise;
-
-
   set: any;
 
   public multiExercise: boolean;
   public restBetweenExercises: boolean;
+  public bodyWeighted: boolean;
 
   setFormGroup: FormGroup;
-
-
 
   bandColor = '#453322';
 
@@ -58,21 +26,11 @@ export class CommonExerciseStrategyComponent implements OnInit, ExercisesSetsFor
     this.multiExercise = false;
     this.restBetweenExercises = true;
     this.buildForm();
-    this.setOnExerciseSelected();
-  }
-
-  setOnExerciseSelected(): void {
-    this.setFormGroup.get('exercise').valueChanges.subscribe(exerciseSelected => {
-      this.exerciseSelected = this.getExerciseFromAPI(exerciseSelected);
-    });
   }
 
   buildForm(): void {
     this.setFormGroup = this.formBuilder.group({
-      exercise: ['', Validators.required],
-      progression: ['', this.exerciseSelected?.progressions.length > 0 ? Validators.required : null],
-      variation: ['', this.exerciseSelected?.variations.length > 0 ? Validators.required : null],
-      weight: ['', !this.exerciseSelected?.bodyWeight ? Validators.required : null],
+      weight: ['', !this.bodyWeighted ? Validators.required : null],
       reps: ['', Validators.required],
       restSeconds: [''],
       restMinutes: ['']
@@ -81,14 +39,6 @@ export class CommonExerciseStrategyComponent implements OnInit, ExercisesSetsFor
 
   onSubmit(): void {
     throw new Error('Method not implemented.');
-  }
-
-  getExerciseFromAPI(name: string) {
-    for (const exercise of this.exercisesFromAPI) {
-      if (exercise.name === name) {
-        return exercise;
-      }
-    }
   }
 
 }

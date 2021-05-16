@@ -1,36 +1,6 @@
 <form [formGroup]="setFormGroup" class="flex flex-col">
 
-    <div class="flex flex-row  items-center my-4">
-        <label class="label mr-4" for="type">Exercise</label>
-        <ng-select [items]="exercises" [ngClass]="{'input-invalid': false}" class="input flex-grow"
-            formControlName="exercise">
-            <ng-template ng-option-tmp let-item="item" let-index="index" let-search="searchTerm">
-                <div class="input m-px">{{item | titlecase}}</div>
-            </ng-template>
-        </ng-select>
-    </div>
-
-    <div class="flex flex-row items-center my-4" *ngIf="exerciseSelected?.progressions.length > 0">
-        <label class="label mr-4" for="type">Progression</label>
-        <ng-select [items]="exerciseSelected?.progressions" [ngClass]="{'input-invalid': false}" class="input flex-grow"
-            formControlName="progression">
-            <ng-template ng-option-tmp let-item="item" let-index="index" let-search="searchTerm">
-                <div class="input m-px">{{item | titlecase}}</div>
-            </ng-template>
-        </ng-select>
-    </div>
-
-    <div class="flex flex-row items-center my-4" *ngIf="exerciseSelected?.variations.length > 0">
-        <label class="label mr-4" for="type">Variation</label>
-        <ng-select [items]="exerciseSelected?.variations" [ngClass]="{'input-invalid': false}" class="input flex-grow"
-            formControlName="variation">
-            <ng-template ng-option-tmp let-item="item" let-index="index" let-search="searchTerm">
-                <div class="input m-px">{{item | titlecase}}</div>
-            </ng-template>
-        </ng-select>
-    </div>
-
-    <div *ngIf="exerciseSelected" class="flex flex-col">
+    <div *ngIf="false" class="flex flex-col">
         <div class="my-4 place-self-center">
             <label class="label mr-2" for="reps">Reps</label>
             <input class="input w-16 text-center" formControlName="reps" type="number" placeholder="0" />
