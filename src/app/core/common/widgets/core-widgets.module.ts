@@ -10,6 +10,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { CommonExerciseStrategyComponent } from './exercises-set-add-form/common-strategy/common-exercise-strategy.component';
 import { EmomStrategyComponent } from './exercises-set-add-form/emom-strategy/emom-strategy.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ExerciseSelectionComponent } from './exercises-set-add-form/exercise-selection/exercise-selection.component';
 
 @NgModule({
   imports: [
@@ -25,7 +26,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ExercisesSetComponent,
     ExercisesSetAddFormComponent,
     CommonExerciseStrategyComponent,
-    EmomStrategyComponent
+    EmomStrategyComponent,
+    ExerciseSelectionComponent
   ],
   exports: [
     TrainingsListComponent,

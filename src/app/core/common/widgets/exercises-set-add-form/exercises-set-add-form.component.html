@@ -3,13 +3,15 @@
     <div class="flex flex-row items-center">
 
       <label class="label mr-4" for="type">Type</label>
-      <ng-select [items]="types" [ngClass]="{'input-invalid': false}" class="input flex-grow"
+      <ng-select [items]="types" [ngClass]="{'input-invalid': false}" class="input flex-grow w-64"
         formControlName="selectedType">
         <ng-template ng-option-tmp let-item="item" let-index="index" let-search="searchTerm">
           <div class="input m-px">{{item | titlecase}}</div>
         </ng-template>
       </ng-select>
     </div>
+
+    <app-exercise-selection (exerciseSelected)=getExerciseSelected($event)></app-exercise-selection>
 
     <div [ngSwitch]="exercisesSetFormGroup.get('selectedType').value">
       <div *ngSwitchCase="'emom'">

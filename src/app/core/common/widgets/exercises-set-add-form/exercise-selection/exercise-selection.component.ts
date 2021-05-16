@@ -97,9 +97,19 @@ export class ExerciseSelectionComponent implements OnInit {
   }
 
   onValidForm() {
+    this.exerciseSelected.emit(this.getExerciseFormObject());
+  }
+
+  getExerciseFormObject(): Exercise{
     const exercise = new Exercise();
-    console.log('CORRECT');
-    this.exerciseSelected.emit(null);
+    exercise.name = this.exerciseInSelectField.name;
+    exercise.progression = this.exerciseFormGroup.get('progression').value;
+    exercise.variation = this.exerciseFormGroup.get('variation').value;
+    exercise.bodyWeight = this.exerciseInSelectField.bodyWeight;
+    exercise.static = this.exerciseInSelectField.static;
+    exercise.muscleGroup = this.exerciseInSelectField.muscleGroup;
+
+    return exercise;
   }
 
   getExerciseFromAPI(name: string, callback) {
