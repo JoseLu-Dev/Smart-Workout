@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-exercises-set-add-form',
@@ -7,10 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ExercisesSetAddFormComponent implements OnInit {
 
-  public types = ['Normal', 'Emom']
+  public types = ['normal', 'emom'];
 
-  constructor() { }
+  exercisesSetFormGroup: FormGroup;
 
-  ngOnInit() {}
+  constructor(private formBuilder: FormBuilder,) {}
+
+  ngOnInit() {
+    this.exercisesSetFormGroup = this.formBuilder.group({
+      selectedType: ['', Validators.required]
+    });
+    this.exercisesSetFormGroup.setValue({selectedType: this.types[0]});
+  }
 
 }

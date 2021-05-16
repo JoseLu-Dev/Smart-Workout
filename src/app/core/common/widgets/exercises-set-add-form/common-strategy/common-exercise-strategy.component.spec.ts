@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { CommonStrategyComponent } from './common-strategy.component';
+import { CommonExerciseStrategyComponent } from './common-exercise-strategy.component';
 
 describe('CommonStrategyComponent', () => {
-  let component: CommonStrategyComponent;
-  let fixture: ComponentFixture<CommonStrategyComponent>;
+  let component: CommonExerciseStrategyComponent;
+  let fixture: ComponentFixture<CommonExerciseStrategyComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ CommonStrategyComponent ],
+      declarations: [ CommonExerciseStrategyComponent ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(CommonStrategyComponent);
+    fixture = TestBed.createComponent(CommonExerciseStrategyComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

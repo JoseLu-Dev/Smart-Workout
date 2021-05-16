@@ -1,3 +1,80 @@
-<p>
-  common-strategy works!
-</p>
+<form [formGroup]="setFormGroup" class="flex flex-col">
+
+    <div class="flex flex-row  items-center my-4">
+        <label class="label mr-4" for="type">Exercise</label>
+        <ng-select [items]="exercises" [ngClass]="{'input-invalid': false}" class="input flex-grow"
+            formControlName="exercise">
+            <ng-template ng-option-tmp let-item="item" let-index="index" let-search="searchTerm">
+                <div class="input m-px">{{item | titlecase}}</div>
+            </ng-template>
+        </ng-select>
+    </div>
+
+    <div class="flex flex-row items-center my-4" *ngIf="exerciseSelected?.progressions.length > 0">
+        <label class="label mr-4" for="type">Progression</label>
+        <ng-select [items]="exerciseSelected?.progressions" [ngClass]="{'input-invalid': false}" class="input flex-grow"
+            formControlName="progression">
+            <ng-template ng-option-tmp let-item="item" let-index="index" let-search="searchTerm">
+                <div class="input m-px">{{item | titlecase}}</div>
+            </ng-template>
+        </ng-select>
+    </div>
+
+    <div class="flex flex-row items-center my-4" *ngIf="exerciseSelected?.variations.length > 0">
+        <label class="label mr-4" for="type">Variation</label>
+        <ng-select [items]="exerciseSelected?.variations" [ngClass]="{'input-invalid': false}" class="input flex-grow"
+            formControlName="variation">
+            <ng-template ng-option-tmp let-item="item" let-index="index" let-search="searchTerm">
+                <div class="input m-px">{{item | titlecase}}</div>
+            </ng-template>
+        </ng-select>
+    </div>
+
+    <div *ngIf="exerciseSelected" class="flex flex-col">
+        <div class="my-4 place-self-center">
+            <label class="label mr-2" for="reps">Reps</label>
+            <input class="input w-16 text-center" formControlName="reps" type="number" placeholder="0" />
+        </div>
+
+        <div>
+            <p class="mb-2 text-center text-xl">Intensity</p>
+            <div class="flex flex-row">
+                <div class="flex flex-col flex-wrap flex-grow items-center gap-2 mr-4">
+                    <label class="label h-6" for="weight">Weight</label>
+                    <div class="flex flex-row items-center gap-2">
+                        <input class="input w-20 text-center" formControlName="weight" placeholder="0" type="number" />
+                        <p>Kg</p>
+                    </div>
+                </div>
+                <div class="flex flex-col flex-wrap flex-grow items-center content-center gap-2">
+                    <div class="flex flex-row items-center gap-2">
+                        <label class="label">Band</label>
+                        <button class="btn-rounded btn-blue p-0"><svg xmlns="http://www.w3.org/2000/svg" height="16px"
+                                viewBox="0 0 24 24" width="16px" fill="#000000">
+                                <path d="M0 0h24v24H0z" fill="none" />
+                                <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
+                            </svg></button>
+                    </div>
+                    <div class="flex flex-row items-center gap-2">
+                        <input class="input w-20 text-center" formControlName="weight" placeholder="0" type="number" />
+                        <p>Kg</p>
+                        <div class="btn-rounded w-6 h-6" [ngStyle]="{'background-color' : bandColor}"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex flex-col flex-grow items-center my-4">
+            <label class="label mb-2" for="rest">Rest</label>
+            <div class="flex flex-row items-center gap-2">
+                <input [defaultValue]=0 class="input w-12 text-center" formControlName="restMinutes" placeholder="0"
+                    type="number" />
+                <p>Min</p>
+                <input [defaultValue]=0 class="input w-16 text-center" formControlName="restSeconds" placeholder="0"
+                    type="number" />
+                <p>Sec</p>
+            </div>
+        </div>
+    </div>
+
+</form>

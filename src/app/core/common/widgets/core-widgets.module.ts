@@ -7,14 +7,25 @@ import { TrainingsListComponent } from './trainings-list/trainings-list.componen
 import { ExercisesSetComponent } from './exercises-set-list/exercises-set/exercises-set.component';
 import { ExercisesSetAddFormComponent } from './exercises-set-add-form/exercises-set-add-form.component';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { CommonExerciseStrategyComponent } from './exercises-set-add-form/common-strategy/common-exercise-strategy.component';
+import { EmomStrategyComponent } from './exercises-set-add-form/emom-strategy/emom-strategy.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-  imports: [CommonModule, CorePipesModule, NgSelectModule],
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    CorePipesModule,
+    NgSelectModule,
+  ],
   declarations: [
     TrainingsListComponent,
     ExercisesSetListComponent,
     ExercisesSetComponent,
     ExercisesSetAddFormComponent,
+    CommonExerciseStrategyComponent,
+    EmomStrategyComponent
   ],
   exports: [
     TrainingsListComponent,
