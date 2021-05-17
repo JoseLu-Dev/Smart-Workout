@@ -7,15 +7,15 @@ export class ExerciseSet {
 
     getTotalReps(): number {
         let reps = 0;
-        this.setParts.forEach((setPart) => { reps += setPart.quantity })
+        this.setParts.forEach((setPart) => { reps += setPart.quantity; });
         return reps;
     }
 
     getMovedWeight(): number {
         let weightMoved = 0;
         this.setParts.forEach((setPart) => {
-            weightMoved += setPart.quantity + setPart.intensity.getIntensity()
-        })
+            weightMoved += setPart.quantity + setPart.intensity.getIntensity();
+        });
         return weightMoved;
     }
 
@@ -23,7 +23,7 @@ export class ExerciseSet {
         let totalRest = this.finalRest;
         this.setParts.forEach((setPart) => {
             totalRest += setPart?.rest != null ? setPart.rest : 0;
-        })
+        });
         return totalRest;
     }
 
