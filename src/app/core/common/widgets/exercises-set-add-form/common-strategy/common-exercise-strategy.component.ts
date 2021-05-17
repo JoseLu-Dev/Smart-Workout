@@ -32,9 +32,10 @@ export class CommonExerciseStrategyComponent implements OnInit, ExercisesSetsFor
   buildForm(): void {
     this.setFormGroup = this.formBuilder.group({
       weight: ['', !this.exerciseSelected.bodyWeight ? Validators.required : null],
+      bandWeight: [{value: '', disabled: true}],
       reps: ['', Validators.required],
       restSeconds: [''],
-      restMinutes: ['']
+      restMinutes: [''],
     });
   }
 
