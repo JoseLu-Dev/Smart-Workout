@@ -10,6 +10,9 @@ import { filter } from 'rxjs/operators';
 })
 export class ExerciseSelectionComponent implements OnInit {
 
+  /**
+   * Exercise object outputed when the form is valid
+   */
   @Output() exerciseSelected = new EventEmitter<Exercise>();
 
   public exercises = ['Front lever', 'Planche press', 'Pull ups'];
@@ -39,16 +42,28 @@ export class ExerciseSelectionComponent implements OnInit {
     static: false,
   }];
 
+  /**
+   * Form group of the component
+   */
   public exerciseFormGroup: FormGroup;
 
+  /**
+   * Exercise specs of the one selected in the ng-select field
+   */
   public exerciseInSelectField: ExerciseSpecs;
 
   constructor(private formBuilder: FormBuilder,) { }
 
+  /**
+   * Initialize the formGroup when the component has loaded
+   */
   ngOnInit() {
     this.buildForm();
   }
 
+  /**
+   * Builds the form used in the component
+   */
   buildForm() {
     this.exerciseFormGroup = this.formBuilder.group({
       name: ['', Validators.required],
@@ -59,25 +74,12 @@ export class ExerciseSelectionComponent implements OnInit {
     this.setOnValidForm();
   }
 
-  setFormValidators() {
-    const progressionRequired = this.exerciseInSelectField?.progressions.length > 0;
-    this.exerciseFormGroup.get('progression').setValidators(
-      progressionRequired ? Validators.required : null
-    );
-    const variationRequired = this.exerciseInSelectField?.variations.length > 0;
-    this.exerciseFormGroup.get('variation').setValidators(
-      variationRequired ? Validators.required : null
-    );
-  }
-
-  resetFormProgressionAndVariation() {
-    this.exerciseFormGroup.get('progression').setValue(null);
-    this.exerciseFormGroup.get('variation').setValue(null);
-  }
-
+  /**
+   * Sets a function to be called when the field 'name' of the form is changed
+   */
   setOnExerciseSelected(): void {
     this.exerciseFormGroup.get('name').valueChanges.subscribe(exerciseSelected => {
-      if(exerciseSelected == null){
+      if (exerciseSelected == null) {
         this.exerciseInSelectField = null;
         return;
       }
@@ -93,6 +95,9 @@ export class ExerciseSelectionComponent implements OnInit {
     });
   }
 
+  /**
+   * Sets a function to be called when the form is valid or invalid
+   */
   setOnValidForm() {
     this.exerciseFormGroup.statusChanges.pipe(
       filter(() => this.exerciseFormGroup.valid || this.exerciseFormGroup.invalid)
@@ -106,14 +111,48 @@ export class ExerciseSelectionComponent implements OnInit {
       });
   }
 
+  /**
+   * Sets form 'validators' for 'progressions' and 'variations' depending on if the exercise selected has them
+   */
+  setFormValidators() {
+    const progressionRequired = this.exerciseInSelectField?.progressions.length > 0;
+    this.exerciseFormGroup.get('progression').setValidators(
+      progressionRequired ? Validators.required : null
+    );
+    const variationRequired = this.exerciseInSelectField?.variations.length > 0;
+    this.exerciseFormGroup.get('variation').setValidators(
+      variationRequired ? Validators.required : null
+    );
+  }
+
+  /**
+   * Resets form 'progression' and 'variation' fields to null
+   */
+  resetFormProgressionAndVariation() {
+    this.exerciseFormGroup.get('progression').setValue(null);
+    this.exerciseFormGroup.get('variation').setValue(null);
+  }
+
+
+  /**
+   * Outputs the exercise to parent component
+   */
   onValidForm() {
     this.exerciseSelected.emit(this.getExerciseFormObject());
   }
 
+  /**
+   * Outputs the exercise with null value to parent component
+   */
   onInvalidForm() {
     this.exerciseSelected.emit(null);
   }
 
+  /**
+   * Creates an Exercise object with the form data
+   *
+   * @returns Exercise object
+   */
   getExerciseFormObject(): Exercise {
     const exercise = new Exercise();
     exercise.name = this.exerciseInSelectField.name;
@@ -126,6 +165,12 @@ export class ExerciseSelectionComponent implements OnInit {
     return exercise;
   }
 
+  /**
+   * Gets an exercise data from the API given a name
+   *
+   * @param name exercise name
+   * @param callback function to execute when the api call has been done
+   */
   getExerciseFromAPI(name: string, callback) {
     for (const exercise of this.exercisesFromAPI) {
       if (exercise.name === name) {
