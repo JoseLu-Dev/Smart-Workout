@@ -37,7 +37,7 @@ export class ExerciseSetPart {
 }
 
 export class Intensity {
-    band: Band;
+    band: BandUsed;
     weight: number;
 
     getIntensity() {
@@ -45,8 +45,13 @@ export class Intensity {
     }
 }
 
-export class Band {
+export class BandUsed {
     color: string;
     fullUse: boolean;
+    weight: number;
+}
+
+export class Band{
+    color: string;
     weight: number;
 }
