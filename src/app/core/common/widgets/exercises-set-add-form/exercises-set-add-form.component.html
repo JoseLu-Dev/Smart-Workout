@@ -13,7 +13,7 @@
 
     <app-exercise-selection (exerciseSelected)=getExerciseSelected($event)></app-exercise-selection>
 
-    <div [ngSwitch]="exercisesSetFormGroup.get('selectedType').value">
+    <div *ngIf="exerciseSelected" [ngSwitch]="exercisesSetFormGroup.get('selectedType').value">
       <div *ngSwitchCase="'emom'">
         <app-emom-strategy></app-emom-strategy>
       </div>

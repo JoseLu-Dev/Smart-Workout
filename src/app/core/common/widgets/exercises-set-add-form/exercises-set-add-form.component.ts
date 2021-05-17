@@ -11,6 +11,8 @@ export class ExercisesSetAddFormComponent implements OnInit {
 
   public types = ['normal', 'emom'];
 
+  public exerciseSelected: Exercise;
+
   public exercisesSetFormGroup: FormGroup;
 
   constructor(private formBuilder: FormBuilder,) {}
@@ -23,7 +25,7 @@ export class ExercisesSetAddFormComponent implements OnInit {
   }
 
   getExerciseSelected(exercise: Exercise){
-    console.log(exercise);
+    this.exerciseSelected = exercise;
   }
 
 }

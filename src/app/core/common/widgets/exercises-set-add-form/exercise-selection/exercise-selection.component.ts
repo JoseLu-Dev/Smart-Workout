@@ -77,11 +77,17 @@ export class ExerciseSelectionComponent implements OnInit {
 
   setOnExerciseSelected(): void {
     this.exerciseFormGroup.get('name').valueChanges.subscribe(exerciseSelected => {
+      if(exerciseSelected == null){
+        this.exerciseInSelectField = null;
+        return;
+      }
       this.getExerciseFromAPI(exerciseSelected, () => {
         this.setFormValidators();
         this.resetFormProgressionAndVariation();
         if (this.exerciseFormGroup.valid) {
           this.onValidForm();
+        } else {
+          this.onInvalidForm();
         }
       });
     });
@@ -89,10 +95,14 @@ export class ExerciseSelectionComponent implements OnInit {
 
   setOnValidForm() {
     this.exerciseFormGroup.statusChanges.pipe(
-      filter(() => this.exerciseFormGroup.valid)
+      filter(() => this.exerciseFormGroup.valid || this.exerciseFormGroup.invalid)
     )
       .subscribe(status => {
-        this.onValidForm();
+        if (this.exerciseFormGroup.valid) {
+          this.onValidForm();
+        } else {
+          this.onInvalidForm();
+        }
       });
   }
 
@@ -100,7 +110,11 @@ export class ExerciseSelectionComponent implements OnInit {
     this.exerciseSelected.emit(this.getExerciseFormObject());
   }
 
-  getExerciseFormObject(): Exercise{
+  onInvalidForm() {
+    this.exerciseSelected.emit(null);
+  }
+
+  getExerciseFormObject(): Exercise {
     const exercise = new Exercise();
     exercise.name = this.exerciseInSelectField.name;
     exercise.progression = this.exerciseFormGroup.get('progression').value;
