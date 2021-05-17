@@ -11,15 +11,19 @@
       </ng-select>
     </div>
 
-    <app-exercise-selection (exerciseSelected)=getExerciseSelected($event)></app-exercise-selection>
+    <div *ngIf="exercisesSetFormGroup.get('selectedType').value">
 
-    <div *ngIf="exerciseSelected" [ngSwitch]="exercisesSetFormGroup.get('selectedType').value">
-      <div *ngSwitchCase="'emom'">
-        <app-emom-strategy></app-emom-strategy>
+      <app-exercise-selection (exerciseSelected)=getExerciseSelected($event)></app-exercise-selection>
+
+      <div *ngIf="exerciseSelected" [ngSwitch]="exercisesSetFormGroup.get('selectedType').value">
+        <div *ngSwitchCase="'emom'">
+          <app-emom-strategy></app-emom-strategy>
+        </div>
+        <div *ngSwitchDefault>
+          <app-common-exercise-strategy></app-common-exercise-strategy>
+        </div>
       </div>
-      <div *ngSwitchDefault>
-        <app-common-exercise-strategy></app-common-exercise-strategy>
-      </div>
+
     </div>
 
   </div>
