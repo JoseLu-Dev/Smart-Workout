@@ -1,4 +1,3 @@
-import { Exercise } from './../../models/exercise.model';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
@@ -11,8 +10,6 @@ export class ExercisesSetAddFormComponent implements OnInit {
 
   public types = ['normal', 'emom'];
 
-  public exerciseSelected: Exercise;
-
   public exercisesSetFormGroup: FormGroup;
 
   constructor(private formBuilder: FormBuilder,) {}
@@ -22,10 +19,6 @@ export class ExercisesSetAddFormComponent implements OnInit {
       selectedType: ['', Validators.required]
     });
     this.exercisesSetFormGroup.setValue({selectedType: this.types[0]});
-  }
-
-  getExerciseSelected(exercise: Exercise){
-    this.exerciseSelected = exercise;
   }
 
 }

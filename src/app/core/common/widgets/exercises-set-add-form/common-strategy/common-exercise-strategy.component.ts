@@ -1,3 +1,4 @@
+import { Exercise } from './../../../models/exercise.model';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ExercisesSetsForm } from '../exercises-set-add-form.interface';
@@ -14,7 +15,8 @@ export class CommonExerciseStrategyComponent implements OnInit, ExercisesSetsFor
 
   public multiExercise: boolean;
   public restBetweenExercises: boolean;
-  public bodyWeighted: boolean;
+
+  public exerciseSelected: Exercise;
 
   setFormGroup: FormGroup;
 
@@ -25,12 +27,11 @@ export class CommonExerciseStrategyComponent implements OnInit, ExercisesSetsFor
   ngOnInit() {
     this.multiExercise = false;
     this.restBetweenExercises = true;
-    this.buildForm();
   }
 
   buildForm(): void {
     this.setFormGroup = this.formBuilder.group({
-      weight: ['', !this.bodyWeighted ? Validators.required : null],
+      weight: ['', !this.exerciseSelected.bodyWeight ? Validators.required : null],
       reps: ['', Validators.required],
       restSeconds: [''],
       restMinutes: ['']
@@ -39,6 +40,13 @@ export class CommonExerciseStrategyComponent implements OnInit, ExercisesSetsFor
 
   onSubmit(): void {
     throw new Error('Method not implemented.');
+  }
+
+  getExerciseSelected(exercise: Exercise) {
+    if (exercise) {
+      this.exerciseSelected = exercise;
+      this.buildForm();
+    }
   }
 
 }
