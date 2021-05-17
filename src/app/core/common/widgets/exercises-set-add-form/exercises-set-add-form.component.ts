@@ -16,9 +16,8 @@ export class ExercisesSetAddFormComponent implements OnInit {
 
   ngOnInit() {
     this.exercisesSetFormGroup = this.formBuilder.group({
-      selectedType: ['', Validators.required]
+      selectedType: [this.types[0], Validators.required]
     });
-    this.exercisesSetFormGroup.setValue({selectedType: this.types[0]});
   }
 
 }
