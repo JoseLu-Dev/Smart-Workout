@@ -19,7 +19,6 @@ export class ModalService {
      * @param id modal id
      */
     remove(id: string) {
-
         this.modals = this.modals.filter(x => x.id !== id);
     }
 
