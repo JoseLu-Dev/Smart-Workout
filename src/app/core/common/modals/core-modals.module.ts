@@ -1,3 +1,4 @@
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ModalModule } from './../../../common/modals/base-modal/modal.module';
 import { BandsSelectionModalComponent } from './bands/bands-selection-modal/bands-selection-modal.component';
 import { NgModule } from '@angular/core';
@@ -9,7 +10,9 @@ import { BandsCreationModalComponent } from './bands/bands-creation-modal/bands-
 @NgModule({
   imports: [
     CommonModule,
-    ModalModule
+    ModalModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   declarations: [BandsCreationModalComponent, BandsSelectionModalComponent],
   exports: [BandsCreationModalComponent, BandsSelectionModalComponent],

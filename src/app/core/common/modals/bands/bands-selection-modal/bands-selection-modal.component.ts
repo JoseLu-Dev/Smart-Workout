@@ -2,6 +2,7 @@ import { BandsService } from './../bands.service';
 import { Band, BandUsed } from '../../../models/exercise-set.model';
 import { ModalService } from '../../../../../common/modals/base-modal/modal.service';
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-bands-selection-modal',
@@ -21,17 +22,28 @@ export class BandsSelectionModalComponent implements OnInit {
   id = 'bands-selection-modal';
 
   /**
+   * Band selected to be compared on form submitted
+   */
+  public band: Band;
+
+  /**
    * Bands to be showed in the modal
    */
   public bands: Band[];
 
+  /**
+   * Band form
+   */
+  public bandForm: FormGroup;
+
   constructor(
     private modalService: ModalService,
     private bandsService: BandsService,
+    private formBuilder: FormBuilder,
     ) { }
 
   ngOnInit() {
-    this.getBands()
+    this.getBands();
   }
 
   /**
@@ -42,8 +54,13 @@ export class BandsSelectionModalComponent implements OnInit {
   }
 
   onBandClicked(band: Band){
-    console.log(band);
-    //TODO: create form when band is selected
+    this.band = band;
+
+    this.bandForm = this.formBuilder.group({
+      weight: [band.weight, Validators.compose([Validators.required, Validators.max(band.weight), Validators.min(0)])],
+      use:[],
+      ends: [],
+    });
   }
 
   /**

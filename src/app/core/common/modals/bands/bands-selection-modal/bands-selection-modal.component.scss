@@ -1,3 +1,10 @@
 .icon{
     @apply fill-current text-textPrimaryDark 
 }
+
+.radioButton{
+    @apply opacity-15 w-6 h-6
+    bg-gray dark:bg-primaryDark border-transparent checked:opacity-100 dark:opacity-100
+    checked:bg-secondary hover:checked:bg-secondaryLight text-secondary dark:text-secondaryDark 
+    checked:border-transparent ring-0 focus:ring-0 focus:ring-offset-0
+}
