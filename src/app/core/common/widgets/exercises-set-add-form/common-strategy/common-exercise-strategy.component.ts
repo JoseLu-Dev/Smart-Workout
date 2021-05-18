@@ -1,5 +1,6 @@
+import { BandsSelectionModalComponent } from './../../../modals/bands/bands-selection-modal/bands-selection-modal.component';
 import { Exercise } from './../../../models/exercise.model';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ExercisesSetsForm } from '../exercises-set-add-form.interface';
 import { CommonSetsForm } from './common-set-form.interface';
@@ -10,6 +11,9 @@ import { CommonSetsForm } from './common-set-form.interface';
   styleUrls: ['../exercises-set-add-form.component.scss'],
 })
 export class CommonExerciseStrategyComponent implements OnInit, ExercisesSetsForm, CommonSetsForm {
+
+  @ViewChild(BandsSelectionModalComponent)
+  bandsModal: BandsSelectionModalComponent;
 
   set: any;
 
@@ -22,7 +26,9 @@ export class CommonExerciseStrategyComponent implements OnInit, ExercisesSetsFor
 
   bandColor = '#453322';
 
-  constructor(private formBuilder: FormBuilder,) { }
+  constructor(
+    private formBuilder: FormBuilder,
+    ) { }
 
   ngOnInit() {
     this.multiExercise = false;
@@ -48,6 +54,10 @@ export class CommonExerciseStrategyComponent implements OnInit, ExercisesSetsFor
       this.exerciseSelected = exercise;
       this.buildForm();
     }
+  }
+
+  onAddBandClicked(){
+    this.bandsModal.openModal();
   }
 
 }

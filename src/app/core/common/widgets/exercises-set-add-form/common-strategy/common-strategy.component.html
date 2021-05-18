@@ -20,11 +20,12 @@
                 <div class="flex flex-col flex-wrap flex-grow items-center content-center gap-2">
                     <div class="flex flex-row items-center gap-2">
                         <label class="label">Band</label>
-                        <button class="btn-rounded btn-blue p-0"><svg xmlns="http://www.w3.org/2000/svg" height="16px"
+                        <button class="btn-rounded btn-blue p-0" (click)="onAddBandClicked()"><svg xmlns="http://www.w3.org/2000/svg" height="16px"
                                 viewBox="0 0 24 24" width="16px" fill="#000000">
                                 <path d="M0 0h24v24H0z" fill="none" />
                                 <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
                             </svg></button>
+                            <app-bands-selection-modal></app-bands-selection-modal>
                     </div>
                     <div class="flex flex-row items-center gap-2">
                         <input class="input w-20 text-center opacity-50" formControlName="bandWeight" placeholder="0" type="number" />
@@ -48,3 +49,4 @@
         </div>
 
 </form>
+
