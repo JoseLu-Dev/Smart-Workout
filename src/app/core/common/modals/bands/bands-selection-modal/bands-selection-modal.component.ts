@@ -1,4 +1,5 @@
-import { BandUsed } from '../../../models/exercise-set.model';
+import { BandsService } from './../bands.service';
+import { Band, BandUsed } from '../../../models/exercise-set.model';
 import { ModalService } from '../../../../../common/modals/base-modal/modal.service';
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
@@ -14,11 +15,44 @@ export class BandsSelectionModalComponent implements OnInit {
    */
   @Output() bandSelected = new EventEmitter<BandUsed>();
 
+  /**
+   * Modal id
+   */
   id = 'bands-selection-modal';
 
-  constructor(private modalService: ModalService) { }
+  /**
+   * Bands to be showed in the modal
+   */
+  public bands: Band[];
 
-  ngOnInit() { }
+  constructor(
+    private modalService: ModalService,
+    private bandsService: BandsService,
+    ) { }
+
+  ngOnInit() {
+    this.getBands()
+  }
+
+  /**
+   * Gets the bands to show in the dialog using the 'BandsService'
+   */
+  getBands(){
+    this.bands = this.bandsService.getUserBands();
+  }
+
+  onBandClicked(band: Band){
+    console.log(band);
+    //TODO: create form when band is selected
+  }
+
+  /**
+   * Opens new band modal
+   * (not yet implemented)
+   */
+  onAddNewBandClicked(){
+
+  }
 
   /**
    * Creates and outputs the band selected with the form properties
