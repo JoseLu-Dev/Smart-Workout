@@ -16,12 +16,16 @@
     <p>Color</p>
     <p>Resistance</p>
   </div>
-  <button *ngFor="let band of bands"
-    class="flex flex-row gap-8 mt-2 p-2 rounded-md w-full bg-primaryLight dark:bg-primaryDark"
-    (click)="onBandClicked(band)">
-    <div class="flex-grow">
-      <div class="btn-rounded w-6 h-6" [ngStyle]="{'background-color' : band.color}"></div>
-    </div>
-    <p class="flex-grow text">{{band.weight}} Kg</p>
-  </button>
+
+  <div *ngFor="let band of bands; last as IsLast" class="w-full">
+    <button  class="flex flex-row gap-8 p-2 rounded-md w-full"
+      (click)="onBandClicked(band)">
+      <div class="flex-grow">
+        <div class="btn-rounded w-6 h-6" [ngStyle]="{'background-color' : band.color}"></div>
+      </div>
+      <p class="flex-grow text">{{band.weight}} Kg</p>
+    </button>
+    <div *ngIf="!IsLast" class="flex-grow h-px bg-gray dark:bg-grayLight my-1"></div>
+  </div>
+
 </jw-modal>
