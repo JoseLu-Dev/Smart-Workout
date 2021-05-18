@@ -48,6 +48,9 @@ module.exports = {
         tertiaryLight: '#52B788',
 
       },
+      opacity:{
+        '15': '0.15'
+      }
     },
     },
     variants: {
