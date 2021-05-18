@@ -57,6 +57,10 @@
     @apply rounded-lg p-8 shadow-md bg-primary dark:bg-primaryLightDark
 }
 
+.card-modal {
+    @apply rounded-lg p-4 shadow-lg bg-primary dark:bg-primaryLightDark
+}
+
 .background {
     @apply w-screen h-screen bg-background dark:bg-backgroundDark
 }
