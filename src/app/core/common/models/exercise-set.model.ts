@@ -48,6 +48,7 @@ export class Intensity {
 export class BandUsed {
     color: string;
     fullUse: boolean;
+    twoEnds: boolean;
     weight: number;
 }
 
