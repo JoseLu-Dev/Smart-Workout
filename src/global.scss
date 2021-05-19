@@ -60,7 +60,7 @@
 }
 
 .card {
-    @apply rounded-lg p-8 shadow-md bg-primary dark:bg-primaryLightDark
+    @apply rounded-lg p-4 md:p-8 shadow-md bg-primary dark:bg-primaryLightDark
 }
 
 .card-modal {
