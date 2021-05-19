@@ -1,9 +1,9 @@
-import { BandUsed } from './../../../models/exercise-set.model';
-import { BandsSelectionModalComponent } from './../../../modals/bands/bands-selection-modal/bands-selection-modal.component';
-import { Exercise } from './../../../models/exercise.model';
+import { BandUsed } from '../../../../models/exercise-set.model';
+import { BandsSelectionModalComponent } from '../../../../modals/bands/bands-selection-modal/bands-selection-modal.component';
+import { Exercise } from '../../../../models/exercise.model';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ExercisesSetsForm } from '../exercises-set-add-form.interface';
+import { ExercisesSetsForm } from '../../exercises-set-add-form.interface';
 import { CommonSetsForm } from './common-set-form.interface';
 
 @Component({

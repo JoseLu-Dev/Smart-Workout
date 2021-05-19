@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonSetsForm } from '../common-strategy/common-set-form.interface';
-import { ExercisesSetsForm } from '../exercises-set-add-form.interface';
+import { ExercisesSetsForm } from '../../exercises-set-add-form.interface';
 
 @Component({
   selector: 'app-emom-strategy',
