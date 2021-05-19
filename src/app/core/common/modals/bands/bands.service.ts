@@ -28,9 +28,9 @@ export class BandsService {
   }
 
   /**
-   * Calculates the band aproximated resistance depending 
+   * Calculates the band aproximated resistance depending
    * on ends used and if the band is used completely
-   * 
+   *
    * @param band band used to calculate resistance
    * @param fullUse boolean indicating if the band is being used completely
    * @param twoEnds boolean indicating if band is being used with twoEnds

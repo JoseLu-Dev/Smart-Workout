@@ -77,7 +77,7 @@ export class BandsSelectionModalComponent implements OnInit {
   onSubmit(): void {
     const bandSelected = new BandUsed();
     bandSelected.color = this.band.color;
-    this.calculateBandResistance(bandSelected)
+    this.calculateBandResistance(bandSelected);
 
     this.bandSelected.emit(bandSelected);
 
@@ -88,20 +88,20 @@ export class BandsSelectionModalComponent implements OnInit {
    * Sets the weight of the band to the value in the form if the weight is the same
    * as the one of the band, else it lets the BandService to calculate it depending
    * on the two questions asked in the form (radio buttons)
-   * 
+   *
    * @param bandSelected band selected to put data calculated on it
    */
   calculateBandResistance(bandSelected: BandUsed): void {
-    if (this.bandForm.get('weight').value != this.band.weight) {
+    if (this.bandForm.get('weight').value !== this.band.weight) {
       bandSelected.weight = this.bandForm.get('weight').value;
     } else {
-      const bandFullUse = this.bandForm.get('use').value == 'full' ? true : false;
-      const bandTwoEnds = this.bandForm.get('ends').value == 'two' ? true : false;
+      const bandFullUse = this.bandForm.get('use').value === 'full' ? true : false;
+      const bandTwoEnds = this.bandForm.get('ends').value === 'two' ? true : false;
       bandSelected.weight = this.bandsService.getBandResistance(
         this.band,
         bandFullUse,
         bandTwoEnds
-      )
+      );
       bandSelected.fullUse = bandFullUse;
       bandSelected.twoEnds = bandTwoEnds;
     }
