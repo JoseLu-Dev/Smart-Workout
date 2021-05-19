@@ -40,7 +40,7 @@ export class BandsSelectionModalComponent implements OnInit {
     private modalService: ModalService,
     private bandsService: BandsService,
     private formBuilder: FormBuilder,
-    ) { }
+  ) { }
 
   ngOnInit() {
     this.getBands();
@@ -49,17 +49,17 @@ export class BandsSelectionModalComponent implements OnInit {
   /**
    * Gets the bands to show in the dialog using the 'BandsService'
    */
-  getBands(){
+  getBands() {
     this.bands = this.bandsService.getUserBands();
   }
 
-  onBandClicked(band: Band){
+  onBandClicked(band: Band) {
     this.band = band;
 
     this.bandForm = this.formBuilder.group({
       weight: [band.weight, Validators.compose([Validators.required, Validators.max(band.weight), Validators.min(0)])],
-      use:[],
-      ends: [],
+      use: ['full'],
+      ends: ['two'],
     });
   }
 
@@ -67,16 +67,44 @@ export class BandsSelectionModalComponent implements OnInit {
    * Opens new band modal
    * (not yet implemented)
    */
-  onAddNewBandClicked(){
+  onAddNewBandClicked(): void {
 
   }
 
   /**
    * Creates and outputs the band selected with the form properties
    */
-  onSubmit(): void{
+  onSubmit(): void {
     const bandSelected = new BandUsed();
+    bandSelected.color = this.band.color;
+    this.calculateBandResistance(bandSelected)
+
     this.bandSelected.emit(bandSelected);
+
+    this.closeModal();
+  }
+
+  /**
+   * Sets the weight of the band to the value in the form if the weight is the same
+   * as the one of the band, else it lets the BandService to calculate it depending
+   * on the two questions asked in the form (radio buttons)
+   * 
+   * @param bandSelected band selected to put data calculated on it
+   */
+  calculateBandResistance(bandSelected: BandUsed): void {
+    if (this.bandForm.get('weight').value != this.band.weight) {
+      bandSelected.weight = this.bandForm.get('weight').value;
+    } else {
+      const bandFullUse = this.bandForm.get('use').value == 'full' ? true : false;
+      const bandTwoEnds = this.bandForm.get('ends').value == 'two' ? true : false;
+      bandSelected.weight = this.bandsService.getBandResistance(
+        this.band,
+        bandFullUse,
+        bandTwoEnds
+      )
+      bandSelected.fullUse = bandFullUse;
+      bandSelected.twoEnds = bandTwoEnds;
+    }
   }
 
   /**

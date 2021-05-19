@@ -27,7 +27,21 @@ export class BandsService {
     ];
   }
 
+  /**
+   * Calculates the band aproximated resistance depending 
+   * on ends used and if the band is used completely
+   * 
+   * @param band band used to calculate resistance
+   * @param fullUse boolean indicating if the band is being used completely
+   * @param twoEnds boolean indicating if band is being used with twoEnds
+   * @returns band resistance calculated
+   */
   getBandResistance(band: Band, fullUse: boolean, twoEnds: boolean): number {
-    return 0;
+    if (!fullUse) {twoEnds = false;}
+
+    const fullHalfUseMultiplier = fullUse ? 1 : this.halfUseMultiplier;
+    const endsNumberMultiplier = twoEnds ? 1 : this.oneEndMultiplier;
+
+    return band.weight * fullHalfUseMultiplier * endsNumberMultiplier;
   }
 }
