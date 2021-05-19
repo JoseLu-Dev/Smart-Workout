@@ -1,54 +1,8 @@
 <app-exercise-selection (exerciseSelected)=getExerciseSelected($event)></app-exercise-selection>
 
-<form *ngIf="exerciseSelected" [formGroup]="setFormGroup" class="flex flex-col">
-
-        <div class="my-4 place-self-center">
-            <label class="label mr-2" for="reps">Reps</label>
-            <input class="input w-16 text-center" formControlName="reps" type="number" placeholder="0" />
-        </div>
-
-        <div>
-            <p class="mb-2 text-center text-xl">Intensity</p>
-            <div class="flex flex-row">
-                <div class="flex flex-col flex-wrap flex-grow items-center gap-2 mr-4">
-                    <label class="label h-6" for="weight">Weight</label>
-                    <div class="flex flex-row items-center gap-2">
-                        <input class="input w-20 text-center" formControlName="weight" placeholder="0" type="number" />
-                        <p>Kg</p>
-                    </div>
-                </div>
-                <div class="flex flex-col flex-wrap flex-grow items-center content-center gap-2">
-                    <div class="flex flex-row items-center gap-2">
-                        <label class="label">Band</label>
-                        <button class="btn-rounded btn-blue p-0" (click)="onAddBandClicked()">
-                            <svg xmlns="http://www.w3.org/2000/svg" height="16px"
-                                viewBox="0 0 24 24" width="16px" class="icon">
-                                <path d="M0 0h24v24H0z" fill="none" />
-                                <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
-                            </svg>
-                        </button>
-                            <app-bands-selection-modal (bandSelected)=getBandUsedFromModal($event)></app-bands-selection-modal>
-                    </div>
-                    <div class="flex flex-row items-center gap-2">
-                        <input class="input w-20 text-center opacity-50" formControlName="bandWeight" placeholder="0" type="number"/>
-                        <p>Kg</p>
-                        <div class="btn-rounded w-6 h-6" [ngStyle]="{'background-color' : bandUsed?.color}"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="flex flex-col flex-grow items-center my-4">
-            <label class="label mb-2" for="rest">Rest</label>
-            <div class="flex flex-row items-center gap-2">
-                <input [defaultValue]=0 class="input w-12 text-center" formControlName="restMinutes" placeholder="0"
-                    type="number" />
-                <p>Min</p>
-                <input [defaultValue]=0 class="input w-16 text-center" formControlName="restSeconds" placeholder="0"
-                    type="number" />
-                <p>Sec</p>
-            </div>
-        </div>
-
-</form>
-
+<div *ngIf="exerciseSelected">
+    <app-set-properties-selection 
+    [bodyWeightExercise]="exerciseSelected?.bodyWeight"
+    [restBetweenExercises]="restBetweenExercises">
+</app-set-properties-selection>
+</div>

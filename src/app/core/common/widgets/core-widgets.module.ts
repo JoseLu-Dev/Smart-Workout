@@ -1,5 +1,5 @@
+import { SetPropertiesSelectionComponent } from './exercises-set-add-form/set-properties-selection/set-properties-selection.component';
 import { CoreModalsModule } from './../modals/core-modals.module';
-import { ModalModule } from './../../../common/modals/base-modal/modal.module';
 import { CorePipesModule } from './../pipes/core-pipes.module';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
@@ -21,7 +21,7 @@ import { ExerciseSelectionComponent } from './exercises-set-add-form/exercise-se
     ReactiveFormsModule,
     CorePipesModule,
     NgSelectModule,
-    CoreModalsModule
+    CoreModalsModule,
   ],
   declarations: [
     TrainingsListComponent,
@@ -30,7 +30,8 @@ import { ExerciseSelectionComponent } from './exercises-set-add-form/exercise-se
     ExercisesSetAddFormComponent,
     CommonExerciseStrategyComponent,
     EmomStrategyComponent,
-    ExerciseSelectionComponent
+    ExerciseSelectionComponent,
+    SetPropertiesSelectionComponent,
   ],
   exports: [
     TrainingsListComponent,

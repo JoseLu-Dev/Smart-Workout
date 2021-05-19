@@ -6,7 +6,7 @@ import { ExercisesSetsForm } from '../../exercises-set-add-form.interface';
   selector: 'app-emom-strategy',
   templateUrl: './.html',
   //templateUrl: '../common-strategy/common-strategy.component.html',
-  styleUrls: ['../exercises-set-add-form.component.scss'],
+  styleUrls: ['../../exercises-set-add-form.component.scss'],
 })
 export class EmomStrategyComponent implements OnInit, ExercisesSetsForm, CommonSetsForm {
 
