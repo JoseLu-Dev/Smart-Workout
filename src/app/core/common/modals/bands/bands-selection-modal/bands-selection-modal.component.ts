@@ -120,6 +120,14 @@ export class BandsSelectionModalComponent implements OnInit {
    * using the id provided in params
    */
   closeModal() {
+    this.onModalClosed();
     this.modalService.close(this.id);
+  }
+
+  /**
+   * Resets the form when the modal is closed
+   */
+  onModalClosed(){
+    this.bandForm = null;
   }
 }
