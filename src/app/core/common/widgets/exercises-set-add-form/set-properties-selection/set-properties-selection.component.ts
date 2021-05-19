@@ -11,7 +11,7 @@ import { BandsSelectionModalComponent } from '../../../modals/bands/bands-select
 })
 export class SetPropertiesSelectionComponent implements OnInit {
 
-  @Input() public bodyWeightExercise: boolean;
+  @Input() public exercise: Exercise;
 
   @Input() public restBetweenExercises: boolean;
 
@@ -30,11 +30,11 @@ export class SetPropertiesSelectionComponent implements OnInit {
 
   buildForm(): void {
     this.setFormGroup = this.formBuilder.group({
-      weight: ['', !this.bodyWeightExercise ? Validators.required : null],
+      weight: ['', Validators.compose([!this.exercise.bodyWeight ? Validators.required : null, Validators.min(0)])],
       bandWeight: [{value: '', disabled: true}],
       reps: ['', Validators.required],
-      restSeconds: [''],
-      restMinutes: [''],
+      restSeconds: ['30', Validators.compose([Validators.required, Validators.min(0)])],
+      restMinutes: ['1', Validators.compose([Validators.required, Validators.min(0)])],
     });
   }
 

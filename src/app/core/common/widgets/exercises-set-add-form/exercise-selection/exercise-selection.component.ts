@@ -15,7 +15,7 @@ export class ExerciseSelectionComponent implements OnInit {
    */
   @Output() exerciseSelected = new EventEmitter<Exercise>();
 
-  public exercises = ['Front lever', 'Planche press', 'Pull ups'];
+  public exercises = ['Front lever', 'Planche press', 'Pull ups', 'Bench press'];
 
   public exercisesFromAPI: ExerciseSpecs[] = [{
     name: 'Front lever',
@@ -31,7 +31,7 @@ export class ExerciseSelectionComponent implements OnInit {
     progressions: [],
     muscleGroup: 'Shoulders',
     bodyWeight: true,
-    static: false,
+    static: true,
   },
   {
     name: 'Pull ups',
@@ -39,6 +39,14 @@ export class ExerciseSelectionComponent implements OnInit {
     progressions: [],
     muscleGroup: 'Lats',
     bodyWeight: true,
+    static: false,
+  },
+  {
+    name: 'Bench press',
+    variations: [],
+    progressions: [],
+    muscleGroup: 'Pecs',
+    bodyWeight: false,
     static: false,
   }];
 

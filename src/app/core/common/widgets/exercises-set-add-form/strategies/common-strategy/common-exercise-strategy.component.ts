@@ -20,8 +20,6 @@ export class CommonExerciseStrategyComponent implements OnInit, ExercisesSetsFor
 
   public exerciseSelected: Exercise;
 
-  
-
   constructor(
     private formBuilder: FormBuilder,
     ) { }
