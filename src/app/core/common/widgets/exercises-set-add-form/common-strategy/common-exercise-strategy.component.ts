@@ -1,3 +1,4 @@
+import { BandUsed } from './../../../models/exercise-set.model';
 import { BandsSelectionModalComponent } from './../../../modals/bands/bands-selection-modal/bands-selection-modal.component';
 import { Exercise } from './../../../models/exercise.model';
 import { Component, OnInit, ViewChild } from '@angular/core';
@@ -25,6 +26,7 @@ export class CommonExerciseStrategyComponent implements OnInit, ExercisesSetsFor
   setFormGroup: FormGroup;
 
   bandColor = '#453322';
+  public bandUsed: BandUsed;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -58,6 +60,11 @@ export class CommonExerciseStrategyComponent implements OnInit, ExercisesSetsFor
 
   onAddBandClicked(){
     this.bandsModal.openModal();
+  }
+
+  getBandUsedFromModal(band: BandUsed){
+    this.bandUsed = band;
+    this.setFormGroup.get('bandWeight').setValue(this.bandUsed.weight);
   }
 
 }

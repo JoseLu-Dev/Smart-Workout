@@ -27,12 +27,12 @@
                                 <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
                             </svg>
                         </button>
-                            <app-bands-selection-modal></app-bands-selection-modal>
+                            <app-bands-selection-modal (bandSelected)=getBandUsedFromModal($event)></app-bands-selection-modal>
                     </div>
                     <div class="flex flex-row items-center gap-2">
-                        <input class="input w-20 text-center opacity-50" formControlName="bandWeight" placeholder="0" type="number" />
+                        <input class="input w-20 text-center opacity-50" formControlName="bandWeight" placeholder="0" type="number"/>
                         <p>Kg</p>
-                        <div class="btn-rounded w-6 h-6" [ngStyle]="{'background-color' : bandColor}"></div>
+                        <div class="btn-rounded w-6 h-6" [ngStyle]="{'background-color' : bandUsed?.color}"></div>
                     </div>
                 </div>
             </div>
