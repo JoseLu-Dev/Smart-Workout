@@ -1,33 +1,38 @@
 <form [formGroup]="exerciseFormGroup">
 
   <div class="flex flex-row  items-center my-4">
-    <label class="label mr-4" for="name">Exercise</label>
-    <ng-select [items]="exercises" [ngClass]="{'input-invalid': false}" class="input flex-grow"
-      formControlName="name">
-      <ng-template ng-option-tmp let-item="item" let-index="index" let-search="searchTerm">
-        <div class="input m-px">{{item | titlecase}}</div>
-      </ng-template>
-    </ng-select>
+    <label class="label mr-4 flex-grow" for="name">Exercise</label>
+    <div class="flex w-3/5">
+      <ng-select [items]="exercises" [ngClass]="{'input-invalid': false}" class="input w-full" formControlName="name">
+        <ng-template ng-option-tmp let-item="item" let-index="index" let-search="searchTerm">
+          <div class="input m-px">{{item | titlecase}}</div>
+        </ng-template>
+      </ng-select>
+    </div>
   </div>
 
   <div class="flex flex-row items-center my-4" *ngIf="exerciseInSelectField?.progressions.length > 0">
-    <label class="label mr-4" for="progression">Progression</label>
-    <ng-select [items]="exerciseInSelectField?.progressions" [ngClass]="{'input-invalid': false}" class="input flex-grow"
-      formControlName="progression">
-      <ng-template ng-option-tmp let-item="item" let-index="index" let-search="searchTerm">
-        <div class="input m-px">{{item | titlecase}}</div>
-      </ng-template>
-    </ng-select>
+    <label class="label mr-4 flex-grow" for="progression">Progression</label>
+    <div class="flex w-3/5">
+      <ng-select [items]="exerciseInSelectField?.progressions" [ngClass]="{'input-invalid': false}" class="input w-full"
+        formControlName="progression">
+        <ng-template ng-option-tmp let-item="item" let-index="index" let-search="searchTerm">
+          <div class="input m-px">{{item | titlecase}}</div>
+        </ng-template>
+      </ng-select>
+    </div>
   </div>
 
   <div class="flex flex-row items-center my-4" *ngIf="exerciseInSelectField?.variations.length > 0">
-    <label class="label mr-4" for="variation">Variation</label>
-    <ng-select [items]="exerciseInSelectField?.variations" [ngClass]="{'input-invalid': false}" class="input flex-grow"
-      formControlName="variation">
-      <ng-template ng-option-tmp let-item="item" let-index="index" let-search="searchTerm">
-        <div class="input m-px">{{item | titlecase}}</div>
-      </ng-template>
-    </ng-select>
+    <label class="label mr-4 flex-grow" for="variation">Variation</label>
+    <div class="flex w-3/5">
+      <ng-select [items]="exerciseInSelectField?.variations" [ngClass]="{'input-invalid': false}" class="input w-full"
+        formControlName="variation">
+        <ng-template ng-option-tmp let-item="item" let-index="index" let-search="searchTerm">
+          <div class="input m-px">{{item | titlecase}}</div>
+        </ng-template>
+      </ng-select>
+    </div>
   </div>
 
 </form>
