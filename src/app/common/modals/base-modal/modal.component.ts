@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation, ElementRef, Input, OnInit, OnDestroy } from '@angular/core';
+import { Component, ViewEncapsulation, ElementRef, Input, OnInit, OnDestroy, EventEmitter, Output } from '@angular/core';
 
 import { ModalService } from './modal.service';
 
@@ -13,6 +13,7 @@ import { ModalService } from './modal.service';
  * @class ModalComponent component to use modal windows
  */
 export class ModalComponent implements OnInit, OnDestroy {
+    @Output() closeEvent: EventEmitter<any> = new EventEmitter();
     @Input() id: string;
     private element: any;
 
@@ -63,5 +64,6 @@ export class ModalComponent implements OnInit, OnDestroy {
     close(): void {
         this.element.style.display = 'none';
         document.body.classList.remove('jw-modal-open');
+        this.closeEvent.emit(null);
     }
 }
