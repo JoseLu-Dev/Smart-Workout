@@ -87,6 +87,13 @@
     @apply font-semibold text-red-500
 }
 
+.radioButton{
+    @apply opacity-15
+    bg-gray dark:bg-primaryDark border-transparent checked:opacity-100 dark:opacity-100
+    checked:bg-secondary hover:checked:bg-secondaryLight text-secondary dark:text-secondaryDark 
+    checked:border-transparent ring-0 focus:ring-0 focus:ring-offset-0
+}
+
 .h-sec {
     @apply text-4xl text-textPrimary dark:text-textPrimaryDark
 }
