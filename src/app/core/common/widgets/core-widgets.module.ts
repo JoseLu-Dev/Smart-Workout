@@ -13,6 +13,8 @@ import { CommonExerciseStrategyComponent } from './exercises-set-add-form/strate
 import { EmomStrategyComponent } from './exercises-set-add-form/strategies/emom-strategy/emom-strategy.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ExerciseSelectionComponent } from './exercises-set-add-form/exercise-selection/exercise-selection.component';
+import { AccordionComponent } from './accordion/accordion.component';
+import { AccordionItemComponent } from './accordion/accordion-item/accordion-item.component';
 
 @NgModule({
   imports: [
@@ -32,6 +34,8 @@ import { ExerciseSelectionComponent } from './exercises-set-add-form/exercise-se
     EmomStrategyComponent,
     ExerciseSelectionComponent,
     SetPropertiesSelectionComponent,
+    AccordionComponent,
+    AccordionItemComponent
   ],
   exports: [
     TrainingsListComponent,
