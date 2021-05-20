@@ -8,6 +8,11 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 export class AccordionItemComponent {
 
   /**
+   * Css applied to the container of each item in the accordion
+   */
+  @Input() itemCss: string;
+
+  /**
    * If the panel is opened or closed
    */
   @Input() opened = false;

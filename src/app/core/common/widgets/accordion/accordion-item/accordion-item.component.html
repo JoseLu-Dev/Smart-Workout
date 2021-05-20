@@ -1,8 +1,8 @@
-<div class="mypanel">
-  <div class="title" (click)="toggle.emit()">
-    {{title}}
+<div [ngClass]="itemCss">
+  <div (click)="toggle.emit()">
+    <ng-content select="[header]"></ng-content>
   </div>
-  <div class="body" [ngClass]="{'hidden': !opened}">
-    <ng-content></ng-content>
+  <div [ngClass]="{'hidden': !opened}">
+    <ng-content select="[body]"></ng-content>
   </div>
 <div>
