@@ -22,7 +22,7 @@ export class CommonExerciseStrategyComponent implements OnInit, ExercisesSetsFor
 
   constructor(
     private formBuilder: FormBuilder,
-    ) { }
+  ) { }
 
   ngOnInit() {
     this.multiExercise = false;
@@ -34,10 +34,7 @@ export class CommonExerciseStrategyComponent implements OnInit, ExercisesSetsFor
   }
 
   getExerciseSelected(exercise: Exercise) {
-    if (exercise) {
-      this.exerciseSelected = exercise;
-      //TODO: send bodyweight to properties component
-    }
+    this.exerciseSelected = exercise;
   }
 
 }
