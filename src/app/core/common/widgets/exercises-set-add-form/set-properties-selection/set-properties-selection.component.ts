@@ -12,19 +12,19 @@ import { BandsSelectionModalComponent } from '../../../modals/bands/bands-select
 export class SetPropertiesSelectionComponent implements OnInit {
 
   /**
-   * 
+   *
    */
   @Input() public exercise: Exercise;
 
   /**
-   * Boolean to 
+   * Boolean to
    */
   @Input() public restBetweenExercises: boolean;
 
   /**
-   * 
+   * Set part outputed when selected
    */
-  @Output() public setPart = new EventEmitter<ExerciseSetPart>();;
+  @Output() public setPart = new EventEmitter<ExerciseSetPart>();
 
   /**
    * Instance of the child component (BandsModal) to use its methods
@@ -73,7 +73,7 @@ export class SetPropertiesSelectionComponent implements OnInit {
 
   /**
    * Gets the band selected in band modal
-   * 
+   *
    * @param band band outputed from the band modal
    */
   getBandUsedFromModal(band: BandUsed) {
@@ -83,14 +83,18 @@ export class SetPropertiesSelectionComponent implements OnInit {
 
   /**
    * Builds the ExerciseSetPart object and outputs it to the parent
-   * 
+   *
    * @param form form data
    */
   onSubmit(form: {
-    weight: number, weightResistanceType: string,
-    bandWeight: number, bandResistanceType: string,
-    reps: number, restSeconds: number, restMinutes: number
+    weight: number; weightResistanceType: string;
+    bandWeight: number; bandResistanceType: string;
+    reps: number; restSeconds: number; restMinutes: number;
   }) {
+    if (this.setFormGroup.invalid) {
+      return;
+    }
+
     const setPart: ExerciseSetPart = new ExerciseSetPart();
     setPart.exercise = this.exercise;
     setPart.quantity = form.reps;
@@ -102,11 +106,11 @@ export class SetPropertiesSelectionComponent implements OnInit {
     setPart.intensity = new Intensity();
 
     if (this.bandUsed) {
-      this.bandUsed.weight *= form.bandResistanceType == 'assistance' ? -1 : 1;
+      this.bandUsed.weight *= form.bandResistanceType === 'assistance' ? -1 : 1;
       setPart.intensity.band = this.bandUsed;
     }
 
-    form.weight *= form.weightResistanceType == 'assistance' ? -1 : 1;
+    form.weight *= form.weightResistanceType === 'assistance' ? -1 : 1;
     setPart.intensity.weight = form.weight;
 
     this.setPart.emit(setPart);
