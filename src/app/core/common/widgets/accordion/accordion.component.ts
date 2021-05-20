@@ -16,7 +16,8 @@ export class AccordionComponent implements AfterContentInit {
    * Invoked when all children (groups) are ready
    */
   ngAfterContentInit() {
-    // console.log (this.groups);
+    setTimeout(() =>{
+      // console.log (this.groups);
     // Set active to first element
     this.groups.toArray()[0].opened = true;
     // Loop through all Groups
@@ -28,6 +29,7 @@ export class AccordionComponent implements AfterContentInit {
         this.openGroup(t);
       });
     });
+    }, 0);
   }
 
   /**
