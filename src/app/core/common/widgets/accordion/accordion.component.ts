@@ -16,20 +16,36 @@ export class AccordionComponent implements AfterContentInit {
    * Invoked when all children (groups) are ready
    */
   ngAfterContentInit() {
+    this.updateAccordion(null);
+  }
+
+  /**
+   * Initializes accordion children
+   */
+  updateAccordion(callback){
     setTimeout(() =>{
-      // console.log (this.groups);
-    // Set active to first element
-    this.groups.toArray()[0].opened = true;
-    // Loop through all Groups
-    this.groups.toArray().forEach((t) => {
-      // when title bar is clicked
-      // (toggle is an @output event of Group)
-      t.toggle.subscribe(() => {
-        // Open the group
-        this.openGroup(t);
+      // Set active to first element
+      //this.groups.toArray()[0].opened = true;
+      // Loop through all Groups
+      this.groups.toArray().forEach((t) => {
+        // when title bar is clicked
+        // (toggle is an @output event of Group)
+        t.toggle.subscribe(() => {
+          // Open the group
+          this.openGroup(t);
+        });
       });
-    });
-    }, 0);
+      if(callback){
+        callback();
+      }
+      }, 0);
+  }
+
+  openItem(itemNumber: number){
+    // close other groups
+    this.groups.toArray().forEach((t) => t.opened = false);
+    // open current group
+    this.groups.toArray()[itemNumber].opened = true;
   }
 
   /**

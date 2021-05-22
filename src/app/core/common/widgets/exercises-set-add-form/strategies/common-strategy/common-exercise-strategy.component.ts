@@ -5,6 +5,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ExercisesSetsForm } from '../../exercises-set-add-form.interface';
 import { CommonSetsForm } from './common-set-form.interface';
+import { AccordionComponent } from '../../../accordion/accordion.component';
 
 @Component({
   selector: 'app-common-exercise-strategy',
@@ -12,6 +13,9 @@ import { CommonSetsForm } from './common-set-form.interface';
   styleUrls: ['../../exercises-set-add-form.component.scss'],
 })
 export class CommonExerciseStrategyComponent implements OnInit, ExercisesSetsForm, CommonSetsForm {
+
+  @ViewChild(AccordionComponent)
+  accordion: AccordionComponent;
 
   public set: ExerciseSet;
 
@@ -42,16 +46,21 @@ export class CommonExerciseStrategyComponent implements OnInit, ExercisesSetsFor
   }
 
   addSetPart(setPart: ExerciseSetPart, index: number) {
+    console.log(setPart);
+    console.log(index);
     if(this.setParts.length === 0){
       this.setParts.push(setPart);
     }else{
       this.setParts[index] = setPart;
     }
-    console.log(this.setParts);
   }
 
   addExercise() {
+    this.exerciseSelected = null;
     this.setParts.push(new ExerciseSetPart());
+    this.accordion.updateAccordion(()=>{
+      this.accordion.openItem(this.setParts.length-1);
+    });
   }
 
 }

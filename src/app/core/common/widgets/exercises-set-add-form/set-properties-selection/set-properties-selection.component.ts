@@ -22,6 +22,11 @@ export class SetPropertiesSelectionComponent implements OnInit {
   @Input() public restBetweenExercises: boolean;
 
   /**
+   * Boolean to
+   */
+  @Input() public setPartToEdit: ExerciseSetPart;
+
+  /**
    * Set part outputed when selected
    */
   @Output() public setPart = new EventEmitter<ExerciseSetPart>();

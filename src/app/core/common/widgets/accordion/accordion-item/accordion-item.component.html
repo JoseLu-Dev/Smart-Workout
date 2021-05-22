@@ -1,5 +1,5 @@
-<div [ngClass]="itemCss">
-  <div (click)="toggle.emit()">
+<div [ngClass]="itemCss" (click)="toggle.emit()">
+  <div>
     <ng-content select="[header]"></ng-content>
   </div>
   <div [ngClass]="{'hidden': !opened}">

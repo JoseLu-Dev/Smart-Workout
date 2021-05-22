@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Exercise, ExerciseSpecs } from '../../../models/exercise.model';
 import { filter } from 'rxjs/operators';
@@ -9,6 +9,11 @@ import { filter } from 'rxjs/operators';
   styleUrls: ['./exercise-selection.component.scss'],
 })
 export class ExerciseSelectionComponent implements OnInit {
+
+  /**
+   * Exercise received when form is going to be edited
+   */
+  @Input() public exerciseToEdit: Exercise;
 
   /**
    * Exercise object outputed when the form is valid
