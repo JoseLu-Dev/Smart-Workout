@@ -32,7 +32,13 @@ export class AccordionComponent implements AfterContentInit {
         // (toggle is an @output event of Group)
         t.toggle.subscribe(() => {
           // Open the group
-          this.openGroup(t);
+          if(t.opened){
+            t.opened = false;
+          }else{
+            this.openGroup(t);
+          }
+          
+          
         });
       });
       if(callback){
