@@ -1,13 +1,13 @@
-<div *ngIf="setParts.length > 0; else exerciseForm">
+<div *ngIf="set.setParts.length > 0; else exerciseForm">
     <app-accordion>
-        <app-accordion-item *ngFor="let setPart of setParts; index as index" [itemCss]="'card'">
+        <app-accordion-item *ngFor="let setPart of set.setParts; index as index" [itemCss]="'card'">
             <div header *ngIf="setPart.exercise" class="text-lg text-center w-full mb-2">{{setPart?.exercise.name}}
                 {{setPart?.quantity}}</div>
             <ng-container body *ngTemplateOutlet="exerciseForm; context:{index:index}"></ng-container>
         </app-accordion-item>
     </app-accordion>
 
-    <button class="btn btn-blue w-full" (click)="addExercise()">Add exercise</button>
+    <button *ngIf="multiExercise" class="btn btn-blue w-full" (click)="addNewSetPart()">Add exercise</button>
 </div>
 
 <ng-template #exerciseForm let-index="index">
