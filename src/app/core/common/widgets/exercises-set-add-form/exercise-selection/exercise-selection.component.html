@@ -1,21 +1,21 @@
-<form [formGroup]="exerciseFormGroup">
-
-  <div class="flex flex-row  items-center my-4">
-    <label class="label mr-4 flex-grow" for="name">Exercise</label>
-    <div class="flex w-3/5">
-      <ng-select [items]="exercises" [ngClass]="{'input-invalid': false}" class="input w-full" formControlName="name">
-        <ng-template ng-option-tmp let-item="item" let-index="index" let-search="searchTerm">
-          <div class="input m-px">{{item | titlecase}}</div>
-        </ng-template>
-      </ng-select>
-    </div>
+<div class="flex flex-row  items-center my-4">
+  <label class="label mr-4 flex-grow" for="name">Exercise</label>
+  <div class="flex w-3/5">
+    <ng-select [items]="exercises | async" [ngModel]="exerciseSelectedName"
+      (ngModelChange)="onExerciseNameSelectedChange($event)" class="input w-full">
+      <ng-template ng-option-tmp let-item="item" let-index="index" let-search="searchTerm">
+        <div class="input m-px">{{item | titlecase}}</div>
+      </ng-template>
+    </ng-select>
   </div>
+</div>
 
-  <div class="flex flex-row items-center my-4" *ngIf="exerciseInSelectField?.progressions.length > 0">
+
+  <div class="flex flex-row items-center my-4" *ngIf="exerciseSelectedSpecs?.progressions.length > 0">
     <label class="label mr-4 flex-grow" for="progression">Progression</label>
     <div class="flex w-3/5">
-      <ng-select [items]="exerciseInSelectField?.progressions" [ngClass]="{'input-invalid': false}" class="input w-full"
-        formControlName="progression">
+      <ng-select #selectProgression [items]="exerciseSelectedSpecs?.progressions" [ngModel]="exerciseSelectedProgression" class="input w-full"
+      (ngModelChange)="onProgressionChange($event)">
         <ng-template ng-option-tmp let-item="item" let-index="index" let-search="searchTerm">
           <div class="input m-px">{{item | titlecase}}</div>
         </ng-template>
@@ -23,16 +23,14 @@
     </div>
   </div>
 
-  <div class="flex flex-row items-center my-4" *ngIf="exerciseInSelectField?.variations.length > 0">
+  <div class="flex flex-row items-center my-4" *ngIf="exerciseSelectedSpecs?.variations.length > 0">
     <label class="label mr-4 flex-grow" for="variation">Variation</label>
     <div class="flex w-3/5">
-      <ng-select [items]="exerciseInSelectField?.variations" [ngClass]="{'input-invalid': false}" class="input w-full"
-        formControlName="variation">
+      <ng-select #selectVariation [items]="exerciseSelectedSpecs?.variations" [ngModel]="exerciseSelectedVariation" class="input w-full"
+      (ngModelChange)="onVariationChange($event)">
         <ng-template ng-option-tmp let-item="item" let-index="index" let-search="searchTerm">
           <div class="input m-px">{{item | titlecase}}</div>
         </ng-template>
       </ng-select>
     </div>
   </div>
-
-</form>

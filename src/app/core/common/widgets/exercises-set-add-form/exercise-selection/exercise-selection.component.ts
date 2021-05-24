@@ -1,7 +1,7 @@
+import { ExercisesService } from './../../../services/exercises.service';
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Exercise, ExerciseSpecs } from '../../../models/exercise.model';
-import { filter } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-exercise-selection',
@@ -11,141 +11,109 @@ import { filter } from 'rxjs/operators';
 export class ExerciseSelectionComponent implements OnInit {
 
   /**
-   * Exercise received when form is going to be edited
-   */
-  @Input() public exerciseToEdit: Exercise;
-
-  /**
    * Exercise object outputed when the form is valid
    */
   @Output() exerciseSelected = new EventEmitter<Exercise>();
 
-  public exercises = ['Front lever', 'Planche press', 'Pull ups', 'Bench press'];
+  /**
+   * Exercise received when form is going to be edited
+   */
+  @Input() set exercise(exercise: Exercise) {
+    if (exercise) {
+      this.exerciseSelectedName = exercise.name;
+      this.exerciseSelectedProgression = exercise.progression;
+      this.exerciseSelectedVariation = exercise.variation;
 
-  public exercisesFromAPI: ExerciseSpecs[] = [{
-    name: 'Front lever',
-    variations: ['Prone', 'Supine', 'Neutral'],
-    progressions: ['Full', 'Straddle', 'Tuck Advanced', 'Tuck'],
-    muscleGroup: 'Lats',
-    bodyWeight: true,
-    static: true,
-  },
-  {
-    name: 'Planche press',
-    variations: ['Prone', 'Supine', 'Neutral'],
-    progressions: [],
-    muscleGroup: 'Shoulders',
-    bodyWeight: true,
-    static: true,
-  },
-  {
-    name: 'Pull ups',
-    variations: [],
-    progressions: [],
-    muscleGroup: 'Lats',
-    bodyWeight: true,
-    static: false,
-  },
-  {
-    name: 'Bench press',
-    variations: [],
-    progressions: [],
-    muscleGroup: 'Pecs',
-    bodyWeight: false,
-    static: false,
-  }];
+      this.getExerciseFromAPI(exercise.name);
+    }
+  }
 
   /**
-   * Form group of the component
+   * Exercises list fetched from the API
    */
-  public exerciseFormGroup: FormGroup;
+  public exercises: Observable<string[]>;
 
   /**
    * Exercise specs of the one selected in the ng-select field
    */
-  public exerciseInSelectField: ExerciseSpecs;
+  public exerciseSelectedSpecs: ExerciseSpecs;
 
-  constructor(private formBuilder: FormBuilder,) { }
+  public exerciseSelectedName: string;
+  public exerciseSelectedProgression: string;
+  public exerciseSelectedVariation: string;
 
-  /**
-   * Initialize the formGroup when the component has loaded
-   */
+  constructor(private exercisesService: ExercisesService) { }
+
   ngOnInit() {
-    this.buildForm();
+    this.getExerciseListFromAPI();
   }
 
   /**
-   * Builds the form used in the component
+   * Calls the api to get exercise specs
+   *
+   * @param exerciseName exerciseName received from select field
    */
-  buildForm() {
-    this.exerciseFormGroup = this.formBuilder.group({
-      name: ['', Validators.required],
-      progression: ['', Validators.required],
-      variation: ['', Validators.required],
-    });
-    this.setOnExerciseSelected();
-    this.setOnValidForm();
+  onExerciseNameSelectedChange(exerciseName: string) {
+    this.resetFormValues();
+
+    this.getExerciseFromAPI(exerciseName);
   }
 
   /**
-   * Sets a function to be called when the field 'name' of the form is changed
+   * Called when exerciseSelectedProgression is changed in select field
+   *
+   * @param progression
    */
-  setOnExerciseSelected(): void {
-    this.exerciseFormGroup.get('name').valueChanges.subscribe(exerciseSelected => {
-      if (exerciseSelected == null) {
-        this.exerciseInSelectField = null;
-        return;
-      }
-      this.getExerciseFromAPI(exerciseSelected, () => {
-        this.setFormValidators();
-        this.resetFormProgressionAndVariation();
-        if (this.exerciseFormGroup.valid) {
-          this.onValidForm();
-        } else {
-          this.onInvalidForm();
-        }
-      });
-    });
+  onProgressionChange(progression: string) {
+    this.exerciseSelectedProgression = progression;
+
+    this.validateForm();
   }
 
   /**
-   * Sets a function to be called when the form is valid or invalid
+   * Called when exerciseSelectedVariation is changed in select field
+   *
+   * @param variation
    */
-  setOnValidForm() {
-    this.exerciseFormGroup.statusChanges.pipe(
-      filter(() => this.exerciseFormGroup.valid || this.exerciseFormGroup.invalid)
-    )
-      .subscribe(status => {
-        if (this.exerciseFormGroup.valid) {
-          this.onValidForm();
-        } else {
-          this.onInvalidForm();
-        }
-      });
+  onVariationChange(variation: string) {
+    this.exerciseSelectedVariation = variation;
+
+    this.validateForm();
   }
+
 
   /**
    * Sets form 'validators' for 'progressions' and 'variations' depending on if the exercise selected has them
    */
-  setFormValidators() {
-    const progressionRequired = this.exerciseInSelectField?.progressions.length > 0;
-    this.exerciseFormGroup.get('progression').setValidators(
-      progressionRequired ? Validators.required : null
-    );
-    const variationRequired = this.exerciseInSelectField?.variations.length > 0;
-    this.exerciseFormGroup.get('variation').setValidators(
-      variationRequired ? Validators.required : null
-    );
+  formIsValid(): boolean {
+    const progressionRequired = this.exerciseSelectedSpecs?.progressions.length > 0;
+    const progressionValid = !progressionRequired || (this.exerciseSelectedProgression != null);
+
+    const variationRequired = this.exerciseSelectedSpecs?.variations.length > 0;
+    const variationValid = !variationRequired || (this.exerciseSelectedVariation != null);
+
+    return progressionValid && variationValid;
   }
 
   /**
    * Resets form 'progression' and 'variation' fields to null
    */
-  resetFormProgressionAndVariation() {
-    this.exerciseFormGroup.get('progression').setValue(null);
-    this.exerciseFormGroup.get('variation').setValue(null);
+  resetFormValues() {
+    this.exerciseSelectedSpecs = null;
+    this.exerciseSelectedProgression = null;
+    this.exerciseSelectedVariation = null;
   }
 
+  /**
+   * Checks if form is valid and executes o
+   */
+  validateForm() {
+    if (this.formIsValid()) {
+      this.onValidForm();
+    } else {
+      this.onInvalidForm();
+    }
+  }
 
   /**
    * Outputs the exercise to parent component
@@ -168,12 +136,14 @@ export class ExerciseSelectionComponent implements OnInit {
    */
   getExerciseFormObject(): Exercise {
     const exercise = new Exercise();
-    exercise.name = this.exerciseInSelectField.name;
-    exercise.progression = this.exerciseFormGroup.get('progression').value;
-    exercise.variation = this.exerciseFormGroup.get('variation').value;
-    exercise.bodyWeight = this.exerciseInSelectField.bodyWeight;
-    exercise.static = this.exerciseInSelectField.static;
-    exercise.muscleGroup = this.exerciseInSelectField.muscleGroup;
+    exercise.name = this.exerciseSelectedSpecs.name;
+    exercise.progression = this.exerciseSelectedProgression;
+    exercise.variation = this.exerciseSelectedVariation;
+    exercise.bodyWeight = this.exerciseSelectedSpecs.bodyWeight;
+    exercise.static = this.exerciseSelectedSpecs.static;
+    exercise.muscleGroup = this.exerciseSelectedSpecs.muscleGroup;
+
+    console.log(exercise);
 
     return exercise;
   }
@@ -184,14 +154,23 @@ export class ExerciseSelectionComponent implements OnInit {
    * @param name exercise name
    * @param callback function to execute when the api call has been done
    */
-  getExerciseFromAPI(name: string, callback) {
-    for (const exercise of this.exercisesFromAPI) {
-      if (exercise.name === name) {
-        this.exerciseInSelectField = exercise;
-        callback();
-        return;
-      }
+  getExerciseFromAPI(name: string) {
+    if (!name) {
+      return;
     }
+    this.exercisesService.getExerciseSpecs(name).subscribe(exercise => {
+      this.exerciseSelectedSpecs = exercise;
+
+      this.validateForm();
+
+    });
+  }
+
+  /**
+   * Gets a list of the exercises available in the API
+   */
+  getExerciseListFromAPI() {
+    this.exercises = this.exercisesService.getExercisesNames();
   }
 
 }

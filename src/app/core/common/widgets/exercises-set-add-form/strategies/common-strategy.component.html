@@ -3,15 +3,15 @@
         <app-accordion-item *ngFor="let setPart of set.setParts; index as index" [itemCss]="'card'">
             <div header *ngIf="setPart.exercise" class="text-lg text-center w-full mb-2">{{setPart?.exercise.name}}
                 {{setPart?.quantity}}</div>
-            <ng-container body *ngTemplateOutlet="exerciseForm; context:{index:index}"></ng-container>
+            <ng-container body *ngTemplateOutlet="exerciseForm; context:{index:index, setPart:setPart}"></ng-container>
         </app-accordion-item>
     </app-accordion>
 
     <button *ngIf="multiExercise" class="btn btn-blue w-full" (click)="addNewSetPart()">Add exercise</button>
 </div>
 
-<ng-template #exerciseForm let-index="index">
-    <app-exercise-selection (exerciseSelected)="setExerciseSelected($event)"></app-exercise-selection>
+<ng-template #exerciseForm let-index="index" let-setPart="setPart">
+    <app-exercise-selection (exerciseSelected)="setExerciseSelected($event)" [exercise]="setPart?.exercise"></app-exercise-selection>
 
     <div *ngIf="exerciseSelected">
         <app-set-properties-selection (setPart)="addSetPart($event, index)" [exercise]="exerciseSelected"
