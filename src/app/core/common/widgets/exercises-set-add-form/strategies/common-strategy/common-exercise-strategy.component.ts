@@ -8,7 +8,7 @@ import { AccordionComponent } from '../../../accordion/accordion.component';
 
 @Component({
   selector: 'app-common-exercise-strategy',
-  templateUrl: './common-strategy.component.html',
+  templateUrl: '../common-strategy.component.html',
   styleUrls: ['../../exercises-set-add-form.component.scss'],
 })
 export class CommonExerciseStrategyComponent extends BaseStrategy implements OnInit {
