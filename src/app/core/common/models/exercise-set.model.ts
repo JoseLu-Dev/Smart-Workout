@@ -5,6 +5,10 @@ export class ExerciseSet {
     setsCount: number;
     finalRest: number;
 
+    constructor(){
+        this.setParts = new Array<ExerciseSetPart>();
+    }
+
     getTotalReps(): number {
         let reps = 0;
         this.setParts.forEach((setPart) => { reps += setPart.quantity; });
@@ -34,6 +38,10 @@ export class ExerciseSetPart {
     intensity: Intensity;
     quantity: number;
     rest: number;
+
+    constructor(){
+        this.intensity = new Intensity();
+    }
 }
 
 export class Intensity {
