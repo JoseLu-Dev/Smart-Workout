@@ -14,7 +14,7 @@
     <app-exercise-selection (exerciseSelected)="setExerciseSelected($event)" [exercise]="setPart?.exercise"></app-exercise-selection>
 
     <div *ngIf="exerciseSelected">
-        <app-set-properties-selection (setPart)="addSetPart($event, index)" [exercise]="exerciseSelected"
+        <app-set-properties-selection (setPart)="addSetPart($event, index)" [exercise]="exerciseSelected" [setPartToEdit]="setPart"
             [restBetweenExercises]="restBetweenExercises">
         </app-set-properties-selection>
     </div>
