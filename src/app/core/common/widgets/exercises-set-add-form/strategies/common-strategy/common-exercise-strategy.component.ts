@@ -1,4 +1,4 @@
-import { BaseStrategy } from './../base-strategy';
+import { BaseStrategyComponent } from '../base-strategy.component';
 import { ExerciseSet, ExerciseSetPart } from './../../../../models/exercise-set.model';
 import { BandUsed } from '../../../../models/exercise-set.model';
 import { Exercise } from '../../../../models/exercise.model';
@@ -11,7 +11,7 @@ import { AccordionComponent } from '../../../accordion/accordion.component';
   templateUrl: '../common-strategy.component.html',
   styleUrls: ['../../exercises-set-add-form.component.scss'],
 })
-export class CommonExerciseStrategyComponent extends BaseStrategy implements OnInit {
+export class CommonExerciseStrategyComponent extends BaseStrategyComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,

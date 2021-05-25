@@ -1,4 +1,4 @@
-import { BaseStrategy } from './../base-strategy';
+import { BaseStrategyComponent } from '../base-strategy.component';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: '../common-strategy.component.html',
   styleUrls: ['../../exercises-set-add-form.component.scss'],
 })
-export class EmomStrategyComponent extends BaseStrategy implements OnInit {
+export class EmomStrategyComponent extends BaseStrategyComponent implements OnInit {
 
   constructor() { super() }
 

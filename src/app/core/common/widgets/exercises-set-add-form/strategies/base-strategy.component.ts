@@ -1,6 +1,6 @@
-import { ExerciseSet, ExerciseSetPart } from './../../../models/exercise-set.model';
-import { Exercise } from './../../../models/exercise.model';
-import { AccordionComponent } from './../../accordion/accordion.component';
+import { ExerciseSet, ExerciseSetPart } from '../../../models/exercise-set.model';
+import { Exercise } from '../../../models/exercise.model';
+import { AccordionComponent } from '../../accordion/accordion.component';
 import { Component, ViewChild } from '@angular/core';
 
 @Component({
@@ -9,7 +9,7 @@ import { Component, ViewChild } from '@angular/core';
 /**
  * Base class that strategies must extend
  */
-export class BaseStrategy {
+export class BaseStrategyComponent {
     /**
      * Accordion component that is used when (set) object
      * has more than 1 setPart
@@ -54,6 +54,7 @@ export class BaseStrategy {
 
     /**
      * Adds or updates a set.setPart
+     *
      * @param setPart setPart to be added to set.setParts
      * @param index index of the set part
      */
@@ -80,6 +81,7 @@ export class BaseStrategy {
 
     /**
      * exerciseSelected setter
+     *
      * @param exercise exercise to be set
      */
     setExerciseSelected(exercise: Exercise): void {
