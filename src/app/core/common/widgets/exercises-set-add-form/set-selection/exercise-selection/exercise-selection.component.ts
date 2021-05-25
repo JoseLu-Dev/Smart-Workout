@@ -1,6 +1,6 @@
-import { ExercisesService } from './../../../services/exercises.service';
+import { ExercisesService } from '../../../../services/exercises.service';
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
-import { Exercise, ExerciseSpecs } from '../../../models/exercise.model';
+import { Exercise, ExerciseSpecs } from '../../../../models/exercise.model';
 import { Observable } from 'rxjs';
 
 @Component({
