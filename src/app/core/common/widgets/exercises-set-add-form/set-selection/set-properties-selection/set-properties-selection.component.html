@@ -73,7 +73,7 @@
     <div class="flex flex-row flex-grow items-center gap-2">
         <div class="flex flex-col flex-grow items-center gap-1">
             <div>
-                <label *ngIf="exercise.static; else seconds" class="label mb-2" for="reps">Seconds</label>
+                <label *ngIf="exercise?.static; else seconds" class="label mb-2" for="reps">Seconds</label>
                 <ng-template #seconds><label class="label mb-2" for="reps">Reps</label></ng-template>
             </div>
             <input [ngClass]="{'input-invalid': !setFormGroup.get('reps').valid && setFormGroup.get('reps').touched}"

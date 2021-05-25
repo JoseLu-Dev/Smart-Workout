@@ -11,11 +11,6 @@
 </div>
 
 <ng-template #exerciseForm let-index="index" let-setPart="setPart">
-    <app-exercise-selection (exerciseSelected)="setExerciseSelected($event)" [exercise]="setPart?.exercise"></app-exercise-selection>
-
-    <div *ngIf="exerciseSelected">
-        <app-set-properties-selection (setPart)="addSetPart($event, index)" [exercise]="exerciseSelected" [setPartToEdit]="setPart"
-            [restBetweenExercises]="restBetweenExercises">
-        </app-set-properties-selection>
-    </div>
+    <app-set-selection (setPart)="addSetPart($event, index)" [restBetweenExercises]="restBetweenExercises"
+        [setPartToEdit]="setPart"></app-set-selection>
 </ng-template>

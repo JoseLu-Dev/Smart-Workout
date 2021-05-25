@@ -16,6 +16,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ExerciseSelectionComponent } from './exercises-set-add-form/set-selection/exercise-selection/exercise-selection.component';
 import { AccordionComponent } from './accordion/accordion.component';
 import { AccordionItemComponent } from './accordion/accordion-item/accordion-item.component';
+import { SetSelectionComponent } from './exercises-set-add-form/set-selection/set-selection.component';
 
 @NgModule({
   imports: [
@@ -35,6 +36,7 @@ import { AccordionItemComponent } from './accordion/accordion-item/accordion-ite
     EmomStrategyComponent,
     ExerciseSelectionComponent,
     SetPropertiesSelectionComponent,
+    SetSelectionComponent,
     AccordionComponent,
     AccordionItemComponent
   ],

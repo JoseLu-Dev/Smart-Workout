@@ -143,8 +143,6 @@ export class ExerciseSelectionComponent implements OnInit {
     exercise.static = this.exerciseSelectedSpecs.static;
     exercise.muscleGroup = this.exerciseSelectedSpecs.muscleGroup;
 
-    console.log(exercise);
-
     return exercise;
   }
 

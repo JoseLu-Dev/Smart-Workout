@@ -30,12 +30,6 @@ export class BaseStrategyComponent {
     public restBetweenExercises: boolean;
 
     /**
-     * Current exercise selected to pass it to properties component
-     * and is used to determine if properties component can be shown
-     */
-    public exerciseSelected: Exercise;
-
-    /**
      * ExerciseSet object that will be sended using a service to
      * exercises-set-list component
      */
@@ -59,8 +53,6 @@ export class BaseStrategyComponent {
      * @param index index of the set part
      */
     addSetPart(setPart: ExerciseSetPart, index: number) {
-        console.log(setPart);
-        console.log(index);
         if (this.set.setParts.length === 0) {
             this.set.setParts.push(setPart);
         } else {
@@ -72,19 +64,9 @@ export class BaseStrategyComponent {
      * Adds a new setPart to be edited
      */
     addNewSetPart() {
-        this.exerciseSelected = null;
         this.set.setParts.push(new ExerciseSetPart());
         this.accordion.updateAccordion(() => {
             this.accordion.openItem(this.set.setParts.length - 1);
         });
-    }
-
-    /**
-     * exerciseSelected setter
-     *
-     * @param exercise exercise to be set
-     */
-    setExerciseSelected(exercise: Exercise): void {
-        this.exerciseSelected = exercise;
     }
 }
