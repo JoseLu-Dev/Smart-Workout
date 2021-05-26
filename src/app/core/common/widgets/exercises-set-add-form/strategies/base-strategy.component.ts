@@ -58,6 +58,9 @@ export class BaseStrategyComponent {
         } else {
             this.set.setParts[index] = setPart;
         }
+        if (this.accordion) {
+            this.accordion.updateAccordion(null);
+        }
     }
 
     /**

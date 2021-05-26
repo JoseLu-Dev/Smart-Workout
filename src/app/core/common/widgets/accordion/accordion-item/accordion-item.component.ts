@@ -29,4 +29,8 @@ export class AccordionItemComponent {
    */
   @Output() toggle: EventEmitter<any> = new EventEmitter<any>();
 
+  /**
+   * Boolean to know if toggle has been subscribed to open and close the item
+   */
+  public alreadySubscribed = false;
 }

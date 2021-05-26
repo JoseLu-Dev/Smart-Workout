@@ -22,32 +22,33 @@ export class AccordionComponent implements AfterContentInit {
   /**
    * Initializes accordion children
    */
-  updateAccordion(callback){
-    setTimeout(() =>{
+  updateAccordion(callback) {
+    setTimeout(() => {
       // Set active to first element
       //this.groups.toArray()[0].opened = true;
       // Loop through all Groups
       this.groups.toArray().forEach((t) => {
-        // when title bar is clicked
-        // (toggle is an @output event of Group)
-        t.toggle.subscribe(() => {
-          // Open the group
-          if(t.opened){
-            t.opened = false;
-          }else{
-            this.openGroup(t);
-          }
-          
-          
-        });
+        if (!t.alreadySubscribed) {
+          // when title bar is clicked
+          // (toggle is an @output event of Group)
+          t.toggle.subscribe(() => {
+            // Open the group
+            if (t.opened) {
+              t.opened = false;
+            } else {
+              this.openGroup(t);
+            }
+          });
+          t.alreadySubscribed = true;
+        }
       });
-      if(callback){
+      if (callback) {
         callback();
       }
-      }, 0);
+    }, 0);
   }
 
-  openItem(itemNumber: number){
+  openItem(itemNumber: number) {
     // close other groups
     this.groups.toArray().forEach((t) => t.opened = false);
     // open current group
