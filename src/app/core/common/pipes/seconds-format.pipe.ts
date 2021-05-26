@@ -1,11 +1,14 @@
-import { Pipe, PipeTransform } from '@angular/core';
+import { Pipe, PipeTransform, Injectable } from '@angular/core';
 
+@Injectable({
+  providedIn: 'root'
+})
 @Pipe({
   name: 'secondsFormat'
 })
 export class SecondsFormatPipe implements PipeTransform {
 
-  transform(value: any, ...args: unknown[]): unknown {
+  transform(value: any, ...args: unknown[]): string {
     const minutes = Math.floor(value / 60);
     const seconds = value % 60;
 
