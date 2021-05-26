@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { ExercisesSetComponent } from './exercises-set.component';
+import { NormalItemListStrategyComponent } from './normal-item-list-strategy.component';
 
-describe('ExercisesSetComponent', () => {
-  let component: ExercisesSetComponent;
-  let fixture: ComponentFixture<ExercisesSetComponent>;
+describe('NormalItemListStrategyComponent', () => {
+  let component: NormalItemListStrategyComponent;
+  let fixture: ComponentFixture<NormalItemListStrategyComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ ExercisesSetComponent ],
+      declarations: [ NormalItemListStrategyComponent ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(ExercisesSetComponent);
+    fixture = TestBed.createComponent(NormalItemListStrategyComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

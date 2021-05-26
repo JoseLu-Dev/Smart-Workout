@@ -1,29 +1,33 @@
-<div>
-  <div *ngFor="let set of exercisesSets; last as isLast">
-    <div class="flex flex-row items-center">
+<div *ngFor="let set of exercisesSets; last as isLast" class="flex flex-col items-center">
 
-      <div class="flex-grow">
-
-        <app-exercises-set [set]=set></app-exercises-set>
-
-        <div *ngIf="!isLast" class="flex flex-row items-center my-2">
-          <div class="flex-grow h-px bg-gray dark:bg-grayLight mx-3"></div>
-          <div class="flex flex-row">
-            <p class="text-sm text-gray dark:text-grayLight">{{set.finalRest | secondsFormat}}</p>
-            <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 0 24 24" width="20px"
-              class="icon-secondary">
-              <path d="M0 0h24v24H0V0z" fill="none" />
-              <path
-                d="M15.07 1.01h-6v2h6v-2zm-4 13h2v-6h-2v6zm8.03-6.62l1.42-1.42c-.43-.51-.9-.99-1.41-1.41l-1.42 1.42C16.14 4.74 14.19 4 12.07 4c-4.97 0-9 4.03-9 9s4.02 9 9 9 9-4.03 9-9c0-2.11-.74-4.06-1.97-5.61zm-7.03 12.62c-3.87 0-7-3.13-7-7s3.13-7 7-7 7 3.13 7 7-3.13 7-7 7z" />
-            </svg>
-          </div>
-          <div class="flex-grow h-px bg-gray dark:bg-grayLight mx-3"></div>
-        </div>
-      </div>
-
-      <div class="ml-2 text-lg">
-        x{{set.setsCount}}
-      </div>
+  <div [ngSwitch]="set.type" class="w-full">
+    <div *ngSwitchCase="'normal'">
+      <app-normal-item-list-strategy [set]="set"></app-normal-item-list-strategy>
+    </div>
+    <div *ngSwitchDefault>
+      <app-multiple-item-list-strategy [set]="set"></app-multiple-item-list-strategy>
     </div>
   </div>
+
+  <div *ngIf="!isLast" class="w-full">
+    <ng-container *ngTemplateOutlet="rest; context:{rest:set.finalRest}">
+    </ng-container>
+  </div>
+
 </div>
+
+
+<ng-template #rest let-rest="rest">
+  <div class="flex flex-row items-center my-2">
+    <div class="flex-grow h-px bg-gray dark:bg-grayLight mx-3"></div>
+    <div class="flex flex-row">
+      <p class="text-sm text-gray dark:text-grayLight">{{rest | secondsFormat}}</p>
+      <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 0 24 24" width="20px" class="icon-secondary">
+        <path d="M0 0h24v24H0V0z" fill="none" />
+        <path
+          d="M15.07 1.01h-6v2h6v-2zm-4 13h2v-6h-2v6zm8.03-6.62l1.42-1.42c-.43-.51-.9-.99-1.41-1.41l-1.42 1.42C16.14 4.74 14.19 4 12.07 4c-4.97 0-9 4.03-9 9s4.02 9 9 9 9-4.03 9-9c0-2.11-.74-4.06-1.97-5.61zm-7.03 12.62c-3.87 0-7-3.13-7-7s3.13-7 7-7 7 3.13 7 7-3.13 7-7 7z" />
+      </svg>
+    </div>
+    <div class="flex-grow h-px bg-gray dark:bg-grayLight mx-3"></div>
+  </div>
+</ng-template>

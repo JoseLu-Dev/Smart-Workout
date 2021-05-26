@@ -7,7 +7,6 @@ import { NgModule } from '@angular/core';
 import { SetPropertiesSelectionComponent } from './exercises-set-add-form/set-selection/set-properties-selection/set-properties-selection.component';
 import { ExercisesSetListComponent } from './exercises-set-list/exercises-set-list.component';
 import { TrainingsListComponent } from './trainings-list/trainings-list.component';
-import { ExercisesSetComponent } from './exercises-set-list/exercises-set/exercises-set.component';
 import { ExercisesSetAddFormComponent } from './exercises-set-add-form/exercises-set-add-form.component';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { CommonExerciseStrategyComponent } from './exercises-set-add-form/strategies/common-strategy/common-exercise-strategy.component';
@@ -16,6 +15,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ExerciseSelectionComponent } from './exercises-set-add-form/set-selection/exercise-selection/exercise-selection.component';
 import { AccordionComponent } from './accordion/accordion.component';
 import { AccordionItemComponent } from './accordion/accordion-item/accordion-item.component';
+import { MultipleItemListStrategyComponent } from './exercises-set-list/strategies/multiple-item-list-strategy/multiple-item-list-strategy.component';
+import { NormalItemListStrategyComponent } from './exercises-set-list/strategies/normal-item-list-strategy/normal-item-list-strategy.component';
 import { SetSelectionComponent } from './exercises-set-add-form/set-selection/set-selection.component';
 
 @NgModule({
@@ -30,7 +31,8 @@ import { SetSelectionComponent } from './exercises-set-add-form/set-selection/se
   declarations: [
     TrainingsListComponent,
     ExercisesSetListComponent,
-    ExercisesSetComponent,
+    NormalItemListStrategyComponent,
+    MultipleItemListStrategyComponent,
     ExercisesSetAddFormComponent,
     CommonExerciseStrategyComponent,
     EmomStrategyComponent,
