@@ -1,7 +1,7 @@
 import { ExerciseSet, ExerciseSetPart } from '../../../models/exercise-set.model';
 import { Exercise } from '../../../models/exercise.model';
 import { AccordionComponent } from '../../accordion/accordion.component';
-import { Component, ViewChild } from '@angular/core';
+import { Component, Output, ViewChild, EventEmitter } from '@angular/core';
 
 @Component({
     template: ''
@@ -10,6 +10,13 @@ import { Component, ViewChild } from '@angular/core';
  * Base class that strategies must extend
  */
 export class BaseStrategyComponent {
+
+    /**
+     * Will be sended in parent using a service to
+     * exercises-set-list component
+     */
+    @Output() exerciseSet = new EventEmitter<ExerciseSet>();
+
     /**
      * Accordion component that is used when (set) object
      * has more than 1 setPart
@@ -30,8 +37,7 @@ export class BaseStrategyComponent {
     public restBetweenExercises: boolean;
 
     /**
-     * ExerciseSet object that will be sended using a service to
-     * exercises-set-list component
+     * ExerciseSet object
      */
     public set: ExerciseSet;
 
@@ -43,7 +49,19 @@ export class BaseStrategyComponent {
      * Will send this.set object to the service
      */
     onSubmit(): void {
+        this.addSetsCountToSet();
+        console.log(this.set)
+        this.exerciseSet.emit(this.set);
+    }
 
+    addSetsCountToSet(){
+        const setsCount = this.set.setsCount;
+
+        const setParts = this.set.setParts;
+
+        for (let index = 1; index < setsCount; index++) {
+            this.set.setParts.concat(...setParts);
+        }
     }
 
     /**
