@@ -11,7 +11,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class NormalItemListStrategyComponent implements OnInit {
 
-  @Input() public set set(set: ExerciseSet){
+  @Input() public set set(set: ExerciseSet) {
     this.setsCount = set.setsCount;
     this.exercise = set.setParts[0].exercise;
 
@@ -19,7 +19,7 @@ export class NormalItemListStrategyComponent implements OnInit {
     const rests = new Array<number>();
     const weights = new Array<number>();
 
-    for (const setPart of set.setParts){
+    for (const setPart of set.setParts) {
       this.bands.push(setPart.intensity.band);
 
       quantities.push(setPart.quantity);
@@ -29,27 +29,27 @@ export class NormalItemListStrategyComponent implements OnInit {
 
     const maxQuantity = Math.max(...quantities);
     const minQuantity = Math.min(...quantities);
-    this.quantity = minQuantity === maxQuantity ? 
-    this.setQuantityFormatter.transform(maxQuantity) :
-    `${minQuantity}-${this.setQuantityFormatter.transform(maxQuantity)}`
+    this.quantity = minQuantity === maxQuantity ?
+      this.setQuantityFormatter.transform(maxQuantity) :
+      `${minQuantity}-${this.setQuantityFormatter.transform(maxQuantity)}`;
 
     const maxRest = Math.max(...rests);
     const minRest = Math.min(...rests);
     this.rest = minRest === maxRest ?
-    this.secondsFormatter.transform(maxRest) :
-    `${this.secondsFormatter.transform(minRest)}-${this.secondsFormatter.transform(maxRest)}`
+      this.secondsFormatter.transform(maxRest) :
+      `${this.secondsFormatter.transform(minRest)}-${this.secondsFormatter.transform(maxRest)}`;
 
     const maxWeight = Math.max(...weights);
     const minWeight = Math.min(...weights);
     this.weight = minWeight === maxWeight ?
-    `${maxWeight} kg` :
-    `${minWeight}-${maxWeight} kg`
+      `${maxWeight} kg` :
+      `${minWeight}-${maxWeight} kg`;
 
   }
 
   public exercise: Exercise;
   public setsCount: number;
-  
+
   public quantity: string;
   public weight: string;
   public rest: string;
@@ -58,10 +58,10 @@ export class NormalItemListStrategyComponent implements OnInit {
 
 
   constructor(
-    private setQuantityFormatter :SetQuantityFormatterPipe,
+    private setQuantityFormatter: SetQuantityFormatterPipe,
     private secondsFormatter: SecondsFormatPipe,
-    ) { }
+  ) { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
 }
