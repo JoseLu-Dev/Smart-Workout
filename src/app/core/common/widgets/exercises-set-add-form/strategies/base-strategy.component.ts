@@ -1,7 +1,8 @@
 import { ExerciseSet, ExerciseSetPart } from '../../../models/exercise-set.model';
 import { Exercise } from '../../../models/exercise.model';
 import { AccordionComponent } from '../../accordion/accordion.component';
-import { Component, Output, ViewChild, EventEmitter } from '@angular/core';
+import { Component, Output, ViewChild, EventEmitter, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
     template: ''
@@ -9,7 +10,7 @@ import { Component, Output, ViewChild, EventEmitter } from '@angular/core';
 /**
  * Base class that strategies must extend
  */
-export class BaseStrategyComponent {
+export class BaseStrategyComponent implements OnInit {
 
     /**
      * Will be sended in parent using a service to
@@ -41,8 +42,19 @@ export class BaseStrategyComponent {
      */
     public set: ExerciseSet;
 
-    constructor() {
+    public setPropertiesFormGroup: FormGroup;
+
+    constructor(private formBuilder: FormBuilder) {
         this.set = new ExerciseSet();
+    }
+    ngOnInit(): void {
+        this.setPropertiesFormGroup = this.formBuilder.group({
+            setsNumber: ['', Validators.required],
+            restSecondsFinal: [0, Validators.compose([Validators.required, Validators.min(0)])],
+            restMinutesFinal: [0, Validators.compose([Validators.required, Validators.min(0)])],
+            restSecondsBetweenSet: !this.restBetweenExercises ? [0, Validators.compose([Validators.required, Validators.min(0)])] : null,
+            restMinutesBetweenSet: !this.restBetweenExercises ? [0, Validators.compose([Validators.required, Validators.min(0)])] : null,
+        });
     }
 
     /**
@@ -50,14 +62,24 @@ export class BaseStrategyComponent {
      */
     onSubmit(): void {
         this.addSetsCountToSet();
-        console.log(this.set)
         this.exerciseSet.emit(this.set);
     }
 
-    addSetsCountToSet(){
+    addSetsCountToSet() {
+        this.set.finalRest =
+            this.setPropertiesFormGroup.get('restSecondsFinal').value +
+            this.setPropertiesFormGroup.get('restMinutesFinal').value * 60;
+
+        this.set.setsCount = this.setPropertiesFormGroup.get('setsNumber').value;
         const setsCount = this.set.setsCount;
 
         const setParts = this.set.setParts;
+
+        const restSecondsBetweenSet = this.setPropertiesFormGroup.get('restSecondsBetweenSet').value;
+        const restMinutesBetweenSet = this.setPropertiesFormGroup.get('restMinutesBetweenSet').value;
+        if (restSecondsBetweenSet && restMinutesBetweenSet) {
+            setParts[setParts.length].rest = restSecondsBetweenSet + restMinutesBetweenSet * 60;
+        }
 
         for (let index = 1; index < setsCount; index++) {
             this.set.setParts.concat(...setParts);

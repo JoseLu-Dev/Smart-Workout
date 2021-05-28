@@ -33,6 +33,7 @@ export class ExercisesSetAddFormComponent implements OnInit {
     this.trainingsService.confirmSetSelectedEdition(set);
 
     this.set = null;
+    this.exercisesSetFormGroup.reset();
   }
 
 }

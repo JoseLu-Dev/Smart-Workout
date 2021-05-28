@@ -1,10 +1,6 @@
 import { BaseStrategyComponent } from '../base-strategy.component';
-import { ExerciseSet, ExerciseSetPart } from './../../../../models/exercise-set.model';
-import { BandUsed } from '../../../../models/exercise-set.model';
-import { Exercise } from '../../../../models/exercise.model';
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AccordionComponent } from '../../../accordion/accordion.component';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-common-exercise-strategy',
@@ -13,15 +9,14 @@ import { AccordionComponent } from '../../../accordion/accordion.component';
 })
 export class CommonExerciseStrategyComponent extends BaseStrategyComponent implements OnInit {
 
-  constructor(
-    private formBuilder: FormBuilder,
-  ) {
-    super();
+  constructor(private builder: FormBuilder) {
+    super(builder);
   }
 
   ngOnInit() {
     this.multiExercise = false;
     this.restBetweenExercises = true;
+    super.ngOnInit();
   }
 
 }

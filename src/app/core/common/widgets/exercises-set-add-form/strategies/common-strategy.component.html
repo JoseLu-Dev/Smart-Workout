@@ -2,12 +2,40 @@
     <app-accordion>
         <app-accordion-item *ngFor="let setPart of set.setParts; index as index" [itemCss]="'card my-4'">
             <div header *ngIf="setPart.exercise" class="text-lg text-center w-full mb-2">{{setPart?.exercise.name}}
-                {{setPart?.quantity}} {{index}}</div>
+                {{setPart?.quantity}}</div>
             <ng-container body *ngTemplateOutlet="exerciseForm; context:{index:index, setPart:setPart}"></ng-container>
         </app-accordion-item>
     </app-accordion>
 
-    <button *ngIf="multiExercise" class="btn btn-blue w-full" (click)="addNewSetPart()">Add exercise</button>
+    <form [formGroup]="setPropertiesFormGroup" *ngIf="set.setParts.length > 0" class="flex items-center flex-wrap gap-4 ">
+        <div class="flex flex-col flex-grow items-center gap-1">
+            <div>
+                <label class="label mb-2" for="reps">Sets number</label>
+            </div>
+            <input [ngClass]="{'input-invalid': !setPropertiesFormGroup.get('setsNumber').valid && setPropertiesFormGroup.get('setsNumber').touched}"
+                class="input w-16 text-center" formControlName="setsNumber" type="number" placeholder="0" />
+        </div>
+
+        <div class="flex flex-col flex-grow items-center" *ngIf="!restBetweenExercises">
+            <label class="label mb-2" for="rest">Rest between set</label>
+            <div class="flex flex-row items-center gap-1">
+                <input class="input w-12 text-center" formControlName="restMinutesBetweenSet" placeholder="0" type="number" />
+                <p class="text-xl font-bold">:</p>
+                <input class="input w-16 text-center" formControlName="restSecondsBetweenSet" placeholder="0" type="number" />
+            </div>
+        </div>
+
+        <div class="flex flex-col flex-grow items-center">
+            <label class="label mb-2" for="rest">Final rest</label>
+            <div class="flex flex-row items-center gap-1">
+                <input class="input w-12 text-center" formControlName="restMinutesFinal" placeholder="0" type="number" />
+                <p class="text-xl font-bold">:</p>
+                <input class="input w-16 text-center" formControlName="restSecondsFinal" placeholder="0" type="number" />
+            </div>
+        </div>
+    </form>
+
+    <button *ngIf="multiExercise" class="btn btn-blue w-full mt-4" (click)="addNewSetPart()">Add exercise</button>
 </div>
 
 <ng-template #exerciseForm let-index="index" let-setPart="setPart">
@@ -15,4 +43,4 @@
         [setPartToEdit]="setPart"></app-set-selection>
 </ng-template>
 
-<button class="btn btn-blue w-full" (click)="onSubmit()">Submit</button>
+<button *ngIf="set.setParts.length > 0" class="btn btn-blue w-full mt-4" (click)="onSubmit()">Confirm set</button>
