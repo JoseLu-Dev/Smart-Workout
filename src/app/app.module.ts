@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { RouteReuseStrategy } from '@angular/router';
 
-import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
+import { IonicModule } from '@ionic/angular';
+
+import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -23,9 +24,9 @@ import { HeaderInterceptor } from './core/common/interceptors/auth-header.interc
     IonicStorageModule.forRoot()
   ],
   providers: [
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    { provide: LocationStrategy, useClass: HashLocationStrategy },
     { provide: HTTP_INTERCEPTORS, useClass: HeaderInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }
