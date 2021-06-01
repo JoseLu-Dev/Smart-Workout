@@ -9,8 +9,9 @@ import { Pipe, PipeTransform, Injectable } from '@angular/core';
 export class SetQuantityFormatterPipe implements PipeTransform {
 
   transform(value: unknown, ...args: unknown[]): string {
+    if(!value){ value = 0;}
     if(args[0] === true){
-      return `${value}''`
+      return `${value}''`;
     }
     return `${value} reps`;
   }
