@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { NewTrainingModalComponent } from './../../modals/new-training-modal/new-training-modal.component';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { TrainingsDay } from '../../models/trainings-day.model';
 
 @Component({
@@ -8,22 +9,36 @@ import { TrainingsDay } from '../../models/trainings-day.model';
 })
 export class TrainingsListComponent implements OnInit {
 
+  /**
+   * Trainings that will be shown
+   */
   @Input() trainingsDay: TrainingsDay;
 
-
-  public passed = false;
+  /**
+   * Instance of the child component (BandsModal) to use its methods
+   */
+  @ViewChild(NewTrainingModalComponent)
+  newTrainingModal: NewTrainingModalComponent;
 
   constructor() { }
 
-  ngOnInit() {
+  ngOnInit() {}
 
-  }
-
+  /**
+   * Indicates if the day the component is showing has passed
+   */
   dayHasPassed(): boolean {
     const today = new Date();
     const daySelected = new Date(this.trainingsDay.date);
     daySelected.setHours(23);
     const dayHasPassed = daySelected.getTime() < today.getTime();
     return dayHasPassed;
+  }
+
+  /**
+   * Opens new training modal
+   */
+  onAddTrainingClicked() {
+    this.newTrainingModal.openModal();
   }
 }
