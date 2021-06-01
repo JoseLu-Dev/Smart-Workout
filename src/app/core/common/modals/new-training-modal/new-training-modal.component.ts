@@ -14,7 +14,7 @@ export class NewTrainingModalComponent implements OnInit {
   /**
    * Modal id
    */
-  id = 'new-training-modal';
+  id = `new-training-modal${Math.random()}`;
 
   /**
    * Training form
