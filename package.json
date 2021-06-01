@@ -9,7 +9,8 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "gh-pages": "ionic build --prod -- --base-href https://joselu-dev.github.io/Smart-Workout/ && npx angular-cli-ghpages --dir=www"
   },
   "private": true,
   "dependencies": {
@@ -26,6 +27,7 @@
     "@ionic/storage-angular": "^3.0.6",
     "@ng-select/ng-select": "^6.1.0",
     "@ngneat/tailwind": "^7.0.3",
+    "angular-cli-ghpages": "*",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2"
