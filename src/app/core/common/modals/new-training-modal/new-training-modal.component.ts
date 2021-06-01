@@ -27,6 +27,10 @@ export class NewTrainingModalComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.buildForm();
+  }
+
+  buildForm(){
     this.trainingForm = this.formBuilder.group({
       name: ['', Validators.compose([Validators.required, Validators.maxLength(20)])],
       color: ['', Validators.required],
@@ -54,7 +58,7 @@ export class NewTrainingModalComponent implements OnInit {
    * Resets the form when the modal is closed
    */
   onModalClosed() {
-    this.trainingForm = null;
+    this.buildForm();
   }
 
   onSubmit(): void {
