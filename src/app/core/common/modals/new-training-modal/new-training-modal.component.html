@@ -1,0 +1,20 @@
+<jw-modal [id]='id' (closeEvent)="onModalClosed()">
+  <h1 class="text-xl font-semibold dark:text-textPrimaryDark">New training</h1>
+
+  <form [formGroup]="trainingForm">
+    <div class="flex flex-col justify-items-center mt-4">
+      <label class="label mb-2">Training name</label>
+      <input class="input" type="text" placeholder="name" formControlName="name">
+
+      <div class="flex justify-center items-center gap-2 mt-4">
+        <label class="label">Color</label>
+        <ngx-colors ngx-colors-trigger formControlName="color"></ngx-colors>
+      </div>
+    </div>
+  </form>
+
+  <div class="flex justify-end w-64 mt-4">
+    <button class="btn-transparent mr-4" (click)="closeModal()">Close</button>
+    <button class="btn-transparent" (click)="onSubmit()">Accept</button>
+  </div>
+</jw-modal>

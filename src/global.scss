@@ -102,6 +102,10 @@
     @apply text-6xl text-textPrimary dark:text-textPrimaryDark
 }
 
+.icon{
+    @apply fill-current text-textPrimaryDark 
+}
+
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
