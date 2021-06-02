@@ -10,7 +10,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class ExercisesSetAddFormComponent implements OnInit {
 
-  public types = ['normal', 'emom'];
+  public types = ['Normal', 'Emom', 'Super Set', 'Circuit'];
 
   public exercisesSetFormGroup: FormGroup;
 
