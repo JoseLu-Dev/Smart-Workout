@@ -1,3 +1,47 @@
-<p>
-  multiple-item-list-strategy works!
-</p>
+<div class="flex gap-4">
+
+  <div class="card mb-auto">{{set.type | titlecase}}</div>
+
+  <div class="flex flex-col items-center flex-grow mr-4 flex-wrap">
+
+    <div class="flex flex-row flex-grow items-center justify-items-center flex-wrap w-full" *ngFor="let setPart of set?.setParts; last as isLast">
+      <div class="flex card flex-grow gap-4 flex-wrap md:flex-nowrap
+  justify-items-center place-content-center w-full">
+        <p class="w-full md:w-auto text-center">{{setPart.exercise?.name | titlecase}} {{setPart.exercise?.progression | titlecase}}
+          {{setPart.exercise?.variation | titlecase}}</p>
+        <p>{{setPart.intensity.weight}}kg</p>
+
+        <div *ngIf="setPart?.intensity?.band" class="mx-2 btn-rounded w-6 h-6"
+          [ngStyle]="{'background-color' : setPart.intensity.band.color}"></div>
+
+        <p>{{setPart.quantity | setQuantityFormatter}}</p>
+      </div>
+
+      <div *ngIf="setPart.rest && setPart.rest != 0" class="w-full">
+        <ng-container *ngTemplateOutlet="rest; context:{rest:setPart.rest}">
+        </ng-container>
+      </div>
+
+      <div *ngIf="isLast" class="flex justify-items-center flex-grow">
+        <div class="rounded-lg p-1 shadow-md bg-primary dark:bg-primaryLightDark mx-auto"> ...</div>
+      </div>
+
+    </div>
+  </div>
+  <p class="self-center">x{{set.setsCount}}</p>
+</div>
+
+<ng-template #rest let-rest="rest">
+  <div class="flex flex-row items-center my-2">
+    <div class="flex-grow h-px bg-gray dark:bg-grayLight mx-3"></div>
+    <div class="flex flex-row">
+      <p class="text-sm text-gray dark:text-grayLight">{{rest | secondsFormat}}</p>
+      <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 0 24 24" width="20px" class="icon-secondary">
+        <path d="M0 0h24v24H0V0z" fill="none" />
+        <path
+          d="M15.07 1.01h-6v2h6v-2zm-4 13h2v-6h-2v6zm8.03-6.62l1.42-1.42c-.43-.51-.9-.99-1.41-1.41l-1.42 1.42C16.14 4.74 14.19 4 12.07 4c-4.97 0-9 4.03-9 9s4.02 9 9 9 9-4.03 9-9c0-2.11-.74-4.06-1.97-5.61zm-7.03 12.62c-3.87 0-7-3.13-7-7s3.13-7 7-7 7 3.13 7 7-3.13 7-7 7z" />
+      </svg>
+    </div>
+    <div class="flex-grow h-px bg-gray dark:bg-grayLight mx-3"></div>
+  </div>
+</ng-template>
