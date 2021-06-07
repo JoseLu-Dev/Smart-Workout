@@ -30,7 +30,7 @@
         <li><a href="#built-with">Built With</a></li>
       </ul>
     </li>
-    <a href="#features">About The Project</a>
+    <a href="#features">Features</a>
     <li><a href="#contact">Contact</a></li>
   </ol>
 </details>
