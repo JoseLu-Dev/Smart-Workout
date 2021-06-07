@@ -30,6 +30,7 @@
         <li><a href="#built-with">Built With</a></li>
       </ul>
     </li>
+    <a href="#features">About The Project</a>
     <li><a href="#contact">Contact</a></li>
   </ol>
 </details>
@@ -42,6 +43,11 @@
 
 Smart Workout is an app that lets athletes to log and see the progress of their trainings. 
 
+### Built With
+
+* [Ionic](https://ionicframework.com/)
+* [Tailwind](https://tailwindcss.com/)
+
 <!-- APP FEATURES -->
 ## Features
 
@@ -49,11 +55,6 @@ Smart Workout is an app that lets athletes to log and see the progress of their 
 - See your trainings on a calendar
 - See your progress through time
 - Light/dark mode
-
-### Built With
-
-* [Ionic](https://ionicframework.com/)
-* [Tailwind](https://tailwindcss.com/)
 
 <!-- CONTACT -->
 ## Contact
