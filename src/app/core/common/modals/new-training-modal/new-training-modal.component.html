@@ -8,13 +8,13 @@
 
       <div class="flex justify-center items-center gap-2 mt-4">
         <label class="label">Color</label>
-        <ngx-colors ngx-colors-trigger formControlName="color"></ngx-colors>
+        <ngx-colors ngx-colors-trigger [formControl]="colorForm"></ngx-colors>
       </div>
     </div>
   </form>
 
   <div class="flex justify-end w-64 mt-4">
     <button class="btn-transparent mr-4" (click)="closeModal()">Close</button>
-    <button class="btn-transparent" [disabled]="trainingForm.invalid" (click)="onSubmit()">Accept</button>
+    <button class="btn-transparent" [disabled]="trainingForm.invalid || colorForm.invalid" (click)="onSubmit()">Accept</button>
   </div>
 </jw-modal>

@@ -10,6 +10,11 @@ import { TrainingsDay } from '../../models/trainings-day.model';
 export class TrainingsListComponent implements OnInit {
 
   /**
+   * Date of the day showing
+   */
+  @Input() date: Date;
+
+  /**
    * Trainings that will be shown
    */
   @Input() trainingsDay: TrainingsDay;

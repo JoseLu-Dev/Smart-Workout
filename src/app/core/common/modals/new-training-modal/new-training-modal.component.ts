@@ -1,4 +1,6 @@
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { TrainingsService } from './../../services/trainings.service';
+import { TrainingsDay, TrainingSpecs } from './../../models/trainings-day.model';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ModalService } from './../../../../common/modals/base-modal/modal.service';
 import { Component, Input, OnInit } from '@angular/core';
 
@@ -11,6 +13,8 @@ export class NewTrainingModalComponent implements OnInit {
 
   @Input() date: Date;
 
+  @Input() trainingsDay: TrainingsDay;
+
   /**
    * Modal id
    */
@@ -21,20 +25,23 @@ export class NewTrainingModalComponent implements OnInit {
    */
   public trainingForm: FormGroup;
 
+  public colorForm: FormControl;
+
   constructor(
     private modalService: ModalService,
     private formBuilder: FormBuilder,
+    private trainingsService: TrainingsService
   ) { }
 
   ngOnInit() {
     this.buildForm();
   }
 
-  buildForm(){
+  buildForm() {
     this.trainingForm = this.formBuilder.group({
       name: ['', Validators.compose([Validators.required, Validators.maxLength(20)])],
-      color: ['', Validators.required],
     })
+    this.colorForm = new FormControl('', Validators.required)
   }
 
   /**
@@ -62,9 +69,19 @@ export class NewTrainingModalComponent implements OnInit {
   }
 
   onSubmit(): void {
-    //TODO: handle form data
-    console.log(this.trainingForm.value);
+    if (!this.trainingsDay) {
+      this.trainingsDay = new TrainingsDay();
+      this.trainingsDay.date = this.date;
+    }
 
+    const trainingSpecs = <TrainingSpecs>{
+      name: this.trainingForm.value.name,
+      color: this.colorForm.value,
+      completed: false
+    };
+    this.trainingsDay.trainings.push(trainingSpecs);
+
+    this.trainingsService.saveTrainingDay(this.trainingsDay);
     this.closeModal();
   }
 }

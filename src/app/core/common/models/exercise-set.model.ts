@@ -1,4 +1,11 @@
 import { Exercise } from './exercise.model';
+
+export class Training{
+    id?: String;
+    userId?: String;
+    exercisesDone: ExerciseSet[];
+}
+
 export class ExerciseSet {
     setParts: ExerciseSetPart[];
     type: string;

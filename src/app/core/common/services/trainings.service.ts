@@ -1,46 +1,35 @@
-import { ExerciseSet } from './../models/exercise-set.model';
+import { HttpClient } from '@angular/common/http';
+import { TrainingsDay } from './../models/trainings-day.model';
+import { Training } from './../models/exercise-set.model';
+import { environment } from './../../../../environments/environment';
 import { Injectable } from '@angular/core';
-import { Subject, Observable, BehaviorSubject } from 'rxjs';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class TrainingsService {
 
-  // Observable sources
-  private trainingSets = new BehaviorSubject<ExerciseSet[]>(new Array<ExerciseSet>());
+  private trainingsUrl = `${environment.backendUrl}/trainings`;
+  private daysUrl = `${environment.backendUrl}/days`;
 
-  private selectedSet = new BehaviorSubject<ExerciseSet>(null);
+  constructor(private http: HttpClient,) { }
 
-  private indexSelected = new BehaviorSubject<number>(null)
-
-  constructor() {
-    this.setOnIndexSelectedChanged();
+  /**
+   * Sends a day of training(s) to the backend to be saved
+   * @param trainingDay 
+   * @returns backend response with 
+   */
+  saveTrainingDay(trainingDay: TrainingsDay) {
+    return this.http.put(`${this.daysUrl}`, trainingDay);
   }
 
-  setOnIndexSelectedChanged() {
-    this.indexSelected.subscribe(index => {
-      if (!index) { return }
-      this.selectedSet.next(this.trainingSets.value[index])
-    })
+  /**
+   * Sends a training to the backend to be saved
+   * @param trainingSets 
+   * @returns 
+   */
+  saveTrainingSets(trainingSets: Training) {
+    return this.http.put(`${this.trainingsUrl}`, trainingSets);
   }
-
-  setExerciseSetToEdit(index: number) {
-    this.indexSelected.next(index);
-  }
-
-  confirmSetSelectedEdition(set: ExerciseSet){
-    if(this.indexSelected.value == null 
-      || this.indexSelected.value >= this.trainingSets.value.length){
-        this.trainingSets.value.push(set)
-    }else{
-      this.trainingSets.value[this.indexSelected.value] = set
-    }
-    console.log(this.trainingSets.value)
-  }
-
-  getSetsList(){
-    return this.trainingSets.asObservable();
-  }
-
 }

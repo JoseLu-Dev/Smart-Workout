@@ -1,4 +1,4 @@
-import { TrainingsService } from './../../services/trainings.service';
+import { TrainingsService } from '../../services/trainings-form.service';
 import { ExerciseSet } from './../../models/exercise-set.model';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';

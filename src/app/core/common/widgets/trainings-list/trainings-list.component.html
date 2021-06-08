@@ -25,7 +25,7 @@ p-4 mb-4 shadow-lg flex flex-row items-center justify-between">
       <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
     </svg>
   </button>
-  <app-new-training-modal></app-new-training-modal>
+  <app-new-training-modal [trainingsDay]="trainingsDay" [date]="date"></app-new-training-modal>
 </div>
 
 <ng-template #noTrainings>

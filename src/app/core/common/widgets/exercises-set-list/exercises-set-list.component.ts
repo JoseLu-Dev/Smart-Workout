@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs';
-import { TrainingsService } from './../../services/trainings.service';
+import { TrainingsService } from '../../services/trainings-form.service';
 import { ExerciseSet, ExerciseSetPart, Intensity, Band, BandUsed } from './../../models/exercise-set.model';
 import { Component, OnInit } from '@angular/core';
 import { Exercise } from '../../models/exercise.model';

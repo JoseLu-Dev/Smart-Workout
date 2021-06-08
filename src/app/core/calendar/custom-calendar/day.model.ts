@@ -16,4 +16,8 @@ export class Day {
 
     public trainingsDay: TrainingsDay;
     public selected: boolean;
+
+    getDate(){
+        return new Date(this.year, this.monthIndex, this.number);;
+    }
 }
