@@ -1,3 +1,4 @@
+import { HttpErrorInterceptor } from './common/interceptors/http-errors.interceptor';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -28,6 +29,7 @@ import { HeaderInterceptor } from './core/common/interceptors/auth-header.interc
   providers: [
     { provide: LocationStrategy, useClass: HashLocationStrategy },
     { provide: HTTP_INTERCEPTORS, useClass: HeaderInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],
 })
