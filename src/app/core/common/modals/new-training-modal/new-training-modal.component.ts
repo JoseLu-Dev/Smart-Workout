@@ -40,8 +40,8 @@ export class NewTrainingModalComponent implements OnInit {
   buildForm() {
     this.trainingForm = this.formBuilder.group({
       name: ['', Validators.compose([Validators.required, Validators.maxLength(20)])],
-    })
-    this.colorForm = new FormControl('', Validators.required)
+    });
+    this.colorForm = new FormControl('', Validators.required);
   }
 
   /**
@@ -74,11 +74,11 @@ export class NewTrainingModalComponent implements OnInit {
       this.trainingsDay.date = this.date;
     }
 
-    const trainingSpecs = <TrainingSpecs>{
+    const trainingSpecs = {
       name: this.trainingForm.value.name,
       color: this.colorForm.value,
       completed: false
-    };
+    } as TrainingSpecs;
     this.trainingsDay.trainings.push(trainingSpecs);
 
     this.trainingsService.saveTrainingDay(this.trainingsDay);
