@@ -1,9 +1,10 @@
 import { Exercise } from './exercise.model';
 
 export class Training{
-    id?: String;
-    userId?: String;
-    exercisesDone: ExerciseSet[];
+    id?: string;
+    userId?: string;
+    date: Date;
+    setsDone: ExerciseSet[];
 }
 
 export class ExerciseSet {

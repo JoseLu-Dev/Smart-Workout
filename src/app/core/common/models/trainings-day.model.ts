@@ -11,6 +11,7 @@ export class TrainingsDay {
 
 export class TrainingSpecs {
     public name: string;
+    public id?: string;
     public color: string;
     public completed: boolean;
 }
