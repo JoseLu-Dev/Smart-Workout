@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { TrainingsService } from './../../services/trainings.service';
 import { TrainingsDay, TrainingSpecs } from './../../models/trainings-day.model';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
@@ -30,7 +31,8 @@ export class NewTrainingModalComponent implements OnInit {
   constructor(
     private modalService: ModalService,
     private formBuilder: FormBuilder,
-    private trainingsService: TrainingsService
+    private trainingsService: TrainingsService,
+    private router: Router,
   ) { }
 
   ngOnInit() {
@@ -81,7 +83,15 @@ export class NewTrainingModalComponent implements OnInit {
     } as TrainingSpecs;
     this.trainingsDay.trainings.push(trainingSpecs);
 
-    this.trainingsService.saveTrainingDay(this.trainingsDay);
+    this.trainingsService.saveTrainingDay(this.trainingsDay).subscribe(
+      received => {
+        this.router.navigate([`app/trainings/edit/${received}`], { replaceUrl: false });
+      },
+      err => {
+        console.log(err);
+      }
+    );
+
     this.closeModal();
   }
 }

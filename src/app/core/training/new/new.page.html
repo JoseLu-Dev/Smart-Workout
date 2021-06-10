@@ -1,10 +1,8 @@
-<div class="flex md:flex-row flex-col overflow-auto h-full md:overflow-hidden p-4 gap-4">
+<div class="flex md:flex-row flex-col overflow-auto h-full md:overflow-hidden p-4 gap-4 justify-content-center">
 
-  <div *ngIf="true" class="h-auto md:h-full w-full md:overflow-y-auto overflow-visible">
-    <app-exercises-set-list></app-exercises-set-list>
-  </div>
+  <app-exercises-set-list></app-exercises-set-list>
 
-  <div class="w-full md:w-1/2 h-auto md:h-full md:overflow-y-auto overflow-visible card">
+  <div class="w-full md:w-1/2 h-auto md:h-full md:overflow-y-auto overflow-visible card mx-auto">
     <app-exercises-set-add-form></app-exercises-set-add-form>
   </div>
 

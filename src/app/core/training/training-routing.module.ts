@@ -7,7 +7,7 @@ const routes: Routes = [
     redirectTo: '404'
   },
   {
-    path: 'new',
+    path: 'edit/:new',
     loadChildren: () => import('./new/new.module').then( m => m.NewPageModule)
   },
   {

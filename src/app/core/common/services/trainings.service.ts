@@ -21,15 +21,7 @@ export class TrainingsService {
    * @returns backend response with
    */
   saveTrainingDay(trainingDay: TrainingsDay) {
-    return this.http.put(`${this.daysUrl}`, trainingDay).subscribe(
-      el => {
-        console.log('Value Received ' + el);
-      },
-      err => {
-        console.log('Error caught at Subscriber ' + err);
-      },
-      () => console.log('Processing Complete.')
-    );
+    return this.http.put(`${this.daysUrl}`, trainingDay);
   }
 
   /**
