@@ -9,7 +9,7 @@ export class HttpErrorInterceptor implements HttpInterceptor {
         if (!environment.production) {
             return next.handle(request)
                 .pipe(
-                    catchError((error: HttpErrorResponse) => {
+                    catchError((error) => {
                         let errorMsg = '';
                         if (error.error instanceof ErrorEvent) {
                             console.log('This is client side error');
@@ -22,7 +22,7 @@ export class HttpErrorInterceptor implements HttpInterceptor {
                         console.log(errorMsg);
                         console.log(error);
 
-                        return throwError(errorMsg);
+                        return throwError(error);
                     })
                 );
         }
