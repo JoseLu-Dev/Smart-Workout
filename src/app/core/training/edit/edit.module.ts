@@ -1,22 +1,22 @@
-import { CoreWidgetsModule } from './../../common/widgets/core-widgets.module';
+import { CoreWidgetsModule } from '../../common/widgets/core-widgets.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { NewPageRoutingModule } from './new-routing.module';
+import { EditPageRoutingModule } from './edit-routing.module';
 
-import { NewPage } from './new.page';
+import { EditPage } from './edit.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    NewPageRoutingModule,
+    EditPageRoutingModule,
     CoreWidgetsModule
   ],
-  declarations: [NewPage]
+  declarations: [EditPage]
 })
-export class NewPageModule {}
+export class EditPageModule {}

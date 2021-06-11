@@ -8,7 +8,7 @@ const routes: Routes = [
   },
   {
     path: 'edit/:new',
-    loadChildren: () => import('./new/new.module').then( m => m.NewPageModule)
+    loadChildren: () => import('./edit/edit.module').then( m => m.EditPageModule)
   },
   {
     path: ':id',
