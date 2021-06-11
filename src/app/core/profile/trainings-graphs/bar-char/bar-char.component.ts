@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ChartDataSets, ChartOptions, ChartType } from 'chart.js';
-import * as pluginDataLabels from 'chartjs-plugin-datalabels';
 import { Label } from 'ng2-charts';
 
 @Component({
@@ -31,6 +30,5 @@ export class BarCharComponent implements OnInit {
 
   public barChartType: ChartType = 'bar';
   public barChartLegend = true;
-  public barChartPlugins = [pluginDataLabels];
 
 }

@@ -31,7 +31,6 @@
     "@ngneat/tailwind": "^7.0.3",
     "angular-cli-ghpages": "*",
     "chart.js": "^2.9.3",
-    "chartjs-plugin-datalabels": "^1.0.0",
     "ng2-charts": "^2.3.0",
     "ngx-colors": "^2.6.1",
     "rxjs": "~6.6.0",
