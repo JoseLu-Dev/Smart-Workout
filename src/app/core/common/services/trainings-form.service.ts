@@ -5,14 +5,14 @@ import { Subject, Observable, BehaviorSubject } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class TrainingsService {
+export class TrainingsFormService {
 
   // Observable sources
   private trainingSets = new BehaviorSubject<ExerciseSet[]>(new Array<ExerciseSet>());
 
   private selectedSet = new BehaviorSubject<ExerciseSet>(null);
 
-  private indexSelected = new BehaviorSubject<number>(null)
+  private indexSelected = new BehaviorSubject<number>(null);
 
   constructor() {
     this.setOnIndexSelectedChanged();
@@ -20,9 +20,9 @@ export class TrainingsService {
 
   setOnIndexSelectedChanged() {
     this.indexSelected.subscribe(index => {
-      if (!index) { return }
-      this.selectedSet.next(this.trainingSets.value[index])
-    })
+      if (!index) { return; }
+      this.selectedSet.next(this.trainingSets.value[index]);
+    });
   }
 
   setExerciseSetToEdit(index: number) {
@@ -30,13 +30,13 @@ export class TrainingsService {
   }
 
   confirmSetSelectedEdition(set: ExerciseSet){
-    if(this.indexSelected.value == null 
+    if(this.indexSelected.value == null
       || this.indexSelected.value >= this.trainingSets.value.length){
-        this.trainingSets.value.push(set)
+        this.trainingSets.value.push(set);
     }else{
-      this.trainingSets.value[this.indexSelected.value] = set
+      this.trainingSets.value[this.indexSelected.value] = set;
     }
-    console.log(this.trainingSets.value)
+    console.log(this.trainingSets.value);
   }
 
   getSetsList(){
