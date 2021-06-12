@@ -13,6 +13,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { IonicStorageModule } from '@ionic/storage-angular';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HeaderInterceptor } from './core/common/interceptors/auth-header.interceptor';
+import { HttpLoggingInterceptor } from './common/interceptors/http-loggin.interceptor';
 
 @NgModule({
   declarations: [AppComponent],
@@ -30,6 +31,7 @@ import { HeaderInterceptor } from './core/common/interceptors/auth-header.interc
     { provide: LocationStrategy, useClass: HashLocationStrategy },
     { provide: HTTP_INTERCEPTORS, useClass: HeaderInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: HttpLoggingInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],
 })
