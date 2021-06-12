@@ -1,6 +1,8 @@
+import { Training } from './../models/exercise-set.model';
 import { ExerciseSet } from '../models/exercise-set.model';
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { Subject, Observable, BehaviorSubject } from 'rxjs';
+import { TrainingsService } from './trainings.service';
 
 @Injectable({
   providedIn: 'root'
@@ -8,20 +10,20 @@ import { Subject, Observable, BehaviorSubject } from 'rxjs';
 export class TrainingsFormService {
 
   // Observable sources
-  private trainingSets = new BehaviorSubject<ExerciseSet[]>(new Array<ExerciseSet>());
+  private training = new BehaviorSubject<Training>(null);
 
   private selectedSet = new BehaviorSubject<ExerciseSet>(null);
 
   private indexSelected = new BehaviorSubject<number>(null);
 
-  constructor() {
+  constructor(@Inject(TrainingsService) private trainingsService: TrainingsService) {
     this.setOnIndexSelectedChanged();
   }
 
   setOnIndexSelectedChanged() {
     this.indexSelected.subscribe(index => {
       if (!index) { return; }
-      this.selectedSet.next(this.trainingSets.value[index]);
+      this.selectedSet.next(this.training.value.setsDone[index]);
     });
   }
 
@@ -30,17 +32,30 @@ export class TrainingsFormService {
   }
 
   confirmSetSelectedEdition(set: ExerciseSet){
-    if(this.indexSelected.value == null
-      || this.indexSelected.value >= this.trainingSets.value.length){
-        this.trainingSets.value.push(set);
+    const setsDone = this.training.value.setsDone;
+    const indexSelected = this.indexSelected.value;
+
+    if(indexSelected == null
+      || indexSelected >= setsDone.length){
+        setsDone.push(set);
     }else{
-      this.trainingSets.value[this.indexSelected.value] = set;
+      setsDone[indexSelected] = set;
     }
-    console.log(this.trainingSets.value);
   }
 
-  getSetsList(){
-    return this.trainingSets.asObservable();
+  getTraining(){
+    return this.training.asObservable();
+  }
+
+  getTrainingFromAPI(id: string){
+    const observableResponse: Observable<Training> = this.trainingsService.getTraining(id);
+    observableResponse.subscribe(training =>{
+      this.training.next(training);
+    });
+  }
+
+  saveTraining(){
+    this.trainingsService.saveTraining(this.training.value);
   }
 
 }

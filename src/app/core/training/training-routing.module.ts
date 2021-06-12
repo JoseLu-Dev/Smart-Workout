@@ -7,7 +7,7 @@ const routes: Routes = [
     redirectTo: '404'
   },
   {
-    path: 'edit/:new',
+    path: 'edit/:id',
     loadChildren: () => import('./edit/edit.module').then( m => m.EditPageModule)
   },
   {

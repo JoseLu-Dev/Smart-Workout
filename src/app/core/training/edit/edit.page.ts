@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { ExercisesSetAddFormComponent } from './../../common/widgets/exercises-set-add-form/exercises-set-add-form.component';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-edit',
@@ -6,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./edit.page.scss'],
 })
 export class EditPage implements OnInit {
+
+  @ViewChild(ExercisesSetAddFormComponent)
+  setsForm: ExercisesSetAddFormComponent;
 
   constructor() { }
 

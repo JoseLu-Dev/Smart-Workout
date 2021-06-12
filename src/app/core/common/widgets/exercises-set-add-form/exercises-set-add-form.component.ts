@@ -1,7 +1,9 @@
-import { TrainingsService } from '../../services/trainings-form.service';
+import { take } from 'rxjs/operators';
+import { TrainingsFormService } from '../../services/trainings-form.service';
 import { ExerciseSet } from './../../models/exercise-set.model';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-exercises-set-add-form',
@@ -18,8 +20,9 @@ export class ExercisesSetAddFormComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private trainingsService: TrainingsService
-    ) {}
+    private trainingsFormService: TrainingsFormService,
+    private router: Router
+  ) { }
 
   ngOnInit() {
     this.exercisesSetFormGroup = this.formBuilder.group({
@@ -27,13 +30,21 @@ export class ExercisesSetAddFormComponent implements OnInit {
     });
   }
 
-  public sendSetToList(set: ExerciseSet){
+  public sendSetToList(set: ExerciseSet) {
     set.type = this.exercisesSetFormGroup.get('selectedType').value;
 
-    this.trainingsService.confirmSetSelectedEdition(set);
+    this.trainingsFormService.confirmSetSelectedEdition(set);
 
     this.set = null;
     this.exercisesSetFormGroup.reset();
+  }
+
+  public submitEdition() {
+    this.trainingsFormService.saveTraining();
+
+    this.trainingsFormService.getTraining().pipe(take(1)).subscribe(training => {
+      this.router.navigate([`app/trainings/${training.id}`], { replaceUrl: true });
+    });
   }
 
 }

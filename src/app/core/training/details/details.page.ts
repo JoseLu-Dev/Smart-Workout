@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
+import { take } from 'rxjs/operators';
+import { ExercisesSetListComponent } from '../../common/widgets/exercises-set-list/exercises-set-list.component';
 
 @Component({
   selector: 'app-details',
@@ -7,9 +10,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DetailsPage implements OnInit {
 
-  constructor() { }
+  @ViewChild(ExercisesSetListComponent)
+  exercisesList: ExercisesSetListComponent;
+
+  constructor(private router: Router) { }
 
   ngOnInit() {
+  }
+
+  onEditTrainingClicked() {
+    this.exercisesList.training.pipe(take(1)).subscribe(training => {
+      this.router.navigate([`app/trainings/edit/${training.id}`], { replaceUrl: true });
+    });
   }
 
 }

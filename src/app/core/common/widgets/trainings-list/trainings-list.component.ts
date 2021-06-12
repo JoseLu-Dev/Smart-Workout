@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { NewTrainingModalComponent } from './../../modals/new-training-modal/new-training-modal.component';
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { TrainingsDay } from '../../models/trainings-day.model';
@@ -25,9 +26,9 @@ export class TrainingsListComponent implements OnInit {
   @ViewChild(NewTrainingModalComponent)
   newTrainingModal: NewTrainingModalComponent;
 
-  constructor() { }
+  constructor( private router: Router,) { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   /**
    * Indicates if the day the component is showing has passed
@@ -45,5 +46,12 @@ export class TrainingsListComponent implements OnInit {
    */
   onAddTrainingClicked() {
     this.newTrainingModal.openModal();
+  }
+
+  /**
+   * Goes to training page when training is clicked
+   */
+  onTrainingClicked(id: string) {
+    this.router.navigate([`app/trainings/${id}`], { replaceUrl: false });
   }
 }

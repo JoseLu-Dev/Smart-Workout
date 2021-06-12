@@ -2,8 +2,8 @@
 
   <p class="mb-4">Trainings list</p>
 
-  <div *ngFor="let training of trainingsDay.trainings" class="bg-primary dark:bg-primaryLightDark rounded-lg 
-p-4 mb-4 shadow-lg flex flex-row items-center justify-between">
+  <div *ngFor="let training of trainingsDay.trainings" (click)="onTrainingClicked(training.id)"
+  class="bg-primary dark:bg-primaryLightDark rounded-lg p-4 mb-4 shadow-lg flex flex-row items-center justify-between cursor-pointer">
 
     <div [ngStyle]="{'background-color' : training?.color}" class="btn-rounded w-8 h-8 mr-2"></div>
 

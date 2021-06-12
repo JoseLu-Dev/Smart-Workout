@@ -1,4 +1,4 @@
-<div *ngFor="let set of exercisesSets | async; last as isLast" class="flex flex-col items-center">
+<div *ngFor="let set of (training | async)?.setsDone; last as isLast" class="flex flex-col items-center">
 
   <div [ngSwitch]="set.type" class="w-full">
     <div *ngSwitchCase="'normal'">

@@ -1,8 +1,8 @@
 import { Observable } from 'rxjs';
-import { TrainingsService } from '../../services/trainings-form.service';
-import { ExerciseSet, ExerciseSetPart, Intensity, Band, BandUsed } from './../../models/exercise-set.model';
+import { TrainingsFormService } from '../../services/trainings-form.service';
+import { Training } from './../../models/exercise-set.model';
 import { Component, OnInit } from '@angular/core';
-import { Exercise } from '../../models/exercise.model';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-exercises-set-list',
@@ -11,12 +11,17 @@ import { Exercise } from '../../models/exercise.model';
 })
 export class ExercisesSetListComponent implements OnInit {
 
-  public exercisesSets = new Observable<ExerciseSet[]>();
+  public training = new Observable<Training>();
 
-  constructor(private trainingsService: TrainingsService) { }
+  constructor(
+    private trainingsService: TrainingsFormService,
+    private route: ActivatedRoute,) { }
 
   ngOnInit() {
-    this.exercisesSets = this.trainingsService.getSetsList();
+    const id = this.route.snapshot.paramMap.get('id');
+    this.trainingsService.getTrainingFromAPI(id);
+
+    this.training = this.trainingsService.getTraining();
   }
 
 }
