@@ -38,8 +38,7 @@ export class LoginPage implements OnInit {
   }
 
   onSignIn(credentials: { name: string; password: string }) {
-    this.authService.login(credentials).subscribe(res => {
-    });
+    this.authService.login(credentials).subscribe();
   }
 }
 

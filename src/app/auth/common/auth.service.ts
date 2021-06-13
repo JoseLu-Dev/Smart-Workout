@@ -52,7 +52,7 @@ export class AuthService {
     );
   }
 
-  getToken(){
+  getToken() {
     return this.token;
   }
 
@@ -89,12 +89,12 @@ export class AuthService {
               message: 'An error has occurred, try again later.',
               buttons: ['OK']
             }).then(alert => alert.present());
-            return err;
         }
+        return of(err);
       }),
       map(res => {
         console.log('RESPONSE' + JSON.stringify(res));
-        if (res) {
+        if (res['token']) {
           this.router.navigate(['/app'], { replaceUrl: true });
         }
         return res;

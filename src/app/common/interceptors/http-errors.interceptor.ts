@@ -6,10 +6,10 @@ import { catchError } from 'rxjs/operators';
 export class HttpErrorInterceptor implements HttpInterceptor {
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        if (!environment.production) {
-            return next.handle(request)
-                .pipe(
-                    catchError((error) => {
+        return next.handle(request)
+            .pipe(
+                catchError((error) => {
+                    if (!environment.production) {
                         let errorMsg = '';
                         if (error.error instanceof ErrorEvent) {
                             console.log('This is client side error');
@@ -21,11 +21,9 @@ export class HttpErrorInterceptor implements HttpInterceptor {
                         }
                         console.log(errorMsg);
                         console.log(error);
-
-                        return throwError(error);
-                    })
-                );
-        }
-        return null;
+                    }
+                    return throwError(error);
+                })
+            );
     }
 }
