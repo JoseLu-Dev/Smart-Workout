@@ -10,7 +10,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "gh-pages": "ionic build --prod -- --base-href https://joselu-dev.github.io/Smart-Workout/ && npx angular-cli-ghpages --dir=www"
+    "gh-pages": "ionic build --prod -- --base-href https://joselu-dev.github.io/Smart-Workout/#/ && npx angular-cli-ghpages --dir=www"
   },
   "private": true,
   "dependencies": {
