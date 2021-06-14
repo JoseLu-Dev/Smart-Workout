@@ -6,6 +6,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BandsCreationModalComponent } from './bands/bands-creation-modal/bands-creation-modal.component';
 import { NgxColorsModule } from 'ngx-colors';
+import { ExerciseModalComponent } from './exercise-modal/exercise-modal.component';
 
 
 
@@ -17,7 +18,7 @@ import { NgxColorsModule } from 'ngx-colors';
     ReactiveFormsModule,
     NgxColorsModule
   ],
-  declarations: [BandsCreationModalComponent, BandsSelectionModalComponent, NewTrainingModalComponent],
-  exports: [BandsCreationModalComponent, BandsSelectionModalComponent, NewTrainingModalComponent],
+  declarations: [BandsCreationModalComponent, BandsSelectionModalComponent, NewTrainingModalComponent, ExerciseModalComponent],
+  exports: [BandsCreationModalComponent, BandsSelectionModalComponent, NewTrainingModalComponent, ExerciseModalComponent],
 })
 export class CoreModalsModule { }

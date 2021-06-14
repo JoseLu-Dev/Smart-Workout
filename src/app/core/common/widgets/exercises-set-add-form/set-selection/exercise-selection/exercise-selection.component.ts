@@ -1,5 +1,7 @@
+import { ExerciseListElement } from './../../../../models/exercise.model';
+import { ExerciseModalComponent } from './../../../../modals/exercise-modal/exercise-modal.component';
 import { ExercisesService } from '../../../../services/exercises.service';
-import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input, ViewChild } from '@angular/core';
 import { Exercise, ExerciseSpecs } from '../../../../models/exercise.model';
 import { Observable } from 'rxjs';
 
@@ -20,24 +22,32 @@ export class ExerciseSelectionComponent implements OnInit {
    */
   @Input() set exercise(exercise: Exercise) {
     if (exercise) {
+      this.exerciseSelectedElement = new ExerciseListElement();
+      this.exerciseSelectedElement.id = exercise.specsId;
+      this.exerciseSelectedElement.name = exercise.name;
+
       this.exerciseSelectedName = exercise.name;
       this.exerciseSelectedProgression = exercise.progression;
       this.exerciseSelectedVariation = exercise.variation;
 
-      this.getExerciseFromAPI(exercise.name);
+      this.getExerciseFromAPI(exercise.specsId);
     }
   }
+
+  @ViewChild(ExerciseModalComponent)
+  exerciseModal: ExerciseModalComponent;
 
   /**
    * Exercises list fetched from the API
    */
-  public exercises: Observable<string[]>;
+  public exercises: ExerciseListElement[];
 
   /**
    * Exercise specs of the one selected in the ng-select field
    */
   public exerciseSelectedSpecs: ExerciseSpecs;
 
+  public exerciseSelectedElement: ExerciseListElement;
   public exerciseSelectedName: string;
   public exerciseSelectedProgression: string;
   public exerciseSelectedVariation: string;
@@ -51,12 +61,12 @@ export class ExerciseSelectionComponent implements OnInit {
   /**
    * Calls the api to get exercise specs
    *
-   * @param exerciseName exerciseName received from select field
+   * @param exercise exercise received from select field
    */
-  onExerciseNameSelectedChange(exerciseName: string) {
+  onExerciseNameSelectedChange(exercise: ExerciseListElement) {
     this.resetFormValues();
 
-    this.getExerciseFromAPI(exerciseName);
+    this.getExerciseFromAPI(exercise.id);
   }
 
   /**
@@ -99,7 +109,6 @@ export class ExerciseSelectionComponent implements OnInit {
    * Resets form 'progression' and 'variation' fields to null
    */
   resetFormValues() {
-    this.exerciseSelectedSpecs = null;
     this.exerciseSelectedProgression = null;
     this.exerciseSelectedVariation = null;
   }
@@ -142,6 +151,7 @@ export class ExerciseSelectionComponent implements OnInit {
     exercise.bodyWeight = this.exerciseSelectedSpecs.bodyWeight;
     exercise.static = this.exerciseSelectedSpecs.static;
     exercise.muscleGroup = this.exerciseSelectedSpecs.muscleGroup;
+    exercise.specsId = this.exerciseSelectedSpecs.id;
 
     return exercise;
   }
@@ -149,14 +159,15 @@ export class ExerciseSelectionComponent implements OnInit {
   /**
    * Gets an exercise data from the API given a name
    *
-   * @param name exercise name
+   * @param id exercise name
    * @param callback function to execute when the api call has been done
    */
-  getExerciseFromAPI(name: string) {
-    if (!name) {
+  getExerciseFromAPI(id: string) {
+    if (!id) {
       return;
     }
-    this.exercisesService.getExerciseSpecs(name).subscribe(exercise => {
+
+    this.exercisesService.getExerciseSpecs(id).subscribe(exercise => {
       this.exerciseSelectedSpecs = exercise;
 
       this.validateForm();
@@ -168,7 +179,17 @@ export class ExerciseSelectionComponent implements OnInit {
    * Gets a list of the exercises available in the API
    */
   getExerciseListFromAPI() {
-    this.exercises = this.exercisesService.getExercisesNames();
+    this.exercisesService.getExercisesNames().subscribe(exercises => {
+      this.exercises = exercises;
+    });
+  }
+
+  onAddNewExerciseClicked() {
+    this.exerciseModal.openModal('creation', null);
+  }
+
+  onEditExerciseClicked() {
+    this.exerciseModal.openModal('edition', this.exerciseSelectedSpecs);
   }
 
 }

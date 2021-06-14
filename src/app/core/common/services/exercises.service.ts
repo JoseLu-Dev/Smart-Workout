@@ -1,58 +1,28 @@
+import { ExerciseListElement } from './../models/exercise.model';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { of } from 'rxjs';
+import { of, Observable } from 'rxjs';
 import { ExerciseSpecs } from '../models/exercise.model';
+import { environment } from './../../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ExercisesService {
 
-  public exercises = ['Front lever', 'Planche press', 'Pull ups', 'Bench press'];
+  private exercisesUrl = `${environment.backendUrl}/exercises`;
 
-  public exercisesFromAPI: ExerciseSpecs[] = [{
-    name: 'Front lever',
-    variations: ['Prone', 'Supine', 'Neutral'],
-    progressions: ['Full', 'Straddle', 'Tuck Advanced', 'Tuck'],
-    muscleGroup: 'Lats',
-    bodyWeight: true,
-    static: true,
-  },
-  {
-    name: 'Planche press',
-    variations: ['Prone', 'Supine', 'Neutral'],
-    progressions: [],
-    muscleGroup: 'Shoulders',
-    bodyWeight: true,
-    static: true,
-  },
-  {
-    name: 'Pull ups',
-    variations: [],
-    progressions: [],
-    muscleGroup: 'Lats',
-    bodyWeight: true,
-    static: false,
-  },
-  {
-    name: 'Bench press',
-    variations: [],
-    progressions: [],
-    muscleGroup: 'Pecs',
-    bodyWeight: false,
-    static: false,
-  }];
+  constructor(private http: HttpClient,) { }
 
-  constructor() { }
-
-  getExercisesNames(){
-    return of(this.exercises);
+  getExercisesNames(): Observable<ExerciseListElement[]>{
+    return this.http.get<ExerciseListElement[]>(`${this.exercisesUrl}`);
   }
 
-  getExerciseSpecs(exerciseName: string){
-    for (const exercise of this.exercisesFromAPI) {
-      if (exercise.name === exerciseName) {
-        return of(exercise);
-      }
-    }
+  getExerciseSpecs(exerciseName: string): Observable<ExerciseSpecs>{
+    return this.http.get<ExerciseSpecs>(`${this.exercisesUrl}/${exerciseName}`) ;
+  }
+
+  saveExercise(exercise: ExerciseSpecs){
+    this.http.put(`${this.exercisesUrl}`, exercise).subscribe();
   }
 }
