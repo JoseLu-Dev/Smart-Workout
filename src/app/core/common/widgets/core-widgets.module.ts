@@ -1,5 +1,5 @@
-import { CircuitExerciseStrategyComponent } from './exercises-set-add-form/strategies/circuit-strategy copy 2/circuit-exercise-strategy.component';
-import { SuperSetStrategyComponent } from './exercises-set-add-form/strategies/super-set-strategy copy/super-set-strategy.component';
+import { CircuitExerciseStrategyComponent } from './exercises-set-add-form/strategies/circuit-strategy/circuit-exercise-strategy.component';
+import { SuperSetStrategyComponent } from './exercises-set-add-form/strategies/super-set-strategy/super-set-strategy.component';
 /* eslint-disable max-len */
 import { CoreModalsModule } from './../modals/core-modals.module';
 import { CorePipesModule } from './../pipes/core-pipes.module';

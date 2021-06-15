@@ -17,4 +17,13 @@ export class EmomStrategyComponent extends BaseStrategyComponent implements OnIn
     super.ngOnInit();
   }
 
+  setRestBetweenSets(){
+    const restSecondsBetweenSet = this.setPropertiesFormGroup.get('restSecondsBetweenSet').value;
+    const restMinutesBetweenSet = this.setPropertiesFormGroup.get('restMinutesBetweenSet').value;
+
+    this.set.setParts.forEach(setPart =>{
+        setPart.rest = restSecondsBetweenSet + restMinutesBetweenSet * 60;
+    });
+}
+
 }

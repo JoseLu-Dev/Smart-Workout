@@ -19,4 +19,6 @@ export class CircuitExerciseStrategyComponent extends BaseStrategyComponent impl
     super.ngOnInit();
   }
 
+
+
 }

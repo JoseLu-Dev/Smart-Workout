@@ -75,15 +75,24 @@ export class BaseStrategyComponent implements OnInit {
 
         const setParts = this.set.setParts;
 
-        const restSecondsBetweenSet = this.setPropertiesFormGroup.get('restSecondsBetweenSet').value;
-        const restMinutesBetweenSet = this.setPropertiesFormGroup.get('restMinutesBetweenSet').value;
-        if (restSecondsBetweenSet && restMinutesBetweenSet) {
-            setParts[setParts.length].rest = restSecondsBetweenSet + restMinutesBetweenSet * 60;
+        if (!this.restBetweenExercises) {
+            this.setRestBetweenSets();
         }
 
         for (let index = 1; index < setsCount; index++) {
-            this.set.setParts.concat(...setParts);
+            this.set.setParts = this.set.setParts.concat(...setParts);
         }
+
+        console.log(this.set);
+    }
+
+    setRestBetweenSets(){
+        const restSecondsBetweenSet = this.setPropertiesFormGroup.get('restSecondsBetweenSet').value;
+        const restMinutesBetweenSet = this.setPropertiesFormGroup.get('restMinutesBetweenSet').value;
+
+        this.set.setParts.forEach(setPart =>{
+            setPart.rest = restSecondsBetweenSet + restMinutesBetweenSet * 60;
+        });
     }
 
     /**

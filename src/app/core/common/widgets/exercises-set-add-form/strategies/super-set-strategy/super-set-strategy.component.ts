@@ -19,4 +19,11 @@ export class SuperSetStrategyComponent extends BaseStrategyComponent implements 
     super.ngOnInit();
   }
 
+  setRestBetweenSets(){
+    const restSecondsBetweenSet = this.setPropertiesFormGroup.get('restSecondsBetweenSet').value;
+    const restMinutesBetweenSet = this.setPropertiesFormGroup.get('restMinutesBetweenSet').value;
+
+    this.set.setParts[this.set.setParts.length-1].rest = restSecondsBetweenSet + restMinutesBetweenSet * 60;
+}
+
 }
