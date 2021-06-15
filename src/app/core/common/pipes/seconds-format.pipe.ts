@@ -9,7 +9,7 @@ import { Pipe, PipeTransform, Injectable } from '@angular/core';
 export class SecondsFormatPipe implements PipeTransform {
 
   transform(value: any, ...args: unknown[]): string {
-    if (!value) { value = 0; }
+    if (!value) { return `0''`; }
 
     const minutes = Math.floor(value / 60);
     const seconds = value % 60;
