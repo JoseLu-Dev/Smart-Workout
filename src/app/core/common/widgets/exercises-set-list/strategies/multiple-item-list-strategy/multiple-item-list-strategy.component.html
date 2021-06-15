@@ -4,22 +4,26 @@
 
   <div class="flex flex-col items-center flex-grow mr-4 flex-wrap">
 
-    <div class="flex flex-row flex-grow items-center justify-items-center flex-wrap w-full" *ngFor="let setPart of set?.setParts; last as isLast">
-      <div class="flex card flex-grow gap-4 flex-wrap md:flex-nowrap
-  justify-items-center place-content-center w-full">
-        <p class="w-full md:w-auto text-center">{{setPart.exercise?.name | titlecase}} {{setPart.exercise?.progression | titlecase}}
-          {{setPart.exercise?.variation | titlecase}}</p>
-        <p>{{setPart.intensity.weight}}kg</p>
+    <div class="flex flex-row flex-grow items-center justify-items-center flex-wrap w-full"
+      *ngFor="let setPart of set?.setParts; last as isLast; index as i">
+      <div *ngIf="i < set?.setParts.length/set?.setsCount" class="flex flex-row flex-grow items-center justify-items-center flex-wrap w-full">
+        <div class="flex card flex-grow gap-4 flex-wrap md:flex-nowrap
+  justify-items-center place-content-center w-full mb-2">
+          <p class="w-full md:w-auto text-center">{{setPart.exercise?.name | titlecase}} {{setPart.exercise?.progression
+            | titlecase}}
+            {{setPart.exercise?.variation | titlecase}}</p>
+          <p>{{setPart.intensity.weight}}kg</p>
 
-        <div *ngIf="setPart?.intensity?.band" class="mx-2 btn-rounded w-6 h-6"
-          [ngStyle]="{'background-color' : setPart.intensity.band.color}"></div>
+          <div *ngIf="setPart?.intensity?.band" class="mx-2 btn-rounded w-6 h-6"
+            [ngStyle]="{'background-color' : setPart.intensity.band.color}"></div>
 
-        <p>{{setPart.quantity | setQuantityFormatter}}</p>
-      </div>
+          <p>{{setPart.quantity | setQuantityFormatter}}</p>
+        </div>
 
-      <div *ngIf="setPart.rest && setPart.rest != 0" class="w-full">
-        <ng-container *ngTemplateOutlet="rest; context:{rest:setPart.rest}">
-        </ng-container>
+        <div *ngIf="setPart.rest && setPart.rest != 0" class="w-full">
+          <ng-container *ngTemplateOutlet="rest; context:{rest:setPart.rest}">
+          </ng-container>
+        </div>
       </div>
 
       <div *ngIf="isLast" class="flex justify-items-center flex-grow">
