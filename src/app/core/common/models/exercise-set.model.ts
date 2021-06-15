@@ -69,6 +69,7 @@ export class BandUsed {
 }
 
 export class Band{
+    id: string;
     color: string;
     weight: number;
 }

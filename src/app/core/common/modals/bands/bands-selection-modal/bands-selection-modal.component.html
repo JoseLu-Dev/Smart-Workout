@@ -10,9 +10,16 @@
       </svg>
     </button>
     <div class="w-2 h-px bg-gray dark:bg-grayLight"></div>
+    <app-bands-creation-modal (band)="addBandCreated($event)"></app-bands-creation-modal>
   </div>
 
-  <div class="flex flex-row gap-8 text-lg font-semibold text-textPrimary dark:text-textPrimaryDark">
+  <div *ngIf="!bands || bands.length == 0">
+    <p class="text text-center"> You don't have any bands,</p>
+    <p class="text">press the "+" button to add a new one</p>
+  </div>
+
+  <div *ngIf="bands && bands.length > 0"
+    class="flex flex-row gap-8 text-lg font-semibold text-textPrimary dark:text-textPrimaryDark">
     <p class="flex-grow">Color</p>
     <p class="flex-grow">Resistance</p>
   </div>
@@ -74,7 +81,7 @@
 
   <div class="flex justify-end w-64 mt-4">
     <button class="btn-transparent mr-4" (click)="closeModal()">Close</button>
-    <button class="btn-transparent" (click)="onSubmit()">Accept</button>
+    <button class="btn-transparent" [disabled]="!bandForm || bandForm.invalid" (click)="onSubmit()">Accept</button>
   </div>
 
 </jw-modal>

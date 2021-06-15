@@ -1,7 +1,8 @@
+import { BandsCreationModalComponent } from './../bands-creation-modal/bands-creation-modal.component';
 import { BandsService } from './../bands.service';
 import { Band, BandUsed } from '../../../models/exercise-set.model';
 import { ModalService } from '../../../../../common/modals/base-modal/modal.service';
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -10,6 +11,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./bands-selection-modal.component.scss'],
 })
 export class BandsSelectionModalComponent implements OnInit {
+
+  @ViewChild(BandsCreationModalComponent)
+  bandModal: BandsCreationModalComponent;
 
   /**
    * Band to output when it is selected and modal is submitted
@@ -50,7 +54,9 @@ export class BandsSelectionModalComponent implements OnInit {
    * Gets the bands to show in the dialog using the 'BandsService'
    */
   getBands() {
-    this.bands = this.bandsService.getUserBands();
+    this.bandsService.getUserBands().subscribe(bands => {
+      this.bands = bands;
+    });
   }
 
   onBandClicked(band: Band) {
@@ -68,7 +74,7 @@ export class BandsSelectionModalComponent implements OnInit {
    * (not yet implemented)
    */
   onAddNewBandClicked(): void {
-
+    this.bandModal.openModal();
   }
 
   /**
@@ -127,7 +133,11 @@ export class BandsSelectionModalComponent implements OnInit {
   /**
    * Resets the form when the modal is closed
    */
-  onModalClosed(){
+  onModalClosed() {
     this.bandForm = null;
+  }
+
+  addBandCreated(band: Band) {
+    this.bands.push(band);
   }
 }

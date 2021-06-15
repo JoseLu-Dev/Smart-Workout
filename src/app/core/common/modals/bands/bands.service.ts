@@ -1,4 +1,7 @@
+import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 import { Band } from '../../models/exercise-set.model';
 
 @Injectable({
@@ -12,19 +15,21 @@ export class BandsService {
   halfUseMultiplier = 0.5;
   oneEndMultiplier = 0.5;
 
-  constructor() { }
+  private bandsUrl = `${environment.backendUrl}/users/bands`;
+
+  constructor(private http: HttpClient) { }
 
   /**
    * Gets the user bands
    *
    * @returns Band[] user bands
    */
-  getUserBands(): Band[] {
-    return [
-      { color: '#33d4ff', weight: 20 },
-      { color: '#775522', weight: 10 },
-      { color: '#113388', weight: 40 }
-    ];
+  getUserBands(): Observable<Band[]> {
+    return this.http.get<Band[]>(`${this.bandsUrl}/`);
+  }
+
+  saveBand(band: Band): Observable<Band> {
+    return this.http.put<Band>(`${this.bandsUrl}/`, band);
   }
 
   /**
@@ -37,7 +42,7 @@ export class BandsService {
    * @returns band resistance calculated
    */
   getBandResistance(band: Band, fullUse: boolean, twoEnds: boolean): number {
-    if (!fullUse) {twoEnds = false;}
+    if (!fullUse) { twoEnds = false; }
 
     const fullHalfUseMultiplier = fullUse ? 1 : this.halfUseMultiplier;
     const endsNumberMultiplier = twoEnds ? 1 : this.oneEndMultiplier;
