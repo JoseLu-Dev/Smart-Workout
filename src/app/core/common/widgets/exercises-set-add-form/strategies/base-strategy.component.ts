@@ -1,7 +1,7 @@
 import { ExerciseSet, ExerciseSetPart } from '../../../models/exercise-set.model';
 import { Exercise } from '../../../models/exercise.model';
 import { AccordionComponent } from '../../accordion/accordion.component';
-import { Component, Output, ViewChild, EventEmitter, OnInit } from '@angular/core';
+import { Component, Output, ViewChild, EventEmitter, OnInit, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
@@ -11,6 +11,20 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
  * Base class that strategies must extend
  */
 export class BaseStrategyComponent implements OnInit {
+
+    @Input() set exerciseSetToEdit(set: ExerciseSet) {
+        if (!set) { return; }
+        this.buildForm();
+
+        this.set = set;
+
+        this.setPropertiesFormGroup.get('setsNumber').setValue(set.setsCount);
+        this.setPropertiesFormGroup.get('restSecondsFinal').setValue(set.finalRest % 60);
+        this.setPropertiesFormGroup.get('restMinutesFinal').setValue(Math.abs(set.finalRest / 60));
+
+        this.setPropertiesFormGroup.get('restSecondsBetweenSet').setValue(set.setParts[set.setParts.length-1].rest % 60);
+        this.setPropertiesFormGroup.get('restMinutesBetweenSet').setValue(Math.abs(set.setParts[set.setParts.length-1].rest / 60));
+    }
 
     /**
      * Will be sended in parent using a service to
@@ -45,9 +59,16 @@ export class BaseStrategyComponent implements OnInit {
     public setPropertiesFormGroup: FormGroup;
 
     constructor(private formBuilder: FormBuilder) {
-        this.set = new ExerciseSet();
+        this.set = this.set || new ExerciseSet();
     }
+
     ngOnInit(): void {
+        if(!this.setPropertiesFormGroup){
+            this.buildForm();
+        }
+    }
+
+    buildForm(): void {
         this.setPropertiesFormGroup = this.formBuilder.group({
             setsNumber: ['', Validators.required],
             restSecondsFinal: [0, Validators.compose([Validators.required, Validators.min(0)])],
@@ -86,7 +107,7 @@ export class BaseStrategyComponent implements OnInit {
         console.log(this.set);
     }
 
-    setRestBetweenSets(){}
+    setRestBetweenSets() { }
 
     /**
      * Adds or updates a set.setPart

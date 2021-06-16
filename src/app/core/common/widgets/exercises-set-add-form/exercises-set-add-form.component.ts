@@ -16,7 +16,7 @@ export class ExercisesSetAddFormComponent implements OnInit {
 
   public exercisesSetFormGroup: FormGroup;
 
-  public set: ExerciseSet = new ExerciseSet();
+  public set: ExerciseSet;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -28,14 +28,26 @@ export class ExercisesSetAddFormComponent implements OnInit {
     this.exercisesSetFormGroup = this.formBuilder.group({
       selectedType: [this.types[0], Validators.required]
     });
+    this.setOnSelectedSetChanged();
+  }
+
+  public setOnSelectedSetChanged() {
+    this.trainingsFormService.getSelectedSet().subscribe(set => {
+      if (!set) { return; };
+      const copiedSet: ExerciseSet = JSON.parse(JSON.stringify(set));
+      const setParts = copiedSet.setParts;
+      copiedSet.setParts = setParts.splice(0, setParts.length / copiedSet.setsCount);
+      this.exercisesSetFormGroup.get('selectedType').setValue(copiedSet.type);
+      this.set = copiedSet;
+    });
   }
 
   public sendSetToList(set: ExerciseSet) {
+
     set.type = this.exercisesSetFormGroup.get('selectedType').value;
 
     this.trainingsFormService.confirmSetSelectedEdition(set);
 
-    this.set = null;
     this.exercisesSetFormGroup.reset();
   }
 

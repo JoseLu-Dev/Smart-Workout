@@ -1,7 +1,7 @@
 import { Observable } from 'rxjs';
 import { TrainingsFormService } from '../../services/trainings-form.service';
 import { Training } from './../../models/exercise-set.model';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -10,6 +10,8 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./exercises-set-list.component.scss'],
 })
 export class ExercisesSetListComponent implements OnInit {
+
+  @Input() editing: boolean;
 
   public training = new Observable<Training>();
 
@@ -22,6 +24,14 @@ export class ExercisesSetListComponent implements OnInit {
     this.trainingsService.getTrainingFromAPI(id);
 
     this.training = this.trainingsService.getTraining();
+  }
+
+  onEditSetClicked(index: number) {
+    this.trainingsService.setExerciseSetToEdit(index);
+  }
+
+  onDeleteSetClicked(index: number) {
+    this.trainingsService.deleteExerciseSet(index);
   }
 
 }

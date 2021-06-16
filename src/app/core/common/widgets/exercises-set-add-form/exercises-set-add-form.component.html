@@ -19,16 +19,16 @@
 
       <div [ngSwitch]="exercisesSetFormGroup.get('selectedType').value">
         <div *ngSwitchCase="'Emom'">
-          <app-emom-strategy (exerciseSet)=sendSetToList($event)></app-emom-strategy>
+          <app-emom-strategy [exerciseSetToEdit]="set" (exerciseSet)=sendSetToList($event)></app-emom-strategy>
         </div>
         <div *ngSwitchCase="'Super Set'">
-          <app-super-set-strategy (exerciseSet)=sendSetToList($event)></app-super-set-strategy>
+          <app-super-set-strategy [exerciseSetToEdit]="set" (exerciseSet)=sendSetToList($event)></app-super-set-strategy>
         </div>
         <div *ngSwitchCase="'Circuit'">
-          <app-circuit-strategy (exerciseSet)=sendSetToList($event)></app-circuit-strategy>
+          <app-circuit-strategy [exerciseSetToEdit]="set" (exerciseSet)=sendSetToList($event)></app-circuit-strategy>
         </div>
         <div *ngSwitchDefault>
-          <app-common-exercise-strategy (exerciseSet)=sendSetToList($event)></app-common-exercise-strategy>
+          <app-common-exercise-strategy [exerciseSetToEdit]="set" (exerciseSet)=sendSetToList($event)></app-common-exercise-strategy>
         </div>
       </div>
 

@@ -22,13 +22,17 @@ export class TrainingsFormService {
 
   setOnIndexSelectedChanged() {
     this.indexSelected.subscribe(index => {
-      if (!index) { return; }
+      if (!index && index !== 0) { return; }
       this.selectedSet.next(this.training.value.setsDone[index]);
     });
   }
 
   setExerciseSetToEdit(index: number) {
     this.indexSelected.next(index);
+  }
+
+  deleteExerciseSet(index: number) {
+    delete this.training.value.setsDone[index];
   }
 
   confirmSetSelectedEdition(set: ExerciseSet){
@@ -41,10 +45,15 @@ export class TrainingsFormService {
     }else{
       setsDone[indexSelected] = set;
     }
+    this.selectedSet.next(null);
   }
 
   getTraining(){
     return this.training.asObservable();
+  }
+
+  getSelectedSet(){
+    return this.selectedSet.asObservable();
   }
 
   getTrainingFromAPI(id: string){
