@@ -1,4 +1,4 @@
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { ModalService } from './../../../../common/modals/base-modal/modal.service';
 import { Component, OnInit, Input } from '@angular/core';
 import { ExercisesService } from '../../services/exercises.service';
@@ -82,8 +82,8 @@ export class ExerciseModalComponent implements OnInit {
     (this.exerciseForm.get('variations') as FormArray).removeAt(index);
   }
 
-  getVariationsFormControls() {
-    return (this.exerciseForm.get('variations') as FormArray).controls;
+  getVariationsFormControls(): FormControl[] {
+    return (this.exerciseForm.get('variations') as FormArray).controls as FormControl[];
   }
 
   addProgression() {
@@ -94,7 +94,7 @@ export class ExerciseModalComponent implements OnInit {
     (this.exerciseForm.get('progressions') as FormArray).removeAt(index);
   }
 
-  getProgressionFormControls() {
-    return (this.exerciseForm.get('progressions') as FormArray).controls;
+  getProgressionFormControls(): FormControl[] {
+    return (this.exerciseForm.get('progressions') as FormArray).controls as FormControl[];
   }
 }
