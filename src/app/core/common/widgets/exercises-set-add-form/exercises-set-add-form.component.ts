@@ -48,6 +48,8 @@ export class ExercisesSetAddFormComponent implements OnInit {
 
     this.trainingsFormService.confirmSetSelectedEdition(set);
 
+    this.set = new ExerciseSet();
+
     this.exercisesSetFormGroup.reset();
   }
 

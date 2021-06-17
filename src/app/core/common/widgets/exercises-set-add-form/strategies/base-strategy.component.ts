@@ -13,17 +13,17 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 export class BaseStrategyComponent implements OnInit {
 
     @Input() set exerciseSetToEdit(set: ExerciseSet) {
-        if (!set) { return; }
+        if (!set || set?.setParts.length === 0) { return; }
         this.buildForm();
 
         this.set = set;
 
         this.setPropertiesFormGroup.get('setsNumber').setValue(set.setsCount);
         this.setPropertiesFormGroup.get('restSecondsFinal').setValue(set.finalRest % 60);
-        this.setPropertiesFormGroup.get('restMinutesFinal').setValue(Math.abs(set.finalRest / 60));
+        this.setPropertiesFormGroup.get('restMinutesFinal').setValue(Math.trunc(set.finalRest / 60));
 
         this.setPropertiesFormGroup.get('restSecondsBetweenSet').setValue(set.setParts[set.setParts.length-1].rest % 60);
-        this.setPropertiesFormGroup.get('restMinutesBetweenSet').setValue(Math.abs(set.setParts[set.setParts.length-1].rest / 60));
+        this.setPropertiesFormGroup.get('restMinutesBetweenSet').setValue(Math.trunc(set.setParts[set.setParts.length-1].rest / 60));
     }
 
     /**

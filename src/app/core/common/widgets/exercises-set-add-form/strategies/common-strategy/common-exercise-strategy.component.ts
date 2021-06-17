@@ -11,11 +11,11 @@ export class CommonExerciseStrategyComponent extends BaseStrategyComponent imple
 
   constructor(private builder: FormBuilder) {
     super(builder);
+    this.multiExercise = false;
+    this.restBetweenExercises = true;
   }
 
   ngOnInit() {
-    this.multiExercise = false;
-    this.restBetweenExercises = true;
     super.ngOnInit();
   }
 

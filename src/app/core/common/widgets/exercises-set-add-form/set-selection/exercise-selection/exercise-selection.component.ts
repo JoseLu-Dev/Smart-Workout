@@ -66,7 +66,7 @@ export class ExerciseSelectionComponent implements OnInit {
   onExerciseNameSelectedChange(exercise: ExerciseListElement) {
     this.resetFormValues();
 
-    this.getExerciseFromAPI(exercise.id);
+    if (exercise) { this.getExerciseFromAPI(exercise.id); }
   }
 
   /**

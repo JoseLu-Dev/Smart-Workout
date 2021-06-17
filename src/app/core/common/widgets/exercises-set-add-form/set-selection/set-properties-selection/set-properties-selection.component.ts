@@ -1,7 +1,7 @@
 import { UserStatsService } from '../../../../services/user-stats.service';
 import { Exercise } from '../../../../models/exercise.model';
 import { BandUsed, ExerciseSetPart, Intensity } from '../../../../models/exercise-set.model';
-import { Component, Input, OnInit, Output, ViewChild, EventEmitter, ChangeDetectorRef } from '@angular/core';
+import { Component, Input, OnInit, Output, ViewChild, EventEmitter, ChangeDetectorRef, OnChanges, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BandsSelectionModalComponent } from '../../../../modals/bands/bands-selection-modal/bands-selection-modal.component';
 
@@ -10,7 +10,7 @@ import { BandsSelectionModalComponent } from '../../../../modals/bands/bands-sel
   templateUrl: './set-properties-selection.component.html',
   styleUrls: ['./set-properties-selection.component.scss'],
 })
-export class SetPropertiesSelectionComponent implements OnInit {
+export class SetPropertiesSelectionComponent implements OnInit, OnChanges {
 
   /**
    *
@@ -74,6 +74,12 @@ export class SetPropertiesSelectionComponent implements OnInit {
     private changeDetector: ChangeDetectorRef
   ) { }
 
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes.restBetweenExercises.currentValue !== changes.restBetweenExercises.previousValue) {
+      this.buildForm(null);
+    }
+  }
+
   ngOnInit() {
     if (!this.setFormGroup) {
       this.buildForm(null);
@@ -85,7 +91,6 @@ export class SetPropertiesSelectionComponent implements OnInit {
    */
   buildForm(setPart: ExerciseSetPart): void {
     const values: FormValues = this.getFormValues(setPart);
-
     this.setFormGroup = this.formBuilder.group({
       weight: [values.weight, Validators.compose([!this.exercise?.bodyWeight ? Validators.required : null, Validators.min(1)])],
       weightResistanceType: [{ value: values.weightResistanceType, disabled: this.exercise?.bodyWeight ? false : true }],

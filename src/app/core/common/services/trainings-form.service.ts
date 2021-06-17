@@ -45,6 +45,7 @@ export class TrainingsFormService {
     }else{
       setsDone[indexSelected] = set;
     }
+    this.indexSelected.next(null);
     this.selectedSet.next(null);
   }
 
