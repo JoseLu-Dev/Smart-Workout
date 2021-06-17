@@ -1,3 +1,4 @@
+import { SetsPerMuscle, TrainingStatistics } from './training-statistics.model';
 import { Exercise } from './exercise.model';
 
 export class Training{
@@ -5,6 +6,47 @@ export class Training{
     userId?: string;
     date: Date;
     setsDone: ExerciseSet[];
+
+    getTotalReps(): number{
+        let totalReps = 0;
+        this.setsDone.forEach((setDone) => {
+            totalReps += setDone.getTotalReps();
+        });
+        return totalReps;
+    }
+
+    getTotalMovedWeight(): number {
+        let weightMoved = 0;
+        this.setsDone.forEach((setDone) => {
+            weightMoved += setDone.getMovedWeight();
+        });
+        return weightMoved;
+    }
+
+    getTotalRest(): number{
+        let totalRest = 0;
+        this.setsDone.forEach((setDone) => {
+            totalRest += setDone?.getTotalRest() || 0;
+        });
+        return totalRest;
+    }
+
+    getSetsPerMuscle(): SetsPerMuscle{
+        const setsPerMuscle: SetsPerMuscle = new SetsPerMuscle();
+        this.setsDone.forEach((setDone) =>{
+            setsPerMuscle.addSets(setDone.getSetsPerMuscle())
+        });
+        return setsPerMuscle;
+    }
+
+    getTrainingStatistics(): TrainingStatistics{
+        return {
+            totalReps: this.getTotalReps(),
+            totalWheightMoved: this.getTotalMovedWeight(),
+            totalRest: this.getTotalRest(),
+            setsPerMuscle: this.getSetsPerMuscle()
+        } as TrainingStatistics
+    }
 }
 
 export class ExerciseSet {
@@ -19,14 +61,14 @@ export class ExerciseSet {
 
     getTotalReps(): number {
         let reps = 0;
-        this.setParts.forEach((setPart) => { reps += setPart.quantity; });
+        this.setParts.forEach((setPart) => { reps += setPart.quantity || 0; });
         return reps;
     }
 
     getMovedWeight(): number {
         let weightMoved = 0;
         this.setParts.forEach((setPart) => {
-            weightMoved += setPart.quantity + setPart.intensity.getIntensity();
+            weightMoved += setPart.quantity * setPart.intensity.getIntensity();
         });
         return weightMoved;
     }
@@ -34,9 +76,17 @@ export class ExerciseSet {
     getTotalRest(){
         let totalRest = this.finalRest;
         this.setParts.forEach((setPart) => {
-            totalRest += setPart?.rest != null ? setPart.rest : 0;
+            totalRest += setPart?.rest || 0;
         });
         return totalRest;
+    }
+
+    getSetsPerMuscle(): SetsPerMuscle{
+        const setsPerMuscle: SetsPerMuscle = new SetsPerMuscle();
+        this.setParts.forEach((setPart)=>{
+            setsPerMuscle.addSet(setPart.exercise.muscleGroup, 1);
+        });
+        return setsPerMuscle;
     }
 
 }
@@ -57,7 +107,7 @@ export class Intensity {
     weight: number;
 
     getIntensity() {
-        return this.weight + this.band.weight;
+        return this.weight + this.band.weight || 0;
     }
 }
 
