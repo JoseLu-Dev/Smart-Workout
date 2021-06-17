@@ -1,3 +1,5 @@
+import { ChartsModule } from 'ng2-charts';
+import { CorePipesModule } from './../../common/pipes/core-pipes.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -8,6 +10,7 @@ import { DetailsPageRoutingModule } from './details-routing.module';
 
 import { DetailsPage } from './details.page';
 import { CoreWidgetsModule } from '../../common/widgets/core-widgets.module';
+import { TrainingStatsComponent } from './training-stats/training-stats.component';
 
 @NgModule({
   imports: [
@@ -15,8 +18,10 @@ import { CoreWidgetsModule } from '../../common/widgets/core-widgets.module';
     FormsModule,
     IonicModule,
     DetailsPageRoutingModule,
-    CoreWidgetsModule
+    CoreWidgetsModule,
+    CorePipesModule,
+    ChartsModule,
   ],
-  declarations: [DetailsPage]
+  declarations: [DetailsPage, TrainingStatsComponent]
 })
 export class DetailsPageModule {}

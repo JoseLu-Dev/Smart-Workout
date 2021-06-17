@@ -1,5 +1,5 @@
-import { Training } from '../models/exercise-set.model';
-import { ExerciseSet } from '../models/exercise-set.model';
+import { Training } from '../models/training.models';
+import { ExerciseSet } from '../models/training.models';
 import { Inject, Injectable } from '@angular/core';
 import { Subject, Observable, BehaviorSubject } from 'rxjs';
 import { TrainingsService } from './trainings.service';

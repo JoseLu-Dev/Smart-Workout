@@ -2,7 +2,7 @@ import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { Band } from '../../models/exercise-set.model';
+import { Band } from '../../models/training.models';
 
 @Injectable({
   providedIn: 'root'

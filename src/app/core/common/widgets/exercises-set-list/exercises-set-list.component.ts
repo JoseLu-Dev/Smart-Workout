@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs';
 import { TrainingsComponentCommunicationService } from '../../services/trainings-component-communication.service';
-import { Training } from './../../models/exercise-set.model';
+import { Training } from '../../models/training.models';
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 

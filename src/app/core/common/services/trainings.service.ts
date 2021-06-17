@@ -1,7 +1,7 @@
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { TrainingsDay } from './../models/trainings-day.model';
-import { Training } from './../models/exercise-set.model';
+import { Training } from '../models/training.models';
 import { environment } from './../../../../environments/environment';
 import { Injectable } from '@angular/core';
 import { catchError } from 'rxjs/operators';
@@ -42,7 +42,7 @@ export class TrainingsService {
    * @param trainingSets
    * @returns
    */
-  getTraining(id: string): Observable<any> {
-    return this.http.get(`${this.trainingsUrl}/${id}`);
+  getTraining(id: string): Observable<Training> {
+    return this.http.get<Training>(`${this.trainingsUrl}/${id}`);
   }
 }

@@ -1,6 +1,8 @@
-<div class="p-4 m-auto h-full md:h-5/6 overflow-y-auto static">
+<div class="flex flex-col md:flex-row p-4 items-center gap-4 h-full md:h-5/6 overflow-y-auto static">
 
-  <app-exercises-set-list></app-exercises-set-list>
+  <app-exercises-set-list class="mx-auto"></app-exercises-set-list>
+
+  <app-training-stats class="w-full md:w-2/5 lg:w-3/5"></app-training-stats>
 
   <div class="absolute bottom-4 right-4">
     <button class="btn-rounded btn-blue mx-auto shadow-lg" (click)="onEditTrainingClicked()">

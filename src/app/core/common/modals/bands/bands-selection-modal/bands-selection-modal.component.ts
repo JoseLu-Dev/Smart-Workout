@@ -1,6 +1,6 @@
 import { BandsCreationModalComponent } from './../bands-creation-modal/bands-creation-modal.component';
 import { BandsService } from './../bands.service';
-import { Band, BandUsed } from '../../../models/exercise-set.model';
+import { Band, BandUsed } from '../../../models/training.models';
 import { ModalService } from '../../../../../common/modals/base-modal/modal.service';
 import { Component, OnInit, Output, EventEmitter, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';

@@ -1,7 +1,7 @@
 import { SecondsFormatPipe } from './../../../../pipes/seconds-format.pipe';
 import { SetQuantityFormatterPipe } from './../../../../pipes/set-quantity-formatter.pipe';
 import { Exercise } from './../../../../models/exercise.model';
-import { ExerciseSet, BandUsed } from './../../../../models/exercise-set.model';
+import { ExerciseSet, BandUsed } from '../../../../models/training.models';
 import { Component, Input, OnInit } from '@angular/core';
 
 @Component({

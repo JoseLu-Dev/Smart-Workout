@@ -1,0 +1,52 @@
+<div *ngIf="trainingStatistics" class="card">
+  <h2 class="text-xl font-bold dark:text-textPrimaryDark">Training Statistics</h2>
+  <div class="flex-row gap-4 mt-4">
+    <div class="flex">
+      <p class="text">Sets:
+        <label class="label">{{trainingStatistics.totalSets}}</label>
+      </p>
+    </div>
+    <div class="flex">
+      <p class="text">Reps:
+        <label class="label">{{trainingStatistics.totalReps}}</label>
+      </p>
+    </div>
+    <div class="flex">
+      <p class="text">Rest:
+        <label class="label">{{trainingStatistics.totalRest | secondsFormat}}</label>
+      </p>
+    </div>
+    <div class="flex">
+      <p class="text">Weight moved:
+        <label class="label">{{trainingStatistics.totalWeightMoved}} kg</label>
+      </p>
+    </div>
+
+    <div class="mt-12 flex flex-col md:flex-row flex-wrap">
+      <div class="w-full lg:w-1/2 flex flex-row">
+        <div class="flex flex-col w-full">
+          <label class="label flex-grow text-center">Sets per muscle group</label>
+          <div class="aspect-w-1 aspect-h-1">
+            <div>
+              <canvas class="w-10 h-10" baseChart [data]="setsPerMuscleChartData" [labels]="setsPerMuscleChartLabels"
+                [chartType]="doughnutChartType" [options]="barChartOptions">
+              </canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="w-full lg:w-1/2 flex flex-col">
+        <label class="label flex-grow text-center">Reps per muscle group</label>
+        <div class="aspect-w-1 aspect-h-1">
+          <div>
+            <canvas baseChart [data]="repsPerMuscleChartData" [labels]="repsPerMuscleChartLabels"
+              [chartType]="doughnutChartType" [options]="barChartOptions">
+            </canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

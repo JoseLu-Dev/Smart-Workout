@@ -1,6 +1,6 @@
 import { UserStatsService } from '../../../../services/user-stats.service';
 import { Exercise } from '../../../../models/exercise.model';
-import { BandUsed, ExerciseSetPart, Intensity } from '../../../../models/exercise-set.model';
+import { BandUsed, ExerciseSetPart, Intensity } from '../../../../models/training.models';
 import { Component, Input, OnInit, Output, ViewChild, EventEmitter, ChangeDetectorRef, OnChanges, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BandsSelectionModalComponent } from '../../../../modals/bands/bands-selection-modal/bands-selection-modal.component';

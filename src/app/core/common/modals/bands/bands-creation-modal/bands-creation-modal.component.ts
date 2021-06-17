@@ -2,7 +2,7 @@ import { BandsService } from './../bands.service';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { ModalService } from './../../../../../common/modals/base-modal/modal.service';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { Band } from '../../../models/exercise-set.model';
+import { Band } from '../../../models/training.models';
 
 @Component({
   selector: 'app-bands-creation-modal',

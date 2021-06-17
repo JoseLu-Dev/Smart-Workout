@@ -1,20 +1,22 @@
 export class TrainingStatistics {
+    totalSets: number;
     totalReps: number;
-    totalWheightMoved: number;
+    totalWeightMoved: number;
     totalRest: number;
 
-    setsPerMuscle: SetsPerMuscle;
+    setsPerMuscle: CountPerMuscle;
+    repsPerMuscle: CountPerMuscle;
 }
 
-export class SetsPerMuscle {
-    addSet(muscle: string, setsNumber: number) {
-        if (!this[muscle]) { this[muscle] = 0 }
-        this[muscle] += setsNumber;
+export class CountPerMuscle {
+    addCount(muscle: string, count: number) {
+        if (!this[muscle]) { this[muscle] = 0; }
+        this[muscle] += count;
     }
 
-    addSets(setsPerMuscle: SetsPerMuscle){
-        for (const [key, value] of Object.entries(setsPerMuscle)) {
-            this.addSet(key, value);
-          }
+    addCounts(countPerMuscle: CountPerMuscle) {
+        for (const [key, value] of Object.entries(countPerMuscle)) {
+            this.addCount(key, value);
+        }
     }
 }

@@ -1,6 +1,6 @@
 import { take } from 'rxjs/operators';
 import { TrainingsComponentCommunicationService } from '../../services/trainings-component-communication.service';
-import { ExerciseSet } from './../../models/exercise-set.model';
+import { ExerciseSet } from '../../models/training.models';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';

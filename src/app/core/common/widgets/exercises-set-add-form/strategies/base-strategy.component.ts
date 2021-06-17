@@ -1,4 +1,4 @@
-import { ExerciseSet, ExerciseSetPart } from '../../../models/exercise-set.model';
+import { ExerciseSet, ExerciseSetPart } from '../../../models/training.models';
 import { Exercise } from '../../../models/exercise.model';
 import { AccordionComponent } from '../../accordion/accordion.component';
 import { Component, Output, ViewChild, EventEmitter, OnInit, Input } from '@angular/core';
