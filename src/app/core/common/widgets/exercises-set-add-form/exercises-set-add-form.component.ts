@@ -1,5 +1,5 @@
 import { take } from 'rxjs/operators';
-import { TrainingsFormService } from '../../services/trainings-form.service';
+import { TrainingsComponentCommunicationService } from '../../services/trainings-component-communication.service';
 import { ExerciseSet } from './../../models/exercise-set.model';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -20,7 +20,7 @@ export class ExercisesSetAddFormComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private trainingsFormService: TrainingsFormService,
+    private trainingsFormService: TrainingsComponentCommunicationService,
     private router: Router
   ) { }
 

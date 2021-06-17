@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs';
-import { TrainingsFormService } from '../../services/trainings-form.service';
+import { TrainingsComponentCommunicationService } from '../../services/trainings-component-communication.service';
 import { Training } from './../../models/exercise-set.model';
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
@@ -16,7 +16,7 @@ export class ExercisesSetListComponent implements OnInit {
   public training = new Observable<Training>();
 
   constructor(
-    private trainingsService: TrainingsFormService,
+    private trainingsService: TrainingsComponentCommunicationService,
     private route: ActivatedRoute,) { }
 
   ngOnInit() {

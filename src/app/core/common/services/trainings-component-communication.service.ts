@@ -1,4 +1,4 @@
-import { Training } from './../models/exercise-set.model';
+import { Training } from '../models/exercise-set.model';
 import { ExerciseSet } from '../models/exercise-set.model';
 import { Inject, Injectable } from '@angular/core';
 import { Subject, Observable, BehaviorSubject } from 'rxjs';
@@ -7,7 +7,7 @@ import { TrainingsService } from './trainings.service';
 @Injectable({
   providedIn: 'root'
 })
-export class TrainingsFormService {
+export class TrainingsComponentCommunicationService {
 
   // Observable sources
   private training = new BehaviorSubject<Training>(null);
