@@ -2,7 +2,16 @@
 
   <app-exercises-set-list class="mx-auto"></app-exercises-set-list>
 
-  <app-training-stats class="w-full md:w-2/5 lg:w-3/5"></app-training-stats>
+  <app-training-stats *ngIf="(exercisesList?.training | async)?.setsDone?.length > 0 else noExercises"
+    class="w-full md:w-2/5 lg:w-3/5">
+  </app-training-stats>
+
+  <ng-template #noExercises>
+    <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 card md:w-80">
+      <p class="text text-justify">This training does not have any exercises, click the button at the right bottom to
+        start adding some.</p>
+    </div>
+  </ng-template>
 
   <div class="absolute bottom-4 right-4">
     <button class="btn-rounded btn-blue mx-auto shadow-lg" (click)="onEditTrainingClicked()">
