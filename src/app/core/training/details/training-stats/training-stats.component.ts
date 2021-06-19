@@ -1,3 +1,4 @@
+import { take } from 'rxjs/operators';
 import { ChartOptions, ChartType } from 'chart.js';
 import { TrainingsComponentCommunicationService } from './../../../common/services/trainings-component-communication.service';
 import { Component, OnInit } from '@angular/core';
@@ -30,24 +31,35 @@ export class TrainingStatsComponent implements OnInit {
   constructor(private trainingService: TrainingsComponentCommunicationService) { }
 
   ngOnInit() {
-    this.trainingService.getTraining().subscribe(training => {
-      if (!training) { return; }
+    this.setStatsData();
+  }
+
+  setStatsData() {
+    this.trainingService.getTraining().pipe(take(1)).subscribe(training => {
+      if (!training || training.setsDone.length === 0) { return; }
       this.trainingStatistics = Training.fromTraining(training).getTrainingStatistics();
 
-      const setsNumbers = [];
-      for (const [key, value] of Object.entries(this.trainingStatistics.setsPerMuscle)) {
-        this.setsPerMuscleChartLabels.push(key);
-        setsNumbers.push(value);
-      }
-      this.setsPerMuscleChartData = setsNumbers;
-
-      const repsNumbers = [];
-      for (const [key, value] of Object.entries(this.trainingStatistics.repsPerMuscle)) {
-        this.repsPerMuscleChartLabels.push(key);
-        repsNumbers.push(value);
-      }
-      this.repsPerMuscleChartData = repsNumbers;
+      this.setRepsPerMuscleChartData();
+      this.setSetsPerMuscleChartData();
     });
+  }
+
+  setRepsPerMuscleChartData() {
+    const repsNumbers = [];
+    for (const [key, value] of Object.entries(this.trainingStatistics.repsPerMuscle)) {
+      this.repsPerMuscleChartLabels.push(key);
+      repsNumbers.push(value);
+    }
+    this.repsPerMuscleChartData = repsNumbers;
+  }
+
+  setSetsPerMuscleChartData() {
+    const setsNumbers = [];
+    for (const [key, value] of Object.entries(this.trainingStatistics.setsPerMuscle)) {
+      this.setsPerMuscleChartLabels.push(key);
+      setsNumbers.push(value);
+    }
+    this.setsPerMuscleChartData = setsNumbers;
   }
 
 }
