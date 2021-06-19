@@ -32,8 +32,7 @@ export class TrainingsComponentCommunicationService {
   }
 
   deleteExerciseSet(index: number) {
-    //TODO: revise this
-    delete this.training.value.setsDone[index];
+    this.training.value.setsDone.splice(index, 1);
   }
 
   confirmSetSelectedEdition(set: ExerciseSet){
