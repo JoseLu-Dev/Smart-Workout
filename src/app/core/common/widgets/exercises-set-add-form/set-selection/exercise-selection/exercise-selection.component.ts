@@ -4,6 +4,7 @@ import { ExercisesService } from '../../../../services/exercises.service';
 import { Component, OnInit, Output, EventEmitter, Input, ViewChild } from '@angular/core';
 import { Exercise, ExerciseSpecs } from '../../../../models/exercise.model';
 import { Observable } from 'rxjs';
+import { ExerciseSearchModalComponent } from 'src/app/core/common/modals/exercise-search-modal/exercise-search-modal.component';
 
 @Component({
   selector: 'app-exercise-selection',
@@ -11,6 +12,9 @@ import { Observable } from 'rxjs';
   styleUrls: ['./exercise-selection.component.scss'],
 })
 export class ExerciseSelectionComponent implements OnInit {
+
+  @ViewChild(ExerciseSearchModalComponent)
+  exerciseSearchModal: ExerciseSearchModalComponent;
 
   /**
    * Exercise object outputed when the form is valid
@@ -56,6 +60,15 @@ export class ExerciseSelectionComponent implements OnInit {
 
   ngOnInit() {
     this.getExerciseListFromAPI();
+  }
+
+  onSelectExerciseClicked(){
+    this.exerciseSearchModal.openModal();
+  }
+
+  onExerciseSelected(exercise: ExerciseListElement){
+    this.exerciseSelectedElement = exercise;
+    this.onExerciseNameSelectedChange(exercise);
   }
 
   /**
@@ -175,6 +188,7 @@ export class ExerciseSelectionComponent implements OnInit {
     });
   }
 
+  //TODO delete
   /**
    * Gets a list of the exercises available in the API
    */

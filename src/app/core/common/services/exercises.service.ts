@@ -18,6 +18,10 @@ export class ExercisesService {
     return this.http.get<ExerciseListElement[]>(`${this.exercisesUrl}`);
   }
 
+  getExercisesByName(search: string): Observable<ExerciseListElement[]>{
+    return this.http.get<ExerciseListElement[]>(`${this.exercisesUrl}/by-name/${search}`);
+  }
+
   getExerciseSpecs(exerciseName: string): Observable<ExerciseSpecs>{
     return this.http.get<ExerciseSpecs>(`${this.exercisesUrl}/${exerciseName}`) ;
   }

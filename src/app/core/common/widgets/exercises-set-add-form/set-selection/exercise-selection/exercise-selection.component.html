@@ -1,12 +1,11 @@
 <div class="flex flex-row  items-center my-4">
   <label class="label mr-4 flex-grow" for="name">Exercise</label>
-  <div class="flex w-3/5">
-    <ng-select [items]="exercises" [ngModel]="exerciseSelectedElement"
-      (ngModelChange)="onExerciseNameSelectedChange($event)" class="input w-full">
-      <ng-template ng-option-tmp let-item="item" let-index="index">
-        <div class="input m-px">{{item.name | titlecase}}</div>
-      </ng-template>
-    </ng-select>
+  <div class="flex w-3/5 cursor-pointer" (click)="onSelectExerciseClicked()">
+    <div *ngIf="exerciseSelectedElement else noExerciseSelected">{{exerciseSelectedElement.name}}</div>
+    <ng-template #noExerciseSelected>
+      <button class="btn btn-blue w-full text-center">Select an exercise</button>
+    </ng-template>
+    <app-exercise-search-modal (exerciseSelected)="onExerciseSelected($event)"></app-exercise-search-modal>
   </div>
 </div>
 
