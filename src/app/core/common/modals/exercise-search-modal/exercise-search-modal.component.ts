@@ -15,7 +15,7 @@ export class ExerciseSearchModalComponent extends ModalBaseComponent implements 
 
   @Output() exerciseSelected = new EventEmitter<ExerciseListElement>();
 
-  id = 'exercise-search-modal';
+  id = `exercise-search-modal-${Math.random()}`;
 
   public exerciseName = new FormControl();
 
