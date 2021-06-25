@@ -42,6 +42,8 @@ export class SetPropertiesSelectionComponent implements OnInit, OnChanges {
 
     this.buildForm(setPart);
 
+    this.setPartToBeEdited = setPart;
+
     this.changeDetector.detectChanges();
   };
 
@@ -57,6 +59,8 @@ export class SetPropertiesSelectionComponent implements OnInit, OnChanges {
   bandsModal: BandsSelectionModalComponent;
 
   public exercise: Exercise;
+
+  public setPartToBeEdited: ExerciseSetPart;
 
   /**
    * Band selected on band modal
@@ -76,7 +80,7 @@ export class SetPropertiesSelectionComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.restBetweenExercises.currentValue !== changes.restBetweenExercises.previousValue) {
-      this.buildForm(null);
+      this.buildForm(this.setPartToBeEdited);
     }
   }
 
