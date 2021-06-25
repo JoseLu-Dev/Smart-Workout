@@ -73,7 +73,7 @@ export class NewTrainingModalComponent implements OnInit {
   onSubmit(): void {
     if (!this.trainingsDay) {
       this.trainingsDay = new TrainingsDay();
-      this.trainingsDay.date = this.date;
+      this.trainingsDay.setDate(this.date);
     }
 
     const trainingSpecs = {
