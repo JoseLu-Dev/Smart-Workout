@@ -45,4 +45,13 @@ export class TrainingsService {
   getTraining(id: string): Observable<Training> {
     return this.http.get<Training>(`${this.trainingsUrl}/${id}`);
   }
+
+  /**
+   * Delete training
+   *
+   * @param id training id
+   */
+  deleteTraining(id: string) {
+    return this.http.delete(`${this.trainingsUrl}/${id}`).subscribe();
+  }
 }

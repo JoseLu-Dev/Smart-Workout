@@ -2,6 +2,7 @@ import { Router } from '@angular/router';
 import { NewTrainingModalComponent } from './../../modals/new-training-modal/new-training-modal.component';
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { TrainingsDay } from '../../models/trainings-day.model';
+import { TrainingsService } from '../../services/trainings.service';
 
 @Component({
   selector: 'app-trainings-list',
@@ -26,7 +27,9 @@ export class TrainingsListComponent implements OnInit {
   @ViewChild(NewTrainingModalComponent)
   newTrainingModal: NewTrainingModalComponent;
 
-  constructor( private router: Router,) { }
+  constructor(
+    private router: Router,
+    private trainingService: TrainingsService) { }
 
   ngOnInit() { }
 
@@ -53,5 +56,19 @@ export class TrainingsListComponent implements OnInit {
    */
   onTrainingClicked(id: string) {
     this.router.navigate([`app/trainings/${id}`], { replaceUrl: false });
+  }
+
+  /**
+   * Delete training
+   */
+  onDeleteTrainingClicked(event, trainingNumber: number) {
+    this.trainingService.deleteTraining(this.trainingsDay.trainings[trainingNumber].id);
+
+    this.trainingsDay.trainings.splice(trainingNumber, 1);
+
+    this.trainingService.saveTrainingDay(this.trainingsDay).subscribe();
+
+    // Makes father onClick not to execute
+    event.stopPropagation();
   }
 }
