@@ -53,6 +53,7 @@
 .input {
     @apply p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-green-light focus:border-transparent 
     border-light-dark dark:border-transparent bg-light-light dark:text-white
+    dark:bg-dark-darkest
 }
 
 .input-invalid {
@@ -123,4 +124,17 @@ input::-webkit-inner-spin-button {
 /* Firefox */
 input[type=number] {
   -moz-appearance: textfield;
+}
+
+.label-top-input {
+    top: 0%;
+    transform: translateY(-50%);
+    font-size: 14px;
+}
+
+.empty input:not(:focus) + label {
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 18px;
+    color: #919191;
 }
