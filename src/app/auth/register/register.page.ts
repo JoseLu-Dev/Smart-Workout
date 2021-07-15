@@ -24,8 +24,13 @@ export class RegisterPage implements OnInit {
     this.signUpForm = this.formBuilder.group({
       name: ['', Validators.compose([Validators.minLength(3), Validators.required])],
       email: ['', Validators.compose([Validators.email, Validators.required])],
-      password: ['', Validators.compose([Validators.minLength(7), Validators.required])]
+      password: ['', Validators.compose([Validators.minLength(7), Validators.required])],
+      repeatedPassword: ['']
     });
+  }
+
+  samePasswords(){
+    return this.signUpForm.get('password').value === this.signUpForm.get('repeatedPassword').value;
   }
 
   onSignUp(credentials: { name: string; password: string; email: string }) {
