@@ -29,11 +29,11 @@
 // @import "~@ionic/angular/css/flex-utils.css";
 
 .btn-green {
-    @apply text-textPrimaryDark bg-tertiary hover:bg-tertiaryDark
+    @apply text-white bg-green hover:bg-green-dark
 }
 
 .btn-blue {
-    @apply text-textPrimaryDark bg-secondary hover:bg-secondaryDark
+    @apply text-white bg-blue hover:bg-blue-dark
 }
 
 .btn {
@@ -42,8 +42,8 @@
 
 .btn-transparent{
     @apply block text-center p-2 duration-300 rounded-lg
-    text-secondary hover:bg-secondary hover:text-textPrimaryDark
-    dark:text-secondaryLight font-bold
+    text-blue hover:bg-blue hover:text-white
+    dark:text-white font-bold
 }
 
 .btn-rounded {
@@ -51,8 +51,8 @@
 }
 
 .input {
-    @apply p-2 rounded-md border-black focus:outline-none focus:ring-2 focus:ring-tertiaryLight focus:border-transparent 
-    border-transparent text-textSecondary bg-primaryLight dark:text-textSecondaryDark dark:bg-primaryDark
+    @apply p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-green-light focus:border-transparent 
+    border-light-dark dark:border-transparent bg-light-light dark:text-white
 }
 
 .input-invalid {
@@ -60,27 +60,27 @@
 }
 
 .card {
-    @apply rounded-lg p-4 md:p-8 shadow-md bg-primary dark:bg-primaryLightDark
+    @apply rounded-lg p-4 md:p-8 shadow-md bg-light-light dark:bg-dark-dark
 }
 
 .card-modal {
-    @apply rounded-lg p-4 shadow-lg bg-primary dark:bg-primaryLightDark
+    @apply rounded-lg p-4 shadow-lg bg-light dark:bg-dark
 }
 
 .background {
-    @apply w-screen h-screen bg-background dark:bg-backgroundDark
+    @apply w-screen h-screen bg-light dark:bg-dark
 }
 
 .link {
-    @apply font-medium cursor-pointer text-secondary dark:text-secondaryLight hover:underline
+    @apply font-medium cursor-pointer text-blue dark:text-blue-light hover:underline
 }
 
 .text {
-    @apply text-textSecondary dark:text-textSecondaryDark
+    @apply text-dark dark:text-white
 }
 
 .label {
-    @apply font-semibold text-textSecondary dark:text-textSecondaryDark
+    @apply font-semibold text-dark-darkest dark:text-light-lightest
 }
 
 .label-error {
@@ -89,28 +89,28 @@
 
 .radioButton{
     @apply opacity-15
-    bg-gray dark:bg-primaryDark border-transparent checked:opacity-100 dark:opacity-100
-    checked:bg-secondary hover:checked:bg-secondaryLight text-secondary dark:text-secondaryDark 
+    bg-light-dark dark:bg-dark border-transparent checked:opacity-100 dark:opacity-100
+    checked:bg-blue hover:checked:bg-blue-light text-blue dark:text-blue-dark 
     checked:border-transparent ring-0 focus:ring-0 focus:ring-offset-0
 }
 
 .checkBox{
     @apply opacity-15 rounded-md
-    bg-gray dark:bg-primaryDark border-transparent checked:opacity-100 dark:opacity-100
-    checked:bg-secondary hover:checked:bg-secondaryLight text-secondary dark:text-secondaryDark 
+    bg-light-dark dark:bg-dark border-transparent checked:opacity-100 dark:opacity-100
+    checked:bg-blue hover:checked:bg-blue-light text-blue dark:text-blue-dark 
     checked:border-transparent ring-0 focus:ring-0 focus:ring-offset-0
 }
 
 .h-sec {
-    @apply text-4xl text-textPrimary dark:text-textPrimaryDark
+    @apply text-4xl text-black dark:text-white
 }
 
 .h-pri {
-    @apply text-6xl text-textPrimary dark:text-textPrimaryDark
+    @apply text-6xl text-black dark:text-white
 }
 
 .icon{
-    @apply fill-current text-textPrimaryDark 
+    @apply fill-current text-white 
 }
 
 /* Chrome, Safari, Edge, Opera */

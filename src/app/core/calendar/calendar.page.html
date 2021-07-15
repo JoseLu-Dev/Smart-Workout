@@ -2,14 +2,14 @@
     <div class="h-full md:grid md:grid-cols-12 md:grid-flow-col gap-4">
 
         <div class="md:row-span-4 md:col-span-8 h-auto md:h-auto my-4 md:m-0
-                 bg-primary dark:bg-primaryLightDark rounded-lg 
+                 bg-primary dark:bg-lightDark rounded-lg 
                     p-4 shadow-md">
             <app-custom-calendar (daySelected)=getAndShowDaySelectedInCalendar($event)></app-custom-calendar>
         </div>
 
         <div class="md:col-span-4 h-auto my-4 md:m-0
                     flex flex-row flex-wrap content-center
-                    shadow-md bg-primary dark:bg-primaryLightDark rounded-lg p-4">
+                    shadow-md bg-primary dark:bg-lightDark rounded-lg p-4">
             <div class="md:hidden">
                 <ng-container *ngTemplateOutlet="buttonPrevious"></ng-container>
             </div>
@@ -41,7 +41,7 @@
         </div>
 
         <div class="md:row-span-3 md:col-span-4 h-auto md:h-auto my-4 md:m-0
-    shadow-md bg-primary dark:bg-primaryLightDark rounded-lg p-4">
+    shadow-md bg-primary dark:bg-lightDark rounded-lg p-4">
             <app-trainings-list [trainingsDay]="daySelected?.trainingsDay" [date]="daySelected.getDate()"></app-trainings-list>
         </div>
 

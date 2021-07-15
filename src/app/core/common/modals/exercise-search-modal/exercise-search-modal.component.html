@@ -1,7 +1,7 @@
 <jw-modal [id]='id' (closeEvent)="onModalClosed()">
 
-    <h1 class="text-xl font-semibold dark:text-textPrimaryDark">Exercise search</h1>
-    <div class="w-full my-2 h-px bg-gray dark:bg-grayLight"></div>
+    <h1 class="text-xl font-semibold dark:text-white">Exercise search</h1>
+    <div class="w-full my-2 h-px bg-light-dark dark:bg-light-dark"></div>
 
     <div class="flex gap-2 h-10">
       <input class="input flex-grow" [formControl]="exerciseName" (change)="onSearchChanges()">
@@ -19,7 +19,7 @@
         <div class="w-full" (click)="onExerciseClicked(exercise)">
           {{exercise.name}}
         </div>
-        <div *ngIf="!isLast" class="flex-grow h-px bg-gray dark:bg-grayLight my-1"></div>
+        <div *ngIf="!isLast" class="flex-grow h-px bg-light-dark dark:bg-light-dark my-1"></div>
       </div>
     </div>
 
