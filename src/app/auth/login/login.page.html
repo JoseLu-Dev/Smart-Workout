@@ -1,28 +1,48 @@
-<div class="background sm:flex sm:flex-wrap sm:content-center overflow-y-auto">
-  <div class="w-10/12 sm:w-8/12 md:w-6/12 xl:w-4/12 m-auto my-10 card">
+<div class="background sm:flex sm:flex-wrap sm:content-center overflow-y-auto overflow-x-hidden relative">
 
-    <h1 class="font-bold h-sec mt-4 text-center">Login</h1>
+  <div id="triangle-top-left" class="absolute top-0 z-0"></div>
 
-    <form [formGroup]="signInFormGroup" (ngSubmit)="onSignIn(signInFormGroup.value)" class="mt-6">
+  <div class="z-10 w-full h-full md:h-auto md:w-6/12 xl:w-4/12 m-auto md:my-10 md:shadow-sm md:rounded-md bg-light-light dark:bg-dark-dark flex flex-col justify-center p-8 ">
 
-      <label class="my-4 label" for="name">Username</label>
-      <input [ngClass]="{'input-invalid': invalidCredentials}" class="my-4 w-full input" type="text" autofocus
-        formControlName="name" placeholder="Username" />
+    <h1 class="font-bold h-sec text-center">Login</h1>
 
-      <label class="my-4 label" for="password">Password</label>
-      <input [ngClass]="{'input-invalid': invalidCredentials}" class="mt-4 mb-1 w-full input" type="password"
-        formControlName="password" placeholder="Password" />
+    <form [formGroup]="signInFormGroup" (ngSubmit)="onSignIn(signInFormGroup.value)"
+      class="mt-6 flex flex-col flex-wrap gap-4 items-center">
 
-      <p *ngIf="invalidCredentials" class="text-red-500 text-sm font-bold">Wrong username or password</p>
+
+      <div class="relative w-full" [ngClass]="{'empty': !signInFormGroup.get('name').value}">
+        <input id="name" [ngClass]="{'input-invalid': invalidCredentials}" type="text"
+          class="input px-2 w-full" formControlName="name" />
+        <label for="name"
+          class="cursor-text transition-all dark:text-white label-top-input absolute left-2 px-1 bg-light-light rounded-md dark:bg-dark-darkest">
+          Username
+        </label>
+      </div>
+
+      <div class="relative w-full" [ngClass]="{'empty': !signInFormGroup.get('password').value}">
+        <input id="password" [ngClass]="{'input-invalid': invalidCredentials}" type="password"
+          class="input px-2 w-full" formControlName="password" />
+        <label for="password"
+          class="cursor-text transition-all dark:text-white label-top-input absolute left-2 px-1 bg-light-light rounded-md dark:bg-dark-darkest">
+          Password
+        </label>
+      </div>
+
+
+      <p *ngIf="invalidCredentials" class="text-red-500 text-sm font-bold sm:block hidden">Wrong username or password</p>
 
       <a class="link">Forget Password?</a>
-      <!--disable on not valid form-->
-      <button type="submit" class="w-full mt-4 btn btn-blue">Login</button>
+
+      <button type="submit" class="w-20 md:w-full btn btn-blue">Login</button>
 
     </form>
 
-    <p class="mt-12 text-xs text-center text"> Don't have an account?
+    <div class="flex flex-wrap justify-center mt-4 md:mt-12">
+      <p class="text-xs text-center text"> Don't have an account?</p>
       <a [routerLink]="['/register']" routerLinkActive="router-link-active" class="text-xs ml-2 link">Create One</a>
-    </p>
+    </div>
+
   </div>
+
+  <div id="triangle-bottom-right" class="absolute bottom-0 right-0 z-0"></div>
 </div>

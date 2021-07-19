@@ -1,15 +1,15 @@
 <jw-modal [id]='id' (closeEvent)="onModalClosed()">
-  <h1 class="text-xl font-semibold dark:text-textPrimaryDark">Band selection</h1>
+  <h1 class="text-xl font-semibold dark:text-white">Band selection</h1>
 
   <div class="flex flex-row items-center my-2">
-    <div class="flex-grow h-px bg-gray dark:bg-grayLight"></div>
+    <div class="flex-grow h-px bg-light-dark dark:bg-light-dark"></div>
     <button class="btn-rounded btn-blue" (click)="onAddNewBandClicked()">
       <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" class="icon">
         <path d="M0 0h24v24H0z" fill="none" />
         <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
       </svg>
     </button>
-    <div class="w-2 h-px bg-gray dark:bg-grayLight"></div>
+    <div class="w-2 h-px bg-light-dark dark:bg-light-dark"></div>
     <app-bands-creation-modal (band)="addBandCreated($event)"></app-bands-creation-modal>
   </div>
 
@@ -19,7 +19,7 @@
   </div>
 
   <div *ngIf="bands && bands.length > 0"
-    class="flex flex-row gap-8 text-lg font-semibold text-textPrimary dark:text-textPrimaryDark">
+    class="flex flex-row gap-8 text-lg font-semibold text-black dark:text-white">
     <p class="flex-grow">Color</p>
     <p class="flex-grow">Resistance</p>
   </div>
@@ -31,7 +31,7 @@
       </div>
       <p class="flex-grow text">{{band.weight}} Kg</p>
     </button>
-    <div *ngIf="!IsLast" class="flex-grow h-px bg-gray dark:bg-grayLight my-1"></div>
+    <div *ngIf="!IsLast" class="flex-grow h-px bg-light-dark dark:bg-light-dark my-1"></div>
   </div>
 
   <form *ngIf="bandForm" [formGroup]="bandForm">

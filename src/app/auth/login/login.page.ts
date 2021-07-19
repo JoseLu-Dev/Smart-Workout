@@ -19,7 +19,6 @@ export class LoginPage implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthService,
-    private alertCtrl: AlertController,
     private router: Router,
   ) {
     this.authService.user.subscribe(user => {
@@ -38,7 +37,9 @@ export class LoginPage implements OnInit {
   }
 
   onSignIn(credentials: { name: string; password: string }) {
-    this.authService.login(credentials).subscribe();
+    this.authService.login(credentials).subscribe(res => {
+      if (!res) { this.invalidCredentials = true; }
+    });
   }
 }
 
