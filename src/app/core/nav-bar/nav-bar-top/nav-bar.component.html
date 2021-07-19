@@ -9,29 +9,29 @@ md:flex items-center justify-between flex-wrap shadow-md z-20 hidden">
     <div class="h-16 flex items-center justify-between flex-wrap">
       <div>
         <button (click)="goToCalendar()" class="nav-btn w-24 mx-4"
-          [ngClass]="{'nav-btn-active':inProfile}">Statistics</button>
+          [ngClass]="{'nav-btn-active':inProfile  | async}">Statistics</button>
       </div>
       <div class="separator"></div>
       <div>
         <button (click)="goToCalendar()" class="nav-btn w-24 mx-4"
-          [ngClass]="{'nav-btn-active':inCalendar}">Calendar</button>
+          [ngClass]="{'nav-btn-active':inCalendar  | async}">Calendar</button>
       </div>
       <div class="separator"></div>
       <div>
-        <button (click)="goToDay()" class="nav-btn w-24 mx-4" [ngClass]="{'nav-btn-active':inDay}">Day</button>
+        <button (click)="goToDay()" class="nav-btn w-24 mx-4" [ngClass]="{'nav-btn-active':inDay  | async}">Day</button>
       </div>
       <div class="separator"></div>
       <div>
         <button (click)="goToProfile()" class="nav-btn w-24 mx-4"
-          [ngClass]="{'nav-btn-active':inProfile}">Profile</button>
+          [ngClass]="{'nav-btn-active':inProfile  | async}">Profile</button>
       </div>
       <div class="separator"></div>
       <div class="mx-2 flex items-stretch">
         <button (click)="goToSettings()" id="parent-hover"
           class="nav-btn w-16 place-items-center flex flex-wrap content-center"
-          [ngClass]="{'nav-btn-active':inSettings}">
+          [ngClass]="{'nav-btn-active':inSettings  | async}">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" class="h-6 w-6 fill-current text-black dark:text-white m-auto parent-highlight
-          " [ngClass]="{'nav-btn-active':inSettings}">
+          " [ngClass]="{'nav-btn-active':inSettings  | async}">
             <path
               d="M3.94 6.5L2.22 3.64l1.42-1.42L6.5 3.94c.52-.3 1.1-.54 1.7-.7L9 0h2l.8 3.24c.6.16 1.18.4 1.7.7l2.86-1.72 1.42 1.42-1.72 2.86c.3.52.54 1.1.7 1.7L20 9v2l-3.24.8c-.16.6-.4 1.18-.7 1.7l1.72 2.86-1.42 1.42-2.86-1.72c-.52.3-1.1.54-1.7.7L11 20H9l-.8-3.24c-.6-.16-1.18-.4-1.7-.7l-2.86 1.72-1.42-1.42 1.72-2.86c-.3-.52-.54-1.1-.7-1.7L0 11V9l3.24-.8c.16-.6.4-1.18.7-1.7zM10 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
           </svg>

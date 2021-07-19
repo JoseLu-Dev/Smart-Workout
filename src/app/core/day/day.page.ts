@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DaysService } from '../common/services/days.service';
+import { NavBarService } from '../nav-bar/nav-bar.service';
 
 @Component({
   selector: 'app-day',
@@ -12,7 +13,10 @@ export class DayPage implements OnInit {
 
   public todayTrainings: any;
 
-  constructor(public daysService: DaysService) { }
+  constructor(
+    public daysService: DaysService,
+    private navBarService: NavBarService,
+    ) { }
 
   ngOnInit() {
     this.today = new Date();
@@ -24,6 +28,7 @@ export class DayPage implements OnInit {
         console.log(res);
         this.todayTrainings = res['body'];
       });
+      this.navBarService.setPageSelected(this.navBarService.day);
   }
 
 }

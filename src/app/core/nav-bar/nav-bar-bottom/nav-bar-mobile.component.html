@@ -1,14 +1,14 @@
 <div class="bg-light-lightest dark:bg-dark flex items-center justify-between flex-wrap h-14 shadow-md z-30
 border-t dark:border-t-0 border-light-dark md:hidden">
 
-  <div (click)="goToCalendar()" id="nav-item-mobile" [ngClass]="{'border-b-4 border-blue':inCalendar}">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon" [ngClass]="{'nav-icon-active':inCalendar}">
+  <div (click)="goToCalendar()" id="nav-item-mobile" [ngClass]="{'border-b-4 border-blue':inStatistics | async}">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon" [ngClass]="{'nav-icon-active':inStatistics | async}">
       <path d="M5 9.2h3V19H5V9.2zM10.6 5h2.8v14h-2.8V5zm5.6 8H19v6h-2.8v-6z" />
     </svg>
   </div>
 
-  <div (click)="goToCalendar()" id="nav-item-mobile" [ngClass]="{'border-b-4 border-blue':inCalendar}">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon" [ngClass]="{'nav-icon-active':inCalendar}">
+  <div (click)="goToCalendar()" id="nav-item-mobile" [ngClass]="{'border-b-4 border-blue':inCalendar | async}">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon" [ngClass]="{'nav-icon-active':inCalendar | async}">
       <path d="M0 0h24v24H0z" fill="none" />
       <path d="M0 0h24v24H0z" fill="none" />
       <path
@@ -16,23 +16,23 @@ border-t dark:border-t-0 border-light-dark md:hidden">
     </svg>
   </div>
 
-  <div (click)="goToDay()" id="nav-item-mobile" [ngClass]="{'border-b-4 border-blue':inDay}">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon" [ngClass]="{'nav-icon-active':inDay}">
+  <div (click)="goToDay()" id="nav-item-mobile" [ngClass]="{'border-b-4 border-blue':inDay | async}">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon" [ngClass]="{'nav-icon-active':inDay | async}">
       <path d="M0 0h24v24H0z" fill="none" />
       <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
     </svg>
   </div>
 
-  <div (click)="goToProfile()" id="nav-item-mobile" [ngClass]="{'border-b-4 border-blue':inProfile}">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon" [ngClass]="{'nav-icon-active':inProfile}">
+  <div (click)="goToProfile()" id="nav-item-mobile" [ngClass]="{'border-b-4 border-blue':inProfile | async}">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon" [ngClass]="{'nav-icon-active':inProfile | async}">
       <path d="M0 0h24v24H0z" fill="none" />
       <path
         d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
     </svg>
   </div>
 
-  <div (click)="goToSettings()" id="nav-item-mobile" [ngClass]="{'border-b-4 border-blue':inSettings}">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon" [ngClass]="{'nav-icon-active':inSettings}">
+  <div (click)="goToSettings()" id="nav-item-mobile" [ngClass]="{'border-b-4 border-blue':inSettings  | async}">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon" [ngClass]="{'nav-icon-active':inSettings | async}">
       <g>
         <path d="M0,0h24v24H0V0z" fill="none" />
         <path
