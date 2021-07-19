@@ -20,7 +20,7 @@ module.exports = {
           dark: '#2F3136',
           DEFAULT: '#36393F',
           light: '#72767D',
-          lightest: '#DBDCDD',
+          lightest: '#919191',
         },
         // light mode
         light: {

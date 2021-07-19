@@ -52,7 +52,7 @@
 
 .input {
     @apply p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-green-light focus:border-transparent 
-    border-light-dark dark:border-transparent bg-light-light dark:text-white
+    border-light-dark dark:border-transparent dark:text-white
     dark:bg-dark-darkest;
 }
 
@@ -118,6 +118,10 @@
 .icon-active {
     @apply fill-current text-black
     hover:text-white;
+}
+
+.icon-white{
+    @apply fill-current text-white 
 }
 
 /* Chrome, Safari, Edge, Opera */
