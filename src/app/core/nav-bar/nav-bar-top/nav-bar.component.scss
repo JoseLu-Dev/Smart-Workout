@@ -10,7 +10,7 @@
 }
 
 .separator {
-    @apply bg-light-darkest dark:bg-light-dark w-1 h-12 rounded-full
+    @apply bg-light dark:bg-dark w-1 h-12 rounded-full
 }
 
 #parent-hover:hover .parent-highlight {
