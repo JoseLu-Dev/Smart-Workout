@@ -1,12 +1,13 @@
-.icon{
-    @apply w-7 h-7 fill-current text-black dark:text-white
-    opacity-50 m-auto hover:opacity-100
+.icon {
+    @apply w-7 h-7 fill-current m-auto
+    text-light-darkest hover:text-black
+    dark:text-dark-lightest dark:hover:text-white;
 }
 
-.nav-icon-active{
-    @apply opacity-100 text-blue-dark
+.nav-icon-active {
+    @apply opacity-100 text-blue-dark;
 }
 
 #nav-item-mobile {
-    @apply place-items-center flex flex-wrap content-center flex-grow h-14 cursor-pointer
+    @apply place-items-center flex flex-wrap content-center flex-grow h-14 cursor-pointer;
 }

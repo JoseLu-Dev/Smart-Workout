@@ -111,7 +111,13 @@
 }
 
 .icon {
-    @apply fill-current text-white;
+    @apply fill-current text-light-darkest hover:text-black
+    dark:text-dark-lightest dark:hover:text-white;
+}
+
+.icon-active {
+    @apply fill-current text-black
+    hover:text-white;
 }
 
 /* Chrome, Safari, Edge, Opera */
