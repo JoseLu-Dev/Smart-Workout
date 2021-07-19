@@ -30,3 +30,6 @@ npm-debug.log*
 /plugins
 /www
 /android
+
+resources/android
+resources/ios
