@@ -1,6 +1,6 @@
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
 /*
  * App Global CSS
  * ----------------------------------------------------------------------------
@@ -19,7 +19,7 @@
 @import "~@ionic/angular/css/normalize.css";
 @import "~@ionic/angular/css/structure.css";
 @import "~@ionic/angular/css/typography.css";
-@import '~@ionic/angular/css/display.css';
+@import "~@ionic/angular/css/display.css";
 
 /* Optional CSS utils that can be commented out */
 // @import "~@ionic/angular/css/padding.css";
@@ -29,101 +29,101 @@
 // @import "~@ionic/angular/css/flex-utils.css";
 
 .btn-green {
-    @apply text-white bg-green hover:bg-green-dark
+    @apply text-white bg-green hover:bg-green-dark;
 }
 
 .btn-blue {
-    @apply text-white bg-blue hover:bg-blue-dark
+    @apply text-white bg-blue hover:bg-blue-dark;
 }
 
 .btn {
-    @apply block text-center p-3 duration-300 rounded-lg
+    @apply block text-center p-3 duration-300 rounded-lg;
 }
 
-.btn-transparent{
+.btn-transparent {
     @apply block text-center p-2 duration-300 rounded-lg
     text-blue hover:bg-blue hover:text-white
-    dark:text-white font-bold
+    dark:text-white font-bold;
 }
 
 .btn-rounded {
-    @apply block text-center p-1 duration-300 rounded-full
+    @apply block text-center p-1 duration-300 rounded-full;
 }
 
 .input {
     @apply p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-green-light focus:border-transparent 
     border-light-dark dark:border-transparent bg-light-light dark:text-white
-    dark:bg-dark-darkest
+    dark:bg-dark-darkest;
 }
 
 .input-invalid {
-    @apply outline-none ring-2 ring-red-500 border-transparent
+    @apply outline-none ring-2 ring-red-500 border-transparent;
 }
 
 .card {
-    @apply rounded-lg p-4 md:p-8 shadow-md bg-light-light dark:bg-dark-dark
+    @apply rounded-lg p-4 md:p-8 shadow-md bg-light-lightest dark:bg-dark-dark;
 }
 
 .card-modal {
-    @apply rounded-lg p-4 shadow-lg bg-light dark:bg-dark
+    @apply rounded-lg p-4 shadow-lg bg-light-lightest dark:bg-dark;
 }
 
 .background {
-    @apply w-screen h-screen bg-light dark:bg-dark
+    @apply w-screen h-screen bg-light dark:bg-dark-darkest;
 }
 
 .link {
-    @apply font-medium cursor-pointer text-blue dark:text-blue-light hover:underline
+    @apply font-medium cursor-pointer text-blue dark:text-blue-light hover:underline;
 }
 
 .text {
-    @apply text-dark dark:text-white
+    @apply text-dark dark:text-white;
 }
 
 .label {
-    @apply font-semibold text-dark-darkest dark:text-light-lightest
+    @apply font-semibold text-dark-darkest dark:text-light-lightest;
 }
 
 .label-error {
-    @apply font-semibold text-red-500
+    @apply font-semibold text-red-500;
 }
 
-.radioButton{
+.radioButton {
     @apply opacity-15
     bg-light-dark dark:bg-dark border-transparent checked:opacity-100 dark:opacity-100
     checked:bg-blue hover:checked:bg-blue-light text-blue dark:text-blue-dark 
-    checked:border-transparent ring-0 focus:ring-0 focus:ring-offset-0
+    checked:border-transparent ring-0 focus:ring-0 focus:ring-offset-0;
 }
 
-.checkBox{
+.checkBox {
     @apply opacity-15 rounded-md
     bg-light-dark dark:bg-dark border-transparent checked:opacity-100 dark:opacity-100
     checked:bg-blue hover:checked:bg-blue-light text-blue dark:text-blue-dark 
-    checked:border-transparent ring-0 focus:ring-0 focus:ring-offset-0
+    checked:border-transparent ring-0 focus:ring-0 focus:ring-offset-0;
 }
 
 .h-sec {
-    @apply text-4xl text-black dark:text-white
+    @apply text-4xl text-black dark:text-white;
 }
 
 .h-pri {
-    @apply text-6xl text-black dark:text-white
+    @apply text-6xl text-black dark:text-white;
 }
 
-.icon{
-    @apply fill-current text-white 
+.icon {
+    @apply fill-current text-white;
 }
 
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+    -webkit-appearance: none;
+    margin: 0;
 }
 
 /* Firefox */
-input[type=number] {
-  -moz-appearance: textfield;
+input[type="number"] {
+    -moz-appearance: textfield;
 }
 
 .label-top-input {
