@@ -53,7 +53,7 @@
 .input {
     @apply p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-green-light focus:border-transparent 
     border-light-dark dark:border-transparent dark:text-white
-    dark:bg-dark-darkest;
+    dark:bg-dark-darkest bg-transparent;
 }
 
 .input-invalid {
