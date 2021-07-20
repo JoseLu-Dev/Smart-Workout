@@ -120,8 +120,8 @@
     dark:text-white;
 }
 
-.icon-white{
-    @apply fill-current text-white 
+.icon-white {
+    @apply fill-current text-white;
 }
 
 /* Chrome, Safari, Edge, Opera */
@@ -147,4 +147,9 @@ input[type="number"] {
     transform: translateY(-50%);
     font-size: 18px;
     color: #919191;
+}
+
+/* Firefox */
+* {
+    scrollbar-width: thin;
 }
