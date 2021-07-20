@@ -21,6 +21,9 @@ export class TrainingStatsComponent implements OnInit {
   public repsPerMuscleChartLabels: Label[] = [];
   public repsPerMuscleChartData: MultiDataSet = [];
 
+  public weightPerMuscleChartLabels: Label[] = [];
+  public weightPerMuscleChartData: MultiDataSet = [];
+
   public doughnutChartType: ChartType = 'doughnut';
 
   public barChartOptions: ChartOptions = {
@@ -41,6 +44,7 @@ export class TrainingStatsComponent implements OnInit {
 
       this.setRepsPerMuscleChartData();
       this.setSetsPerMuscleChartData();
+      this.setWeightPerMuscleChartData();
     });
   }
 
@@ -60,6 +64,15 @@ export class TrainingStatsComponent implements OnInit {
       setsNumbers.push(value);
     }
     this.setsPerMuscleChartData = setsNumbers;
+  }
+
+  setWeightPerMuscleChartData() {
+    const weightsNumbers = [];
+    for (const [key, value] of Object.entries(this.trainingStatistics.weightPerMuscle)) {
+      this.weightPerMuscleChartLabels.push(key);
+      weightsNumbers.push(value);
+    }
+    this.weightPerMuscleChartData = weightsNumbers;
   }
 
 }

@@ -6,6 +6,7 @@ export class TrainingStatistics {
 
     setsPerMuscle: CountPerMuscle;
     repsPerMuscle: CountPerMuscle;
+    weightPerMuscle: CountPerMuscle;
 }
 
 export class CountPerMuscle {

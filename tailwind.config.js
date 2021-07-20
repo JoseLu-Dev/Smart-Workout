@@ -43,6 +43,9 @@ module.exports = {
       },
       opacity: {
         '15': '0.15'
+      },
+      width: {
+        '30%': '30%'
       }
     },
   },
