@@ -1,3 +1,4 @@
+import { UserStatsService } from './../../../../services/user-stats.service';
 import { ExerciseSet } from '../../../../models/training.models';
 import { Component, Input, OnInit } from '@angular/core';
 
@@ -10,8 +11,16 @@ export class MultipleItemListStrategyComponent implements OnInit {
 
   @Input() set: ExerciseSet;
 
-  constructor() { }
+  constructor(private userStatsService: UserStatsService) { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
+  getUserWeight() {
+    return this.userStatsService.getWeight();
+  }
+
+  weightString(num: number): string {
+    if(num > 0){ return `+ ${num}`;}
+    return `- ${Math.abs(num)}`;
+  }
 }

@@ -1,35 +1,47 @@
-<div *ngFor="let set of (training | async)?.setsDone; last as isLast; index as i" class="flex flex-col items-center">
-  <div *ngIf="set">
-    <div class="flex">
-      <div [ngSwitch]="set?.type" class="w-full">
-        <div *ngSwitchCase="'normal'">
-          <app-normal-item-list-strategy [set]="set"></app-normal-item-list-strategy>
+<div class="w-full overflow-y-scroll">
+  <div *ngFor="let set of (training | async)?.setsDone; last as isLast; index as i"
+    class="flex flex-col items-center w-full">
+    <div *ngIf="set" class="w-full">
+      <div class="flex w-full">
+        <div [ngSwitch]="set?.type" class="w-full">
+          <div *ngSwitchCase="'normal'">
+            <app-normal-item-list-strategy [set]="set"></app-normal-item-list-strategy>
+          </div>
+          <div *ngSwitchDefault>
+            <app-multiple-item-list-strategy [set]="set"></app-multiple-item-list-strategy>
+          </div>
         </div>
-        <div *ngSwitchDefault>
-          <app-multiple-item-list-strategy [set]="set"></app-multiple-item-list-strategy>
+
+        <div *ngIf="editing" class="flex flex-col ml-2 mt-14 md:mt-0 gap-2">
+          <button class="btn-rounded btn-blue" (click)="onEditSetClicked(i)">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon-white w-6 h-6">
+              <path d="M0 0h24v24H0z" fill="none" />
+              <path
+                d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z" />
+            </svg>
+          </button>
+          <button class="btn-rounded btn-blue" (click)="onDeleteSetClicked(i)">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon-white w-6 h-6">
+              <path d="M0 0h24v24H0z" fill="none" />
+              <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z" />
+            </svg>
+          </button>
+          <!--TODO drag and drop-->
+          <button class="btn-rounded btn-blue">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon-white w-6 h-6">
+              <path d="M0 0h24v24H0V0z" fill="none" />
+              <path
+                d="M11 18c0 1.1-.9 2-2 2s-2-.9-2-2 .9-2 2-2 2 .9 2 2zm-2-8c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0-6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm6 4c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z" />
+            </svg>
+          </button>
         </div>
+
       </div>
 
-      <div *ngIf="editing" class="flex flex-col ml-2 gap-2">
-        <button class="btn-rounded btn-blue" (click)="onEditSetClicked(i)">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon w-6 h-6">
-            <path d="M0 0h24v24H0z" fill="none" />
-            <path
-              d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z" />
-          </svg>
-        </button>
-        <button class="btn-rounded btn-blue" (click)="onDeleteSetClicked(i)">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon w-6 h-6">
-            <path d="M0 0h24v24H0z" fill="none" />
-            <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z" />
-          </svg>
-        </button>
+      <div *ngIf="!isLast" class="w-full">
+        <ng-container *ngTemplateOutlet="rest; context:{rest:set.finalRest}">
+        </ng-container>
       </div>
-    </div>
-
-    <div *ngIf="!isLast" class="w-full">
-      <ng-container *ngTemplateOutlet="rest; context:{rest:set.finalRest}">
-      </ng-container>
     </div>
   </div>
 </div>
@@ -37,15 +49,15 @@
 
 <ng-template #rest let-rest="rest">
   <div class="flex flex-row items-center my-2">
-    <div class="flex-grow h-px bg-light-dark dark:bg-light-dark mx-3"></div>
+    <div class="flex-grow h-px bg-light-dark dark:bg-dark-light mx-3"></div>
     <div class="flex flex-row">
-      <p class="text-sm text-light-dark dark:text-light-dark">{{rest | secondsFormat}}</p>
-      <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 0 24 24" width="20px" class="icon-background">
+      <p class="text-sm text-black dark:text-white">{{rest | secondsFormat}}</p>
+      <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 0 24 24" width="20px" class="icon-active">
         <path d="M0 0h24v24H0V0z" fill="none" />
         <path
           d="M15.07 1.01h-6v2h6v-2zm-4 13h2v-6h-2v6zm8.03-6.62l1.42-1.42c-.43-.51-.9-.99-1.41-1.41l-1.42 1.42C16.14 4.74 14.19 4 12.07 4c-4.97 0-9 4.03-9 9s4.02 9 9 9 9-4.03 9-9c0-2.11-.74-4.06-1.97-5.61zm-7.03 12.62c-3.87 0-7-3.13-7-7s3.13-7 7-7 7 3.13 7 7-3.13 7-7 7z" />
       </svg>
     </div>
-    <div class="flex-grow h-px bg-light-dark dark:bg-light-dark mx-3"></div>
+    <div class="flex-grow h-px bg-light-dark dark:bg-dark-light mx-3"></div>
   </div>
 </ng-template>
