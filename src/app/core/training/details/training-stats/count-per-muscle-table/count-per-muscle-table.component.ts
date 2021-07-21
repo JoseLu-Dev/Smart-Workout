@@ -7,13 +7,28 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class CountPerMuscleTableComponent implements OnInit {
 
-  @Input() countPerMuscle;
-  @Input() muscles;
+  @Input() set countPerMuscle(countPerMuscleArray: number[]) {
+    if(!countPerMuscleArray){return;}
+    this.countPerMuscleArray = countPerMuscleArray;
+    this.calculateMinMax();
+  }
+
+  @Input() muscles: string[];
 
   @Input() unit;
+
+  countPerMuscleArray: number[];
+
+  maxValue: number;
+  minValue: number;
 
   constructor() { }
 
   ngOnInit() {}
+
+  calculateMinMax(){
+    this.maxValue = Math.max(...this.countPerMuscleArray);
+    this.minValue = Math.min(...this.countPerMuscleArray);
+  }
 
 }

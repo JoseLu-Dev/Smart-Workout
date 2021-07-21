@@ -23,7 +23,7 @@
     </div>
   </div>
 
-  <div class="mt-12 flex flex-wrap justify-between gap-4 px-4 m:px-0">
+  <div class="mt-12 flex flex-wrap justify-around gap-4 px-4 md:px-0">
 
     <ng-container *ngTemplateOutlet="countPerMuscle; 
     context:{data: setsPerMuscleChartData, labels: setsPerMuscleChartLabels, title: 'Sets per muscle group', unit:'sets'}"></ng-container>
@@ -32,13 +32,13 @@
     context:{data: repsPerMuscleChartData, labels: repsPerMuscleChartLabels, title: 'Reps per muscle group', unit:'reps'}"></ng-container>
 
     <ng-container *ngTemplateOutlet="countPerMuscle; 
-    context:{data: weightPerMuscleChartData, labels: weightPerMuscleChartLabels, title: 'Weight moved per muscle group', unit:'kg'}"></ng-container>
+    context:{data: weightPerMuscleChartData, labels: weightPerMuscleChartLabels, title: 'Weight per muscle group', unit:'kg'}"></ng-container>
 
   </div>
 </div>
 
 <ng-template #countPerMuscle let-data="data" let-labels="labels" let-title="title" let-unit="unit">
-  <div class="flex flex-col w-full lg:w-30%">
+  <div class="flex flex-col w-full lg:w-30% min-w-80">
     <div class="rounded-lg p-4 shadow-md bg-light-lightest dark:bg-dark-dark">
       <div class="w-full flex flex-row mb-2">
         <div class="flex flex-col w-full">
