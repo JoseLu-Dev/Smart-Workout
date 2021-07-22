@@ -22,8 +22,10 @@ export class BaseStrategyComponent implements OnInit {
         this.setPropertiesFormGroup.get('restSecondsFinal').setValue(set.finalRest % 60);
         this.setPropertiesFormGroup.get('restMinutesFinal').setValue(Math.trunc(set.finalRest / 60));
 
-        this.setPropertiesFormGroup.get('restSecondsBetweenSet').setValue(set.setParts[set.setParts.length-1].rest % 60);
-        this.setPropertiesFormGroup.get('restMinutesBetweenSet').setValue(Math.trunc(set.setParts[set.setParts.length-1].rest / 60));
+        this.setPropertiesFormGroup.get('restSecondsBetweenSet').setValue(set.setParts[set.setParts.length - 1].rest % 60);
+        this.setPropertiesFormGroup.get('restMinutesBetweenSet').setValue(Math.trunc(set.setParts[set.setParts.length - 1].rest / 60));
+
+        setTimeout(() => { this.accordion.updateAccordion(null); }, 0);
     }
 
     /**
@@ -63,7 +65,7 @@ export class BaseStrategyComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        if(!this.setPropertiesFormGroup){
+        if (!this.setPropertiesFormGroup) {
             this.buildForm();
         }
     }
