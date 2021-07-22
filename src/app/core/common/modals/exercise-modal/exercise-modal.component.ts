@@ -22,7 +22,7 @@ export class ExerciseModalComponent implements OnInit {
   /**
    * Modal id
    */
-  id = `exercise-modal`;
+  id = `exercise-modal-${Math.random()}`;
 
   constructor(
     private modalService: ModalService,
