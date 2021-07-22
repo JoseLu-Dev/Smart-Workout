@@ -1,7 +1,6 @@
 .icon {
     @apply w-7 h-7 fill-current m-auto
-    text-light-darkest hover:text-black
-    dark:text-dark-lightest dark:hover:text-white;
+    text-light-darkest dark:text-dark-lightest;
 }
 
 .nav-icon-active {
