@@ -1,17 +1,16 @@
 <div class="flex flex-row  items-center my-4">
   <label class="label mr-4 flex-grow" for="name">Exercise</label>
-  <div class="flex w-3/5 cursor-pointer" (click)="onSelectExerciseClicked()">
-    <div *ngIf="exerciseSelectedElement else noExerciseSelected">{{exerciseSelectedElement.name}}</div>
-    <ng-template #noExerciseSelected>
-      <button class="btn btn-blue w-full text-center">Select an exercise</button>
-    </ng-template>
+  <div class="flex w-3/5" >
+    <div *ngIf="exerciseSelectedElement">{{exerciseSelectedElement.name}}</div>
     <app-exercise-search-modal (exerciseSelected)="onExerciseSelected($event)"></app-exercise-search-modal>
   </div>
 </div>
 
-<div class="ml-auto flex w-3/5 justify-center gap-4">
-  <button class="btn-rounded btn-blue" (click)="onEditExerciseClicked()">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon w-6 h-6">
+<div class="ml-auto flex flex-wrap w-3/5 justify-center gap-4">
+  <button class="btn btn-blue w-full text-center" (click)="onSelectExerciseClicked()">Select exercise</button>
+
+  <button [disabled]="!exerciseSelectedSpecs" class="btn-rounded btn-blue" (click)="onEditExerciseClicked()">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon-white w-6 h-6">
       <path d="M0 0h24v24H0z" fill="none" />
       <path
         d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z" />
@@ -19,7 +18,7 @@
   </button>
 
   <button class="btn-rounded btn-blue" (click)="onAddNewExerciseClicked()">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon w-6 h-6">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon-white w-6 h-6">
       <path d="M0 0h24v24H0z" fill="none" />
       <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
     </svg>
@@ -32,10 +31,16 @@
 <div class="flex flex-row items-center my-4" *ngIf="exerciseSelectedSpecs?.progressions.length > 0">
   <label class="label mr-4 flex-grow" for="progression">Progression</label>
   <div class="flex w-3/5">
-    <ng-select #selectProgression [items]="exerciseSelectedSpecs?.progressions" [ngModel]="exerciseSelectedProgression"
-      class="input w-full" (ngModelChange)="onProgressionChange($event)">
+    <ng-select [items]="exerciseSelectedSpecs?.progressions" [searchable]="false"
+      [ngModel]="exerciseSelectedProgression" (ngModelChange)="onProgressionChange($event)"
+      class="cursor-pointer pl-2 pr-1 py-1 rounded-md border border-light-dark dark:border-0 dark:bg-dark-darkest dark:text-white w-full text-base">
       <ng-template ng-option-tmp let-item="item" let-index="index" let-search="searchTerm">
-        <div class="input m-px">{{item | titlecase}}</div>
+        <div *ngIf="index != 0" class="separator"></div>
+        <div
+          class="flex gap-1 shadow-lg dark:bg-dark-darkest dark:text-white text-base px-4 py-2 bg-white hover:bg-light-dark dark:hover:bg-dark-light"
+          [ngClass]="{'border-l-8 border-green': item == exerciseSelectedProgression}">
+          <p>{{item |titlecase}}</p>
+        </div>
       </ng-template>
     </ng-select>
   </div>
@@ -44,10 +49,16 @@
 <div class="flex flex-row items-center my-4" *ngIf="exerciseSelectedSpecs?.variations.length > 0">
   <label class="label mr-4 flex-grow" for="variation">Variation</label>
   <div class="flex w-3/5">
-    <ng-select #selectVariation [items]="exerciseSelectedSpecs?.variations" [ngModel]="exerciseSelectedVariation"
-      class="input w-full" (ngModelChange)="onVariationChange($event)">
+    <ng-select [items]="exerciseSelectedSpecs?.variations" [searchable]="false" [ngModel]="exerciseSelectedVariation"
+      (ngModelChange)="onVariationChange($event)"
+      class="cursor-pointer pl-2 pr-1 py-1 rounded-md border border-light-dark dark:border-0 dark:bg-dark-darkest dark:text-white w-full text-base">
       <ng-template ng-option-tmp let-item="item" let-index="index" let-search="searchTerm">
-        <div class="input m-px">{{item | titlecase}}</div>
+        <div *ngIf="index != 0" class="separator"></div>
+        <div
+          class="flex gap-1 shadow-lg dark:bg-dark-darkest dark:text-white text-base px-4 py-2 bg-white hover:bg-light-dark dark:hover:bg-dark-light"
+          [ngClass]="{'border-l-8 border-green': item == exerciseSelectedVariation}">
+          <p>{{item |titlecase}}</p>
+        </div>
       </ng-template>
     </ng-select>
   </div>
