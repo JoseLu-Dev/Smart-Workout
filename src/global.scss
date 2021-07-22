@@ -124,6 +124,10 @@
     @apply fill-current text-white;
 }
 
+.separator {
+    @apply w-full h-px bg-light-darkest
+}
+
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
@@ -152,4 +156,59 @@ input[type="number"] {
 /* Firefox */
 * {
     scrollbar-width: thin;
+}
+
+ng-select .ng-select-container span.ng-arrow-wrapper span.ng-arrow {
+    mask-image: url("assets/icon/expand_more_24dp.svg");
+    mask-size: contain;
+
+    -webkit-mask-image: url("assets/icon/expand_more_24dp.svg");
+    -webkit-mask-size: contain;
+
+    background-color: #0077b6;
+
+    height: 30px;
+    width: 30px;
+}
+
+ng-select .ng-select-container span.ng-arrow-wrapper {
+    margin-top: auto;
+    margin-bottom: auto;
+    height: 30px;
+}
+
+/* Hide default cross */
+.ng-select span.ng-clear-wrapper span.ng-clear {
+    font-size: 0;
+    background-color: #00000000;
+}
+
+.ng-select span.ng-clear-wrapper {
+    width: 0px;
+}
+
+.ng-value {
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+ng-select .ng-dropdown-panel-items {
+    @apply z-10 shadow rounded-md;
+}
+
+.ng-dropdown-panel {
+    animation: growDown 300ms ease-in-out;
+    transform-origin: top center;
+    border: 0 !important;
+}
+@keyframes growDown {
+    0% {
+        transform: scaleY(0);
+    }
+    80% {
+        transform: scaleY(1.1);
+    }
+    100% {
+        transform: scaleY(1);
+    }
 }
