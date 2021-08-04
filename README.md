@@ -30,7 +30,7 @@
         <li><a href="#built-with">Built With</a></li>
       </ul>
     </li>
-    <a href="#features">Features</a>
+    <li><a href="#features">Features</a></li>
     <li><a href="#contact">Contact</a></li>
   </ol>
 </details>
@@ -56,6 +56,11 @@ Smart Workout is an app that lets athletes to log and see the progress of their 
 - See your trainings on a calendar
 - See your progress through time
 - Light/dark mode
+
+## Future improvements
+
+- Weekly/monthly graphs
+
 
 <!-- CONTACT -->
 ## Contact
