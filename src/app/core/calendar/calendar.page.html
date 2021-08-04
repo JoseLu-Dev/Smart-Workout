@@ -1,21 +1,21 @@
-<div class="h-full overflow-y-scroll md:overflow-hidden p-2 md:p-4 xl:p-20 2xl:p-40">
+<div class="h-full overflow-y-auto md:p-4">
     <div class="h-full md:grid md:grid-cols-12 md:grid-flow-col gap-4">
 
-        <div class="md:row-span-4 md:col-span-8 h-auto md:h-auto my-4 md:m-0
-                 bg-primary dark:bg-primaryLightDark rounded-lg 
-                    p-4 shadow-md">
+        <div class="md:row-span-4 md:col-span-8 md:m-0
+                md:bg-light-lightest md:dark:bg-dark-dark rounded-lg 
+                    p-4 md:shadow-md">
             <app-custom-calendar (daySelected)=getAndShowDaySelectedInCalendar($event)></app-custom-calendar>
         </div>
 
-        <div class="md:col-span-4 h-auto my-4 md:m-0
+        <div class="md:col-span-4 h-auto md:m-0
                     flex flex-row flex-wrap content-center
-                    shadow-md bg-primary dark:bg-primaryLightDark rounded-lg p-4">
+                    md:shadow-md md:bg-light-lightest md:dark:bg-dark-dark rounded-lg p-4">
             <div class="md:hidden">
                 <ng-container *ngTemplateOutlet="buttonPrevious"></ng-container>
             </div>
 
             <div class="flex flex-wrap place-content-center flex-grow xl:max-h-16 md:w-full">
-                <p class="mb-2">
+                <p class="mb-2 md:text-xl lg:text-2xl">
                     {{ calendar?.calendarCreator.getMonthName(calendar?.monthNumber) }}
                     &nbsp; {{ calendar?.year }}
                 </p>
@@ -28,7 +28,7 @@
 
                 <div>
                     <button (click)="calendar.onNextMonth()" class="btn-rounded btn-blue md:mr-auto md:ml-2">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24px" class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon">
                             <path d="M0 0h24v24H0V0z" fill="none" />
                             <path
                                 d="M9.31 6.71c-.39.39-.39 1.02 0 1.41L13.19 12l-3.88 3.88c-.39.39-.39 1.02 0 1.41.39.39 1.02.39 1.41 0l4.59-4.59c.39-.39.39-1.02 0-1.41L10.72 6.7c-.38-.38-1.02-.38-1.41.01z" />
@@ -40,9 +40,10 @@
 
         </div>
 
-        <div class="md:row-span-3 md:col-span-4 h-auto md:h-auto my-4 md:m-0
-    shadow-md bg-primary dark:bg-primaryLightDark rounded-lg p-4">
-            <app-trainings-list [trainingsDay]="daySelected?.trainingsDay" [date]="daySelected.getDate()"></app-trainings-list>
+        <div class="md:row-span-3 md:col-span-4 h-auto md:h-auto md:m-0
+    md:shadow-md md:bg-light-lightest md:dark:bg-dark-dark rounded-lg p-4">
+            <app-trainings-list [trainingsDay]="daySelected?.trainingsDay" [date]="daySelected?.getDate()">
+            </app-trainings-list>
         </div>
 
     </div>
@@ -50,7 +51,7 @@
 
 <ng-template #buttonPrevious>
     <button (click)="calendar.onPreviousMonth()" class="btn-rounded btn-blue">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24px" class="icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon">
             <path d="M0 0h24v24H0V0z" fill="none" />
             <path
                 d="M14.91 6.71c-.39-.39-1.02-.39-1.41 0L8.91 11.3c-.39.39-.39 1.02 0 1.41l4.59 4.59c.39.39 1.02.39 1.41 0 .39-.39.39-1.02 0-1.41L11.03 12l3.88-3.88c.38-.39.38-1.03 0-1.41z" />

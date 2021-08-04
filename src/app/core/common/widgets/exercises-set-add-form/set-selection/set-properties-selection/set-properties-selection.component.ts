@@ -96,7 +96,7 @@ export class SetPropertiesSelectionComponent implements OnInit, OnChanges {
   buildForm(setPart: ExerciseSetPart): void {
     const values: FormValues = this.getFormValues(setPart);
     this.setFormGroup = this.formBuilder.group({
-      weight: [values.weight, Validators.compose([!this.exercise?.bodyWeight ? Validators.required : null, Validators.min(1)])],
+      weight: [values.weight, Validators.compose([!this.exercise?.bodyWeight ? Validators.required : null, Validators.min(0)])],
       weightResistanceType: [{ value: values.weightResistanceType, disabled: this.exercise?.bodyWeight ? false : true }],
       bandWeight: [{ value: values.bandWeight, disabled: true }],
       bandResistanceType: [values.bandResistanceType],

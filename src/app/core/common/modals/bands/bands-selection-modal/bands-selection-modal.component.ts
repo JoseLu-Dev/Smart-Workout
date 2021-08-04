@@ -23,7 +23,7 @@ export class BandsSelectionModalComponent implements OnInit {
   /**
    * Modal id
    */
-  id = 'bands-selection-modal';
+  id = `bands-selection-modal-${Math.random()}`;
 
   /**
    * Band selected to be compared on form submitted

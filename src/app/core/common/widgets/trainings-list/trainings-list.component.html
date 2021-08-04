@@ -3,7 +3,7 @@
   <p class="mb-4">Trainings list</p>
 
   <div *ngFor="let training of trainingsDay.trainings; index as i" (click)="onTrainingClicked(training.id)"
-  class="bg-primary dark:bg-primaryLightDark rounded-lg p-4 mb-4 shadow-lg flex flex-row items-center justify-between cursor-pointer">
+    class="bg-light-lightest dark:bg-dark-dark rounded-lg p-4 mb-4 shadow-lg flex flex-row items-center justify-between cursor-pointer">
 
     <div [ngStyle]="{'background-color' : training?.color}" class="btn-rounded w-8 h-8 mr-2"></div>
 
@@ -25,9 +25,9 @@
 
 </div>
 
-<div class="mt-2">
+<div class="mt-4">
   <button class="btn-rounded btn-blue mx-auto" (click)="onAddTrainingClicked()">
-    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" class="icon">
+    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" class="icon-white">
       <path d="M0 0h24v24H0z" fill="none" />
       <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
     </svg>
@@ -36,8 +36,10 @@
 </div>
 
 <ng-template #noTrainings>
-  <p class="label text-center">You don't have any trainings today,</p>
-  <p class="label text-center">want to create a new one?</p>
+  <div class="bg-light-lightest dark:bg-dark-dark p-4 rounded-lg shadow-lg">
+    <p class="label text-center">You don't have any trainings today,</p>
+    <p class="label text-center">want to create a new one?</p>
+  </div>
 </ng-template>
 
 <ng-template #done>

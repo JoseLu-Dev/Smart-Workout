@@ -1,6 +1,6 @@
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
 /*
  * App Global CSS
  * ----------------------------------------------------------------------------
@@ -19,7 +19,7 @@
 @import "~@ionic/angular/css/normalize.css";
 @import "~@ionic/angular/css/structure.css";
 @import "~@ionic/angular/css/typography.css";
-@import '~@ionic/angular/css/display.css';
+@import "~@ionic/angular/css/display.css";
 
 /* Optional CSS utils that can be commented out */
 // @import "~@ionic/angular/css/padding.css";
@@ -29,98 +29,186 @@
 // @import "~@ionic/angular/css/flex-utils.css";
 
 .btn-green {
-    @apply text-textPrimaryDark bg-tertiary hover:bg-tertiaryDark
+    @apply text-white bg-green hover:bg-green-dark;
 }
 
 .btn-blue {
-    @apply text-textPrimaryDark bg-secondary hover:bg-secondaryDark
+    @apply text-white bg-blue hover:bg-blue-dark;
 }
 
 .btn {
-    @apply block text-center p-3 duration-300 rounded-lg
+    @apply block text-center p-3 duration-300 rounded-lg;
 }
 
-.btn-transparent{
+.btn-transparent {
     @apply block text-center p-2 duration-300 rounded-lg
-    text-secondary hover:bg-secondary hover:text-textPrimaryDark
-    dark:text-secondaryLight font-bold
+    text-blue hover:bg-blue hover:text-white
+    dark:text-white font-bold;
 }
 
 .btn-rounded {
-    @apply block text-center p-1 duration-300 rounded-full
+    @apply block text-center p-1 duration-300 rounded-full;
 }
 
 .input {
-    @apply p-2 rounded-md border-black focus:outline-none focus:ring-2 focus:ring-tertiaryLight focus:border-transparent 
-    border-transparent text-textSecondary bg-primaryLight dark:text-textSecondaryDark dark:bg-primaryDark
+    @apply p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-green-light focus:border-transparent 
+    border-light-dark dark:border-transparent dark:text-white
+    dark:bg-dark-darkest bg-transparent;
 }
 
 .input-invalid {
-    @apply outline-none ring-2 ring-red-500 border-transparent
+    @apply outline-none ring-2 ring-red-500 border-transparent;
 }
 
 .card {
-    @apply rounded-lg p-4 md:p-8 shadow-md bg-primary dark:bg-primaryLightDark
+    @apply rounded-lg p-4 md:p-8 shadow-md bg-light-lightest dark:bg-dark-dark;
 }
 
 .card-modal {
-    @apply rounded-lg p-4 shadow-lg bg-primary dark:bg-primaryLightDark
+    @apply rounded-lg p-4 shadow-lg bg-light-lightest dark:bg-dark;
 }
 
 .background {
-    @apply w-screen h-screen bg-background dark:bg-backgroundDark
+    @apply w-screen h-screen bg-light dark:bg-dark-darkest;
 }
 
 .link {
-    @apply font-medium cursor-pointer text-secondary dark:text-secondaryLight hover:underline
+    @apply font-medium cursor-pointer text-blue dark:text-blue-light hover:underline;
 }
 
 .text {
-    @apply text-textSecondary dark:text-textSecondaryDark
+    @apply text-dark dark:text-white;
 }
 
 .label {
-    @apply font-semibold text-textSecondary dark:text-textSecondaryDark
+    @apply font-semibold text-dark-darkest dark:text-light-lightest;
 }
 
 .label-error {
-    @apply font-semibold text-red-500
+    @apply font-semibold text-red-500;
 }
 
-.radioButton{
+.radioButton {
     @apply opacity-15
-    bg-gray dark:bg-primaryDark border-transparent checked:opacity-100 dark:opacity-100
-    checked:bg-secondary hover:checked:bg-secondaryLight text-secondary dark:text-secondaryDark 
-    checked:border-transparent ring-0 focus:ring-0 focus:ring-offset-0
+    bg-light-dark dark:bg-dark border-transparent checked:opacity-100 dark:opacity-100
+    checked:bg-blue hover:checked:bg-blue-light text-blue dark:text-blue-dark 
+    checked:border-transparent ring-0 focus:ring-0 focus:ring-offset-0;
 }
 
-.checkBox{
+.checkBox {
     @apply opacity-15 rounded-md
-    bg-gray dark:bg-primaryDark border-transparent checked:opacity-100 dark:opacity-100
-    checked:bg-secondary hover:checked:bg-secondaryLight text-secondary dark:text-secondaryDark 
-    checked:border-transparent ring-0 focus:ring-0 focus:ring-offset-0
+    bg-light-dark dark:bg-dark border-transparent checked:opacity-100 dark:opacity-100
+    checked:bg-blue hover:checked:bg-blue-light text-blue dark:text-blue-dark 
+    checked:border-transparent ring-0 focus:ring-0 focus:ring-offset-0;
 }
 
 .h-sec {
-    @apply text-4xl text-textPrimary dark:text-textPrimaryDark
+    @apply text-4xl text-black dark:text-white;
 }
 
 .h-pri {
-    @apply text-6xl text-textPrimary dark:text-textPrimaryDark
+    @apply text-6xl text-black dark:text-white;
 }
 
-.icon{
-    @apply fill-current text-textPrimaryDark 
+.icon {
+    @apply fill-current text-light-darkest hover:text-black
+    dark:text-dark-lightest dark:hover:text-white;
+}
+
+.icon-active {
+    @apply fill-current text-black
+    dark:text-white;
+}
+
+.icon-white {
+    @apply fill-current text-white;
+}
+
+.separator {
+    @apply w-full h-px bg-light-darkest
 }
 
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+    -webkit-appearance: none;
+    margin: 0;
 }
 
 /* Firefox */
-input[type=number] {
-  -moz-appearance: textfield;
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+.label-top-input {
+    top: 0%;
+    transform: translateY(-50%);
+    font-size: 14px;
+}
+
+.empty input:not(:focus) + label {
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 18px;
+    color: #919191;
+}
+
+/* Firefox */
+* {
+    scrollbar-width: thin;
+}
+
+ng-select .ng-select-container span.ng-arrow-wrapper span.ng-arrow {
+    mask-image: url("assets/icon/expand_more_24dp.svg");
+    mask-size: contain;
+
+    -webkit-mask-image: url("assets/icon/expand_more_24dp.svg");
+    -webkit-mask-size: contain;
+
+    background-color: #0077b6;
+
+    height: 30px;
+    width: 30px;
+}
+
+ng-select .ng-select-container span.ng-arrow-wrapper {
+    margin-top: auto;
+    margin-bottom: auto;
+    height: 30px;
+}
+
+/* Hide default cross */
+.ng-select span.ng-clear-wrapper span.ng-clear {
+    font-size: 0;
+    background-color: #00000000;
+}
+
+.ng-select span.ng-clear-wrapper {
+    width: 0px;
+}
+
+.ng-value {
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+ng-select .ng-dropdown-panel-items {
+    @apply z-10 shadow rounded-md;
+}
+
+.ng-dropdown-panel {
+    animation: growDown 300ms ease-in-out;
+    transform-origin: top center;
+    border: 0 !important;
+}
+@keyframes growDown {
+    0% {
+        transform: scaleY(0);
+    }
+    80% {
+        transform: scaleY(1.1);
+    }
+    100% {
+        transform: scaleY(1);
+    }
 }

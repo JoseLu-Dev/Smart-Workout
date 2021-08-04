@@ -12,7 +12,7 @@ import { ExerciseSpecs } from '../../models/exercise.model';
 export class ExerciseModalComponent implements OnInit {
 
   @Input() set exercise(exercise: ExerciseSpecs) {
-
+    //TODO revise this
   }
 
   public title: string;
@@ -22,7 +22,7 @@ export class ExerciseModalComponent implements OnInit {
   /**
    * Modal id
    */
-  id = `exercise-modal`;
+  id = `exercise-modal-${Math.random()}`;
 
   constructor(
     private modalService: ModalService,

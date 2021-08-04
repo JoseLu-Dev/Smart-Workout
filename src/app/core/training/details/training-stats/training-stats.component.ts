@@ -1,4 +1,4 @@
-import { take } from 'rxjs/operators';
+import { take, last } from 'rxjs/operators';
 import { ChartOptions, ChartType } from 'chart.js';
 import { TrainingsComponentCommunicationService } from './../../../common/services/trainings-component-communication.service';
 import { Component, OnInit } from '@angular/core';
@@ -21,6 +21,9 @@ export class TrainingStatsComponent implements OnInit {
   public repsPerMuscleChartLabels: Label[] = [];
   public repsPerMuscleChartData: MultiDataSet = [];
 
+  public weightPerMuscleChartLabels: Label[] = [];
+  public weightPerMuscleChartData: MultiDataSet = [];
+
   public doughnutChartType: ChartType = 'doughnut';
 
   public barChartOptions: ChartOptions = {
@@ -35,13 +38,28 @@ export class TrainingStatsComponent implements OnInit {
   }
 
   setStatsData() {
-    this.trainingService.getTraining().pipe(take(1)).subscribe(training => {
+    this.trainingService.getTraining().pipe().subscribe(training => {
       if (!training || training.setsDone.length === 0) { return; }
+
+      this.resetData();
+
       this.trainingStatistics = Training.fromTraining(training).getTrainingStatistics();
 
       this.setRepsPerMuscleChartData();
       this.setSetsPerMuscleChartData();
+      this.setWeightPerMuscleChartData();
     });
+  }
+
+  resetData() {
+    this.setsPerMuscleChartLabels = [];
+    this.setsPerMuscleChartData = [];
+
+    this.repsPerMuscleChartLabels = [];
+    this.repsPerMuscleChartData = [];
+
+    this.weightPerMuscleChartLabels = [];
+    this.weightPerMuscleChartData = [];
   }
 
   setRepsPerMuscleChartData() {
@@ -60,6 +78,15 @@ export class TrainingStatsComponent implements OnInit {
       setsNumbers.push(value);
     }
     this.setsPerMuscleChartData = setsNumbers;
+  }
+
+  setWeightPerMuscleChartData() {
+    const weightsNumbers = [];
+    for (const [key, value] of Object.entries(this.trainingStatistics.weightPerMuscle)) {
+      this.weightPerMuscleChartLabels.push(key);
+      weightsNumbers.push(value);
+    }
+    this.weightPerMuscleChartData = weightsNumbers;
   }
 
 }

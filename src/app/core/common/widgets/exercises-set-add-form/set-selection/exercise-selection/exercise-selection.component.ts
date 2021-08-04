@@ -62,11 +62,11 @@ export class ExerciseSelectionComponent implements OnInit {
     this.getExerciseListFromAPI();
   }
 
-  onSelectExerciseClicked(){
+  onSelectExerciseClicked() {
     this.exerciseSearchModal.openModal();
   }
 
-  onExerciseSelected(exercise: ExerciseListElement){
+  onExerciseSelected(exercise: ExerciseListElement) {
     this.exerciseSelectedElement = exercise;
     this.onExerciseNameSelectedChange(exercise);
   }

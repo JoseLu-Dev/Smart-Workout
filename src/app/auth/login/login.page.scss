@@ -1,0 +1,45 @@
+#triangle-bottom-right {
+    width: 0;
+    height: 0;
+    border-bottom: 20vw solid #1a759f;
+    border-left: 130vw solid transparent;
+}
+
+#triangle-top-left {
+    width: 0;
+    height: 0;
+    border-top: 20vw solid #1a759f;
+    border-right: 130vw solid transparent;
+}
+
+@media (min-width: 640px) {
+    #triangle-bottom-right {
+        width: 0;
+        height: 0;
+        border-bottom: 20vw solid #1a759f;
+        border-left: 130vw solid transparent;
+    }
+
+    #triangle-top-left {
+        width: 0;
+        height: 0;
+        border-top: 20vw solid #1a759f;
+        border-right: 130vw solid transparent;
+    }
+}
+
+@media (min-width: 1024px) {
+    #triangle-bottom-right {
+        width: 0;
+        height: 0;
+        border-bottom: 10vw solid #1a759f;
+        border-left: 130vw solid transparent;
+    }
+
+    #triangle-top-left {
+        width: 0;
+        height: 0;
+        border-top: 10vw solid #1a759f;
+        border-right: 130vw solid transparent;
+    }
+}

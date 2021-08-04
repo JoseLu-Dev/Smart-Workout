@@ -1,36 +1,47 @@
-.calendar{
-  @apply bg-primary dark:bg-primaryLightDark grid grid-cols-7 gap-2
-  w-full h-full 
+.calendar {
+  @apply grid grid-cols-7 lg:gap-12 place-items-center
+  w-full h-full md:p-4;
 }
 
-.day{
+.day {
   @apply rounded-full 
-  w-10 h-10 
-  sm:w-12 sm:h-12
-  xl:w-14 xl:h-14
-  sm:text-lg lg:text-2xl
-  hover:bg-grayLight dark:hover:bg-gray
+  w-full h-full
+  hover:bg-light dark:hover:bg-dark;
 }
 
-.day-selected{
-  @apply
-  bg-grayLight hover:bg-gray
+.elem-text {
+  font-size: 5vw;
 }
 
-.today{
-  @apply text-secondary font-bold
-  hover:bg-secondary hover:text-primary
+@media (min-width: 640px) {
+  .elem-text {
+    font-size: 3vw;
+  }
 }
 
-.today-selected{
-  @apply
-  bg-secondary text-primary
+@media (min-width: 1024px) {
+  .elem-text {
+    font-size: 2vw;
+  }
 }
 
-.dot{
+.day-selected {
+  @apply bg-light-dark dark:bg-dark-light;
+}
+
+.today {
+  @apply text-blue font-bold
+  hover:bg-blue hover:text-white;
+}
+
+.today-selected {
+  @apply bg-blue text-white;
+}
+
+.dot {
   @apply rounded-full
   h-1 w-1
   md:h-1.5 md:w-1.5 
   mx-0.5
-  relative
+  relative;
 }
