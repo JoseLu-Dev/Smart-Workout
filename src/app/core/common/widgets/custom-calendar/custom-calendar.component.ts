@@ -2,7 +2,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { CalendarCreatorService } from './calendar-creator.service';
 import { Day } from './day.model';
-import { DaysService } from '../../common/services/days.service';
+import { DaysService } from '../../services/days.service';
 
 @Component({
   selector: 'app-custom-calendar',

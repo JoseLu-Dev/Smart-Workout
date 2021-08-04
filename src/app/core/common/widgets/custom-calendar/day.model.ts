@@ -1,4 +1,4 @@
-import { TrainingsDay } from '../../common/models/trainings-day.model';
+import { TrainingsDay } from '../../models/trainings-day.model';
 
 export class Day {
     // eslint-disable-next-line id-blacklist

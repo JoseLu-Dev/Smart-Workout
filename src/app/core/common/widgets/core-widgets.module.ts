@@ -20,6 +20,8 @@ import { AccordionItemComponent } from './accordion/accordion-item/accordion-ite
 import { MultipleItemListStrategyComponent } from './exercises-set-list/strategies/multiple-item-list-strategy/multiple-item-list-strategy.component';
 import { NormalItemListStrategyComponent } from './exercises-set-list/strategies/normal-item-list-strategy/normal-item-list-strategy.component';
 import { SetSelectionComponent } from './exercises-set-add-form/set-selection/set-selection.component';
+import { TrainingCalendarSelectionComponent } from './training-calendar-selection/training-calendar-selection.component';
+import { CustomCalendarComponent } from './custom-calendar/custom-calendar.component';
 
 @NgModule({
   imports: [
@@ -45,11 +47,14 @@ import { SetSelectionComponent } from './exercises-set-add-form/set-selection/se
     AccordionItemComponent,
     SuperSetStrategyComponent,
     CircuitExerciseStrategyComponent,
+    TrainingCalendarSelectionComponent,
+    CustomCalendarComponent,
   ],
   exports: [
     TrainingsListComponent,
     ExercisesSetListComponent,
     ExercisesSetAddFormComponent,
+    TrainingCalendarSelectionComponent,
   ]
 })
 export class CoreWidgetsModule {}
