@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Training } from '../common/models/training.models';
 import { DaysService } from '../common/services/days.service';
 import { NavBarService } from '../nav-bar/nav-bar.service';
 
@@ -16,6 +18,7 @@ export class DayPage implements OnInit {
   constructor(
     public daysService: DaysService,
     private navBarService: NavBarService,
+    private router: Router,
     ) { }
 
   ngOnInit() {
@@ -29,6 +32,10 @@ export class DayPage implements OnInit {
         this.todayTrainings = res['body'];
       });
       this.navBarService.setPageSelected(this.navBarService.day);
+  }
+
+  onTrainingSelected(training: Training){
+    this.router.navigate([`app/trainings/${training.id}`], { replaceUrl: false });
   }
 
 }

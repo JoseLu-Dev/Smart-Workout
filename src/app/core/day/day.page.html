@@ -1,5 +1,5 @@
 <div class="h-full flex flex-wrap content-center justify-center">
     <div class="w-full md:w-80 mx-4">
-        <app-trainings-list [trainingsDay]="todayTrainings" [date]="today"></app-trainings-list>
+        <app-trainings-list [trainingsDay]="todayTrainings" [date]="today" (trainingSelected)="onTrainingSelected($event)"></app-trainings-list>
     </div>
 </div>

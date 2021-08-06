@@ -1,8 +1,8 @@
-import { Router } from '@angular/router';
 import { NewTrainingModalComponent } from './../../modals/new-training-modal/new-training-modal.component';
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, Output, ViewChild, EventEmitter } from '@angular/core';
 import { TrainingsDay } from '../../models/trainings-day.model';
 import { TrainingsService } from '../../services/trainings.service';
+import { Training } from '../../models/training.models';
 
 @Component({
   selector: 'app-trainings-list',
@@ -22,14 +22,17 @@ export class TrainingsListComponent implements OnInit {
   @Input() trainingsDay: TrainingsDay;
 
   /**
+   * Training selected
+   */
+  @Output() trainingSelected = new EventEmitter<Training>();
+
+  /**
    * Instance of the child component (BandsModal) to use its methods
    */
   @ViewChild(NewTrainingModalComponent)
   newTrainingModal: NewTrainingModalComponent;
 
-  constructor(
-    private router: Router,
-    private trainingService: TrainingsService) { }
+  constructor(private trainingService: TrainingsService) { }
 
   ngOnInit() { }
 
@@ -52,10 +55,10 @@ export class TrainingsListComponent implements OnInit {
   }
 
   /**
-   * Goes to training page when training is clicked
+   * Outputs the training selected
    */
-  onTrainingClicked(id: string) {
-    this.router.navigate([`app/trainings/${id}`], { replaceUrl: false });
+  onTrainingClicked(training: Training) {
+    this.trainingSelected.next(training);
   }
 
   /**
