@@ -1,7 +1,7 @@
+import { TrainingSpecs } from './../common/models/trainings-day.model';
 import { NavBarService } from './../nav-bar/nav-bar.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Training } from '../common/models/training.models';
 
 @Component({
   selector: 'app-calendar',
@@ -18,7 +18,7 @@ export class CalendarPage implements OnInit {
     this.navBarService.setPageSelected(this.navBarService.calendar);
   }
 
-  onTrainingSelected(training: Training) {
+  onTrainingSelected(training: TrainingSpecs) {
     this.router.navigate([`app/trainings/${training.id}`], { replaceUrl: false });
   }
 }

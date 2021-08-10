@@ -1,8 +1,10 @@
+import { TrainingSpecs } from './../../models/trainings-day.model';
 import { NewTrainingModalComponent } from './../../modals/new-training-modal/new-training-modal.component';
 import { Component, Input, OnInit, Output, ViewChild, EventEmitter } from '@angular/core';
 import { TrainingsDay } from '../../models/trainings-day.model';
 import { TrainingsService } from '../../services/trainings.service';
 import { Training } from '../../models/training.models';
+// eslint-disable-next-line max-len
 import { TrainingCreationOptions, TrainingCreationOptionsModalComponent } from '../../modals/training-creation-options-modal/training-creation-options-modal.component';
 
 @Component({
@@ -25,7 +27,7 @@ export class TrainingsListComponent implements OnInit {
   /**
    * Training selected
    */
-  @Output() trainingSelected = new EventEmitter<Training>();
+  @Output() trainingSelected = new EventEmitter<TrainingSpecs>();
 
   /**
    * Instance of the child component (BandsModal) to use its methods
@@ -74,7 +76,7 @@ export class TrainingsListComponent implements OnInit {
   /**
    * Outputs the training selected
    */
-  onTrainingClicked(training: Training) {
+  onTrainingClicked(training: TrainingSpecs) {
     this.trainingSelected.next(training);
   }
 

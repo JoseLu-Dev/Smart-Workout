@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Training } from '../common/models/training.models';
+import { TrainingSpecs } from '../common/models/trainings-day.model';
 import { DaysService } from '../common/services/days.service';
 import { NavBarService } from '../nav-bar/nav-bar.service';
 
@@ -34,7 +35,7 @@ export class DayPage implements OnInit {
       this.navBarService.setPageSelected(this.navBarService.day);
   }
 
-  onTrainingSelected(training: Training){
+  onTrainingSelected(training: TrainingSpecs){
     this.router.navigate([`app/trainings/${training.id}`], { replaceUrl: false });
   }
 

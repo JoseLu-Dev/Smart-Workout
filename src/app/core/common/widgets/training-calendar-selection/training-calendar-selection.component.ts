@@ -1,7 +1,7 @@
+import { TrainingSpecs } from './../../models/trainings-day.model';
 import { CustomCalendarComponent } from '../custom-calendar/custom-calendar.component';
 import { Day } from '../custom-calendar/day.model';
 import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
-import { Training } from '../../models/training.models';
 
 @Component({
   selector: 'app-training-calendar-selection',
@@ -16,7 +16,7 @@ export class TrainingCalendarSelectionComponent implements OnInit {
   /**
    * Training selected
    */
-  @Output() trainingSelected = new EventEmitter<Training>();
+  @Output() trainingSelected = new EventEmitter<TrainingSpecs>();
 
   public daySelected: Day;
 
@@ -28,7 +28,7 @@ export class TrainingCalendarSelectionComponent implements OnInit {
     this.daySelected = day;
   }
 
-  onTrainingSelected(training: Training) {
+  onTrainingSelected(training: TrainingSpecs) {
     this.trainingSelected.next(training);
   }
 }
