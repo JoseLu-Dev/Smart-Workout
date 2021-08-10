@@ -3,6 +3,7 @@ import { Component, Input, OnInit, Output, ViewChild, EventEmitter } from '@angu
 import { TrainingsDay } from '../../models/trainings-day.model';
 import { TrainingsService } from '../../services/trainings.service';
 import { Training } from '../../models/training.models';
+import { TrainingCreationOptions, TrainingCreationOptionsModalComponent } from '../../modals/training-creation-options-modal/training-creation-options-modal.component';
 
 @Component({
   selector: 'app-trainings-list',
@@ -32,6 +33,12 @@ export class TrainingsListComponent implements OnInit {
   @ViewChild(NewTrainingModalComponent)
   newTrainingModal: NewTrainingModalComponent;
 
+  /**
+   * Instance of the child component (BandsModal) to use its methods
+   */
+  @ViewChild(TrainingCreationOptionsModalComponent)
+  newTrainingOptionsModal: NewTrainingModalComponent;
+
   constructor(private trainingService: TrainingsService) { }
 
   ngOnInit() { }
@@ -51,7 +58,17 @@ export class TrainingsListComponent implements OnInit {
    * Opens new training modal
    */
   onAddTrainingClicked() {
-    this.newTrainingModal.openModal();
+    this.newTrainingOptionsModal.openModal();
+  }
+
+  onNewTrainingOptionSelected(option: TrainingCreationOptions) {
+    switch (option) {
+      case TrainingCreationOptions.existing:
+        break;
+      case TrainingCreationOptions.new:
+        this.newTrainingModal.openModal();
+        break;
+    }
   }
 
   /**

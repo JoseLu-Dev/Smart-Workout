@@ -1,0 +1,31 @@
+<jw-modal [id]='id' (closeEvent)="onModalClosed()">
+  <h1 class="text-xl font-semibold dark:text-white">New training options</h1>
+
+  <div class="flex">
+    <div class="flex flex-col gap-4 mt-6 mx-auto w-2/3">
+
+      <button class="inline-flex gap-2 btn btn-blue" (click)="new()">
+        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" class="icon-white">
+          <path d="M0 0h24v24H0z" fill="none" />
+          <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
+        </svg>
+        <span>New</span>
+      </button>
+
+      <button class="inline-flex gap-2 btn btn-blue" (click)="existing()">
+        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" class="icon-white">
+          <path d="M0 0h24v24H0z" fill="none" />
+          <path d="M0 0h24v24H0z" fill="none" />
+          <path
+            d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z" />
+        </svg>
+        <span>Existing</span>
+      </button>
+
+    </div>
+  </div>
+
+  <div class="flex justify-end mt-4">
+    <button class="btn-transparent" (click)="closeModal()">Close</button>
+  </div>
+</jw-modal>

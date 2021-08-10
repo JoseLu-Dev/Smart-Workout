@@ -8,6 +8,7 @@ import { BandsCreationModalComponent } from './bands/bands-creation-modal/bands-
 import { NgxColorsModule } from 'ngx-colors';
 import { ExerciseModalComponent } from './exercise-modal/exercise-modal.component';
 import { ExerciseSearchModalComponent } from './exercise-search-modal/exercise-search-modal.component';
+import { TrainingCreationOptionsModalComponent } from './training-creation-options-modal/training-creation-options-modal.component';
 
 
 
@@ -25,6 +26,7 @@ import { ExerciseSearchModalComponent } from './exercise-search-modal/exercise-s
     NewTrainingModalComponent,
     ExerciseModalComponent,
     ExerciseSearchModalComponent,
+    TrainingCreationOptionsModalComponent,
   ],
   exports: [
     BandsCreationModalComponent,
@@ -32,6 +34,7 @@ import { ExerciseSearchModalComponent } from './exercise-search-modal/exercise-s
     NewTrainingModalComponent,
     ExerciseModalComponent,
     ExerciseSearchModalComponent,
+    TrainingCreationOptionsModalComponent,
   ],
 })
 export class CoreModalsModule { }
