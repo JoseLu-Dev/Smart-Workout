@@ -8,7 +8,6 @@ import { IonicModule } from '@ionic/angular';
 import { CalendarPageRoutingModule } from './calendar-routing.module';
 
 import { CalendarPage } from './calendar.page';
-import { CustomCalendarComponent } from '../common/widgets/custom-calendar/custom-calendar.component';
 
 @NgModule({
   imports: [
@@ -18,6 +17,6 @@ import { CustomCalendarComponent } from '../common/widgets/custom-calendar/custo
     CalendarPageRoutingModule,
     CoreWidgetsModule
   ],
-  declarations: [CalendarPage, CustomCalendarComponent,],
+  declarations: [CalendarPage,],
 })
 export class CalendarPageModule {}
