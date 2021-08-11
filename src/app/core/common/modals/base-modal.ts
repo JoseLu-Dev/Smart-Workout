@@ -6,11 +6,14 @@ export abstract class ModalBaseComponent {
 
     openModal(): void {
         this.modalServ.open(this.id);
+        this.onModalOpened();
     }
 
     closeModal(): void {
         this.modalServ.close(this.id);
+        this.onModalClosed();
     }
 
     abstract onModalClosed(): void;
+    abstract onModalOpened(): void;
 }

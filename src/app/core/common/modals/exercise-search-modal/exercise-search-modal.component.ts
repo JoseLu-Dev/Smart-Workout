@@ -1,6 +1,6 @@
 import { take } from 'rxjs/operators';
 import { FormControl } from '@angular/forms';
-import { ExerciseListElement } from './../../models/exercise.model';
+import { Exercise, ExerciseListElement } from './../../models/exercise.model';
 import { ModalService } from './../../../../common/modals/base-modal/modal.service';
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { ModalBaseComponent } from '../base-modal';
@@ -28,21 +28,28 @@ export class ExerciseSearchModalComponent extends ModalBaseComponent implements 
   }
 
   ngOnInit() {
+    this.exercisesService.getFewExercises().pipe(take(1)).subscribe((exercises) => {
+      this.exerciseList = exercises;
+    });
   }
 
-  onSearchChanges(){
+  onSearchChanges() {
     this.exercisesService.getExercisesByName(this.exerciseName.value).pipe(take(1)).subscribe((exercises) => {
       this.exerciseList = exercises;
     });
   }
 
-  onExerciseClicked(exercise: ExerciseListElement){
+  onExerciseClicked(exercise: ExerciseListElement) {
     this.exerciseSelected.next(exercise);
     this.closeModal();
   }
 
   onModalClosed(): void {
-    this.exerciseList = null;
+
+  }
+
+  onModalOpened(): void {
+    this.exerciseName.setValue('');
   }
 
 }

@@ -18,8 +18,7 @@ export class TrainingCreationOptionsModalComponent extends ModalBaseComponent im
 
   ngOnInit() { }
 
-  onModalClosed(): void {
-  }
+  onModalClosed(): void {}
 
   existing(){
     this.optionSelected.emit(TrainingCreationOptions.existing);
@@ -30,6 +29,8 @@ export class TrainingCreationOptionsModalComponent extends ModalBaseComponent im
     this.optionSelected.emit(TrainingCreationOptions.new);
     this.closeModal();
   }
+
+  onModalOpened(): void {}
 }
 
 export enum TrainingCreationOptions{

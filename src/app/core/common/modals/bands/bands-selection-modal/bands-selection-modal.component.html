@@ -25,7 +25,7 @@
   </div>
 
   <div *ngFor="let band of bands; last as IsLast" class="w-full">
-    <button class="flex flex-row gap-8 p-2 rounded-md w-full" (click)="onBandClicked(band)">
+    <button class="flex flex-row gap-8 w-full p-2 rounded-lg hover:bg-light dark:text-white dark:hover:bg-dark-darkest" (click)="onBandClicked(band)">
       <div class="flex-grow">
         <div class="btn-rounded w-6 h-6" [ngStyle]="{'background-color' : band.color}"></div>
       </div>
@@ -79,7 +79,7 @@
 
   </form>
 
-  <div class="flex justify-end w-64 mt-4">
+  <div class="flex justify-end mt-4">
     <button class="btn-transparent mr-4" (click)="closeModal()">Close</button>
     <button class="btn-transparent" [disabled]="!bandForm || bandForm.invalid" (click)="onSubmit()">Accept</button>
   </div>
