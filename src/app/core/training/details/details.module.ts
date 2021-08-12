@@ -9,7 +9,7 @@ import { IonicModule } from '@ionic/angular';
 import { DetailsPageRoutingModule } from './details-routing.module';
 
 import { DetailsPage } from './details.page';
-import { CoreWidgetsModule } from '../../common/widgets/core-widgets.module';
+import { CoreWidgetsModule } from '../../common/components/core-widgets.module';
 import { TrainingStatsComponent } from './training-stats/training-stats.component';
 import { CountPerMuscleTableComponent } from './training-stats/count-per-muscle-table/count-per-muscle-table.component';
 

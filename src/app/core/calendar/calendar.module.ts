@@ -1,4 +1,4 @@
-import { CoreWidgetsModule } from './../common/widgets/core-widgets.module';
+import { CoreWidgetsModule } from '../common/components/core-widgets.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
