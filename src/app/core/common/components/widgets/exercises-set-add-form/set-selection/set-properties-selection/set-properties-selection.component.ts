@@ -1,4 +1,4 @@
-import { UserStatsService } from '../../../../../services/user-stats.service';
+import { UserDataService } from '../../../../../services/user-data.service';
 import { Exercise } from '../../../../../models/exercise.model';
 import { BandUsed, ExerciseSetPart, Intensity } from '../../../../../models/training.models';
 import { Component, Input, OnInit, Output, ViewChild, EventEmitter, ChangeDetectorRef, OnChanges, SimpleChanges } from '@angular/core';
@@ -74,7 +74,7 @@ export class SetPropertiesSelectionComponent implements OnInit, OnChanges {
 
   constructor(
     private formBuilder: FormBuilder,
-    private userStats: UserStatsService,
+    private userStats: UserDataService,
     private changeDetector: ChangeDetectorRef
   ) { }
 
@@ -94,15 +94,17 @@ export class SetPropertiesSelectionComponent implements OnInit, OnChanges {
    * Builds the component's form
    */
   buildForm(setPart: ExerciseSetPart): void {
-    const values: FormValues = this.getFormValues(setPart);
-    this.setFormGroup = this.formBuilder.group({
-      weight: [values.weight, Validators.compose([!this.exercise?.bodyWeight ? Validators.required : null, Validators.min(0)])],
-      weightResistanceType: [{ value: values.weightResistanceType, disabled: this.exercise?.bodyWeight ? false : true }],
-      bandWeight: [{ value: values.bandWeight, disabled: true }],
-      bandResistanceType: [values.bandResistanceType],
-      reps: [values.reps, Validators.compose([Validators.required, Validators.min(1)])],
-      restSeconds: this.restBetweenExercises ? [values.restSeconds, Validators.compose([Validators.required, Validators.min(0)])] : null,
-      restMinutes: this.restBetweenExercises ? [values.restMinutes, Validators.compose([Validators.required, Validators.min(0)])] : null,
+    this.userStats.getWeight().subscribe((weight: number) => {
+      const values: FormValues = this.getFormValues(setPart, weight);
+      this.setFormGroup = this.formBuilder.group({
+        weight: [values.weight, Validators.compose([!this.exercise?.bodyWeight ? Validators.required : null, Validators.min(0)])],
+        weightResistanceType: [{ value: values.weightResistanceType, disabled: this.exercise?.bodyWeight ? false : true }],
+        bandWeight: [{ value: values.bandWeight, disabled: true }],
+        bandResistanceType: [values.bandResistanceType],
+        reps: [values.reps, Validators.compose([Validators.required, Validators.min(1)])],
+        restSeconds: this.restBetweenExercises ? [values.restSeconds, Validators.compose([Validators.required, Validators.min(0)])] : null,
+        restMinutes: this.restBetweenExercises ? [values.restMinutes, Validators.compose([Validators.required, Validators.min(0)])] : null,
+      });
     });
   }
 
@@ -112,8 +114,8 @@ export class SetPropertiesSelectionComponent implements OnInit, OnChanges {
    * @param setPart object used to initialize form values
    * @returns form values
    */
-  getFormValues(setPart: ExerciseSetPart): FormValues {
-    return new FormValues(setPart, this.userStats.getWeight());
+  getFormValues(setPart: ExerciseSetPart, userWeight: number): FormValues {
+    return new FormValues(setPart, userWeight);
   }
 
   /**
@@ -164,10 +166,13 @@ export class SetPropertiesSelectionComponent implements OnInit, OnChanges {
 
 
     form.weight *= form.weightResistanceType === 'assistance' ? -1 : 1;
-    form.weight += this.exercise.bodyWeight ? this.userStats.getWeight() : 0;
-    setPart.intensity.weight = form.weight;
 
-    this.setPart.emit(setPart);
+    this.userStats.getWeight().subscribe((weight) => {
+      form.weight += this.exercise.bodyWeight ? weight : 0;
+      setPart.intensity.weight = form.weight;
+
+      this.setPart.emit(setPart);
+    });
   }
 }
 

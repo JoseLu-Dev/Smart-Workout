@@ -11,7 +11,15 @@
     </div>
     <div class="separator-light"></div>
 
-    <h2 class="font-bold text-xl text-dark-darkest dark:text-light-lightest">Exercises</h2>
+    <h2 class="font-bold text-xl text-dark-darkest dark:text-light-lightest">Exercises creation/edition</h2>
     <app-exercise-selection></app-exercise-selection>
+
+    <div class="separator-light"></div>
+    <h2 class="font-bold text-xl text-dark-darkest dark:text-light-lightest">Body Weight</h2>
+    <div class="flex place-content-center items-center">
+        <label class="label mr-2">Weight</label>
+        <input [ngModel]="weight" (ngModelChange)="onWeightChanged($event)" class="input w-12 h-8 text-center mr-1" type="number">
+        <p>Kg</p>
+    </div>
 
 </div>

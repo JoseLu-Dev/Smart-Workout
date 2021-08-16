@@ -1,4 +1,4 @@
-import { UserStatsService } from '../../../../../services/user-stats.service';
+import { UserDataService } from '../../../../../services/user-data.service';
 import { ExerciseSet } from '../../../../../models/training.models';
 import { Component, Input, OnInit } from '@angular/core';
 
@@ -11,7 +11,7 @@ export class MultipleItemListStrategyComponent implements OnInit {
 
   @Input() set: ExerciseSet;
 
-  constructor(private userStatsService: UserStatsService) { }
+  constructor(private userStatsService: UserDataService) { }
 
   ngOnInit() { }
 
