@@ -81,6 +81,7 @@ import { TrainingCreationOptionsModalComponent } from './modals/training-creatio
     ExerciseSearchModalComponent,
     TrainingCreationOptionsModalComponent,
     TrainingSelectionModalComponent,
+    ExerciseSelectionComponent,
   ]
 })
 export class CoreWidgetsModule {}

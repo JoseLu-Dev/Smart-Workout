@@ -17,7 +17,7 @@ export class SettingsPage implements OnInit {
     this.navBarService.setPageSelected(this.navBarService.settings);
   }
 
-  onLogOutButtonCLicked() {
+  onLogOutButtonClicked() {
     this.authService.logout();
   }
 

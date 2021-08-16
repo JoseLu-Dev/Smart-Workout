@@ -128,6 +128,10 @@
     @apply w-full h-px bg-light-darkest
 }
 
+.separator-light {
+    @apply w-full h-px my-3 bg-light-dark
+}
+
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
