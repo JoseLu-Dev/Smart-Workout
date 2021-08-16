@@ -105,11 +105,11 @@ export class BaseStrategyComponent implements OnInit {
         for (let index = 1; index < setsCount; index++) {
             this.set.setParts = this.set.setParts.concat(...setParts);
         }
-
-        console.log(this.set);
     }
 
-    setRestBetweenSets() { }
+    setRestBetweenSets() {
+        //TODO: revise this
+    }
 
     /**
      * Adds or updates a set.setPart
