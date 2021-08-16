@@ -85,7 +85,6 @@ export class CustomCalendarComponent implements OnInit {
     if (this.monthNumber === 12) {
       this.monthNumber = 0;
       this.year++;
-      console.log('Year: ' + this.year);
     }
 
     this.setMonthDays(this.calendarCreator.getMonth(this.monthNumber, this.year));
@@ -99,7 +98,6 @@ export class CustomCalendarComponent implements OnInit {
     if (this.monthNumber < 0) {
       this.monthNumber = 11;
       this.year--;
-      console.log('Year: ' + this.year);
     }
 
     this.setMonthDays(this.calendarCreator.getMonth(this.monthNumber, this.year));
@@ -120,7 +118,6 @@ export class CustomCalendarComponent implements OnInit {
   onDayClicked(day: Day) {
     this.resetSelectedDays();
     day.selected = true;
-    console.log(day);
     this.daySelected.emit(day);
   }
 

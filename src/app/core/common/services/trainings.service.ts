@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { TrainingsDay } from './../models/trainings-day.model';
+import { TrainingsDay, TrainingSpecs } from './../models/trainings-day.model';
 import { Training } from '../models/training.models';
 import { environment } from './../../../../environments/environment';
 import { Injectable } from '@angular/core';
@@ -53,5 +53,14 @@ export class TrainingsService {
    */
   deleteTraining(id: string) {
     return this.http.delete(`${this.trainingsUrl}/${id}`).subscribe();
+  }
+
+  /**
+   * Sends a date and a training to create a new one training from the one sent in the date sent
+   *
+   * @returns id of the new training created
+   */
+  putTrainingFromExisting(trainingDay: TrainingsDay, date: Date) {
+    return this.http.put(`${this.daysUrl}/from-existing`, { trainingDay: trainingDay, date: date });
   }
 }

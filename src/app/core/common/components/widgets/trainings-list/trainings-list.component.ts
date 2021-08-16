@@ -6,6 +6,8 @@ import { TrainingsService } from '../../../services/trainings.service';
 import { Training } from '../../../models/training.models';
 // eslint-disable-next-line max-len
 import { TrainingCreationOptions, TrainingCreationOptionsModalComponent } from '../../modals/training-creation-options-modal/training-creation-options-modal.component';
+import { TrainingSelectionModalComponent } from '../../modals/training-selection-modal/training-selection-modal.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-trainings-list',
@@ -13,6 +15,11 @@ import { TrainingCreationOptions, TrainingCreationOptionsModalComponent } from '
   styleUrls: ['./trainings-list.component.scss'],
 })
 export class TrainingsListComponent implements OnInit {
+
+  /**
+   * Boolean that indicates if create training should be hided
+   */
+  @Input() inModal: boolean;
 
   /**
    * Date of the day showing
@@ -30,18 +37,26 @@ export class TrainingsListComponent implements OnInit {
   @Output() trainingSelected = new EventEmitter<TrainingSpecs>();
 
   /**
-   * Instance of the child component (BandsModal) to use its methods
+   * Instance of the child component (NewTrainingModalComponent) to use its methods
    */
   @ViewChild(NewTrainingModalComponent)
   newTrainingModal: NewTrainingModalComponent;
 
   /**
-   * Instance of the child component (BandsModal) to use its methods
+   * Instance of the child component (TrainingCreationOptionsModalComponent) to use its methods
    */
   @ViewChild(TrainingCreationOptionsModalComponent)
-  newTrainingOptionsModal: NewTrainingModalComponent;
+  newTrainingOptionsModal: TrainingCreationOptionsModalComponent;
 
-  constructor(private trainingService: TrainingsService) { }
+  /**
+   * Instance of the child component (TrainingSelectionModalComponent) to use its methods
+   */
+  @ViewChild(TrainingSelectionModalComponent)
+  trainingSelectionModal: TrainingSelectionModalComponent;
+
+  constructor(
+    private trainingService: TrainingsService,
+    private router: Router,) { }
 
   ngOnInit() { }
 
@@ -66,6 +81,7 @@ export class TrainingsListComponent implements OnInit {
   onNewTrainingOptionSelected(option: TrainingCreationOptions) {
     switch (option) {
       case TrainingCreationOptions.existing:
+        this.trainingSelectionModal.openModal();
         break;
       case TrainingCreationOptions.new:
         this.newTrainingModal.openModal();
@@ -92,5 +108,18 @@ export class TrainingsListComponent implements OnInit {
 
     // Makes father onClick not to execute
     event.stopPropagation();
+  }
+
+  onTrainingSelectedToCopy(training: TrainingSpecs) {
+    if (!this.trainingsDay) {
+      this.trainingsDay = new TrainingsDay();
+      this.trainingsDay.setDate(this.date);
+    }
+
+    this.trainingsDay.trainings.push(training);
+
+    this.trainingService.putTrainingFromExisting(this.trainingsDay, this.date).subscribe(trainingId => {
+      this.router.navigate([`app/trainings/edit/${trainingId}`], { replaceUrl: false });
+    });
   }
 }

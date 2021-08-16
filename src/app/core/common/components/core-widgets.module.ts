@@ -1,3 +1,4 @@
+import { TrainingSelectionModalComponent } from './modals/training-selection-modal/training-selection-modal.component';
 import { ModalModule } from './../../../common/modals/base-modal/modal.module';
 /* eslint-disable max-len */
 import { CircuitExerciseStrategyComponent } from './widgets/exercises-set-add-form/strategies/circuit-strategy/circuit-exercise-strategy.component';
@@ -66,6 +67,7 @@ import { TrainingCreationOptionsModalComponent } from './modals/training-creatio
     ExerciseModalComponent,
     ExerciseSearchModalComponent,
     TrainingCreationOptionsModalComponent,
+    TrainingSelectionModalComponent
   ],
   exports: [
     TrainingsListComponent,
@@ -78,6 +80,7 @@ import { TrainingCreationOptionsModalComponent } from './modals/training-creatio
     ExerciseModalComponent,
     ExerciseSearchModalComponent,
     TrainingCreationOptionsModalComponent,
+    TrainingSelectionModalComponent,
   ]
 })
 export class CoreWidgetsModule {}
