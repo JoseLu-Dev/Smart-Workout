@@ -42,11 +42,6 @@ export class ExerciseSelectionComponent implements OnInit {
   exerciseModal: ExerciseModalComponent;
 
   /**
-   * Exercises list fetched from the API
-   */
-  public exercises: ExerciseListElement[];
-
-  /**
    * Exercise specs of the one selected in the ng-select field
    */
   public exerciseSelectedSpecs: ExerciseSpecs;
@@ -58,9 +53,7 @@ export class ExerciseSelectionComponent implements OnInit {
 
   constructor(private exercisesService: ExercisesService) { }
 
-  ngOnInit() {
-    this.getExerciseListFromAPI();
-  }
+  ngOnInit() { }
 
   onSelectExerciseClicked() {
     this.exerciseSearchModal.openModal();
@@ -185,16 +178,6 @@ export class ExerciseSelectionComponent implements OnInit {
 
       this.validateForm();
 
-    });
-  }
-
-  //TODO delete
-  /**
-   * Gets a list of the exercises available in the API
-   */
-  getExerciseListFromAPI() {
-    this.exercisesService.getExercisesNames().subscribe(exercises => {
-      this.exercises = exercises;
     });
   }
 

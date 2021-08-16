@@ -11,9 +11,7 @@ import { ExerciseSpecs } from '../../../models/exercise.model';
 })
 export class ExerciseModalComponent implements OnInit {
 
-  @Input() set exercise(exercise: ExerciseSpecs) {
-    //TODO revise this
-  }
+  @Input() exercise;
 
   public title: string;
 
