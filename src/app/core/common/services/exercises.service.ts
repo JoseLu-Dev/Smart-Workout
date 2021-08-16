@@ -26,8 +26,8 @@ export class ExercisesService {
     return this.http.get<ExerciseListElement[]>(`${this.exercisesUrl}/few`);
   }
 
-  getExerciseSpecs(exerciseName: string): Observable<ExerciseSpecs>{
-    return this.http.get<ExerciseSpecs>(`${this.exercisesUrl}/${exerciseName}`) ;
+  getExerciseSpecs(exerciseId: string): Observable<ExerciseSpecs>{
+    return this.http.get<ExerciseSpecs>(`${this.exercisesUrl}/${exerciseId}`) ;
   }
 
   saveExercise(exercise: ExerciseSpecs){
