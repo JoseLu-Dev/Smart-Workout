@@ -45,7 +45,7 @@
         <div class="relative w-full" [ngClass]="{'empty': !signUpForm.get('password').value}">
           <input id="password"
             [ngClass]="{'input-invalid': !signUpForm.get('password').valid && signUpForm.get('password').touched}"
-            type="text" class="input px-2 w-full" formControlName="password" />
+            type="password" class="input px-2 w-full" formControlName="password" />
           <label for="password"
             class="cursor-text transition-all dark:text-white label-top-input absolute left-2 px-1 bg-light-light rounded-md dark:bg-dark-darkest">
             Password
@@ -60,7 +60,7 @@
         <div class="relative w-full" [ngClass]="{'empty': !signUpForm.get('repeatedPassword').value}">
           <input id="repeatedPassword"
             [ngClass]="{'input-invalid': signUpForm.get('repeatedPassword').touched && !samePasswords()}"
-            type="text" class="input px-2 w-full" formControlName="repeatedPassword" />
+            type="password" class="input px-2 w-full" formControlName="repeatedPassword" />
           <label for="repeatedPassword"
             class="cursor-text transition-all dark:text-white label-top-input absolute left-2 px-1 bg-light-light rounded-md dark:bg-dark-darkest">
             Repeat password
