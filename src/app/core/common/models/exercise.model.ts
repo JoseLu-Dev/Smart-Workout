@@ -21,4 +21,5 @@ export class ExerciseSpecs {
 export class ExerciseListElement {
     name: string;
     id: string;
+    muscleGroup: string;
 }

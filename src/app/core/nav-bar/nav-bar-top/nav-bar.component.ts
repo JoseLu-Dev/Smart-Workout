@@ -1,3 +1,5 @@
+import { NavBarService } from './../nav-bar.service';
+import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -8,44 +10,37 @@ import { Router } from '@angular/router';
 })
 export class NavBarComponent implements OnInit {
 
-  inCalendar = false;
-  inDay = true;
-  inProfile = false;
+  inStatistics: Observable<boolean>;
+  inCalendar: Observable<boolean>;
+  inDay: Observable<boolean>;
+  inProfile: Observable<boolean>;
+  inSettings: Observable<boolean>;
 
-  inSettings = false;
+  constructor(
+    private router: Router,
+    private navBarService: NavBarService,) { }
 
-  constructor(private router: Router,) { }
-
-  ngOnInit() { }
+  ngOnInit() {
+    this.inStatistics = this.navBarService.getIfPageSelected(this.navBarService.statistics);
+    this.inCalendar = this.navBarService.getIfPageSelected(this.navBarService.calendar);
+    this.inDay = this.navBarService.getIfPageSelected(this.navBarService.day);
+    this.inProfile = this.navBarService.getIfPageSelected(this.navBarService.profile);
+    this.inSettings = this.navBarService.getIfPageSelected(this.navBarService.settings);
+  }
 
   goToProfile() {
     this.router.navigate(['app/profile'], { replaceUrl: true });
-    this.resetInVariablesStatus();
-    this.inProfile = true;
   }
 
   goToDay() {
     this.router.navigate(['app/day'], { replaceUrl: true });
-    this.resetInVariablesStatus();
-    this.inDay = true;
   }
 
   goToCalendar() {
     this.router.navigate(['app/calendar'], { replaceUrl: true });
-    this.resetInVariablesStatus();
-    this.inCalendar = true;
   }
 
   goToSettings() {
     this.router.navigate(['app/settings'], { replaceUrl: true });
-    this.resetInVariablesStatus();
-    this.inSettings = true;
-  }
-
-  resetInVariablesStatus() {
-    this.inCalendar = false;
-    this.inDay = false;
-    this.inProfile = false;
-    this.inSettings = false;
   }
 }

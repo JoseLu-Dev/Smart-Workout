@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { take } from 'rxjs/operators';
-import { ExercisesSetListComponent } from '../../common/widgets/exercises-set-list/exercises-set-list.component';
+import { ExercisesSetListComponent } from '../../common/components/widgets/exercises-set-list/exercises-set-list.component';
 
 @Component({
   selector: 'app-details',

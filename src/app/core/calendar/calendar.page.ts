@@ -1,6 +1,7 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { CustomCalendarComponent } from './custom-calendar/custom-calendar.component';
-import { Day } from './custom-calendar/day.model';
+import { TrainingSpecs } from './../common/models/trainings-day.model';
+import { NavBarService } from './../nav-bar/nav-bar.service';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-calendar',
@@ -9,18 +10,15 @@ import { Day } from './custom-calendar/day.model';
 })
 export class CalendarPage implements OnInit {
 
-  @ViewChild(CustomCalendarComponent)
-  calendar: CustomCalendarComponent;
-
-  public daySelected: Day;
-
-  constructor() { }
+  constructor(
+    private navBarService: NavBarService,
+    private router: Router,) { }
 
   ngOnInit() {
+    this.navBarService.setPageSelected(this.navBarService.calendar);
   }
 
-  getAndShowDaySelectedInCalendar(day: Day){
-    this.daySelected = day;
+  onTrainingSelected(training: TrainingSpecs) {
+    this.router.navigate([`app/trainings/${training.id}`], { replaceUrl: false });
   }
-
 }

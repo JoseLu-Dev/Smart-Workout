@@ -1,0 +1,47 @@
+.calendar {
+  @apply grid grid-cols-7 lg:gap-12 place-items-center
+  w-full h-full md:p-4;
+}
+
+.day {
+  @apply rounded-full 
+  w-full h-full
+  hover:bg-light dark:hover:bg-dark;
+}
+
+.elem-text {
+  font-size: 5vw;
+}
+
+@media (min-width: 640px) {
+  .elem-text {
+    font-size: 3vw;
+  }
+}
+
+@media (min-width: 1024px) {
+  .elem-text {
+    font-size: 2vw;
+  }
+}
+
+.day-selected {
+  @apply bg-light-dark dark:bg-dark-light;
+}
+
+.today {
+  @apply text-blue font-bold
+  hover:bg-blue hover:text-white;
+}
+
+.today-selected {
+  @apply bg-blue text-white;
+}
+
+.dot {
+  @apply rounded-full
+  h-1 w-1
+  md:h-1.5 md:w-1.5 
+  mx-0.5
+  relative;
+}

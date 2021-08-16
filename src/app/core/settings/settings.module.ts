@@ -1,3 +1,4 @@
+import { CoreWidgetsModule } from './../common/components/core-widgets.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -13,7 +14,8 @@ import { SettingsPage } from './settings.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    SettingsPageRoutingModule
+    SettingsPageRoutingModule,
+    CoreWidgetsModule,
   ],
   declarations: [SettingsPage]
 })

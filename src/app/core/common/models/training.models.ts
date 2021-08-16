@@ -72,6 +72,14 @@ export class Training {
         return repsPerMuscle;
     }
 
+    getWeightPerMuscle(): CountPerMuscle {
+        const weightPerMuscle: CountPerMuscle = new CountPerMuscle();
+        this.setsDone.forEach((setDone) => {
+            weightPerMuscle.addCounts(setDone.getWeightPerMuscle());
+        });
+        return weightPerMuscle;
+    }
+
     getTrainingStatistics(): TrainingStatistics {
         return {
             totalSets: this.getTotalSets(),
@@ -79,7 +87,8 @@ export class Training {
             totalWeightMoved: this.getTotalMovedWeight(),
             totalRest: this.getTotalRest(),
             setsPerMuscle: this.getSetsPerMuscle(),
-            repsPerMuscle: this.getRepsPerMuscle()
+            repsPerMuscle: this.getRepsPerMuscle(),
+            weightPerMuscle: this.getWeightPerMuscle()
         } as TrainingStatistics;
     };
 }
@@ -143,6 +152,14 @@ export class ExerciseSet {
         const setsPerMuscle: CountPerMuscle = new CountPerMuscle();
         this.setParts.forEach((setPart) => {
             setsPerMuscle.addCount(setPart.exercise.muscleGroup, setPart.quantity);
+        });
+        return setsPerMuscle;
+    }
+
+    getWeightPerMuscle(): CountPerMuscle {
+        const setsPerMuscle: CountPerMuscle = new CountPerMuscle();
+        this.setParts.forEach((setPart) => {
+            setsPerMuscle.addCount(setPart.exercise.muscleGroup, setPart.quantity * setPart.intensity.getIntensity());
         });
         return setsPerMuscle;
     }

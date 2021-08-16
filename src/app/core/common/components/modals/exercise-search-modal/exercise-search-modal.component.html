@@ -1,0 +1,29 @@
+<jw-modal [id]='id' (closeEvent)="onModalClosed()">
+
+    <h1 class="text-xl font-semibold dark:text-white">Exercise search</h1>
+    <div class="w-full my-2 h-px bg-light-dark dark:bg-light-dark"></div>
+
+    <div class="flex gap-2 h-10">
+      <input class="p-2 rounded-md ring-1 ring-light-dark focus:outline-none focus:ring-2 focus:ring-green-light focus:border-transparent 
+      dark:border-transparent dark:ring-0 dark:text-white
+      dark:bg-dark-darkest bg-transparent flex-grow" [formControl]="exerciseName" (change)="onSearchChanges()">
+      <button class="btn btn-blue" (click)="onSearchChanges()">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon-white m-auto w-6 h-6">
+          <path d="M0 0h24v24H0V0z" fill="none" />
+          <path
+            d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" />
+        </svg>
+      </button>
+    </div>
+
+    <div class="mt-4">
+      <div *ngFor="let exercise of exerciseList; last as isLast" class="w-full">
+        <!--TODO border color as muscle color-->
+        <div class="w-full p-2 rounded-lg hover:bg-light dark:text-white dark:hover:bg-dark-darkest border-l-8 border-blue cursor-pointer" (click)="onExerciseClicked(exercise)">
+          {{exercise.name}}
+        </div>
+        <div *ngIf="!isLast" class="flex-grow h-px bg-light-dark dark:bg-light-dark my-1"></div>
+      </div>
+    </div>
+
+</jw-modal>

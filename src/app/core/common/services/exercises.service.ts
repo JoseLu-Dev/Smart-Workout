@@ -22,8 +22,12 @@ export class ExercisesService {
     return this.http.get<ExerciseListElement[]>(`${this.exercisesUrl}/by-name/${search}`);
   }
 
-  getExerciseSpecs(exerciseName: string): Observable<ExerciseSpecs>{
-    return this.http.get<ExerciseSpecs>(`${this.exercisesUrl}/${exerciseName}`) ;
+  getFewExercises(): Observable<ExerciseListElement[]>{
+    return this.http.get<ExerciseListElement[]>(`${this.exercisesUrl}/few`);
+  }
+
+  getExerciseSpecs(exerciseId: string): Observable<ExerciseSpecs>{
+    return this.http.get<ExerciseSpecs>(`${this.exercisesUrl}/${exerciseId}`) ;
   }
 
   saveExercise(exercise: ExerciseSpecs){

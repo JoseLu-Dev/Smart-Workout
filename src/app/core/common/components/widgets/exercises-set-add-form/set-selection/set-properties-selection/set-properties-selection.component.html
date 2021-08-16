@@ -1,0 +1,100 @@
+<form [formGroup]="setFormGroup" (ngSubmit)="onSubmit(setFormGroup.value)" class="flex flex-col">
+
+    <div>
+
+        <div class="flex-grow h-px bg-light-dark dark:bg-light-dark my-4"></div>
+
+        <div class="flex flex-col">
+            <div class="flex flex-row flex-wrap flex-grow items-center gap-2">
+                <div class="flex flex-col flex-wrap flex-grow items-center gap-2">
+                    <div class="flex">
+                        <label class="label h-6" for="weight">Weight</label>
+                        <div class="w-6 h-6"></div>
+                    </div>
+                    <div class="flex flex-row items-center gap-2">
+                        <input
+                            [ngClass]="{'input-invalid': !setFormGroup.get('weight').valid && setFormGroup.get('weight').touched}"
+                            class="input w-20 text-center" formControlName="weight" placeholder="0" type="number" />
+                        <p>Kg</p>
+                        <div class="w-6 h-6"></div>
+                    </div>
+                </div>
+                <div class="flex flex-col gap-2 w-2/5">
+                    <div class="flex">
+                        <p class="mr-2 text flex-grow">Ballast</p>
+                        <input type="radio" class="radioButton w-6 h-6" formControlName="weightResistanceType" value="ballast">
+                    </div>
+                    <div class="flex">
+                        <p class="mr-2 text flex-grow">Assistance</p>
+                        <input type="radio" class="radioButton w-6 h-6" formControlName="weightResistanceType" value="assistance">
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex-grow h-px bg-light-dark dark:bg-light-dark my-4"></div>
+
+            <div class="flex flex-row flex-wrap flex-grow items-center content-center gap-2">
+                <div class="flex flex-col flex-wrap flex-grow items-center gap-2">
+                    <div class="flex flex-row items-center gap-2">
+                        <label class="label">Band</label>
+                        <button class="btn-rounded btn-blue p-0" (click)="onAddBandClicked()">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="16px" viewBox="0 0 24 24" width="16px"
+                                class="icon-white">
+                                <path d="M0 0h24v24H0z" fill="none" />
+                                <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
+                            </svg>
+                        </button>
+                        <app-bands-selection-modal (bandSelected)=getBandUsedFromModal($event)>
+                        </app-bands-selection-modal>
+                    </div>
+                    <div class="flex flex-row items-center gap-2">
+                        <input class="input w-20 text-center opacity-50" formControlName="bandWeight" placeholder="0"
+                            type="number" />
+                        <p>Kg</p>
+                        <div class="btn-rounded w-6 h-6" [ngStyle]="{'background-color' : bandUsed?.color}"></div>
+                    </div>
+                </div>
+                <div class="flex flex-col gap-2 w-2/5">
+                    <div class="flex">
+                        <p class="mr-2 text flex-grow">Resistance</p>
+                        <input type="radio" class="radioButton w-6 h-6" formControlName="bandResistanceType" value="ballast">
+                    </div>
+                    <div class="flex">
+                        <p class="mr-2 text flex-grow">Assistance</p>
+                        <input type="radio" class="radioButton w-6 h-6" formControlName="bandResistanceType" value="assistance">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="flex-grow h-px bg-light-dark dark:bg-light-dark my-4"></div>
+
+    <div class="flex flex-row flex-grow items-center gap-2">
+        <div class="flex flex-col flex-grow items-center gap-1">
+            <div>
+                <label *ngIf="exercise?.static; else seconds" class="label mb-2" for="reps">Seconds</label>
+                <ng-template #seconds><label class="label mb-2" for="reps">Reps</label></ng-template>
+            </div>
+            <input [ngClass]="{'input-invalid': !setFormGroup.get('reps').valid && setFormGroup.get('reps').touched}"
+                class="input w-16 text-center" formControlName="reps" type="number" placeholder="0" />
+        </div>
+
+        <div class="flex flex-col flex-grow items-center" *ngIf="restBetweenExercises">
+            <label class="label mb-2" for="rest">Rest</label>
+            <div class="flex flex-row items-center gap-1">
+                <input
+                    [ngClass]="{'input-invalid': !setFormGroup.get('restMinutes').valid && setFormGroup.get('restMinutes').touched}"
+                    class="input w-12 text-center" formControlName="restMinutes" placeholder="0" type="number" />
+                <p class="text-xl font-bold">:</p>
+                <input
+                    [ngClass]="{'input-invalid': !setFormGroup.get('restSeconds').valid && setFormGroup.get('restSeconds').touched}"
+                    class="input w-16 text-center" formControlName="restSeconds" placeholder="0" type="number" />
+            </div>
+        </div>
+    </div>
+
+    <button [disabled]="setFormGroup.invalid" [ngClass]="{'opacity-70': setFormGroup.invalid}" type="submit"
+    class="btn btn-blue w-full mx-auto my-4">Confirm</button>
+
+</form>

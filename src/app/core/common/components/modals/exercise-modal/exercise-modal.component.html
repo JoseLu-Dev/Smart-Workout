@@ -1,0 +1,72 @@
+<jw-modal [id]='id' (closeEvent)="onModalClosed()">
+
+  <h1 class="text-xl font-semibold dark:text-white">Exercise {{title}}</h1>
+
+  <form [formGroup]="exerciseForm" class="flex flex-col">
+    <label class="label mt-4 mb-2">Name</label>
+    <input class="input" type="text" placeholder="name" formControlName="name">
+
+    <label class="label mt-4 mb-2">Muscle Group</label>
+    <input class="input" type="text" placeholder="Muscle Group" formControlName="muscleGroup">
+
+    <label class="label mt-4 mb-2">Variations</label>
+
+    <div *ngFor="let variation of getVariationsFormControls(); index as i" class="flex mb-2 items-center">
+      <input [formControl]="variation" type="text" class="input w-4/5">
+
+      <button class="btn-rounded btn-blue w-8 h-8 ml-auto" (click)="deleteVariation(i)">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon-white w-6 h-6">
+          <path d="M0 0h24v24H0z" fill="none" />
+          <path
+            d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+        </svg>
+      </button>
+    </div>
+
+    <button class="btn-rounded btn-blue mx-auto" (click)="addVariation()">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon-white w-6 h-6">
+        <path d="M0 0h24v24H0z" fill="none" />
+        <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
+      </svg>
+    </button>
+
+    <label class="label mt-4 mb-2">Progressions</label>
+
+    <div *ngFor="let progression of getProgressionFormControls(); index as i" class="flex mb-2 items-center">
+      <input [formControl]="progression" type="text" class="input w-4/5">
+
+      <button class="btn-rounded btn-blue w-8 h-8 ml-auto" (click)="deleteProgression(i)">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon-white w-6 h-6">
+          <path d="M0 0h24v24H0z" fill="none" />
+          <path
+            d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+        </svg>
+      </button>
+    </div>
+
+    <button class="btn-rounded btn-blue mx-auto" (click)="addProgression()">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon-white w-6 h-6">
+        <path d="M0 0h24v24H0z" fill="none" />
+        <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
+      </svg>
+    </button>
+
+    <div class="flex flex-col items-center">
+      <div class="mt-4">
+        <label class="label mr-2">BodyWeight</label>
+        <input type="checkbox" class="checkBox w-6 h-6" formControlName="bodyWeight">
+      </div>
+      <div class="mt-4">
+        <label class="label mr-2">Static</label>
+        <input type="checkbox" class="checkBox w-6 h-6" formControlName="static">
+      </div>
+    </div>
+  </form>
+
+  <div class="flex justify-end mt-4">
+    <button class="btn-transparent mr-4" (click)="closeModal()">Close</button>
+    <button class="btn-transparent" [disabled]="exerciseForm.invalid"
+      (click)="onSubmit(exerciseForm.value)">Accept</button>
+  </div>
+
+</jw-modal>

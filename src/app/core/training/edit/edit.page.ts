@@ -1,4 +1,4 @@
-import { ExercisesSetAddFormComponent } from './../../common/widgets/exercises-set-add-form/exercises-set-add-form.component';
+import { ExercisesSetAddFormComponent } from './../../common/components/widgets/exercises-set-add-form/exercises-set-add-form.component';
 import { Component, OnInit, ViewChild } from '@angular/core';
 
 @Component({

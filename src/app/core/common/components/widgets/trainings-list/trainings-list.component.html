@@ -1,0 +1,77 @@
+<div *ngIf="trainingsDay; else noTrainings">
+
+  <p class="mb-4">Trainings list</p>
+
+  <div *ngFor="let training of trainingsDay.trainings; index as i" (click)="onTrainingClicked(training)"
+    class="bg-light-lightest dark:bg-dark-dark rounded-lg p-4 mb-4 shadow-lg flex flex-row items-center justify-between cursor-pointer">
+
+    <div [ngStyle]="{'background-color' : training?.color}" class="btn-rounded w-8 h-8 mr-2"></div>
+
+    <p class="flex-grow mr-4">{{training.name | titlecase}}</p>
+
+    <button *ngIf="!inModal" class="btn-rounded btn-blue mr-2" (click)="onDeleteTrainingClicked($event, i)">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon-white w-6 h-6">
+        <path d="M0 0h24v24H0z" fill="none" />
+        <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z" />
+      </svg>
+    </button>
+
+    <div *ngIf="!training.completed;else done">
+      <div *ngIf="!dayHasPassed();else cancelled">
+        <ng-container *ngTemplateOutlet="pending"></ng-container>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="mt-4 flex content-center" *ngIf="!inModal">
+  <button class="btn-rounded btn-blue mx-auto" (click)="onAddTrainingClicked()">
+    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" class="icon-white">
+      <path d="M0 0h24v24H0z" fill="none" />
+      <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
+    </svg>
+  </button>
+  <app-new-training-modal [trainingsDay]="trainingsDay" [date]="date"></app-new-training-modal>
+  <app-training-selection-modal (trainingSelected)="onTrainingSelectedToCopy($event)"></app-training-selection-modal>
+  <app-training-creation-options-modal (optionSelected)="onNewTrainingOptionSelected($event)">
+  </app-training-creation-options-modal>
+</div>
+
+<ng-template #noTrainings>
+  <div class="bg-light-lightest dark:bg-dark-dark p-4 rounded-lg shadow-lg">
+    <p class="label text-center">You don't have any trainings today</p>
+    <p *ngIf="!inModal" class="label text-center">want to create a new one?</p>
+  </div>
+</ng-template>
+
+<ng-template #done>
+  <svg xmlns="http://www.w3.org/2000/svg" class="fill-current text-green-600" height="28px" viewBox="0 0 24 24"
+    width="28px">
+    <path d="M0 0h24v24H0z" fill="none" />
+    <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
+  </svg>
+</ng-template>
+
+<ng-template #pending>
+  <svg xmlns="http://www.w3.org/2000/svg" class="fill-current text-yellow-600" enable-background="new 0 0 24 24"
+    height="28px" viewBox="0 0 24 24" width="28px">
+    <g>
+      <rect fill="none" height="24" width="24" x="0" />
+    </g>
+    <g>
+      <g>
+        <path
+          d="M12,2C6.5,2,2,6.5,2,12s4.5,10,10,10s10-4.5,10-10S17.5,2,12,2z M12,20c-4.41,0-8-3.59-8-8s3.59-8,8-8s8,3.59,8,8 S16.41,20,12,20z M12.5,7H11v6l5.2,3.2l0.8-1.3l-4.5-2.7V7z" />
+      </g>
+    </g>
+  </svg>
+</ng-template>
+
+<ng-template #cancelled>
+  <svg xmlns="http://www.w3.org/2000/svg" class="fill-current text-red-600" height="28px" viewBox="0 0 24 24"
+    width="28px">
+    <path d="M0 0h24v24H0z" fill="none" />
+    <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+  </svg>
+</ng-template>

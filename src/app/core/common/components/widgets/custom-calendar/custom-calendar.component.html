@@ -1,0 +1,21 @@
+<div class="calendar">
+  <div *ngFor='let weekDay of weekDaysName' class="flex flex-wrap content-center">
+    <p class="m-auto md:text-2xl font-semibold elem-text">{{ weekDay }}</p>
+  </div>
+
+  <div *ngFor='let day of monthDays' class="flex flex-wrap content-center w-full aspect-w-1 aspect-h-1 md:aspect-none  md:w-12 md:h-12 lg:w-20 lg:h-20">
+    <button [ngClass]="{'today': day.isCurrentDay,'opacity-40': !day.isCurrentMonth, 'today-selected': day.selected && day.isCurrentDay, 'day-selected': day.selected && !day.isCurrentDay}" (click)="onDayClicked(day)"
+      class="day">
+      <div class="flex flex-wrap place-content-center">
+        <p class="elem-text">{{ day.number}}</p>
+        <div class="flex w-full relative">
+          <div class="w-full flex flex-row absolute">
+            <div class="mx-auto flex flex-row ">
+              <div *ngFor="let training of day.trainingsDay?.trainings" class="dot" [ngStyle]="{'background-color' : training?.color}"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </button>
+  </div>
+</div>

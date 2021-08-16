@@ -1,3 +1,4 @@
+import { NavBarService } from './../nav-bar/nav-bar.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -9,9 +10,10 @@ export class ProfilePage implements OnInit {
 
   public isTrainer = false;
 
-  constructor() { }
+  constructor(private navBarService: NavBarService,) { }
 
   ngOnInit() {
+    this.navBarService.setPageSelected(this.navBarService.profile);
   }
 
 }

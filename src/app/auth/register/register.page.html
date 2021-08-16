@@ -1,39 +1,83 @@
 <div class="background sm:flex sm:flex-wrap sm:content-center overflow-y-auto">
-  <div class="w-10/12 sm:w-8/12 md:w-6/12 xl:w-4/12 m-auto my-10 card">
+  <div
+    class="w-full h-full md:h-auto md:w-6/12 xl:w-4/12 m-auto md:my-10 md:shadow-sm md:rounded-md bg-light-light dark:bg-dark-dark flex flex-col justify-center p-8">
 
     <h1 class="font-bold h-sec mt-4 text-center">Sign Up</h1>
 
-    <form [formGroup]="signUpForm" (ngSubmit)="onSignUp(signUpForm.value)" class="mt-6">
+    <form [formGroup]="signUpForm" (ngSubmit)="onSignUp(signUpForm.value)"
+      class="mt-6 flex flex-col flex-wrap gap-4 items-center">
 
-      <div class="flex mt-4"><label class="label">Username</label><label
-          *ngIf="!signUpForm.get('name').valid && signUpForm.get('name').touched" class="label-error">&nbsp;- Must
-          contain at
-          least 3 characters</label></div>
-      <input
-        [ngClass]="{'input-invalid': (!signUpForm.get('name').valid && signUpForm.get('name').touched) || invalidCredentials}"
-        class="my-4 w-full input" type="text" formControlName="name" placeholder="Username" />
+      <div class="w-full">
+        <div class="relative w-full" [ngClass]="{'empty': !signUpForm.get('name').value}">
+          <input id="name"
+            [ngClass]="{'input-invalid': (!signUpForm.get('name').valid && signUpForm.get('name').touched) || invalidCredentials}"
+            type="text" class="input px-2 w-full" formControlName="name" />
+          <label for="name"
+            class="cursor-text transition-all dark:text-white label-top-input absolute left-2 px-1 bg-light-light rounded-md dark:bg-dark-darkest">
+            Username
+          </label>
+        </div>
 
-      <div class="flex"><label class="label">Email</label><label
-          *ngIf="!signUpForm.get('email').valid && signUpForm.get('email').touched" class="label-error">&nbsp;- Invalid
-          Email</label></div>
-      <input
-        [ngClass]="{'input-invalid': (!signUpForm.get('email').valid && signUpForm.get('email').touched) || invalidCredentials}"
-        class="my-4 w-full input" type="text" formControlName="email" placeholder="Email" />
+        <p *ngIf="!signUpForm.get('name').valid && signUpForm.get('name').touched" class="label-error mt-2">
+          Must contain at least 3 characters</p>
+      </div>
 
-      <p *ngIf="invalidCredentials" class="text-red-500 text-base font-bold text-center">Username or Email already in use</p>
+      <div class="w-full">
+        <div class="relative w-full" [ngClass]="{'empty': !signUpForm.get('email').value}">
+          <input id="email"
+            [ngClass]="{'input-invalid': (!signUpForm.get('email').valid && signUpForm.get('email').touched) || invalidCredentials}"
+            type="text" class="input px-2 w-full" formControlName="email" />
+          <label for="email"
+            class="cursor-text transition-all dark:text-white label-top-input absolute left-2 px-1 bg-light-light rounded-md dark:bg-dark-darkest">
+            Email
+          </label>
+        </div>
 
-      <div class="flex"><label class="label">Password</label><label
-          *ngIf="!signUpForm.get('password').valid && signUpForm.get('password').touched" class="label-error">&nbsp;-
-          Must contain at least 7 characters</label></div>
-      <input [ngClass]="{'input-invalid': !signUpForm.get('password').valid && signUpForm.get('password').touched}"
-        class="my-4 w-full input" type="password" formControlName="password" placeholder="Password" />
+        <p *ngIf="!signUpForm.get('email').valid && signUpForm.get('email').touched" class="label-error mt-2">
+          Invalid email</p>
+      </div>
 
-      <button type="submit" [disabled]="signUpForm.invalid" class="w-full mt-4 btn btn-blue">Sign Up</button>
+      <p *ngIf="invalidCredentials" class="text-red-500 text-base font-bold text-center">Username or Email already in
+        use</p>
+
+
+      <div class="w-full">
+        <div class="relative w-full" [ngClass]="{'empty': !signUpForm.get('password').value}">
+          <input id="password"
+            [ngClass]="{'input-invalid': !signUpForm.get('password').valid && signUpForm.get('password').touched}"
+            type="password" class="input px-2 w-full" formControlName="password" />
+          <label for="password"
+            class="cursor-text transition-all dark:text-white label-top-input absolute left-2 px-1 bg-light-light rounded-md dark:bg-dark-darkest">
+            Password
+          </label>
+        </div>
+
+        <p *ngIf="!signUpForm.get('password').valid && signUpForm.get('password').touched" class="label-error mt-2">
+          Must contain at least 7 characters</p>
+      </div>
+
+      <div class="w-full">
+        <div class="relative w-full" [ngClass]="{'empty': !signUpForm.get('repeatedPassword').value}">
+          <input id="repeatedPassword"
+            [ngClass]="{'input-invalid': signUpForm.get('repeatedPassword').touched && !samePasswords()}"
+            type="password" class="input px-2 w-full" formControlName="repeatedPassword" />
+          <label for="repeatedPassword"
+            class="cursor-text transition-all dark:text-white label-top-input absolute left-2 px-1 bg-light-light rounded-md dark:bg-dark-darkest">
+            Repeat password
+          </label>
+        </div>
+
+        <p *ngIf="signUpForm.get('repeatedPassword').touched && !samePasswords()" class="label-error mt-2">
+          Passwords are not the same</p>
+      </div>
+
+      <button type="submit" [disabled]="signUpForm.invalid || !samePasswords()" class="w-24 md:w-full btn btn-blue">Sign Up</button>
 
     </form>
 
-    <p class="mt-12 text-xs text-center text"> Already have an account?<a (click)="goBack()"
-        routerLinkActive="router-link-active" class="text-xs ml-2 link">Log in</a>
-    </p>
+    <div class="flex flex-wrap justify-center mt-4 md:mt-12">
+      <p class="text-xs text-center text"> Already have an account?</p>
+      <a (click)="goBack()" routerLinkActive="router-link-active" class="text-xs ml-2 link">Log in</a>
+    </div>
   </div>
 </div>

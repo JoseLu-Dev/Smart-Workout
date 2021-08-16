@@ -1,0 +1,58 @@
+<div *ngIf="set.setParts.length > 0; else exerciseForm">
+    <app-accordion>
+        <app-accordion-item *ngFor="let setPart of set.setParts; index as index" [itemCss]="'card my-4'">
+            <div header *ngIf="setPart.exercise" class="text-lg text-center w-full mb-2">{{setPart?.exercise.name}}
+                {{setPart?.quantity}}</div>
+            <ng-container body *ngTemplateOutlet="exerciseForm; context:{index:index, setPart:setPart}"></ng-container>
+        </app-accordion-item>
+    </app-accordion>
+
+    <button *ngIf="multiExercise" class="btn-rounded btn-blue mx-auto my-4" (click)="addNewSetPart()"><svg
+            xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 0 24 24" width="30px" class="icon-white">
+            <path d="M0 0h24v24H0z" fill="none" />
+            <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
+        </svg>
+    </button>
+
+    <form [formGroup]="setPropertiesFormGroup" *ngIf="set.setParts.length > 0"
+        class="flex items-center flex-wrap gap-4 ">
+        <div class="flex flex-col flex-grow items-center gap-1">
+            <div>
+                <label class="label mb-2" for="reps">Sets number</label>
+            </div>
+            <input
+                [ngClass]="{'input-invalid': !setPropertiesFormGroup.get('setsNumber').valid && setPropertiesFormGroup.get('setsNumber').touched}"
+                class="input w-16 text-center" formControlName="setsNumber" type="number" placeholder="0" />
+        </div>
+
+        <div class="flex flex-col flex-grow items-center" *ngIf="!restBetweenExercises">
+            <label class="label mb-2" for="rest">Rest between set</label>
+            <div class="flex flex-row items-center gap-1">
+                <input class="input w-12 text-center" formControlName="restMinutesBetweenSet" placeholder="0"
+                    type="number" />
+                <p class="text-xl font-bold">:</p>
+                <input class="input w-16 text-center" formControlName="restSecondsBetweenSet" placeholder="0"
+                    type="number" />
+            </div>
+        </div>
+
+        <div class="flex flex-col flex-grow items-center">
+            <label class="label mb-2" for="rest">Final rest</label>
+            <div class="flex flex-row items-center gap-1">
+                <input class="input w-12 text-center" formControlName="restMinutesFinal" placeholder="0"
+                    type="number" />
+                <p class="text-xl font-bold">:</p>
+                <input class="input w-16 text-center" formControlName="restSecondsFinal" placeholder="0"
+                    type="number" />
+            </div>
+        </div>
+    </form>
+
+</div>
+
+<ng-template #exerciseForm let-index="index" let-setPart="setPart">
+    <app-set-selection (setPart)="addSetPart($event, index)" [restBetweenExercises]="restBetweenExercises"
+        [setPartToEdit]="setPart"></app-set-selection>
+</ng-template>
+
+<button *ngIf="set.setParts.length > 0" class="btn btn-blue w-full mt-4" (click)="onSubmit()">Confirm set</button>

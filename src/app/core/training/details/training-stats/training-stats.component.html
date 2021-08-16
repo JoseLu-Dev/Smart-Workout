@@ -1,6 +1,6 @@
-<div *ngIf="trainingStatistics" class="card">
-  <h2 class="text-xl font-bold dark:text-textPrimaryDark">Training Statistics</h2>
-  <div class="flex-row gap-4 mt-4">
+<div *ngIf="trainingStatistics" class="flex flex-col mb-4 md:mb-1">
+  <h2 class="text-xl font-bold dark:text-white text-center md:text-left">Training Statistics</h2>
+  <div class="flex-row gap-4 mt-4 md:mr-auto card mx-4 md:mx-0">
     <div class="flex">
       <p class="text">Sets:
         <label class="label">{{trainingStatistics.totalSets}}</label>
@@ -21,32 +21,39 @@
         <label class="label">{{trainingStatistics.totalWeightMoved}} kg</label>
       </p>
     </div>
+  </div>
 
-    <div class="mt-12 flex flex-col md:flex-row flex-wrap">
-      <div class="w-full lg:w-1/2 flex flex-row">
+  <div class="mt-12 flex flex-wrap justify-between gap-4 px-4 md:px-0">
+
+    <ng-container *ngTemplateOutlet="countPerMuscle; 
+    context:{data: setsPerMuscleChartData, labels: setsPerMuscleChartLabels, title: 'Sets per muscle group', unit:'sets'}"></ng-container>
+
+    <ng-container *ngTemplateOutlet="countPerMuscle; 
+    context:{data: repsPerMuscleChartData, labels: repsPerMuscleChartLabels, title: 'Reps per muscle group', unit:'reps'}"></ng-container>
+
+    <ng-container *ngTemplateOutlet="countPerMuscle; 
+    context:{data: weightPerMuscleChartData, labels: weightPerMuscleChartLabels, title: 'Weight per muscle group', unit:'kg'}"></ng-container>
+
+  </div>
+</div>
+
+<ng-template #countPerMuscle let-data="data" let-labels="labels" let-title="title" let-unit="unit">
+  <div class="flex flex-col w-full lg:w-30% md:min-w-80">
+    <div class="rounded-lg p-4 shadow-md bg-light-lightest dark:bg-dark-dark">
+      <div class="w-full flex flex-row mb-2">
         <div class="flex flex-col w-full">
-          <label class="label flex-grow text-center">Sets per muscle group</label>
+          <label class="label flex-grow text-center">{{title}}</label>
           <div class="aspect-w-1 aspect-h-1">
             <div>
-              <canvas class="w-10 h-10" baseChart [data]="setsPerMuscleChartData" [labels]="setsPerMuscleChartLabels"
+              <canvas baseChart [data]="data" [labels]="labels"
                 [chartType]="doughnutChartType" [options]="barChartOptions">
               </canvas>
             </div>
           </div>
         </div>
       </div>
-
-      <div class="w-full lg:w-1/2 flex flex-col">
-        <label class="label flex-grow text-center">Reps per muscle group</label>
-        <div class="aspect-w-1 aspect-h-1">
-          <div>
-            <canvas baseChart [data]="repsPerMuscleChartData" [labels]="repsPerMuscleChartLabels"
-              [chartType]="doughnutChartType" [options]="barChartOptions">
-            </canvas>
-          </div>
-        </div>
-      </div>
+      <app-count-per-muscle-table [muscles]="labels" [countPerMuscle]="data" [unit]="unit">
+      </app-count-per-muscle-table>
     </div>
-
   </div>
-</div>
+</ng-template>

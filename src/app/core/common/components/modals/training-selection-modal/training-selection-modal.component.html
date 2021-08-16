@@ -1,0 +1,11 @@
+<jw-modal [id]='id' (closeEvent)="onModalClosed()">
+  <h1 class="text-xl font-semibold dark:text-white">From calendar</h1>
+
+  <div class="flex w-full">
+    <app-training-calendar-selection (trainingSelected)="onTrainingSelected($event)" class="w-full" [inModal]=true></app-training-calendar-selection>
+  </div>
+
+  <div class="flex justify-end mt-4">
+    <button class="btn-transparent" (click)="closeModal()">Close</button>
+  </div>
+</jw-modal>
