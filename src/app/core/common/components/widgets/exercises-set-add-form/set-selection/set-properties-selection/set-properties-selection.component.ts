@@ -1,3 +1,4 @@
+import { take } from 'rxjs/operators';
 import { UserDataService } from '../../../../../services/user-data.service';
 import { Exercise } from '../../../../../models/exercise.model';
 import { BandUsed, ExerciseSetPart, Intensity } from '../../../../../models/training.models';
@@ -16,8 +17,8 @@ export class SetPropertiesSelectionComponent implements OnInit, OnChanges {
    *
    */
   @Input() public set exerciseSetter(exercise: Exercise) {
-    console.log(exercise);
     this.exercise = exercise;
+    if (this.setPartToBeEdited) { return; }
     this.buildForm(null);
   }
 
@@ -43,8 +44,6 @@ export class SetPropertiesSelectionComponent implements OnInit, OnChanges {
     this.buildForm(setPart);
 
     this.setPartToBeEdited = setPart;
-
-    this.changeDetector.detectChanges();
   };
 
   /**
@@ -84,17 +83,13 @@ export class SetPropertiesSelectionComponent implements OnInit, OnChanges {
     }
   }
 
-  ngOnInit() {
-    if (!this.setFormGroup) {
-      this.buildForm(null);
-    }
-  }
+  ngOnInit() { }
 
   /**
    * Builds the component's form
    */
   buildForm(setPart: ExerciseSetPart): void {
-    this.userStats.getWeight().subscribe((weight: number) => {
+    this.userStats.getWeight().pipe(take(1)).subscribe((weight: number) => {
       const values: FormValues = this.getFormValues(setPart, weight);
       this.setFormGroup = this.formBuilder.group({
         weight: [values.weight, Validators.compose([!this.exercise?.bodyWeight ? Validators.required : null, Validators.min(0)])],
@@ -105,6 +100,7 @@ export class SetPropertiesSelectionComponent implements OnInit, OnChanges {
         restSeconds: this.restBetweenExercises ? [values.restSeconds, Validators.compose([Validators.required, Validators.min(0)])] : null,
         restMinutes: this.restBetweenExercises ? [values.restMinutes, Validators.compose([Validators.required, Validators.min(0)])] : null,
       });
+      this.changeDetector.detectChanges();
     });
   }
 
@@ -177,11 +173,11 @@ export class SetPropertiesSelectionComponent implements OnInit, OnChanges {
 }
 
 class FormValues {
-  weight: string;
+  weight: number;
   weightResistanceType: string;
   bandWeight: number;
   bandResistanceType: string;
-  reps: string;
+  reps: number;
   restSeconds: number;
   restMinutes: number;
 
@@ -199,7 +195,7 @@ class FormValues {
       if (setPart.exercise.bodyWeight) {
         weight -= userWeight;
       }
-      this.weight = Math.abs(weight).toString();
+      this.weight = Math.abs(weight);
       this.weightResistanceType = weight < 0 ? 'assistance' : 'ballast';
     }
 
@@ -209,7 +205,7 @@ class FormValues {
     }
 
     if (setPart?.quantity) {
-      this.reps = setPart.quantity.toString();
+      this.reps = setPart.quantity;
     }
 
     if (setPart?.rest) {
@@ -230,14 +226,14 @@ class FormValues {
 
   setDefaultWeightValues() {
     this.weightResistanceType = 'ballast';
-    this.weight = '';
+    this.weight = 0;
 
     this.bandWeight = 0;
     this.bandResistanceType = 'assistance';
   }
 
   setDefaultRepsValue() {
-    this.reps = '';
+    this.reps = 0;
   }
 
   setDefaultRestValues() {
