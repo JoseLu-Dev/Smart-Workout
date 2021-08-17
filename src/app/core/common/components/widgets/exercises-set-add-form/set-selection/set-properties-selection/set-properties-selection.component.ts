@@ -149,7 +149,7 @@ export class SetPropertiesSelectionComponent implements OnInit, OnChanges {
     setPart.exercise = this.exercise;
     setPart.quantity = form.reps;
 
-    if (form?.restMinutes && form?.restSeconds) {
+    if (form?.restMinutes + form?.restSeconds !== 0) {
       setPart.rest = form.restMinutes * 60 + form.restSeconds;
     }
 
