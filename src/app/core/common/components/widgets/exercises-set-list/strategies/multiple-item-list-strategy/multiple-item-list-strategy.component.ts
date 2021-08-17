@@ -11,16 +11,16 @@ export class MultipleItemListStrategyComponent implements OnInit {
 
   @Input() set: ExerciseSet;
 
+  userWeight: number;
+
   constructor(private userStatsService: UserDataService) { }
 
-  ngOnInit() { }
-
-  getUserWeight() {
-    return this.userStatsService.getWeight();
+  ngOnInit() {
+    this.userStatsService.getWeight().subscribe(weight => this.userWeight = weight);
   }
 
   weightString(num: number): string {
-    if(num > 0){ return `+ ${num}`;}
+    if (num > 0) { return `+ ${num}`; }
     return `- ${Math.abs(num)}`;
   }
 }
