@@ -26,7 +26,7 @@ export class NewTrainingModalComponent implements OnInit {
    */
   public trainingForm: FormGroup;
 
-  public colorForm: FormControl;
+  public color: string;
 
   constructor(
     private modalService: ModalService,
@@ -43,7 +43,6 @@ export class NewTrainingModalComponent implements OnInit {
     this.trainingForm = this.formBuilder.group({
       name: ['', Validators.compose([Validators.required, Validators.maxLength(20)])],
     });
-    this.colorForm = new FormControl('', Validators.required);
   }
 
   /**
@@ -67,6 +66,7 @@ export class NewTrainingModalComponent implements OnInit {
    * Resets the form when the modal is closed
    */
   onModalClosed() {
+    this.color = '';
     this.buildForm();
   }
 
@@ -78,7 +78,7 @@ export class NewTrainingModalComponent implements OnInit {
 
     const trainingSpecs = {
       name: this.trainingForm.value.name,
-      color: this.colorForm.value,
+      color: this.color,
       completed: false
     } as TrainingSpecs;
     this.trainingsDay.trainings.push(trainingSpecs);
@@ -93,5 +93,9 @@ export class NewTrainingModalComponent implements OnInit {
     );
 
     this.closeModal();
+  }
+
+  colorStringValid(): boolean {
+    return /^#[0-9A-F]{6}$/i.test(this.color);
   }
 }
