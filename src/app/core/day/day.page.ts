@@ -29,7 +29,6 @@ export class DayPage implements OnInit {
       this.today.getMonth() + 1,
       this.today.getDate())
       .subscribe(res => {
-        console.log(res);
         this.todayTrainings = res['body'];
       });
       this.navBarService.setPageSelected(this.navBarService.day);
