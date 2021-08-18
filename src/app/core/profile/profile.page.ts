@@ -1,5 +1,6 @@
 import { NavBarService } from './../nav-bar/nav-bar.service';
 import { Component, OnInit } from '@angular/core';
+import { UserDataService } from '../common/services/user-data.service';
 
 @Component({
   selector: 'app-profile',
@@ -10,10 +11,18 @@ export class ProfilePage implements OnInit {
 
   public isTrainer = false;
 
-  constructor(private navBarService: NavBarService,) { }
+  public userData;
+
+  constructor(
+    private navBarService: NavBarService,
+    private userDataService: UserDataService,) { }
 
   ngOnInit() {
     this.navBarService.setPageSelected(this.navBarService.profile);
+
+    this.userDataService.getUserData().subscribe(data => {
+      this.userData = data;
+    });
   }
 
 }
