@@ -37,13 +37,23 @@ export class TrainingsService {
   }
 
   /**
-   * Sends a training to the backend to be saved
+   * Ask backend for a specific training
    *
-   * @param trainingSets
+   * @param id
    * @returns
    */
   getTraining(id: string): Observable<Training> {
     return this.http.get<Training>(`${this.trainingsUrl}/${id}`);
+  }
+
+  /**
+   * Ask backend for a specific training specs
+   *
+   * @param id
+   * @returns
+   */
+  getTrainingSpecs(id: string): Observable<TrainingSpecs> {
+    return this.http.get<TrainingSpecs>(`${this.daysUrl}/training-specs/${id}`);
   }
 
   /**

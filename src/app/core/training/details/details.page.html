@@ -1,6 +1,15 @@
 <div class="flex flex-col md:flex-row md:p-4 gap-4 h-full overflow-y-auto md:overflow-y-visible static">
 
-  <app-exercises-set-list class="w-full md:w-3/5 lg:w-2/5 p-4 md:p-0 md:overflow-y-auto md:pr-2"></app-exercises-set-list>
+  <div class="flex flex-col w-full md:w-3/5 lg:w-2/5" >
+    <div *ngIf="trainingSpecs && (exercisesList?.training | async)?.setsDone?.length > 0"
+      class="flex flex-wrap justify-between p-1 md:p-2 rounded-b-xl md:rounded-lg text-lg md:mb-4"
+      [ngStyle]="{'background-color' : trainingSpecs.color, 'color' : contrast(trainingSpecs.color)}">
+      <p>{{trainingSpecs.name}}</p>
+      <p>{{trainingSpecs.date | date:'fullDate'}}</p>
+    </div>
+    <app-exercises-set-list (trainingSpecs)="setTrainingSpecs($event)" class="p-4 md:p-0 md:overflow-y-auto md:pr-2">
+    </app-exercises-set-list>
+  </div>
 
   <app-training-stats *ngIf="(exercisesList?.training | async)?.setsDone?.length > 0 else noExercises"
     class="w-full md:w-2/5 lg:w-3/5 md:overflow-y-auto">
