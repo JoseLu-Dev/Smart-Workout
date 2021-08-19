@@ -37,6 +37,7 @@ export class ExerciseModalComponent implements OnInit {
       muscleGroup: [exercise?.muscleGroup || '', Validators.required],
       bodyWeight: [exercise?.bodyWeight || false],
       static: [exercise?.static || false],
+      id: [exercise.id],
     });
     if (exercise) {
       if (exercise.progressions) {
