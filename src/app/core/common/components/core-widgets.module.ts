@@ -1,3 +1,4 @@
+import { MuscleSelectionComponent } from './widgets/muscle-selection/muscle-selection.component';
 import { TrainingSelectionModalComponent } from './modals/training-selection-modal/training-selection-modal.component';
 import { ModalModule } from './../../../common/modals/base-modal/modal.module';
 /* eslint-disable max-len */
@@ -67,7 +68,8 @@ import { TrainingCreationOptionsModalComponent } from './modals/training-creatio
     ExerciseModalComponent,
     ExerciseSearchModalComponent,
     TrainingCreationOptionsModalComponent,
-    TrainingSelectionModalComponent
+    TrainingSelectionModalComponent,
+    MuscleSelectionComponent,
   ],
   exports: [
     TrainingsListComponent,
@@ -82,6 +84,7 @@ import { TrainingCreationOptionsModalComponent } from './modals/training-creatio
     TrainingCreationOptionsModalComponent,
     TrainingSelectionModalComponent,
     ExerciseSelectionComponent,
+    MuscleSelectionComponent,
   ]
 })
 export class CoreWidgetsModule {}
