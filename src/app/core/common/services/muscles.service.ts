@@ -18,7 +18,7 @@ export class MusclesService {
   }
 
   deleteMuscle(muscle: Muscle) {
-    return this.http.delete(`${this.musclesUrl}/${muscle.id}`);
+    return this.http.delete(`${this.musclesUrl}/${muscle.id}`, { responseType: 'text' });
   }
 
   saveMuscle(muscle: Muscle) {

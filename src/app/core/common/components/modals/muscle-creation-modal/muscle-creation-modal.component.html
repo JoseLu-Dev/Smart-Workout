@@ -1,0 +1,16 @@
+<jw-modal [id]='id' (closeEvent)="onModalClosed()">
+  <h1 class="text-xl font-semibold dark:text-white">New muscle</h1>
+
+  <form [formGroup]="muscleForm" *ngIf="muscleForm" class="mb-3">
+    <div class="flex flex-col justify-items-center mt-4">
+      <label class="label mb-2">Muscle name</label>
+      <input class="input" type="text" placeholder="name" formControlName="name">
+    </div>
+  </form>
+
+  <div class="flex justify-end mt-4">
+    <button class="btn-transparent mr-4" (click)="closeModal()">Close</button>
+    <button class="btn-transparent" [disabled]="muscleForm?.invalid"
+      (click)="onSubmit()">Accept</button>
+  </div>
+</jw-modal>

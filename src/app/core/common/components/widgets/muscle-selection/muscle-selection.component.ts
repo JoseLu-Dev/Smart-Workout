@@ -1,8 +1,10 @@
 import { Muscle } from './../../../models/muscles.model';
 import { FormControl } from '@angular/forms';
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Component, OnInit, Output, EventEmitter, ViewChild } from '@angular/core';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { MusclesService } from '../../../services/muscles.service';
+import { take } from 'rxjs/operators';
+import { MuscleCreationModalComponent } from '../../modals/muscle-creation-modal/muscle-creation-modal.component';
 
 @Component({
   selector: 'app-muscle-selection',
@@ -14,14 +16,19 @@ export class MuscleSelectionComponent implements OnInit {
   @Output()
   public muscleSelected = new EventEmitter<string>();
 
+  @ViewChild(MuscleCreationModalComponent)
+  newMuscleOptionsModal: MuscleCreationModalComponent;
+
   public _muscleSelected: string;
 
-  public muscles: Observable<Muscle[]>;
+  public muscles = new BehaviorSubject<Muscle[]>(new Array<Muscle>());
 
   constructor(private musclesService: MusclesService) { }
 
   ngOnInit() {
-    this.muscles = this.musclesService.getMuscles();
+    this.musclesService.getMuscles().pipe(take(1)).subscribe(muscles => {
+      this.muscles.next(muscles);
+    });
   }
 
   onMuscleSelected(muscle: string) {
@@ -30,14 +37,21 @@ export class MuscleSelectionComponent implements OnInit {
     this._muscleSelected = muscle;
   }
 
-  onDeleteMuscleClicked(event, muscle: Muscle) {
-    this.musclesService.deleteMuscle(muscle).subscribe(res => {});
+  onDeleteMuscleClicked(event, muscleDel: Muscle) {
+    this.musclesService.deleteMuscle(muscleDel).subscribe(res => {
+      this.muscles.next(new Array(...this.muscles.value.filter(muscle => muscle.name !== muscleDel.name)));
+    });
     // Makes father onClick not to execute
     event.stopPropagation();
   }
 
   onAddMuscleClicked() {
-    //open modal to add new muscle
+    this.newMuscleOptionsModal.openModal();
+  }
+
+  onMuscleCreated(muscle: Muscle) {
+    this.muscles.value.push(muscle);
+    this.muscles.next(new Array(...this.muscles.value));
   }
 
 }

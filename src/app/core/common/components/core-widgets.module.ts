@@ -1,3 +1,4 @@
+import { MuscleCreationModalComponent } from './modals/muscle-creation-modal/muscle-creation-modal.component';
 import { MuscleSelectionComponent } from './widgets/muscle-selection/muscle-selection.component';
 import { TrainingSelectionModalComponent } from './modals/training-selection-modal/training-selection-modal.component';
 import { ModalModule } from './../../../common/modals/base-modal/modal.module';
@@ -70,6 +71,7 @@ import { TrainingCreationOptionsModalComponent } from './modals/training-creatio
     TrainingCreationOptionsModalComponent,
     TrainingSelectionModalComponent,
     MuscleSelectionComponent,
+    MuscleCreationModalComponent,
   ],
   exports: [
     TrainingsListComponent,
