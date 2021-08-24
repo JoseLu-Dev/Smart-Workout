@@ -1,10 +1,10 @@
-import { Observable } from 'rxjs';
 import { TrainingsComponentCommunicationService } from '../../../services/trainings-component-communication.service';
 import { Training } from '../../../models/training.models';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { TrainingsService } from '../../../services/trainings.service';
 import { TrainingSpecs } from '../../../models/trainings-day.model';
+import { DragulaService } from 'ng2-dragula';
 
 @Component({
   selector: 'app-exercises-set-list',
@@ -17,21 +17,30 @@ export class ExercisesSetListComponent implements OnInit {
 
   @Output() trainingSpecs = new EventEmitter<TrainingSpecs>();
 
-  public training = new Observable<Training>();
+  public training: Training;
 
   constructor(
     private trainingsService: TrainingsComponentCommunicationService,
     private route: ActivatedRoute,
-    private trainingsServiceApi: TrainingsService,) { }
+    private trainingsServiceApi: TrainingsService,
+    private dragulaService: DragulaService,) {
+    dragulaService.destroy('SETS');
+    dragulaService.createGroup('SETS', {
+      moves: (el, container, handle) =>
+        handle.id === 'dragger' ||
+        handle.parentElement.id === 'dragger' ||
+        handle.parentElement.parentElement.id === 'dragger'
+    });
+  }
 
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
     this.trainingsService.getTrainingFromAPI(id);
 
-    this.training = this.trainingsService.getTraining();
+    this.trainingsService.getTraining().subscribe(training => {
+      this.training = training;
 
-    this.training.subscribe(training => {
-      if(!training){return;}
+      if (!training) { return; }
       this.trainingsServiceApi.getTrainingSpecs(training.id).subscribe(trainingSpecs => {
         this.trainingSpecs.next(trainingSpecs);
       });
