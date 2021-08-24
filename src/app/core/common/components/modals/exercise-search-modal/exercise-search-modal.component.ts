@@ -53,4 +53,10 @@ export class ExerciseSearchModalComponent extends ModalBaseComponent implements 
     this.exerciseName.setValue('');
   }
 
+  onDeleteExerciseClicked(event, exerciseId: string) {
+    this.exercisesService.deleteExercise(exerciseId);
+    this.exerciseList = this.exerciseList.filter(e => e.id !== exerciseId);
+    // Makes father onClick not to execute
+    event.stopPropagation();
+  }
 }
