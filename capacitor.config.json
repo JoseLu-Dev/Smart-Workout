@@ -1,6 +1,6 @@
 {
   "appId": "io.ionic.starter",
-  "appName": "frontend-tfc",
+  "appName": "Smart Workout",
   "bundledWebRuntime": false,
   "npmClient": "npm",
   "webDir": "www",
