@@ -1,5 +1,5 @@
 /* eslint-disable eqeqeq */
-import { Component, OnInit, Output, EventEmitter, AfterContentInit, AfterViewInit, AfterViewChecked, AfterContentChecked } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { CalendarCreatorService } from './calendar-creator.service';
 import { Day } from './day.model';
 import { DaysService } from '../../../services/days.service';
