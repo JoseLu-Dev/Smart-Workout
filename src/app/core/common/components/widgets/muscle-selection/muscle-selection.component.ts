@@ -19,7 +19,7 @@ export class MuscleSelectionComponent implements OnInit {
   @ViewChild(MuscleCreationModalComponent)
   newMuscleOptionsModal: MuscleCreationModalComponent;
 
-  public _muscleSelected: string;
+  public _muscleSelected: Muscle;
 
   public muscles = new BehaviorSubject<Muscle[]>(new Array<Muscle>());
 
@@ -31,8 +31,8 @@ export class MuscleSelectionComponent implements OnInit {
     });
   }
 
-  onMuscleSelected(muscle: string) {
-    this.muscleSelected.next(muscle);
+  onMuscleSelected(muscle: Muscle) {
+    this.muscleSelected.next(muscle.name);
     // eslint-disable-next-line no-underscore-dangle
     this._muscleSelected = muscle;
   }

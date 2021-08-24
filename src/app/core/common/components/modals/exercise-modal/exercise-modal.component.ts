@@ -96,4 +96,8 @@ export class ExerciseModalComponent implements OnInit {
   getProgressionFormControls(): FormControl[] {
     return (this.exerciseForm.get('progressions') as FormArray).controls as FormControl[];
   }
+
+  onMuscleSelected(muscle: string) {
+    this.exerciseForm.get('muscleGroup').setValue(muscle);
+  }
 }
