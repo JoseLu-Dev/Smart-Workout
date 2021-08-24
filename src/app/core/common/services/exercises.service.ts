@@ -33,4 +33,8 @@ export class ExercisesService {
   saveExercise(exercise: ExerciseSpecs){
     this.http.put(`${this.exercisesUrl}`, exercise).subscribe();
   }
+
+  deleteExercise(exerciseId: string){
+    this.http.delete(`${this.exercisesUrl}/${exerciseId}`, {responseType: 'text'}).subscribe();
+  }
 }

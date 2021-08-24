@@ -1,4 +1,4 @@
-<div *ngIf="set.setParts.length > 0; else exerciseForm">
+<div *ngIf="set.setParts.length > 0; else exerciseForm" class="flex flex-col">
     <app-accordion>
         <app-accordion-item *ngFor="let setPart of set.setParts; index as index" [itemCss]="'card my-4'">
             <div header *ngIf="setPart.exercise" class="text-lg text-center w-full mb-2">{{setPart?.exercise.name}}

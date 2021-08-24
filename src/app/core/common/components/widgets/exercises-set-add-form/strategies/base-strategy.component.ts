@@ -1,4 +1,4 @@
-import { ExerciseSet, ExerciseSetPart } from '../../../../models/training.models';
+ import { ExerciseSet, ExerciseSetPart } from '../../../../models/training.models';
 import { Exercise } from '../../../../models/exercise.model';
 import { AccordionComponent } from '../../accordion/accordion.component';
 import { Component, Output, ViewChild, EventEmitter, OnInit, Input } from '@angular/core';
@@ -72,7 +72,7 @@ export class BaseStrategyComponent implements OnInit {
 
     buildForm(): void {
         this.setPropertiesFormGroup = this.formBuilder.group({
-            setsNumber: ['', Validators.required],
+            setsNumber: ['', Validators.compose([Validators.required, Validators.min(1)])],
             restSecondsFinal: [0, Validators.compose([Validators.required, Validators.min(0)])],
             restMinutesFinal: [0, Validators.compose([Validators.required, Validators.min(0)])],
             restSecondsBetweenSet: !this.restBetweenExercises ? [0, Validators.compose([Validators.required, Validators.min(0)])] : null,

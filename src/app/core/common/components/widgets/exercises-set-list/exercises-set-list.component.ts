@@ -1,8 +1,10 @@
 import { Observable } from 'rxjs';
 import { TrainingsComponentCommunicationService } from '../../../services/trainings-component-communication.service';
 import { Training } from '../../../models/training.models';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { TrainingsService } from '../../../services/trainings.service';
+import { TrainingSpecs } from '../../../models/trainings-day.model';
 
 @Component({
   selector: 'app-exercises-set-list',
@@ -13,17 +15,27 @@ export class ExercisesSetListComponent implements OnInit {
 
   @Input() editing: boolean;
 
+  @Output() trainingSpecs = new EventEmitter<TrainingSpecs>();
+
   public training = new Observable<Training>();
 
   constructor(
     private trainingsService: TrainingsComponentCommunicationService,
-    private route: ActivatedRoute,) { }
+    private route: ActivatedRoute,
+    private trainingsServiceApi: TrainingsService,) { }
 
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
     this.trainingsService.getTrainingFromAPI(id);
 
     this.training = this.trainingsService.getTraining();
+
+    this.training.subscribe(training => {
+      if(!training){return;}
+      this.trainingsServiceApi.getTrainingSpecs(training.id).subscribe(trainingSpecs => {
+        this.trainingSpecs.next(trainingSpecs);
+      });
+    });
   }
 
   onEditSetClicked(index: number) {

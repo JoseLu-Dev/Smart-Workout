@@ -1,4 +1,4 @@
-<form [formGroup]="setFormGroup" (ngSubmit)="onSubmit(setFormGroup.value)" class="flex flex-col">
+<form *ngIf="setFormGroup" [formGroup]="setFormGroup" (ngSubmit)="onSubmit(setFormGroup.value)" class="flex flex-col">
 
     <div>
 

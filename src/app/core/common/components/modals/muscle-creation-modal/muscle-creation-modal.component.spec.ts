@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { TrainingsGraphsComponent } from './trainings-graphs.component';
+import { MuscleCreationModalComponent } from './muscle-creation-modal.component';
 
-describe('TrainingsGraphsComponent', () => {
-  let component: TrainingsGraphsComponent;
-  let fixture: ComponentFixture<TrainingsGraphsComponent>;
+describe('MuscleCreationModalComponent', () => {
+  let component: MuscleCreationModalComponent;
+  let fixture: ComponentFixture<MuscleCreationModalComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ TrainingsGraphsComponent ],
+      declarations: [ MuscleCreationModalComponent ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(TrainingsGraphsComponent);
+    fixture = TestBed.createComponent(MuscleCreationModalComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

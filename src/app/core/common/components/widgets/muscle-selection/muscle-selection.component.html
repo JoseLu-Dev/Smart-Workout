@@ -1,0 +1,28 @@
+<div class="w-full flex gap-2">
+  <ng-select [items]="muscles | async" bindLabel="name" (ngModelChange)="onMuscleSelected($event)"
+    [ngModel]="_muscleSelected"
+    class="cursor-pointer pl-2 pr-1 py-1 rounded-md border border-light-dark dark:border-0 dark:bg-dark-darkest dark:text-white w-full text-base">
+    <ng-template ng-option-tmp let-item="item" let-index="index" let-search="searchTerm">
+      <div *ngIf="index != 0" class="separator"></div>
+      <div
+        class="flex justify-between content-center gap-2 shadow-lg dark:bg-dark-darkest dark:text-white text-base px-2 py-1 bg-white hover:bg-light-dark dark:hover:bg-dark-light"
+        [ngClass]="{'border-l-8 border-green': item == _muscleSelected}">
+        <p>{{item.name |titlecase}}</p>
+        <button *ngIf="item?.id" class="btn-rounded btn-blue" (click)="onDeleteMuscleClicked($event, item)">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon-white w-6 h-6">
+            <path d="M0 0h24v24H0z" fill="none" />
+            <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z" />
+          </svg>
+        </button>
+      </div>
+    </ng-template>
+  </ng-select>
+
+  <button class="btn-rounded btn-blue my-auto h-8 w-8" (click)="onAddMuscleClicked()">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon-white w-6 h-6">
+      <path d="M0 0h24v24H0z" fill="none" />
+      <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
+    </svg>
+  </button>
+  <app-muscle-creation-modal (muscleCreated)="onMuscleCreated($event)"></app-muscle-creation-modal>
+</div>

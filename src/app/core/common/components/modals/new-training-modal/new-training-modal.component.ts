@@ -4,6 +4,7 @@ import { TrainingsDay, TrainingSpecs } from '../../../models/trainings-day.model
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ModalService } from '../../../../../common/modals/base-modal/modal.service';
 import { Component, Input, OnInit } from '@angular/core';
+import { DaysService } from '../../../services/days.service';
 
 @Component({
   selector: 'app-new-training-modal',
@@ -26,13 +27,14 @@ export class NewTrainingModalComponent implements OnInit {
    */
   public trainingForm: FormGroup;
 
-  public colorForm: FormControl;
+  public color: string;
 
   constructor(
     private modalService: ModalService,
     private formBuilder: FormBuilder,
     private trainingsService: TrainingsService,
     private router: Router,
+    private daysService: DaysService,
   ) { }
 
   ngOnInit() {
@@ -43,7 +45,6 @@ export class NewTrainingModalComponent implements OnInit {
     this.trainingForm = this.formBuilder.group({
       name: ['', Validators.compose([Validators.required, Validators.maxLength(20)])],
     });
-    this.colorForm = new FormControl('', Validators.required);
   }
 
   /**
@@ -67,6 +68,7 @@ export class NewTrainingModalComponent implements OnInit {
    * Resets the form when the modal is closed
    */
   onModalClosed() {
+    this.color = '';
     this.buildForm();
   }
 
@@ -78,14 +80,16 @@ export class NewTrainingModalComponent implements OnInit {
 
     const trainingSpecs = {
       name: this.trainingForm.value.name,
-      color: this.colorForm.value,
+      color: this.color,
       completed: false
     } as TrainingSpecs;
     this.trainingsDay.trainings.push(trainingSpecs);
 
     this.trainingsService.saveTrainingDay(this.trainingsDay).subscribe(
-      received => {
-        this.router.navigate([`app/trainings/edit/${received}`], { replaceUrl: false });
+      training => {
+        const trainingDay = training as TrainingsDay;
+        this.router.navigate([`app/trainings/edit/${trainingDay.trainings[trainingDay.trainings.length - 1].id}`], { replaceUrl: false });
+        this.daysService.addTrainingDay(new Date(trainingDay.date).getMonth(), trainingDay);
       },
       err => {
         console.log(err);
@@ -93,5 +97,9 @@ export class NewTrainingModalComponent implements OnInit {
     );
 
     this.closeModal();
+  }
+
+  colorStringValid(): boolean {
+    return /^#[0-9A-F]{6}$/i.test(this.color);
   }
 }

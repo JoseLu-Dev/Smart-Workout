@@ -19,8 +19,15 @@
     <div class="mt-4">
       <div *ngFor="let exercise of exerciseList; last as isLast" class="w-full">
         <!--TODO border color as muscle color-->
-        <div class="w-full p-2 rounded-lg hover:bg-light dark:text-white dark:hover:bg-dark-darkest border-l-8 border-blue cursor-pointer" (click)="onExerciseClicked(exercise)">
-          {{exercise.name}}
+        <div class="flex justify-between w-full p-2 rounded-lg hover:bg-light dark:text-white dark:hover:bg-dark-darkest border-l-8 border-blue cursor-pointer" (click)="onExerciseClicked(exercise)">
+          <p>{{exercise.name}}</p>
+
+          <button class="btn-rounded btn-blue" (click)="onDeleteExerciseClicked($event, exercise.id)">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon-white w-6 h-6">
+              <path d="M0 0h24v24H0z" fill="none" />
+              <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z" />
+            </svg>
+          </button>
         </div>
         <div *ngIf="!isLast" class="flex-grow h-px bg-light-dark dark:bg-light-dark my-1"></div>
       </div>

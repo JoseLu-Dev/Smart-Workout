@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { BarCharComponent } from './bar-char.component';
+import { ServerTestConnectionModalComponent } from './server-test-connection-modal.component';
 
-describe('BarCharComponent', () => {
-  let component: BarCharComponent;
-  let fixture: ComponentFixture<BarCharComponent>;
+describe('ServerTestConnectionModalComponent', () => {
+  let component: ServerTestConnectionModalComponent;
+  let fixture: ComponentFixture<ServerTestConnectionModalComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ BarCharComponent ],
+      declarations: [ ServerTestConnectionModalComponent ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(BarCharComponent);
+    fixture = TestBed.createComponent(ServerTestConnectionModalComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

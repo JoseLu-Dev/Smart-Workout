@@ -1,3 +1,4 @@
+import { CommonWidgetsModule } from './common/common-widgets.module';
 import { HttpErrorInterceptor } from './common/interceptors/http-errors.interceptor';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -25,7 +26,8 @@ import { HttpLoggingInterceptor } from './common/interceptors/http-loggin.interc
     BrowserAnimationsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    IonicStorageModule.forRoot()
+    IonicStorageModule.forRoot(),
+    CommonWidgetsModule,
   ],
   providers: [
     { provide: LocationStrategy, useClass: HashLocationStrategy },

@@ -13,6 +13,8 @@ import { ModalService } from './modal.service';
  * @class ModalComponent component to use modal windows
  */
 export class ModalComponent implements OnInit, OnDestroy {
+    @Input() canBeClosed = true;
+
     @Output() closeEvent: EventEmitter<any> = new EventEmitter();
     @Input() id: string;
     private element: any;
@@ -33,7 +35,7 @@ export class ModalComponent implements OnInit, OnDestroy {
 
         // close modal on background click
         this.element.addEventListener('click', el => {
-            if (el.target.className === 'jw-modal-background') {
+            if (el.target.className === 'jw-modal-background' && this.canBeClosed) {
                 this.close();
             }
         });

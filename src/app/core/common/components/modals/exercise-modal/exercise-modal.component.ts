@@ -37,6 +37,7 @@ export class ExerciseModalComponent implements OnInit {
       muscleGroup: [exercise?.muscleGroup || '', Validators.required],
       bodyWeight: [exercise?.bodyWeight || false],
       static: [exercise?.static || false],
+      id: [exercise?.id],
     });
     if (exercise) {
       if (exercise.progressions) {
@@ -94,5 +95,9 @@ export class ExerciseModalComponent implements OnInit {
 
   getProgressionFormControls(): FormControl[] {
     return (this.exerciseForm.get('progressions') as FormArray).controls as FormControl[];
+  }
+
+  onMuscleSelected(muscle: string) {
+    this.exerciseForm.get('muscleGroup').setValue(muscle);
   }
 }

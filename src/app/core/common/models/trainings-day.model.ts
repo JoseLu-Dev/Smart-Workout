@@ -25,4 +25,5 @@ export class TrainingSpecs {
     public id?: string;
     public color: string;
     public completed: boolean;
+    public date?: Date;
 }
