@@ -1,8 +1,9 @@
 /* eslint-disable eqeqeq */
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, AfterContentInit, AfterViewInit, AfterViewChecked, AfterContentChecked } from '@angular/core';
 import { CalendarCreatorService } from './calendar-creator.service';
 import { Day } from './day.model';
 import { DaysService } from '../../../services/days.service';
+import { NavigationStart, Router } from '@angular/router';
 
 @Component({
   selector: 'app-custom-calendar',
@@ -17,23 +18,26 @@ export class CustomCalendarComponent implements OnInit {
   public monthNumber: number;
   public year: number;
 
-  public weekDaysName = [];
+  public weekDaysName = ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su'];
 
   constructor(
     public calendarCreator: CalendarCreatorService,
     public daysService: DaysService,
+    private router: Router,
   ) { }
 
   ngOnInit(): void {
-    this.setMonthDays(this.calendarCreator.getCurrentMonth());
+    this.initCalendar();
 
-    this.weekDaysName.push('Mo');
-    this.weekDaysName.push('Tu');
-    this.weekDaysName.push('We');
-    this.weekDaysName.push('Th');
-    this.weekDaysName.push('Fr');
-    this.weekDaysName.push('Sa');
-    this.weekDaysName.push('Su');
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationStart && event.url.includes('calendar')) {
+        this.initCalendar();
+      }
+    });
+  }
+
+  initCalendar(): void {
+    this.setMonthDays(this.calendarCreator.getCurrentMonth());
 
     const today = new Date();
     this.year = today.getFullYear();
@@ -62,7 +66,7 @@ export class CustomCalendarComponent implements OnInit {
 
   fillDaysOfMonth(year: number, monthNumber: number) {
     this.daysService.getDaysOfYearAndMonth(year, monthNumber).subscribe(res => {
-      const days = res['body'];
+      const days = res;
 
       // eslint-disable-next-line guard-for-in
       for (const day in days) {

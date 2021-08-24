@@ -2,7 +2,7 @@ import { take } from 'rxjs/operators';
 import { FormControl } from '@angular/forms';
 import { Exercise, ExerciseListElement } from '../../../models/exercise.model';
 import { ModalService } from '../../../../../common/modals/base-modal/modal.service';
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, ChangeDetectorRef } from '@angular/core';
 import { ModalBaseComponent } from '../base-modal';
 import { ExercisesService } from '../../../services/exercises.service';
 
@@ -23,8 +23,9 @@ export class ExerciseSearchModalComponent extends ModalBaseComponent implements 
 
   constructor(
     private modalService: ModalService,
-    private exercisesService: ExercisesService) {
-    super(modalService);
+    private exercisesService: ExercisesService,
+    private changeDetector: ChangeDetectorRef) {
+    super(modalService, changeDetector);
   }
 
   ngOnInit() {

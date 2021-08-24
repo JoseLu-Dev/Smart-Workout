@@ -1,5 +1,5 @@
 import { ModalService } from './../../../../../common/modals/base-modal/modal.service';
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, ChangeDetectorRef } from '@angular/core';
 import { ModalBaseComponent } from '../base-modal';
 import { TrainingSpecs } from '../../../models/trainings-day.model';
 
@@ -12,8 +12,11 @@ export class TrainingSelectionModalComponent extends ModalBaseComponent implemen
 
   @Output() trainingSelected = new EventEmitter<TrainingSpecs>();
 
-  constructor(private modalService: ModalService) {
-    super(modalService);
+  constructor(
+    private modalService: ModalService,
+    private changeDetector: ChangeDetectorRef,
+    ) {
+    super(modalService, changeDetector);
     this.id = `TrainingSelectionModalComponent-${Math.random()}`;
   }
 

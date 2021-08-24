@@ -1,5 +1,5 @@
 import { Muscle } from './../../../models/muscles.model';
-import { Component, EventEmitter, Output } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, Output } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ModalService } from 'src/app/common/modals/base-modal/modal.service';
 import { ModalBaseComponent } from '../base-modal';
@@ -20,8 +20,9 @@ export class MuscleCreationModalComponent extends ModalBaseComponent {
   constructor(
     private modalService: ModalService,
     private formBuilder: FormBuilder,
-    private musclesService: MusclesService) {
-    super(modalService);
+    private musclesService: MusclesService,
+    private changeDetector: ChangeDetectorRef,) {
+    super(modalService, changeDetector);
     this.id = `MuscleCreationModalComponent-${Math.random()}`;
   }
 

@@ -8,6 +8,7 @@ import { Training } from '../../../models/training.models';
 import { TrainingCreationOptions, TrainingCreationOptionsModalComponent } from '../../modals/training-creation-options-modal/training-creation-options-modal.component';
 import { TrainingSelectionModalComponent } from '../../modals/training-selection-modal/training-selection-modal.component';
 import { Router } from '@angular/router';
+import { DaysService } from '../../../services/days.service';
 
 @Component({
   selector: 'app-trainings-list',
@@ -56,7 +57,8 @@ export class TrainingsListComponent implements OnInit {
 
   constructor(
     private trainingService: TrainingsService,
-    private router: Router,) { }
+    private router: Router,
+    private daysService: DaysService,) { }
 
   ngOnInit() { }
 
@@ -118,8 +120,10 @@ export class TrainingsListComponent implements OnInit {
 
     this.trainingsDay.trainings.push(training);
 
-    this.trainingService.putTrainingFromExisting(this.trainingsDay, this.date).subscribe(trainingId => {
-      this.router.navigate([`app/trainings/edit/${trainingId}`], { replaceUrl: false });
+    this.trainingService.putTrainingFromExisting(this.trainingsDay, this.date).subscribe(trainingRec => {
+      const trainingDay = trainingRec as TrainingsDay;
+      this.router.navigate([`app/trainings/edit/${trainingDay.trainings[trainingDay.trainings.length - 1].id}`], { replaceUrl: false });
+      this.daysService.addTrainingDay(new Date(trainingDay.date).getMonth(), trainingDay);
     });
   }
 }

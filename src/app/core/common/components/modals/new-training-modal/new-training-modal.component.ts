@@ -4,6 +4,7 @@ import { TrainingsDay, TrainingSpecs } from '../../../models/trainings-day.model
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ModalService } from '../../../../../common/modals/base-modal/modal.service';
 import { Component, Input, OnInit } from '@angular/core';
+import { DaysService } from '../../../services/days.service';
 
 @Component({
   selector: 'app-new-training-modal',
@@ -33,6 +34,7 @@ export class NewTrainingModalComponent implements OnInit {
     private formBuilder: FormBuilder,
     private trainingsService: TrainingsService,
     private router: Router,
+    private daysService: DaysService,
   ) { }
 
   ngOnInit() {
@@ -84,8 +86,10 @@ export class NewTrainingModalComponent implements OnInit {
     this.trainingsDay.trainings.push(trainingSpecs);
 
     this.trainingsService.saveTrainingDay(this.trainingsDay).subscribe(
-      received => {
-        this.router.navigate([`app/trainings/edit/${received}`], { replaceUrl: false });
+      training => {
+        const trainingDay = training as TrainingsDay;
+        this.router.navigate([`app/trainings/edit/${trainingDay.trainings[trainingDay.trainings.length - 1].id}`], { replaceUrl: false });
+        this.daysService.addTrainingDay(new Date(trainingDay.date).getMonth(), trainingDay);
       },
       err => {
         console.log(err);

@@ -1,6 +1,6 @@
 import { ServerTestConnectionService } from './server-test-connection.service';
 import { ModalService } from './../modals/base-modal/modal.service';
-import { AfterViewChecked, Component, OnInit, AfterViewInit } from '@angular/core';
+import { AfterViewChecked, Component, OnInit, AfterViewInit, ChangeDetectorRef } from '@angular/core';
 import { ModalBaseComponent } from 'src/app/core/common/components/modals/base-modal';
 import { take } from 'rxjs/operators';
 
@@ -16,8 +16,9 @@ export class ServerTestConnectionModalComponent extends ModalBaseComponent imple
   constructor(
     private modalService: ModalService,
     private serverTestConnectionService: ServerTestConnectionService,
+    private changeDetector: ChangeDetectorRef,
     ) {
-    super(modalService);
+    super(modalService, changeDetector);
   }
 
   ngAfterViewInit() {
