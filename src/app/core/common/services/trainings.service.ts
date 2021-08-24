@@ -62,7 +62,7 @@ export class TrainingsService {
    * @param id training id
    */
   deleteTraining(id: string) {
-    return this.http.delete(`${this.trainingsUrl}/${id}`).subscribe();
+    return this.http.delete(`${this.trainingsUrl}/${id}`, {responseType: 'text'}).subscribe();
   }
 
   /**
