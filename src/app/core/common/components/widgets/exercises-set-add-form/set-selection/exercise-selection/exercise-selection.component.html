@@ -9,7 +9,7 @@
 <div class="ml-auto flex flex-wrap w-3/5 justify-center gap-4">
   <button class="btn btn-blue w-full text-center" (click)="onSelectExerciseClicked()">Select exercise</button>
 
-  <button [disabled]="!exerciseSelectedSpecs" class="btn-rounded btn-blue" (click)="onEditExerciseClicked()">
+  <button [ngClass]="{'opacity-70': !exerciseSelectedSpecs}" [disabled]="!exerciseSelectedSpecs" class="btn-rounded btn-blue" (click)="onEditExerciseClicked()">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon-white w-6 h-6">
       <path d="M0 0h24v24H0z" fill="none" />
       <path

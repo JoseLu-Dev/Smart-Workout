@@ -11,7 +11,7 @@
           [ngClass]="{'input-invalid': (!emailForm.get('email').valid && emailForm.get('email').touched) || invalidEmail}"
           class="mt-4 mb-2 w-full input" type="text" formControlName="email" placeholder="Email" />
         <p *ngIf="invalidEmail" class="text-red-500 text-base font-bold text-center">No user found with given email</p>
-        <button type="submit" [disabled]="emailForm.invalid" class="w-full mt-4 btn btn-blue">Re send verification
+        <button type="submit" [disabled]="emailForm.invalid" [ngClass]="{'opacity-70': emailForm.invalid}" class="w-full mt-4 btn btn-blue">Re send verification
           email</button>
 
       </form>
