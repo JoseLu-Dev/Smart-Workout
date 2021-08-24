@@ -1,6 +1,6 @@
 import { TrainingsComponentCommunicationService } from '../../../services/trainings-component-communication.service';
 import { Training } from '../../../models/training.models';
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, OnChanges, SimpleChanges, AfterContentChecked, AfterViewChecked, AfterViewInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { TrainingsService } from '../../../services/trainings.service';
 import { TrainingSpecs } from '../../../models/trainings-day.model';
@@ -11,13 +11,15 @@ import { DragulaService } from 'ng2-dragula';
   templateUrl: './exercises-set-list.component.html',
   styleUrls: ['./exercises-set-list.component.scss'],
 })
-export class ExercisesSetListComponent implements OnInit {
+export class ExercisesSetListComponent implements OnInit, AfterViewChecked {
 
   @Input() editing: boolean;
 
   @Output() trainingSpecs = new EventEmitter<TrainingSpecs>();
 
   public training: Training;
+
+  private setsNumber: number;
 
   constructor(
     private trainingsService: TrainingsComponentCommunicationService,
@@ -33,14 +35,23 @@ export class ExercisesSetListComponent implements OnInit {
     });
   }
 
+  ngAfterViewChecked(): void {
+    if (this.training && this.setsNumber !== this.training?.setsDone.length) {
+      this.preventPageScrollOnElementDrag();
+      this.setsNumber = this.training.setsDone.length;
+    }
+  }
+
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
     this.trainingsService.getTrainingFromAPI(id);
 
     this.trainingsService.getTraining().subscribe(training => {
-      this.training = training;
-
       if (!training) { return; }
+
+      this.training = training;
+      this.preventPageScrollOnElementDrag();
+
       this.trainingsServiceApi.getTrainingSpecs(training.id).subscribe(trainingSpecs => {
         this.trainingSpecs.next(trainingSpecs);
       });
@@ -53,6 +64,16 @@ export class ExercisesSetListComponent implements OnInit {
 
   onDeleteSetClicked(index: number) {
     this.trainingsService.deleteExerciseSet(index);
+  }
+
+  preventPageScrollOnElementDrag() {
+    const moveList = document.querySelectorAll('#dragger');
+
+    if (moveList) {
+      moveList.forEach(move => {
+        move.addEventListener('touchmove', event => event.preventDefault());
+      });
+    }
   }
 
 }
