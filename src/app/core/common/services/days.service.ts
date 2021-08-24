@@ -29,8 +29,6 @@ export class DaysService {
 
   addTrainingDay(month: number, trainingDay: TrainingsDay){
     this.daysCache[month].push(trainingDay);
-    console.log(month)
-    console.log(trainingDay);
     this.daysCache[month] = new Array(...this.daysCache[month]);
     this.daysCache = new Array(...this.daysCache);
   }
