@@ -78,7 +78,7 @@ export class SetPropertiesSelectionComponent implements OnInit, OnChanges {
   ) { }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes.restBetweenExercises.currentValue !== changes.restBetweenExercises.previousValue) {
+    if (changes.restBetweenExercises && changes?.restBetweenExercises.currentValue !== changes?.restBetweenExercises.previousValue) {
       this.buildForm(this.setPartToBeEdited);
     }
   }
