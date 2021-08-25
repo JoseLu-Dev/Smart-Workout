@@ -117,8 +117,9 @@ export class SetPropertiesSelectionComponent implements OnInit, OnChanges {
   /**
    * Opens band modal
    */
-  onAddBandClicked() {
+  onAddBandClicked(event: Event): void {
     this.bandsModal.openModal();
+    event.stopPropagation();
   }
 
   /**
@@ -141,6 +142,7 @@ export class SetPropertiesSelectionComponent implements OnInit, OnChanges {
     bandWeight: number; bandResistanceType: string;
     reps: number; restSeconds: number; restMinutes: number;
   }) {
+    console.log('onSubmit')
     if (this.setFormGroup.invalid) {
       return;
     }
