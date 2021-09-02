@@ -1,6 +1,6 @@
 {
   "name": "smart-workout",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "JoseLu-Dev",
   "homepage": "",
   "scripts": {
@@ -33,6 +33,7 @@
     "angular-cli-ghpages": "*",
     "chart.js": "^2.9.3",
     "ng2-charts": "^2.3.0",
+    "ng2-dragula": "^2.1.1",
     "ngx-colors": "^2.6.1",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",

@@ -55,4 +55,4 @@
         [setPartToEdit]="setPart"></app-set-selection>
 </ng-template>
 
-<button *ngIf="set.setParts.length > 0" class="btn btn-blue w-full mt-4" (click)="onSubmit()">Confirm set</button>
+<button *ngIf="set.setParts.length > 0" [disabled]="setPropertiesFormGroup.invalid" [ngClass]="{'opacity-70': setPropertiesFormGroup.invalid}" class="btn btn-blue w-full mt-4" (click)="onSubmit()">Confirm set</button>

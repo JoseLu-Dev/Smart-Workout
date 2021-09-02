@@ -1,10 +1,8 @@
 import { ColorContrastService } from './../../common/services/color-contrast.service';
 import { TrainingSpecs } from './../../common/models/trainings-day.model';
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { take } from 'rxjs/operators';
 import { ExercisesSetListComponent } from '../../common/components/widgets/exercises-set-list/exercises-set-list.component';
-import { TrainingsService } from '../../common/services/trainings.service';
 
 @Component({
   selector: 'app-details',
@@ -24,16 +22,14 @@ export class DetailsPage {
   ) { }
 
   onEditTrainingClicked() {
-    this.exercisesList.training.pipe(take(1)).subscribe(training => {
-      this.router.navigate([`app/trainings/edit/${training.id}`], { replaceUrl: true });
-    });
+    this.router.navigate([`app/trainings/edit/${this.exercisesList.training.id}`], { replaceUrl: true });
   }
 
-  setTrainingSpecs(trainingSpecs: TrainingSpecs){
+  setTrainingSpecs(trainingSpecs: TrainingSpecs) {
     this.trainingSpecs = trainingSpecs;
   }
 
-  contrast(color: string): string{
+  contrast(color: string): string {
     return this.colorContrastService.contrast(color);
   }
 }

@@ -1,37 +1,57 @@
-import { Observable } from 'rxjs';
 import { TrainingsComponentCommunicationService } from '../../../services/trainings-component-communication.service';
 import { Training } from '../../../models/training.models';
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, OnChanges, SimpleChanges, AfterContentChecked, AfterViewChecked, AfterViewInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { TrainingsService } from '../../../services/trainings.service';
 import { TrainingSpecs } from '../../../models/trainings-day.model';
+import { DragulaService } from 'ng2-dragula';
 
 @Component({
   selector: 'app-exercises-set-list',
   templateUrl: './exercises-set-list.component.html',
   styleUrls: ['./exercises-set-list.component.scss'],
 })
-export class ExercisesSetListComponent implements OnInit {
+export class ExercisesSetListComponent implements OnInit, AfterViewChecked {
 
   @Input() editing: boolean;
 
   @Output() trainingSpecs = new EventEmitter<TrainingSpecs>();
 
-  public training = new Observable<Training>();
+  public training: Training;
+
+  private setsNumber: number;
 
   constructor(
     private trainingsService: TrainingsComponentCommunicationService,
     private route: ActivatedRoute,
-    private trainingsServiceApi: TrainingsService,) { }
+    private trainingsServiceApi: TrainingsService,
+    private dragulaService: DragulaService,) {
+    dragulaService.destroy('SETS');
+    dragulaService.createGroup('SETS', {
+      moves: (el, container, handle) =>
+        handle.id === 'dragger' ||
+        handle.parentElement.id === 'dragger' ||
+        handle.parentElement.parentElement.id === 'dragger'
+    });
+  }
+
+  ngAfterViewChecked(): void {
+    if (this.training && this.setsNumber !== this.training?.setsDone.length) {
+      this.preventPageScrollOnElementDrag();
+      this.setsNumber = this.training.setsDone.length;
+    }
+  }
 
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
     this.trainingsService.getTrainingFromAPI(id);
 
-    this.training = this.trainingsService.getTraining();
+    this.trainingsService.getTraining().subscribe(training => {
+      if (!training) { return; }
 
-    this.training.subscribe(training => {
-      if(!training){return;}
+      this.training = training;
+      this.preventPageScrollOnElementDrag();
+
       this.trainingsServiceApi.getTrainingSpecs(training.id).subscribe(trainingSpecs => {
         this.trainingSpecs.next(trainingSpecs);
       });
@@ -44,6 +64,16 @@ export class ExercisesSetListComponent implements OnInit {
 
   onDeleteSetClicked(index: number) {
     this.trainingsService.deleteExerciseSet(index);
+  }
+
+  preventPageScrollOnElementDrag() {
+    const moveList = document.querySelectorAll('#dragger');
+
+    if (moveList) {
+      moveList.forEach(move => {
+        move.addEventListener('touchmove', event => event.preventDefault());
+      });
+    }
   }
 
 }

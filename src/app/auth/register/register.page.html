@@ -71,7 +71,7 @@
           Passwords are not the same</p>
       </div>
 
-      <button type="submit" [disabled]="signUpForm.invalid || !samePasswords()" class="w-24 md:w-full btn btn-blue">Sign Up</button>
+      <button type="submit" [disabled]="signUpForm.invalid || !samePasswords()" [ngClass]="{'opacity-70': signUpForm.invalid || !samePasswords()}" class="w-24 md:w-full btn btn-blue">Sign Up</button>
 
     </form>
 
