@@ -1,7 +1,6 @@
 import { Muscle } from './../../../models/muscles.model';
-import { FormControl } from '@angular/forms';
-import { Component, OnInit, Output, EventEmitter, ViewChild } from '@angular/core';
-import { Observable, BehaviorSubject } from 'rxjs';
+import { Component, OnInit, Output, EventEmitter, ViewChild, Input } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 import { MusclesService } from '../../../services/muscles.service';
 import { take } from 'rxjs/operators';
 import { MuscleCreationModalComponent } from '../../modals/muscle-creation-modal/muscle-creation-modal.component';
@@ -13,13 +12,11 @@ import { MuscleCreationModalComponent } from '../../modals/muscle-creation-modal
 })
 export class MuscleSelectionComponent implements OnInit {
 
-  @Output()
-  public muscleSelected = new EventEmitter<string>();
+  @Input() muscle: string;
+  @Output() muscleChange = new EventEmitter<string>();
 
   @ViewChild(MuscleCreationModalComponent)
   newMuscleOptionsModal: MuscleCreationModalComponent;
-
-  public _muscleSelected: Muscle;
 
   public muscles = new BehaviorSubject<Muscle[]>(new Array<Muscle>());
 
@@ -32,9 +29,9 @@ export class MuscleSelectionComponent implements OnInit {
   }
 
   onMuscleSelected(muscle: Muscle) {
-    this.muscleSelected.next(muscle.name);
+    this.muscleChange.next(muscle.name);
     // eslint-disable-next-line no-underscore-dangle
-    this._muscleSelected = muscle;
+    this.muscle = muscle.name;
   }
 
   onDeleteMuscleClicked(event, muscleDel: Muscle) {

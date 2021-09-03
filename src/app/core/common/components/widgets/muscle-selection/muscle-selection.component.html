@@ -1,12 +1,12 @@
 <div class="w-full flex gap-2">
   <ng-select [items]="muscles | async" bindLabel="name" (ngModelChange)="onMuscleSelected($event)"
-    [ngModel]="_muscleSelected"
+    [ngModel]="muscle"
     class="cursor-pointer pl-2 pr-1 py-1 rounded-md border border-light-dark dark:border-0 dark:bg-dark-darkest dark:text-white w-full text-base">
     <ng-template ng-option-tmp let-item="item" let-index="index" let-search="searchTerm">
       <div *ngIf="index != 0" class="separator"></div>
       <div
         class="flex justify-between content-center gap-2 shadow-lg dark:bg-dark-darkest dark:text-white text-base px-2 py-1 bg-white hover:bg-light-dark dark:hover:bg-dark-light"
-        [ngClass]="{'border-l-8 border-green': item == _muscleSelected}">
+        [ngClass]="{'border-l-8 border-green': item.name == muscle}">
         <p>{{item.name |titlecase}}</p>
         <button *ngIf="item?.id" class="btn-rounded btn-blue" (click)="onDeleteMuscleClicked($event, item)">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon-white w-6 h-6">
