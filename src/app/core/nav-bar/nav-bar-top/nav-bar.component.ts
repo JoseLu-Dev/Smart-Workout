@@ -43,4 +43,8 @@ export class NavBarComponent implements OnInit {
   goToSettings() {
     this.router.navigate(['app/settings'], { replaceUrl: true });
   }
+
+  goToStatistics() {
+    this.router.navigate(['app/statistics'], { replaceUrl: true });
+  }
 }

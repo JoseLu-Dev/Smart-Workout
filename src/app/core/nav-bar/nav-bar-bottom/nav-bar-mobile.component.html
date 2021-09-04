@@ -1,7 +1,7 @@
 <div class="bg-light-lightest dark:bg-dark flex items-center justify-between flex-wrap h-14 shadow-md z-30
 border-t dark:border-t-0 border-light-dark md:hidden">
 
-  <div (click)="goToCalendar()" id="nav-item-mobile" [ngClass]="{'border-b-4 border-blue':inStatistics | async}">
+  <div (click)="goToStatistics()" id="nav-item-mobile" [ngClass]="{'border-b-4 border-blue':inStatistics | async}">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon" [ngClass]="{'nav-icon-active':inStatistics | async}">
       <path d="M5 9.2h3V19H5V9.2zM10.6 5h2.8v14h-2.8V5zm5.6 8H19v6h-2.8v-6z" />
     </svg>
