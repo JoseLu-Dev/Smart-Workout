@@ -222,7 +222,7 @@ ng-select .ng-dropdown-panel-items {
     width: 30px;
     height: 30px;
     position: relative;
-    border: 4px solid #40916C;
+    border: 4px solid #40916c;
     top: 50%;
     animation: loader 2s infinite ease;
 }
@@ -231,7 +231,7 @@ ng-select .ng-dropdown-panel-items {
     vertical-align: top;
     display: inline-block;
     width: 100%;
-    background-color: #40916C;
+    background-color: #40916c;
     animation: loader-inner 2s infinite ease-in;
 }
 
@@ -277,4 +277,33 @@ ng-select .ng-dropdown-panel-items {
     100% {
         height: 0%;
     }
+}
+
+// Dragula css
+/* in-flight clone */
+.gu-mirror {
+    position: fixed !important;
+    margin: 0 !important;
+    z-index: 9999 !important;
+    opacity: 0.8;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
+    filter: alpha(opacity=80);
+    pointer-events: none;
+}
+/* high-performance display:none; helper */
+.gu-hide {
+    left: -9999px !important;
+}
+/* added to mirrorContainer (default = body) while dragging */
+.gu-unselectable {
+    -webkit-user-select: none !important;
+    -moz-user-select: none !important;
+    -ms-user-select: none !important;
+    user-select: none !important;
+}
+/* added to the source element while its mirror is dragged */
+.gu-transit {
+    opacity: 0.2;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=20)";
+    filter: alpha(opacity=20);
 }

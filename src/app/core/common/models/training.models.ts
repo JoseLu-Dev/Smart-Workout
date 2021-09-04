@@ -81,15 +81,17 @@ export class Training {
     }
 
     getTrainingStatistics(): TrainingStatistics {
-        return {
-            totalSets: this.getTotalSets(),
-            totalReps: this.getTotalReps(),
-            totalWeightMoved: this.getTotalMovedWeight(),
-            totalRest: this.getTotalRest(),
-            setsPerMuscle: this.getSetsPerMuscle(),
-            repsPerMuscle: this.getRepsPerMuscle(),
-            weightPerMuscle: this.getWeightPerMuscle()
-        } as TrainingStatistics;
+        const trainingStatistics: TrainingStatistics = new TrainingStatistics();
+
+        trainingStatistics.totalSets = this.getTotalSets();
+        trainingStatistics.totalReps = this.getTotalReps();
+        trainingStatistics.totalWeightMoved = this.getTotalMovedWeight();
+        trainingStatistics.totalRest = this.getTotalRest();
+        trainingStatistics.setsPerMuscle = this.getSetsPerMuscle();
+        trainingStatistics.repsPerMuscle = this.getRepsPerMuscle();
+        trainingStatistics.weightPerMuscle = this.getWeightPerMuscle();
+
+        return trainingStatistics;
     };
 }
 

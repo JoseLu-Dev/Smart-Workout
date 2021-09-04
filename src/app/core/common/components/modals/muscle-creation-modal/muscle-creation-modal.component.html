@@ -10,7 +10,7 @@
 
   <div class="flex justify-end mt-4">
     <button class="btn-transparent mr-4" (click)="closeModal()">Close</button>
-    <button class="btn-transparent" [disabled]="muscleForm?.invalid"
+    <button class="btn-transparent" [disabled]="muscleForm?.invalid" [ngClass]="{'opacity-70': muscleForm?.invalid}"
       (click)="onSubmit()">Accept</button>
   </div>
 </jw-modal>

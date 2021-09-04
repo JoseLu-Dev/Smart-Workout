@@ -16,7 +16,7 @@
 
   <div class="flex justify-end mt-4">
     <button class="btn-transparent mr-4" (click)="closeModal()">Close</button>
-    <button class="btn-transparent" [disabled]="trainingForm.invalid || !colorStringValid()"
+    <button class="btn-transparent" [disabled]="trainingForm.invalid || !colorStringValid()" [ngClass]="{'opacity-70': trainingForm.invalid || !colorStringValid()}"
       (click)="onSubmit()">Accept</button>
   </div>
 </jw-modal>

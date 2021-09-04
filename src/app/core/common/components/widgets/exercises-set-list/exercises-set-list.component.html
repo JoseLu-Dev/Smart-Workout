@@ -1,50 +1,50 @@
-<div *ngFor="let set of (training | async)?.setsDone; last as isLast; index as i"
-  class="flex flex-col items-center w-full">
-  <div *ngIf="set" class="w-full">
-    <div class="flex w-full">
-      <div [ngSwitch]="set?.type" class="w-full">
-        <div *ngSwitchCase="'normal'">
-          <app-normal-item-list-strategy [set]="set"></app-normal-item-list-strategy>
+<div *ngIf="training" dragula="SETS" [(dragulaModel)]="training.setsDone">
+  <div *ngFor="let set of training.setsDone; last as isLast; index as i"
+    class="flex flex-col items-center w-full">
+    <div *ngIf="set" class="w-full">
+      <div class="flex w-full">
+        <div [ngSwitch]="set?.type" class="w-full">
+          <div *ngSwitchCase="'normal'">
+            <app-normal-item-list-strategy [set]="set"></app-normal-item-list-strategy>
+          </div>
+          <div *ngSwitchDefault>
+            <app-multiple-item-list-strategy [set]="set"></app-multiple-item-list-strategy>
+          </div>
         </div>
-        <div *ngSwitchDefault>
-          <app-multiple-item-list-strategy [set]="set"></app-multiple-item-list-strategy>
+
+        <div *ngIf="editing" class="flex flex-col ml-2 mt-14 md:mt-0 gap-2">
+          <button class="btn-rounded btn-blue" (click)="onEditSetClicked(i)">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon-white w-6 h-6">
+              <path d="M0 0h24v24H0z" fill="none" />
+              <path
+                d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z" />
+            </svg>
+          </button>
+          <button class="btn-rounded btn-blue" (click)="onDeleteSetClicked(i)">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon-white w-6 h-6">
+              <path d="M0 0h24v24H0z" fill="none" />
+              <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z" />
+            </svg>
+          </button>
+
+          <button class="btn-rounded btn-blue" id="dragger">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon-white w-6 h-6">
+              <path d="M0 0h24v24H0V0z" fill="none" />
+              <path
+                d="M11 18c0 1.1-.9 2-2 2s-2-.9-2-2 .9-2 2-2 2 .9 2 2zm-2-8c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0-6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm6 4c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z" />
+            </svg>
+          </button>
         </div>
+
       </div>
 
-      <div *ngIf="editing" class="flex flex-col ml-2 mt-14 md:mt-0 gap-2">
-        <button class="btn-rounded btn-blue" (click)="onEditSetClicked(i)">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon-white w-6 h-6">
-            <path d="M0 0h24v24H0z" fill="none" />
-            <path
-              d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z" />
-          </svg>
-        </button>
-        <button class="btn-rounded btn-blue" (click)="onDeleteSetClicked(i)">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon-white w-6 h-6">
-            <path d="M0 0h24v24H0z" fill="none" />
-            <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z" />
-          </svg>
-        </button>
-        <!--TODO drag and drop-->
-        <button class="btn-rounded btn-blue">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon-white w-6 h-6">
-            <path d="M0 0h24v24H0V0z" fill="none" />
-            <path
-              d="M11 18c0 1.1-.9 2-2 2s-2-.9-2-2 .9-2 2-2 2 .9 2 2zm-2-8c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0-6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm6 4c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z" />
-          </svg>
-        </button>
+      <div *ngIf="!isLast" class="w-full">
+        <ng-container *ngTemplateOutlet="rest; context:{rest:set.finalRest}">
+        </ng-container>
       </div>
-
-    </div>
-
-    <div *ngIf="!isLast" class="w-full">
-      <ng-container *ngTemplateOutlet="rest; context:{rest:set.finalRest}">
-      </ng-container>
     </div>
   </div>
 </div>
-
-
 
 <ng-template #rest let-rest="rest">
   <div class="flex flex-row items-center my-2">

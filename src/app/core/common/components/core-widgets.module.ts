@@ -1,3 +1,4 @@
+import { DragulaModule } from 'ng2-dragula';
 import { MuscleCreationModalComponent } from './modals/muscle-creation-modal/muscle-creation-modal.component';
 import { MuscleSelectionComponent } from './widgets/muscle-selection/muscle-selection.component';
 import { TrainingSelectionModalComponent } from './modals/training-selection-modal/training-selection-modal.component';
@@ -45,6 +46,7 @@ import { TrainingCreationOptionsModalComponent } from './modals/training-creatio
     NgSelectModule,
     ModalModule,
     NgxColorsModule,
+    DragulaModule,
   ],
   declarations: [
     TrainingsListComponent,

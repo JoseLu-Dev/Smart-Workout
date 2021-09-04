@@ -15,6 +15,7 @@ import { IonicStorageModule } from '@ionic/storage-angular';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HeaderInterceptor } from './core/common/interceptors/auth-header.interceptor';
 import { HttpLoggingInterceptor } from './common/interceptors/http-loggin.interceptor';
+import { DragulaModule } from 'ng2-dragula';
 
 @NgModule({
   declarations: [AppComponent],
@@ -28,6 +29,7 @@ import { HttpLoggingInterceptor } from './common/interceptors/http-loggin.interc
     HttpClientModule,
     IonicStorageModule.forRoot(),
     CommonWidgetsModule,
+    DragulaModule.forRoot(),
   ],
   providers: [
     { provide: LocationStrategy, useClass: HashLocationStrategy },

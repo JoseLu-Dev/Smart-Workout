@@ -12,8 +12,8 @@ export class BandsService {
   /**
    * Multipliers used when calculating band aproximate resistance
    */
-  halfUseMultiplier = 0.5;
-  oneEndMultiplier = 0.5;
+  halfUseMultiplier = 0.75;
+  oneEndMultiplier = 0.75;
 
   private bandsUrl = `${environment.backendUrl}/users/bands`;
 
