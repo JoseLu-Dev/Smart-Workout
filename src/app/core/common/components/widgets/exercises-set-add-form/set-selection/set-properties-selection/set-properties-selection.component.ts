@@ -142,7 +142,6 @@ export class SetPropertiesSelectionComponent implements OnInit, OnChanges {
     bandWeight: number; bandResistanceType: string;
     reps: number; restSeconds: number; restMinutes: number;
   }) {
-    console.log('onSubmit')
     if (this.setFormGroup.invalid) {
       return;
     }
@@ -158,8 +157,10 @@ export class SetPropertiesSelectionComponent implements OnInit, OnChanges {
     setPart.intensity = new Intensity();
 
     if (this.bandUsed) {
+      console.log(this.bandUsed.weight)
       this.bandUsed.weight *= form.bandResistanceType === 'assistance' ? -1 : 1;
       setPart.intensity.band = this.bandUsed;
+      console.log(this.bandUsed.weight)
     }
 
 
