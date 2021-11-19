@@ -36,6 +36,10 @@
     @apply text-white bg-blue hover:bg-blue-dark;
 }
 
+.btn-red {
+    @apply text-white bg-red-500 hover:bg-red-600;
+}
+
 .btn {
     @apply text-center p-3 duration-300 rounded-lg;
 }

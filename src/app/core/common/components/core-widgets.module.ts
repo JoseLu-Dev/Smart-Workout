@@ -1,3 +1,4 @@
+import { DeletionConfirmationModalComponent } from './modals/deletion-confirmation-modal/deletion-confirmation-modal.component';
 import { DragulaModule } from 'ng2-dragula';
 import { MuscleCreationModalComponent } from './modals/muscle-creation-modal/muscle-creation-modal.component';
 import { MuscleSelectionComponent } from './widgets/muscle-selection/muscle-selection.component';
@@ -74,6 +75,7 @@ import { TrainingCreationOptionsModalComponent } from './modals/training-creatio
     TrainingSelectionModalComponent,
     MuscleSelectionComponent,
     MuscleCreationModalComponent,
+    DeletionConfirmationModalComponent
   ],
   exports: [
     TrainingsListComponent,
@@ -89,6 +91,7 @@ import { TrainingCreationOptionsModalComponent } from './modals/training-creatio
     TrainingSelectionModalComponent,
     ExerciseSelectionComponent,
     MuscleSelectionComponent,
+    DeletionConfirmationModalComponent,
   ]
 })
 export class CoreWidgetsModule {}

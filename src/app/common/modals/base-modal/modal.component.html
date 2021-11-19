@@ -1,6 +1,5 @@
-<!--TODO fix overflow in x axis-->
-<div class="jw-modal card-modal max-h-full overflow-y-auto">
-    <div class="jw-modal-body">
+<div class="jw-modal p-4 max-h-screen max-w-full ">
+    <div class="jw-modal-body card-modal" [ngClass]="extraCss">
         <ng-content></ng-content>
     </div>
 </div>

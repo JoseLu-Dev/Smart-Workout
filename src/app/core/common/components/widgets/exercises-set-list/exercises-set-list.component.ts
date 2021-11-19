@@ -1,10 +1,11 @@
 import { TrainingsComponentCommunicationService } from '../../../services/trainings-component-communication.service';
 import { Training } from '../../../models/training.models';
-import { Component, EventEmitter, Input, OnInit, Output, OnChanges, SimpleChanges, AfterContentChecked, AfterViewChecked, AfterViewInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, OnChanges, SimpleChanges, AfterContentChecked, AfterViewChecked, AfterViewInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { TrainingsService } from '../../../services/trainings.service';
 import { TrainingSpecs } from '../../../models/trainings-day.model';
 import { DragulaService } from 'ng2-dragula';
+import { DeletionConfirmationModalComponent } from '../../modals/deletion-confirmation-modal/deletion-confirmation-modal.component';
 
 @Component({
   selector: 'app-exercises-set-list',
@@ -12,6 +13,9 @@ import { DragulaService } from 'ng2-dragula';
   styleUrls: ['./exercises-set-list.component.scss'],
 })
 export class ExercisesSetListComponent implements OnInit, AfterViewChecked {
+
+  @ViewChild(DeletionConfirmationModalComponent)
+  deletionConfirmationModalComponent: DeletionConfirmationModalComponent;
 
   @Input() editing: boolean;
 
@@ -63,6 +67,12 @@ export class ExercisesSetListComponent implements OnInit, AfterViewChecked {
   }
 
   onDeleteSetClicked(index: number) {
+    this.deletionConfirmationModalComponent.setItemToDelete(this.training.setsDone[index], () => {
+      this.deleteSet(index);
+    });
+  }
+
+  deleteSet(index: number) {
     this.trainingsService.deleteExerciseSet(index);
   }
 

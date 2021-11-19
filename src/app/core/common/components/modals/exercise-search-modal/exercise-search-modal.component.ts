@@ -2,9 +2,10 @@ import { take } from 'rxjs/operators';
 import { FormControl } from '@angular/forms';
 import { Exercise, ExerciseListElement } from '../../../models/exercise.model';
 import { ModalService } from '../../../../../common/modals/base-modal/modal.service';
-import { Component, OnInit, Output, EventEmitter, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, ChangeDetectorRef, ViewChild } from '@angular/core';
 import { ModalBaseComponent } from '../base-modal';
 import { ExercisesService } from '../../../services/exercises.service';
+import { DeletionConfirmationModalComponent } from '../deletion-confirmation-modal/deletion-confirmation-modal.component';
 
 @Component({
   selector: 'app-exercise-search-modal',
@@ -14,6 +15,9 @@ import { ExercisesService } from '../../../services/exercises.service';
 export class ExerciseSearchModalComponent extends ModalBaseComponent implements OnInit {
 
   @Output() exerciseSelected = new EventEmitter<ExerciseListElement>();
+
+  @ViewChild(DeletionConfirmationModalComponent)
+  deletionConfirmationModalComponent: DeletionConfirmationModalComponent;
 
   id = `exercise-search-modal-${Math.random()}`;
 
@@ -54,9 +58,16 @@ export class ExerciseSearchModalComponent extends ModalBaseComponent implements 
   }
 
   onDeleteExerciseClicked(event, exerciseId: string) {
-    this.exercisesService.deleteExercise(exerciseId);
-    this.exerciseList = this.exerciseList.filter(e => e.id !== exerciseId);
     // Makes father onClick not to execute
     event.stopPropagation();
+
+    this.deletionConfirmationModalComponent.setItemToDelete(this.exerciseList.filter(e => e.id === exerciseId)[0], () => {
+      this.deleteExercise(exerciseId);
+    });
+  }
+
+  deleteExercise(exerciseId: string) {
+    this.exercisesService.deleteExercise(exerciseId);
+    this.exerciseList = this.exerciseList.filter(e => e.id !== exerciseId);
   }
 }

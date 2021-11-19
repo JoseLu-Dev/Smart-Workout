@@ -13,6 +13,7 @@ import { ModalService } from './modal.service';
  * @class ModalComponent component to use modal windows
  */
 export class ModalComponent implements OnInit, OnDestroy {
+    @Input() extraCss: string;
     @Input() canBeClosed = true;
 
     @Output() closeEvent: EventEmitter<any> = new EventEmitter();

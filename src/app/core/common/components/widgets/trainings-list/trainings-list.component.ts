@@ -1,3 +1,4 @@
+import { DeletionConfirmationModalComponent } from './../../modals/deletion-confirmation-modal/deletion-confirmation-modal.component';
 import { TrainingSpecs } from '../../../models/trainings-day.model';
 import { NewTrainingModalComponent } from '../../modals/new-training-modal/new-training-modal.component';
 import { Component, Input, OnInit, Output, ViewChild, EventEmitter } from '@angular/core';
@@ -55,6 +56,9 @@ export class TrainingsListComponent implements OnInit {
   @ViewChild(TrainingSelectionModalComponent)
   trainingSelectionModal: TrainingSelectionModalComponent;
 
+  @ViewChild(DeletionConfirmationModalComponent)
+  deletionConfirmationModalComponent: DeletionConfirmationModalComponent;
+
   constructor(
     private trainingService: TrainingsService,
     private router: Router,
@@ -102,14 +106,20 @@ export class TrainingsListComponent implements OnInit {
    * Delete training
    */
   onDeleteTrainingClicked(event, trainingNumber: number) {
+    // Makes father onClick not to execute
+    event.stopPropagation();
+
+    this.deletionConfirmationModalComponent.setItemToDelete(this.trainingsDay.trainings[trainingNumber], () => {
+      this.deleteTraining(trainingNumber);
+    });
+  }
+
+  deleteTraining(trainingNumber: number) {
     this.trainingService.deleteTraining(this.trainingsDay.trainings[trainingNumber].id);
 
     this.trainingsDay.trainings.splice(trainingNumber, 1);
 
     this.trainingService.saveTrainingDay(this.trainingsDay).subscribe();
-
-    // Makes father onClick not to execute
-    event.stopPropagation();
   }
 
   onTrainingSelectedToCopy(training: TrainingSpecs) {
