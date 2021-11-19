@@ -3,7 +3,7 @@
   <h1 class="text-xl font-semibold dark:text-white">Exercise search</h1>
   <div class="w-full my-2 h-px bg-light-dark dark:bg-light-dark"></div>
 
-  <div class="flex gap-2 h-10">
+  <div class="flex gap-2 h-10 max-w-screen-sm">
     <input class="p-2 rounded-md ring-1 ring-light-dark focus:outline-none focus:ring-2 focus:ring-green-light focus:border-transparent 
       dark:border-transparent dark:ring-0 dark:text-white
       dark:bg-dark-darkest bg-transparent flex-grow" [formControl]="exerciseName" (change)="onSearchChanges()">
@@ -16,7 +16,7 @@
     </button>
   </div>
 
-  <div class="mt-4">
+  <div class="mt-4 max-h-70vh overflow-auto pr-3">
     <div *ngFor="let exercise of exerciseList; last as isLast" class="w-full">
       <!--TODO border color as muscle color-->
       <div
@@ -24,13 +24,15 @@
         (click)="onExerciseClicked(exercise)">
         <p>{{exercise.name}}</p>
 
-        <app-deletion-confirmation-modal></app-deletion-confirmation-modal>
-        <button class="btn-rounded btn-red" (click)="onDeleteExerciseClicked($event, exercise.id)">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon-white w-6 h-6">
-            <path d="M0 0h24v24H0z" fill="none" />
-            <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z" />
-          </svg>
-        </button>
+        <div class="flex ml-2">
+          <app-deletion-confirmation-modal></app-deletion-confirmation-modal>          
+          <button class="btn-rounded btn-red m-auto" (click)="onDeleteExerciseClicked($event, exercise.id)">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon-white w-6 h-6">
+              <path d="M0 0h24v24H0z" fill="none" />
+              <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z" />
+            </svg>
+          </button>
+        </div>
 
       </div>
       <div *ngIf="!isLast" class="flex-grow h-px bg-light-dark dark:bg-light-dark my-1"></div>
