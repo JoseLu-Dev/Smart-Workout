@@ -1,8 +1,9 @@
- import { ExerciseSet, ExerciseSetPart } from '../../../../models/training.models';
+import { ExerciseSet, ExerciseSetPart } from '../../../../models/training.models';
 import { Exercise } from '../../../../models/exercise.model';
 import { AccordionComponent } from '../../accordion/accordion.component';
 import { Component, Output, ViewChild, EventEmitter, OnInit, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { DeletionConfirmationModalComponent } from '../../../modals/deletion-confirmation-modal/deletion-confirmation-modal.component';
 
 @Component({
     template: ''
@@ -40,6 +41,9 @@ export class BaseStrategyComponent implements OnInit {
      */
     @ViewChild(AccordionComponent)
     accordion: AccordionComponent;
+
+    @ViewChild(DeletionConfirmationModalComponent)
+    deletionConfirmationModalComponent: DeletionConfirmationModalComponent;
 
     /**
      * Boolean that indicates wether if the strategy accepts
@@ -136,5 +140,15 @@ export class BaseStrategyComponent implements OnInit {
         this.accordion.updateAccordion(() => {
             this.accordion.openItem(this.set.setParts.length - 1);
         });
+    }
+
+    onDeleteExerciseSetClicked(index: number) {
+        this.deletionConfirmationModalComponent.setItemToDelete(this.set.setParts[index], () => {
+            this.deleteExerciseSet(index);
+        });
+    }
+
+    deleteExerciseSet(index: number){
+        this.set.setParts.splice(index, 1);
     }
 }

@@ -1,8 +1,18 @@
 <div *ngIf="set.setParts.length > 0; else exerciseForm" class="flex flex-col">
     <app-accordion>
         <app-accordion-item *ngFor="let setPart of set.setParts; index as index" [itemCss]="'card my-4'">
-            <div header *ngIf="setPart.exercise" class="text-lg text-center w-full mb-2">{{setPart?.exercise.name}}
-                {{setPart?.quantity}}</div>
+            <div header *ngIf="setPart.exercise" class="text-lg text-center w-full mb-2 flex px-4">
+                <p class="flex-grow text-center">{{setPart?.exercise.name}} {{setPart?.quantity}}</p>
+                <div class="flex items-center content-center">
+                    <button class="btn-rounded btn-red" (click)="onDeleteExerciseSetClicked(index)">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon-white w-6 h-6">
+                            <path d="M0 0h24v24H0z" fill="none" />
+                            <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z" />
+                        </svg>
+                        <app-deletion-confirmation-modal></app-deletion-confirmation-modal>
+                    </button>
+                </div>
+            </div>
             <ng-container body *ngTemplateOutlet="exerciseForm; context:{index:index, setPart:setPart}"></ng-container>
         </app-accordion-item>
     </app-accordion>
@@ -55,4 +65,6 @@
         [setPartToEdit]="setPart"></app-set-selection>
 </ng-template>
 
-<button *ngIf="set.setParts.length > 0" [disabled]="setPropertiesFormGroup.invalid" [ngClass]="{'opacity-70': setPropertiesFormGroup.invalid}" class="btn btn-blue w-full mt-4" (click)="onSubmit()">Confirm set</button>
+<button *ngIf="set.setParts.length > 0" [disabled]="setPropertiesFormGroup.invalid"
+    [ngClass]="{'opacity-70': setPropertiesFormGroup.invalid}" class="btn btn-blue w-full mt-4"
+    (click)="onSubmit()">Confirm set</button>
