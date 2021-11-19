@@ -64,6 +64,10 @@ export class ExercisesSetListComponent implements OnInit, AfterViewChecked {
 
   onEditSetClicked(index: number) {
     this.trainingsService.setExerciseSetToEdit(index);
+
+    setTimeout(() => {
+      document.querySelector('#editForm').scrollIntoView({ behavior: 'smooth'});
+    }, 0);
   }
 
   onDeleteSetClicked(index: number) {
