@@ -57,6 +57,10 @@ export class TrainingsComponentCommunicationService {
     return this.selectedSet.asObservable();
   }
 
+  resetSelectedSet(){
+    this.selectedSet.next(null);
+  }
+
   getTrainingFromAPI(id: string){
     const observableResponse: Observable<Training> = this.trainingsService.getTraining(id);
     observableResponse.subscribe(training =>{

@@ -33,6 +33,7 @@ export class ExercisesSetAddFormComponent implements OnInit, OnDestroy{
   }
 
   ngOnDestroy() {
+    this.trainingsFormService.resetSelectedSet();
     this.trainingsFormService.saveTraining();
   }
 
