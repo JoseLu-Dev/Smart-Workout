@@ -22,11 +22,13 @@
                 <div class="flex flex-col gap-2 w-2/5">
                     <div class="flex">
                         <p class="mr-2 text flex-grow">Ballast</p>
-                        <input type="radio" class="radioButton w-6 h-6" formControlName="weightResistanceType" value="ballast">
+                        <input type="radio" class="radioButton w-6 h-6" formControlName="weightResistanceType"
+                            value="ballast">
                     </div>
                     <div class="flex">
                         <p class="mr-2 text flex-grow">Assistance</p>
-                        <input type="radio" class="radioButton w-6 h-6" formControlName="weightResistanceType" value="assistance">
+                        <input type="radio" class="radioButton w-6 h-6" formControlName="weightResistanceType"
+                            value="assistance">
                     </div>
                 </div>
             </div>
@@ -57,11 +59,13 @@
                 <div class="flex flex-col gap-2 w-2/5">
                     <div class="flex">
                         <p class="mr-2 text flex-grow">Resistance</p>
-                        <input type="radio" class="radioButton w-6 h-6" formControlName="bandResistanceType" value="ballast">
+                        <input type="radio" class="radioButton w-6 h-6" formControlName="bandResistanceType"
+                            value="ballast">
                     </div>
                     <div class="flex">
                         <p class="mr-2 text flex-grow">Assistance</p>
-                        <input type="radio" class="radioButton w-6 h-6" formControlName="bandResistanceType" value="assistance">
+                        <input type="radio" class="radioButton w-6 h-6" formControlName="bandResistanceType"
+                            value="assistance">
                     </div>
                 </div>
             </div>
@@ -94,7 +98,15 @@
         </div>
     </div>
 
-    <button [disabled]="setFormGroup.invalid" [ngClass]="{'opacity-70': setFormGroup.invalid}" (click)="onSubmit(setFormGroup.value)"
-    class="btn btn-blue w-full mx-auto my-4">Confirm</button>
+
+    <div class="flex place-items-center mt-4">
+        <button class="btn-rounded btn-green mx-auto shadow-lg" [disabled]="setFormGroup.invalid"
+            [ngClass]="{'opacity-70': setFormGroup.invalid}" (click)="onSubmit(setFormGroup.value)">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon-white w-8 h-8">
+                <path d="M0 0h24v24H0V0z" fill="none" />
+                <path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z" />
+            </svg>
+        </button>
+    </div>
 
 </form>

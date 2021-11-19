@@ -151,4 +151,9 @@ export class BaseStrategyComponent implements OnInit {
     deleteExerciseSet(index: number){
         this.set.setParts.splice(index, 1);
     }
+
+    onResetFormClicked(){
+        this.buildForm();
+        this.set = new ExerciseSet();
+    }
 }
