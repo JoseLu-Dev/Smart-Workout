@@ -28,6 +28,7 @@ export class NavBarMobileComponent implements OnInit {
     this.inSettings = this.navBarService.getIfPageSelected(this.navBarService.settings);
   }
 
+  //TODO navigation similar to instagram to save previous visited and current pages when changing app parts
   goToProfile() {
     this.router.navigate(['app/profile'], { replaceUrl: true });
   }
