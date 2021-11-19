@@ -40,6 +40,10 @@
     @apply text-white bg-red-500 hover:bg-red-600;
 }
 
+.btn-yellow {
+    @apply text-white bg-yellow-500 hover:bg-yellow-600;
+}
+
 .btn {
     @apply text-center p-3 duration-300 rounded-lg;
 }

@@ -1,7 +1,8 @@
+import { Location } from '@angular/common';
 import { take } from 'rxjs/operators';
 import { TrainingsComponentCommunicationService } from '../../../services/trainings-component-communication.service';
 import { ExerciseSet } from '../../../models/training.models';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -10,7 +11,7 @@ import { Router } from '@angular/router';
   templateUrl: './exercises-set-add-form.component.html',
   styleUrls: ['./exercises-set-add-form.component.scss'],
 })
-export class ExercisesSetAddFormComponent implements OnInit {
+export class ExercisesSetAddFormComponent implements OnInit, OnDestroy{
 
   public types = ['Normal', 'Emom', 'Super Set', 'Circuit'];
 
@@ -21,7 +22,7 @@ export class ExercisesSetAddFormComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private trainingsFormService: TrainingsComponentCommunicationService,
-    private router: Router
+    private location: Location
   ) { }
 
   ngOnInit() {
@@ -29,6 +30,10 @@ export class ExercisesSetAddFormComponent implements OnInit {
       selectedType: [this.types[0], Validators.required]
     });
     this.setOnSelectedSetChanged();
+  }
+
+  ngOnDestroy() {
+    this.trainingsFormService.saveTraining();
   }
 
   public setOnSelectedSetChanged() {
@@ -57,7 +62,7 @@ export class ExercisesSetAddFormComponent implements OnInit {
     this.trainingsFormService.saveTraining();
 
     this.trainingsFormService.getTraining().pipe(take(1)).subscribe(training => {
-      this.router.navigate([`app/trainings/${training.id}`], { replaceUrl: true });
+      this.location.back();
     });
   }
 

@@ -22,7 +22,7 @@ export class DetailsPage {
   ) { }
 
   onEditTrainingClicked() {
-    this.router.navigate([`app/trainings/edit/${this.exercisesList.training.id}`], { replaceUrl: true });
+    this.router.navigate([`app/trainings/edit/${this.exercisesList.training.id}`], { replaceUrl: false });
   }
 
   setTrainingSpecs(trainingSpecs: TrainingSpecs) {
