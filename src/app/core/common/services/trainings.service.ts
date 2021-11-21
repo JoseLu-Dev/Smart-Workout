@@ -26,6 +26,11 @@ export class TrainingsService {
     return this.http.put(`${this.daysUrl}`, trainingDay);
   }
 
+  updateTrainingDay(trainingDay: TrainingsDay) {
+    // eslint-disable-next-line no-underscore-dangle
+    return this.http.patch(`${this.daysUrl}/${trainingDay._id}`, trainingDay);
+  }
+
   /**
    * Sends a training to the backend to be saved
    *

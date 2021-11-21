@@ -29,6 +29,9 @@ export class NewTrainingModalComponent implements OnInit {
 
   public color: string;
 
+  private editing = false;
+  private indexEditing: number;
+
   constructor(
     private modalService: ModalService,
     private formBuilder: FormBuilder,
@@ -70,9 +73,20 @@ export class NewTrainingModalComponent implements OnInit {
   onModalClosed() {
     this.color = '';
     this.buildForm();
+    this.editing = false;
   }
 
   onSubmit(): void {
+    if (this.editing) {
+      this.onSubmitEdit();
+    } else {
+      this.onSubmitNew();
+    }
+
+    this.closeModal();
+  }
+
+  onSubmitNew() {
     if (!this.trainingsDay) {
       this.trainingsDay = new TrainingsDay();
       this.trainingsDay.setDate(this.date);
@@ -95,11 +109,44 @@ export class NewTrainingModalComponent implements OnInit {
         console.log(err);
       }
     );
+  }
 
-    this.closeModal();
+  onSubmitEdit() {
+    if (!this.trainingValuesHasBeenChanged()) {
+      return;
+    }
+    this.trainingsDay.trainings[this.indexEditing].color = this.color;
+    this.trainingsDay.trainings[this.indexEditing].name = this.trainingForm.get('name').value;
+
+    this.trainingsService.updateTrainingDay(this.trainingsDay).subscribe(
+      res => {
+        console.log(res);
+      },
+      err => {
+        console.log(err);
+      }
+    );
+  }
+
+  trainingValuesHasBeenChanged(): boolean {
+    return this.trainingsDay.trainings[this.indexEditing].color !== this.color ||
+      this.trainingsDay.trainings[this.indexEditing].name !== this.trainingForm.get('name').value;
   }
 
   colorStringValid(): boolean {
     return /^#[0-9A-F]{6}$/i.test(this.color);
+  }
+
+  setTrainingToEdit(index: number): void {
+    this.editing = true;
+    this.indexEditing = index;
+    this.initializeEditForm(this.trainingsDay.trainings[index]);
+  }
+
+  initializeEditForm(trainingSpecs: TrainingSpecs): void {
+    this.trainingForm = this.formBuilder.group({
+      name: [trainingSpecs.name, Validators.compose([Validators.required, Validators.maxLength(20)])],
+    });
+    this.color = trainingSpecs.color;
   }
 }

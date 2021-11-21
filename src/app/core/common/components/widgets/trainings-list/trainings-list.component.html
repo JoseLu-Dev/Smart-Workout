@@ -5,11 +5,31 @@
   <div *ngFor="let training of trainingsDay.trainings; index as i" (click)="onTrainingClicked(training)"
     class="bg-light-lightest dark:bg-dark-dark rounded-lg p-4 mb-4 shadow-lg flex flex-row items-center justify-between cursor-pointer">
 
-    <div [ngStyle]="{'background-color' : training?.color}" class="btn-rounded w-8 h-8 mr-2"></div>
+    <!-- Training status indicator -->
+    <div *ngIf="!training.completed;else done">
+      <div *ngIf="!dayHasPassed();else cancelled">
+        <ng-container *ngTemplateOutlet="pending"></ng-container>
+      </div>
+    </div>
+
+    <!-- Training color -->
+    <div class="mx-2">
+      <div [ngStyle]="{'background-color' : training?.color}" class="btn-rounded w-8 h-8"></div>
+    </div>
 
     <p class="flex-grow mr-4">{{training.name | titlecase}}</p>
 
-    <button *ngIf="!inModal" class="btn-rounded btn-red mr-2" (click)="onDeleteTrainingClicked($event, i)">
+    <!-- Edit button -->
+    <button class="btn-rounded btn-yellow mx-auto shadow-lg mr-2" (click)="onEditTrainingClicked($event, i)">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon-white w-6 h-6">
+        <path d="M0 0h24v24H0z" fill="none" />
+        <path
+          d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z" />
+      </svg>
+    </button>
+
+    <!-- Delete button -->
+    <button *ngIf="!inModal" class="btn-rounded btn-red" (click)="onDeleteTrainingClicked($event, i)">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon-white w-6 h-6">
         <path d="M0 0h24v24H0z" fill="none" />
         <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z" />
@@ -17,11 +37,6 @@
     </button>
     <app-deletion-confirmation-modal></app-deletion-confirmation-modal>
 
-    <div *ngIf="!training.completed;else done">
-      <div *ngIf="!dayHasPassed();else cancelled">
-        <ng-container *ngTemplateOutlet="pending"></ng-container>
-      </div>
-    </div>
   </div>
 
 </div>

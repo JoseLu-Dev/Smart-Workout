@@ -1,4 +1,5 @@
 export class TrainingsDay {
+    public _id?: string;
     public userId?: string;
     public date: Date;
     public trainings: TrainingSpecs[];

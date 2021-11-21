@@ -122,6 +122,14 @@ export class TrainingsListComponent implements OnInit {
     this.trainingService.saveTrainingDay(this.trainingsDay).subscribe();
   }
 
+  onEditTrainingClicked(event, trainingNumber: number) {
+    // Makes father onClick not to execute
+    event.stopPropagation();
+
+    this.newTrainingModal.setTrainingToEdit(trainingNumber);
+    this.newTrainingModal.openModal();
+  }
+
   onTrainingSelectedToCopy(training: TrainingSpecs) {
     if (!this.trainingsDay) {
       this.trainingsDay = new TrainingsDay();
