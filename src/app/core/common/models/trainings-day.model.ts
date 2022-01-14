@@ -10,6 +10,7 @@ export class TrainingsDay {
     }
 
     setDate(date: Date): void {
+        //TODO ESTA MIERDA DA ERROR
         this.date = date;
         this.date.setUTCFullYear(this.date.getFullYear());
         this.date.setUTCMonth(this.date.getMonth());

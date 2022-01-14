@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
   templateUrl: './exercises-set-add-form.component.html',
   styleUrls: ['./exercises-set-add-form.component.scss'],
 })
-export class ExercisesSetAddFormComponent implements OnInit, OnDestroy{
+export class ExercisesSetAddFormComponent implements OnInit, OnDestroy {
 
   public types = ['Normal', 'Emom', 'Super Set', 'Circuit'];
 
@@ -34,7 +34,6 @@ export class ExercisesSetAddFormComponent implements OnInit, OnDestroy{
 
   ngOnDestroy() {
     this.trainingsFormService.resetSelectedSet();
-    this.trainingsFormService.saveTraining();
   }
 
   public setOnSelectedSetChanged() {

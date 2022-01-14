@@ -35,41 +35,41 @@ export class TrainingsComponentCommunicationService {
     this.training.value.setsDone.splice(index, 1);
   }
 
-  confirmSetSelectedEdition(set: ExerciseSet){
+  confirmSetSelectedEdition(set: ExerciseSet) {
     const setsDone = this.training.value.setsDone;
     const indexSelected = this.indexSelected.value;
 
-    if(indexSelected == null
-      || indexSelected >= setsDone.length){
-        setsDone.push(set);
-    }else{
+    if (indexSelected == null
+      || indexSelected >= setsDone.length) {
+      setsDone.push(set);
+    } else {
       setsDone[indexSelected] = set;
     }
     this.indexSelected.next(null);
     this.selectedSet.next(null);
   }
 
-  getTraining(){
+  getTraining() {
     return this.training.asObservable();
   }
 
-  getSelectedSet(){
+  getSelectedSet() {
     return this.selectedSet.asObservable();
   }
 
-  resetSelectedSet(){
+  resetSelectedSet() {
     this.selectedSet.next(null);
   }
 
-  getTrainingFromAPI(id: string){
+  getTrainingFromAPI(id: string) {
     const observableResponse: Observable<Training> = this.trainingsService.getTraining(id);
-    observableResponse.subscribe(training =>{
+    observableResponse.subscribe(training => {
       this.training.next(training);
     });
   }
 
-  saveTraining(){
-    this.trainingsService.saveTraining(this.training.value);
+  saveTraining() {
+    this.trainingsService.saveTraining(this.training.value).subscribe();
   }
 
 }

@@ -3,7 +3,7 @@ import { TrainingsService } from '../../../services/trainings.service';
 import { TrainingsDay, TrainingSpecs } from '../../../models/trainings-day.model';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ModalService } from '../../../../../common/modals/base-modal/modal.service';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, SimpleChanges, OnChanges } from '@angular/core';
 import { DaysService } from '../../../services/days.service';
 
 @Component({
@@ -11,7 +11,7 @@ import { DaysService } from '../../../services/days.service';
   templateUrl: './new-training-modal.component.html',
   styleUrls: ['./new-training-modal.component.scss'],
 })
-export class NewTrainingModalComponent implements OnInit {
+export class NewTrainingModalComponent implements OnInit, OnChanges {
 
   @Input() date: Date;
 
@@ -48,6 +48,12 @@ export class NewTrainingModalComponent implements OnInit {
     this.trainingForm = this.formBuilder.group({
       name: ['', Validators.compose([Validators.required, Validators.maxLength(20)])],
     });
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    //console.log(changes);
+    // You can also use categoryId.previousValue and
+    // categoryId.firstChange for comparing old and new values
   }
 
   /**

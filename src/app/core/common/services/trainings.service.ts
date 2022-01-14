@@ -38,7 +38,7 @@ export class TrainingsService {
    * @returns
    */
   saveTraining(training: Training) {
-    return this.http.patch(`${this.trainingsUrl}/${training.id}`, training).subscribe();
+    return this.http.patch(`${this.trainingsUrl}/${training.id}`, training);
   }
 
   /**
@@ -67,7 +67,7 @@ export class TrainingsService {
    * @param id training id
    */
   deleteTraining(id: string) {
-    return this.http.delete(`${this.trainingsUrl}/${id}`, {responseType: 'text'}).subscribe();
+    return this.http.delete(`${this.trainingsUrl}/${id}`, { responseType: 'text' }).subscribe();
   }
 
   /**

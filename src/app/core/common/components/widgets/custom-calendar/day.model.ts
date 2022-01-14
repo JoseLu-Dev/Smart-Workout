@@ -18,6 +18,6 @@ export class Day {
     public selected: boolean;
 
     getDate(){
-        return new Date(this.year, this.monthIndex, this.number);;
+        return new Date(this.year, this.monthIndex, this.number);
     }
 }
